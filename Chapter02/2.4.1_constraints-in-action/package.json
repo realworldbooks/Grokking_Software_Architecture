@@ -1,0 +1,12 @@
+{
+  "name": "constraints-in-action",
+  "version": "1.0.0",
+  "description": "Chapter 2 'Good Enough for Now' CSV Export Example",
+  "main": "exportCsv.js",
+  "scripts": {
+    "start": "node exportCsv.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
