@@ -8,7 +8,7 @@ Each example is a self-contained .NET 8 Console Application or Solution.
 
 1.  Make sure you have the .NET 8 SDK installed.
 2.  For simple projects, navigate into the directory (e.g., `cd 4.2-Downward-Dependency/GoodWay`) and run `dotnet run`.
-3.  For the solution in **4.4-Anti-Patterns/GoodWay-RichDomain**, you can open the `MySolution.sln` file in an IDE, or build and run the `MySolution.WebAPI` project from the command line.
+3.  For the solution in **4.4-Anti-Patterns/GoodWay-RichDomain**, you can open the `GoodWay.sln` file in an IDE, or build and run the `GoodWay.WebAPI` project from the command line.
 
 See the individual `README.md` files in each folder for specific instructions.
 
@@ -22,4 +22,5 @@ See the individual `README.md` files in each folder for specific instructions.
     * `/GoodWay`: Shows the correct approach using an `ILogger` interface and dependency injection.
 * **4.4-Anti-Patterns:** This folder contains the main event for the chapter.
     * `/BadWay-FatController`: A console app simulating the "Fat Controller" and "Anemic Domain Model" anti-pattern.
+
     * `/GoodWay-RichDomain`: A complete, multi-project solution demonstrating the correct, layered refactor with a "Rich Domain Model."
