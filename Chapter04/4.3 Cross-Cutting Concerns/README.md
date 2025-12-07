@@ -1,11 +1,11 @@
 # 4.3 Cross-Cutting Concerns Examples
 
-This folder contains two projects to contrast the "Bad Way" (static logger) and the "Good Way" (injected `ILogger`).
+This folder contains two projects to contrast the "Before Refactoring" (static logger) and the "After Refactoring" (injected `ILogger`).
 
-* `/BadWay`: A console app showing `OrderService` tightly coupled to a static logger.
-* `/GoodWay`: A console app showing `OrderService` depending on an `ILogger` interface.
+* `/Before`: A console app showing `OrderService` tightly coupled to a static logger.
+* `/After`: A console app showing `OrderService` depending on an `ILogger` interface.
 
 ## How to Run
-Navigate to either `BadWay` or `GoodWay` and run:
+Navigate to either `Before` or `After` and run:
 ```bash
 dotnet run

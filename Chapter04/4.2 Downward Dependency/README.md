@@ -1,11 +1,11 @@
 # 4.2 Downward Dependency Examples
 
-This folder contains two projects to contrast the "Bad Way" (violating the rule) and the "Good Way" (following the rule).
+This folder contains two projects to contrast the "Before Refactoring" (violating the rule) and the "After Refactoring" (following the rule).
 
-* `/BadWay`: A console app simulating a data layer that *incorrectly* calls an upward layer.
-* `/GoodWay`: A console app showing the correct pattern, where the business layer calls the data layer via an interface.
+* `/Before`: A console app simulating a data layer that *incorrectly* calls an upward layer.
+* `/After`: A console app showing the correct pattern, where the business layer calls the data layer via an interface.
 
 ## How to Run
-Navigate to either `BadWay` or `GoodWay` and run:
+Navigate to either `Before` or `After` and run:
 ```bash
 dotnet run

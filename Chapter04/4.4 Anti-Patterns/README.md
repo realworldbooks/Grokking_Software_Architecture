@@ -3,7 +3,7 @@
 This folder contains the main example for the chapter, contrasting the "Fat Controller" anti-pattern with the correct, refactored "Rich Domain" layered architecture.
 
 * `/BadWay-FatController`: A single console app that simulates the "Fat Controller" / "Anemic Domain Model" anti-pattern.
-* `/GoodWay-RichDomain`: A complete, multi-project .NET Solution (`.sln`) that demonstrates the correct, layered refactor.
+* `/After-RichDomain`: A complete, multi-project .NET Solution (`.sln`) that demonstrates the correct, layered refactor.
 
 ## How to Run
 
@@ -17,7 +17,7 @@ Open MySolution.sln in Visual Studio or VS Code.
 
 Set MySolution.WebAPI as the startup project and run (F5).
 
-OR, from this directory (GoodWay-RichDomain), run:
+OR, from this directory (After-RichDomain), run:
 
 ```bash
 dotnet run --project MySolution.WebAPI/MySolution.WebAPI.csproj
