@@ -7,11 +7,19 @@ namespace ServerMonitor.After.Infrastructure.Adapters
     // ADAPTER 1: The "Real" Production Adapter
     public class TwilioAdapter : IAlertPort
     {
-        public void SendAlert(string message)
-        {
-            var client = new TwilioClient("API_KEY");
-            client.SendSms("555-1234", message);
-            Console.WriteLine($"(PROD ADAPTER) SMS sent via Twilio: {message}");
+        private readonly string _apiKey; 
+        private readonly string _targetPhoneNumber;
+
+        // INJECT the configuration details via the constructor 
+        public TwilioAdapter(string apiKey, string targetPhoneNumber) { 
+            _apiKey = apiKey; 
+            _targetPhoneNumber = targetPhoneNumber; 
         }
-    }
+
+        public void SendAlert(string message) #A
+        { #A
+            var client = new TwilioClient(_apiKey); #A
+            client.SendSms(_targetPhoneNumber, message); #A
+            Console.WriteLine($"(PROD ADAPTER) SMS sent via Twilio: {message}"); #A
+        } #A
 }
