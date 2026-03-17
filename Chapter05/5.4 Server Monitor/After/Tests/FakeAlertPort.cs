@@ -6,10 +6,6 @@ namespace ServerMonitor.After.Tests
     public class FakeAlertPort : IAlertPort
     {
         public List<string> SentMessages { get; } = new List<string>();
-
-        public void SendAlert(string message)
-        {
-            SentMessages.Add(message);
-        }
+        public void SendAlert(string message) => SentMessages.Add(message);
     }
 }
