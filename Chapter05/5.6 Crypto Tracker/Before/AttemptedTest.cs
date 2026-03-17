@@ -1,40 +1,31 @@
-using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CryptoTracker.Before
+namespace CryptoTracker.Before.Tests
 {
-    public class AttemptedTest
+    [TestClass]
+    public class AttemptedTests
     {
-        public static void Run()
+        [TestMethod]
+        public void CalculateTotalValue_UsingLiveApi_IsUntestable()
         {
-            Console.WriteLine("\n--- ATTEMPTING TO TEST (BEFORE) ---");
-            
+            // Arrange
+            // We create the manager, but it creates its own hardcoded HTTP client inside!
             var manager = new PortfolioManager();
 
-            try 
-            {
-                // ACT
-                // We want to test that 1 BTC = the current price.
-                decimal value = manager.CalculateTotalValue(1m);
+            // Act
+            // We want to test the value of 1 BTC.
+            var value = manager.CalculateTotalValue(1m);
 
-                // ASSERT
-                // Problem: What is the price of Bitcoin right now? 
-                // Is it $50,000? $60,000? $20,000?
-                // We cannot write an assertion because the data changes every second!
-                
-                if (value == 50_000m) 
-                {
-                     Console.WriteLine("PASS: Value is exactly 50,000 (One in a million chance!)");
-                }
-                else 
-                {
-                     Console.WriteLine($"FAIL: Expected 50,000 but got {value}.");
-                     Console.WriteLine("      (Test is flaky because we depend on live data.)");
-                }
-            }
-            catch
-            {
-                Console.WriteLine("FAIL: Test crashed (No Internet / API Down).");
-            }
+            // ASSERT
+            // Problem: What is the price of Bitcoin right now? 
+            // Is it $50,000? $60,000? $20,000?
+            // We cannot write a reliable assertion because the data changes every second!
+            
+            // This test is FLAKY. It will almost certainly FAIL because the live 
+            // price is rarely exactly 50,000.
+            // Furthermore, it will completely CRASH (throw an exception) if the 
+            // test runner doesn't have an active internet connection.
+            Assert.AreEqual(50_000m, value);
         }
     }
 }
