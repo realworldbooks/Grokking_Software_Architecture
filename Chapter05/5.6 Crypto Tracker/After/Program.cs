@@ -14,15 +14,15 @@ namespace CryptoTracker.After
             Console.WriteLine("--- CRYPTO TRACKER HEXAGONAL ---");
 
             // 1. Choose your Adapter (The Plug)
-            IPriceProviderPort adapter = new CoinGeckoAdapter(); // Use this for real data
-            // IPriceProviderPort adapter = new FakePriceProvider();   // Use this for "Airplane Mode"
+            IPriceProviderPort realAdapter = new CoinGeckoAdapter(); // Use this for real data
+            // IPriceProviderPort fakeAdapter = new FakePriceProvider();   // Use this for "Airplane Mode"
 
             // 2. Inject it into the Core (The Socket)
-            var manager = new PortfolioManager(adapter);
+            var manager = new PortfolioManager(realAdapter);
 
-            // 3. Run the logic
+            // 3. Run the Application
             var value = await manager.CalculateTotalValue(2.5m);
-            Console.WriteLine($"Portfolio Value (BTC @ ${await adapter.GetBitcoinPrice()}): ${value}");
+            Console.WriteLine($"Live Portfolio Value: ${value}");
 
             // 4. Run the Proof (The Test)
             await PortfolioTests.Run();
