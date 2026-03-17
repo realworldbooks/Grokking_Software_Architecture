@@ -12,15 +12,15 @@ class Program
         Console.WriteLine("--- SERVER MONITOR (HEXAGONAL DEMO) ---");
 
         // 1. Choose your Adapter (The Plug)
-        // Try swapping this line to new TwilioAdapter() or new KafkaAlertAdapter(...)!
-        IAlertPort adapter = new ConsoleAdapter();
+        // Try swapping this line to new ConsoleAdapter() or new KafkaAlertAdapter(...)!
+        IAlertPort myAdapter = new TwilioAdapter();
 
         // 2. Inject it into the Core (The Socket)
-        var monitor = new ServerMonitor(adapter);
+        ServerMonitor monitor = new ServerMonitor(myAdapter);
 
         // 3. Run the logic
         // The Core logic runs exactly the same, no matter which adapter is plugged in.
-        monitor.CheckTemperature(95);
+        monitor.CheckTemperature(105);
         
         // Example of running the Unit Test logic manually
         ServerMonitorTests.Run();
