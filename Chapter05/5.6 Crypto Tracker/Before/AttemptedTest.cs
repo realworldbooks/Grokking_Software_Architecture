@@ -21,7 +21,7 @@ namespace CryptoTracker.Before
                 // Is it $50,000? $60,000? $20,000?
                 // We cannot write an assertion because the data changes every second!
                 
-                if (value == 50000m) 
+                if (value == 50_000m) 
                 {
                      Console.WriteLine("PASS: Value is exactly 50,000 (One in a million chance!)");
                 }
