@@ -13,7 +13,7 @@ namespace CryptoTracker.After.Tests
         {
             // Arrange
             // We use the Fake adapter so we know EXACTLY what the price is ($50,000)
-            var fakeAdapter = new FakePriceProvider(50000m);
+            var fakeAdapter = new FakePriceProvider(50_000m);
             var manager = new PortfolioManager(fakeAdapter);
 
             // Act
@@ -22,7 +22,7 @@ namespace CryptoTracker.After.Tests
 
             // Assert
             // 2 * 50,000 should be 100,000
-            Assert.AreEqual(100000m, value);
+            Assert.AreEqual(100_000m, value);
         }
     }
 }
