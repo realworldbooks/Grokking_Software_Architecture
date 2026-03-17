@@ -1,14 +1,14 @@
-using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ServerMonitor.After.Core.Domain;
 
 namespace ServerMonitor.After.Tests
 {
+    [TestClass]
     public class ServerMonitorTests
     {
-        public static void Run()
+        [TestMethod]
+        public void ServerOverheating_SendsAlert_ExactlyOnce()
         {
-            Console.WriteLine("\n--- RUNNING UNIT TEST ---");
-
             // Arrange
             var fakePort = new FakeAlertPort();
             var monitor = new ServerMonitor(fakePort);
@@ -17,15 +17,8 @@ namespace ServerMonitor.After.Tests
             monitor.CheckTemperature(95);
 
             // Assert
-            if (fakePort.SentMessages.Count == 1 && 
-                fakePort.SentMessages[0].Contains("Take cover"))
-            {
-                Console.WriteLine("PASS: Alert was received!");
-            }
-            else
-            {
-                Console.WriteLine("FAIL: Alert logic incorrect.");
-            }
+            Assert.AreEqual(1, fakePort.SentMessages.Count);
+            Assert.IsTrue(fakePort.SentMessages[0].Contains("Take cover"));
         }
     }
 }
