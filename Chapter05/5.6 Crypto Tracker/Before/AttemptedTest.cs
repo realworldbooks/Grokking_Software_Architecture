@@ -14,7 +14,7 @@ namespace CryptoTracker.Before
             {
                 // ACT
                 // We want to test that 1 BTC = the current price.
-                decimal value = manager.CalculateTotalValue(1.0m);
+                decimal value = manager.CalculateTotalValue(1m);
 
                 // ASSERT
                 // Problem: What is the price of Bitcoin right now? 
