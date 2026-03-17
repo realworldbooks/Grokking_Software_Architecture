@@ -14,8 +14,8 @@ namespace CryptoTracker.After
             Console.WriteLine("--- CRYPTO TRACKER HEXAGONAL ---");
 
             // 1. Choose your Adapter (The Plug)
-            // IPriceProviderPort adapter = new CoinGeckoAdapter(); // Use this for real data
-            IPriceProviderPort adapter = new FakePriceProvider();   // Use this for "Airplane Mode"
+            IPriceProviderPort adapter = new CoinGeckoAdapter(); // Use this for real data
+            // IPriceProviderPort adapter = new FakePriceProvider();   // Use this for "Airplane Mode"
 
             // 2. Inject it into the Core (The Socket)
             var manager = new PortfolioManager(adapter);
