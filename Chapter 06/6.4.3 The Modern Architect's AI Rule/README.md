@@ -1,6 +1,6 @@
 # AI API Prompts: Cross-Language Examples
 
-The architectural principle taught in Chapter 6—**"Your API Schema is the System Prompt"**—is universal. While the book focuses on C# and .NET, this folder demonstrates how to apply the exact same "Code-as-Prompt" architecture in Python, Java, and Node.js.
+The architectural principle taught in Chapter 6, **"Your API Schema is the System Prompt"**, is universal. While the book focuses on C# and .NET, this folder demonstrates how to apply the exact same "Code-as-Prompt" architecture in Python, Java, and Node.js.
 
 ## Why are there dependencies here?
 The main C# repository for this book strictly avoids third-party packages. This is possible because Microsoft includes OpenAPI (Swagger) generation directly in the standard .NET SDK. 
