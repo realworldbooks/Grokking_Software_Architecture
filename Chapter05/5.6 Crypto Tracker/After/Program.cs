@@ -21,7 +21,7 @@ namespace CryptoTracker.After
             var manager = new PortfolioManager(realAdapter);
 
             // 3. Run the Application
-            var value = await manager.CalculateTotalValue(2.5m);
+            var value = await manager.CalculateTotalValue(2m);
             Console.WriteLine($"Live Portfolio Value: ${value}");
 
             // 4. Run the Proof (The Test)
