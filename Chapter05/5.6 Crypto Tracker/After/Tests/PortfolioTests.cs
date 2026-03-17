@@ -1,35 +1,28 @@
-using System;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting; // Adds the standard MSTest framework
 using CryptoTracker.After.Core.Domain;
 using CryptoTracker.After.Infrastructure.Adapters;
 
 namespace CryptoTracker.After.Tests
 {
+    [TestClass]
     public class PortfolioTests
     {
-        public static async Task Run()
+        [TestMethod]
+        public async Task Should_Calculate_Value_Correctly()
         {
-            Console.WriteLine("\n--- RUNNING PORTFOLIO UNIT TEST ---");
-
             // Arrange
             // We use the Fake adapter so we know EXACTLY what the price is ($50,000)
-            var offlineAdapter = new FakePriceProvider();
-            var manager = new PortfolioManager(offlineAdapter);
+            var fakeAdapter = new FakePriceProvider(50000m);
+            var manager = new PortfolioManager(fakeAdapter);
 
             // Act
-            // We calculate value for 2.5 BTC
-            var value = await manager.CalculateTotalValue(2.5m);
+            // We calculate the value for 2 BTC
+            var value = await manager.CalculateTotalValue(2m);
 
             // Assert
-            // 2.5 * 50,000 should be 125,000
-            if (value == 125_000m)
-            {
-                Console.WriteLine("PASS: Calculated correct value offline!");
-            }
-            else
-            {
-                Console.WriteLine($"FAIL: Expected 125,000 but got {value}");
-            }
+            // 2 * 50,000 should be 100,000
+            Assert.AreEqual(100000m, value);
         }
     }
 }
