@@ -1,25 +1,14 @@
-# AI API Prompts: Cross-Language Examples
+# Chapter 6: AI-Ready APIs (The "Code-as-Prompt" Architecture)
 
-The architectural principle taught in Chapter 6, **"Your API Schema is the System Prompt"**, is universal. While the book focuses on C# and .NET, this folder demonstrates how to apply the exact same "Code-as-Prompt" architecture in Python, Java, and Node.js.
+Welcome to the code companion for Chapter 6! The examples in this repository demonstrate a critical architectural shift for the AI era: **Your API Schema is the System Prompt.**
 
-## Why are there dependencies here?
-The main C# repository for this book strictly avoids third-party packages. This is possible because Microsoft includes OpenAPI (Swagger) generation directly in the standard .NET SDK. 
+While the book example uses .NET and C#, this universal concept applies across all modern tech stacks. To prove it, we have included fully runnable examples in four different language ecosystems. Each project demonstrates how to translate standard code comments directly into an AI-ready OpenAPI specification.
 
-However, in ecosystems like Python, Node.js, and Java, the standard HTTP libraries do not know how to parse code comments (`/** ... */` or docstrings) into an OpenAPI specification. To avoid writing massive, unmaintainable JSON files by hand, we must use the industry-standard frameworks for each language to automatically generate AI prompts.
+### 🧭 Choose Your Language
 
-### 🐍 Python (FastAPI)
-FastAPI automatically translates Python docstrings and Pydantic models into OpenAPI specs.
-* **Setup:** `pip install -r requirements.txt`
-* **Run:** `uvicorn main:app --reload`
-* **View the AI UI:** `http://localhost:8000/docs`
+* **[🟦 C# / .NET](./C%23/)** - The primary example using standard .NET 8 and Swashbuckle.
+* **[🐍 Python](./Python/python_app/)** - Demonstrating the concept using FastAPI and Pydantic.
+* **[🌐 Node.js](./JS/node_app/)** - Demonstrating the concept using Express and Swagger-JSDoc.
+* **[☕ Java](./Java/)** - Demonstrating the concept using Spring Boot and Springdoc OpenAPI.
 
-### ☕ Java (Spring Boot)
-Spring Boot uses the `springdoc-openapi` package to read `@Operation` and `@Schema` annotations.
-* **Run:** `mvn spring-boot:run`
-* **View the AI UI:** `http://localhost:8080/swagger-ui.html`
-
-### 🌐 Node.js (Express)
-Express uses `swagger-jsdoc` to parse YAML-style JSDoc comments placed directly above your routes.
-* **Setup:** `npm install`
-* **Run:** `npm start`
-* **View the AI UI:** `http://localhost:3000/api-docs`
+*Note: Click into any folder above to find the specific source code and a dedicated `README.md` with exact instructions on how to run that environment locally!*
