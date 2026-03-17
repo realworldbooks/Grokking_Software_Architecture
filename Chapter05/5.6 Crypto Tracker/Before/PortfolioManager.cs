@@ -19,7 +19,7 @@ namespace CryptoTracker.Before
             // Logic is tangled with parsing specific external JSON format
             var priceData = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, decimal>>>(json);
             var currentPrice = priceData["bitcoin"]["usd"];
-
+            
             return btcAmount * currentPrice;
         }
     }
