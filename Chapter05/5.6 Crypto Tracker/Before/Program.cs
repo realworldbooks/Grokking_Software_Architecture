@@ -11,7 +11,7 @@ namespace CryptoTracker.Before
             try 
             {
                 // This will fail if you don't have internet!
-                var value = manager.CalculateTotalValue(2.5m);
+                var value = manager.CalculateTotalValue(2m);
                 Console.WriteLine($"Portfolio Value: ${value}");
             }
             catch(Exception ex) 
