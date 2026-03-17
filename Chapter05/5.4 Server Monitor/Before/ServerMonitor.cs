@@ -8,7 +8,7 @@ namespace ServerMonitor.Before
         public void CheckTemperature(int temp)
         {
             // VIOLATION: Hardcoded check inside the logic
-            if (temp > HIGH_TEMP_THRESHOLD)
+            if (temp > 95)
             {
                 // VIOLATION: We are hardcoding a dependency on a specific external tool (Twilio).
                 // We can't test this logic without actually sending a text message!
