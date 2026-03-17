@@ -16,7 +16,7 @@ namespace ServerMonitor.After.Core.Domain
 
         public void CheckTemperature(int temp)
         {
-            if (temp > HIGH_TEMP_THRESHOLD) //GLOBAL CONSTANT
+            if (temp > Constants.HIGH_TEMP_THRESHOLD) //GLOBAL CONSTANT
             {
                 // The Core just calls the Port. 
                 // It doesn't care if it's an SMS, an Email, or a Carrier Pigeon.
