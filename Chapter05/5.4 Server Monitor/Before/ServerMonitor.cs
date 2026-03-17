@@ -7,7 +7,7 @@ namespace ServerMonitor.Before
     {
         public void CheckTemperature(int temp)
         {
-            // VIOLATION: Hardcoded check inside the logic
+            // VIOLATION: Hardcoded "magic number"
             if (temp > 95)
             {
                 // VIOLATION: We are hardcoding a dependency on a specific external tool (Twilio).
