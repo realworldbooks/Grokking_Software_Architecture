@@ -2,7 +2,7 @@
 
 This is the "In Action" refactoring exercise from the book. It calculates the total value of a Bitcoin portfolio in USD.
 
-* **Goal:** Calculate the current value of a portfolio (e.g., 2.5 BTC).
+* **Goal:** Calculate the current value of a portfolio (e.g., 2.0 BTC).
 * **Requirement:** Fetch the real-time price of Bitcoin from an external API (CoinGecko).
 * **Constraint:** We need to be able to verify the math logic even if the API is down or the internet is disconnected.
 
