@@ -19,7 +19,7 @@ This project is a single C# Console Application containing the following example
 This project is designed to be **100% zero-setup**. There are no external NuGet packages or databases required.
 
 ### Option 1: Using an IDE (Recommended)
-1. Open the `chapter-02/csharp/` folder in Visual Studio or VS Code.
+1. Open the `Chapter02/C#/` folder in Visual Studio or VS Code.
 2. Open the `Program.cs` file in the root directory.
 3. Uncomment the specific example you want to run (e.g., `Example1.ShoppingCartDemo.Run();`).
 4. Hit the **Play/Run** button!
@@ -28,5 +28,5 @@ This project is designed to be **100% zero-setup**. There are no external NuGet 
 If you have the .NET SDK installed, simply navigate to this directory in your terminal and run:
 
 ```bash
-cd chapter-02/csharp/
+cd Chapter02/C#/
 dotnet run
