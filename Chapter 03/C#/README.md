@@ -21,7 +21,7 @@ This project is **100% zero-setup**. There are no external NuGet packages requir
 To keep things simple, this project uses a single entry point. 
 
 **Using an IDE (Visual Studio / VS Code):**
-1. Open the `chapter-03/csharp/` folder.
+1. Open the `Chapter03/C#/` folder.
 2. Open the `Program.cs` file in the root directory.
 3. Uncomment the specific lesson you want to run (e.g., `SRP.After.Demo.Run();`).
 4. Hit the **Play/Run** button!
@@ -29,5 +29,5 @@ To keep things simple, this project uses a single entry point.
 **Using the CLI:**
 Navigate to the directory in your terminal and run:
 ```bash
-cd chapter-03/csharp/
+cd Chapter03/C#/
 dotnet run
