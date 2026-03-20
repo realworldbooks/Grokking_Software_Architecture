@@ -1,0 +1,49 @@
+using System;
+
+namespace Chapter03.OrderProcessorRefactor.After;
+
+// --- Step 1: The Individual Service Classes ---
+
+// Handles only validation logic
+public class OrderValidator
+{
+    public void Validate(Order order)
+    {
+        Console.WriteLine("  [Validate] Validating order...");
+        if (order.Items.Count == 0 || order.Total <= 0)
+        {
+            throw new InvalidOperationException("Order is invalid.");
+        }
+    }
+}
+
+// Handles only payment processing
+public class PaymentService
+{
+    public bool ProcessPayment(Order order)
+    {
+        Console.WriteLine($"  [Payment] Processing payment for ${order.Total}...");
+        // Real payment gateway logic would go here
+        return true;
+    }
+}
+
+// Handles only inventory updates
+public class InventoryManager
+{
+    public void UpdateInventory(Order order)
+    {
+        Console.WriteLine("  [Inventory] Updating inventory...");
+        // Real database logic to update stock would go here
+    }
+}
+
+// Handles only sending notifications
+public class NotificationService
+{
+    public void SendConfirmationEmail(Order order)
+    {
+        Console.WriteLine($"  [Notify] Sending confirmation email to {order.CustomerEmail}...");
+        // Real email sending logic would go here
+    }
+}
