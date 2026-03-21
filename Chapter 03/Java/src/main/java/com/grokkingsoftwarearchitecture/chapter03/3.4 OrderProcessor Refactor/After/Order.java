@@ -1,7 +1,13 @@
-package com.grokkingsoftwarearchitecture.chapter03.orderprocessor.before;
+package com.grokkingsoftwarearchitecture.chapter03.orderprocessor.after;
 
 import java.util.List;
 
+/**
+ * A Simple Data Transfer Object (DTO).
+ * * ARCHITECTURE NOTE: Just like in the "Before" state, this remains a pure 
+ * data container. It holds the state that our new, highly-cohesive services 
+ * will operate on.
+ */
 public class Order {
     public List<String> items;
     public double total;

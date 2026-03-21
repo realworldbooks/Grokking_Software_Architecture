@@ -1,10 +1,14 @@
 package com.grokkingsoftwarearchitecture.chapter03.orderprocessor.after;
 
-// Handles only payment processing
-public class PaymentService {
-    public boolean processPayment(Order order) {
-        System.out.println("  [Payment] Processing payment for $" + order.total + "...");
-        // Real payment gateway logic would go here
-        return true;
+/**
+ * SRP SOLUTION: Infrastructure Isolation.
+ * * ARCHITECTURE NOTE: If we migrate from Oracle to PostgreSQL, the 
+ * billing team and sales team won't even notice, because only this 
+ * inventory manager class needs to change.
+ */
+public class InventoryManager {
+    public void updateInventory(Order order) {
+        System.out.println("  [Inventory] Updating inventory...");
+        // Real database logic to update stock would go here
     }
 }
