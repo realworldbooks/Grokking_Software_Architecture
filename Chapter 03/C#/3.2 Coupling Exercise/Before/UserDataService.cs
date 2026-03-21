@@ -3,8 +3,18 @@ using System.Collections.Generic;
 
 namespace Chapter03.CouplingTest.Before;
 
+/// <summary>
+/// A service that provides user data.
+/// This version demonstrates a "chatty," fine-grained API that leads to high coupling.
+/// </summary>
 public class UserDataService
 {
+    // PROBLEM: This service's API is too fine-grained.
+    // It forces any client that wants to build a user report to know exactly
+    // which methods to call and in what order. The client has to do the work
+    // of orchestrating the data retrieval. This exposes the internal structure
+    // of the data and creates a tight coupling with any client that uses it.
+    
     public string GetUserName(int userId) 
     {
         Console.WriteLine("    [Service] Fetching Name...");

@@ -1,17 +1,31 @@
 const getDashboardSummaryBefore = require('./dashboardBefore');
 const getDashboardSummaryAfter = require('./dashboardAfter');
 
-console.log("=== Chapter 2: Performance Example ===\n");
+function runPerformanceDemo() {
+    console.log("--- Performance Example: Caching ---");
+    const USER_ID = "user123";
 
-console.log("--- Running Before: Brute Force Query ---");
-console.log("[Call: User logs in]");
-getDashboardSummaryBefore("User123");
+    // --- SCENARIO 1: The "Before" Case (No Caching) ---
+    console.log("\\n[SCENARIO 1: Before Refactor - No Caching]");
+    // Every time this function is called, it will perform the same series
+    // of slow, expensive database lookups.
+    getDashboardSummaryBefore(USER_ID);
 
-console.log("\n--- Running After: Smart Cache Architecture ---");
-console.log("[Call 1: User logs in for the first time]");
-getDashboardSummaryAfter("User999");
 
-console.log("\n[Call 2: User refreshes the page a minute later]");
-getDashboardSummaryAfter("User999");
+    // --- SCENARIO 2: The "After" Case (With Caching) ---
+    console.log("\\n[SCENARIO 2: After Refactor - With Cache-Aside Pattern]");
+    
+    // First call for a user is a "cache miss". The app has to do the slow
+    // work of hitting the database. This call will be slow.
+    console.log("\\n(First call for a new user... expect a cache miss)");
+    getDashboardSummaryAfter(USER_ID);
 
-console.log("\n======================================");
+    // The user refreshes the page. The data is now in the cache.
+    // This second call is a "cache hit" and will be dramatically faster
+    // because it completely avoids the slow database calls.
+    console.log("\\n(Second call for the same user... expect a cache hit)");
+    getDashboardSummaryAfter(USER_ID);
+    console.log("--------------------------------------\\n");
+}
+
+runPerformanceDemo();
