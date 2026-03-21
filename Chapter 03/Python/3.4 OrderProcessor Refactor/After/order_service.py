@@ -1,16 +1,27 @@
-class OrderService:
-    def __init__(self, validator, payment_service, inventory_manager, notification_service):
-        self.validator = validator
-        self.payment_service = payment_service
-        self.inventory_manager = inventory_manager
-        self.notification_service = notification_service
+"""
+SRP SOLUTION: Service Isolation.
+* ARCHITECTURE NOTE: Each class here represents a specific domain boundary. 
+The validator only knows how to check data, the payment service only 
+knows how to talk to a gateway, etc. 
+* This isolation makes each component independently testable and reusable 
+across different parts of the application.
+"""
 
-    def process_order(self, order):
-        self.validator.validate(order)
+class OrderValidator:
+    def validate(self, order):
+        print("  [Validate] Validating order...")
+        if not order.items or order.total <= 0:
+            raise ValueError("Order is invalid.")
 
-        if self.payment_service.process_payment(order):
-            self.inventory_manager.update_inventory(order)
-            self.notification_service.send_confirmation_email(order)
-            return "Order processed successfully."
-        else:
-            return "Payment failed."
+class PaymentService:
+    def process_payment(self, order):
+        print(f"  [Payment] Processing payment for ${order.total:.2f}...")
+        return True
+
+class InventoryManager:
+    def update_inventory(self, order):
+        print("  [Inventory] Updating inventory...")
+
+class NotificationService:
+    def send_confirmation_email(self, order):
+        print(f"  [Notify] Sending confirmation email to {order.customer_email}...")

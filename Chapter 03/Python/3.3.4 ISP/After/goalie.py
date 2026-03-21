@@ -1,5 +1,14 @@
 from interfaces import FieldPlayerTraining, GoalieTraining
 
+"""
+INTERFACE COMPOSITION.
+* ARCHITECTURE NOTE: Python handles ISP beautifully through multiple 
+inheritance. Because a Goalie needs both general field skills and 
+specialized net skills, we simply compose the Goalie out of both 
+interfaces. 
+* This provides total flexibility without polluting the base definitions 
+for other players.
+"""
 class Goalie(FieldPlayerTraining, GoalieTraining):
     def practice_shooting(self):
         print("  [Goalie] Practicing goal kicks and long shots.")
