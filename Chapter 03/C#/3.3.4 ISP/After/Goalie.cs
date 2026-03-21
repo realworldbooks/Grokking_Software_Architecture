@@ -2,7 +2,16 @@ using System;
 
 namespace Chapter03.ISP.After;
 
-// Goalies practice everything!
+/// <summary>
+/// Interface Composition.
+/// 
+/// ARCHITECTURE NOTE: The beauty of Interface Segregation is that classes 
+/// can just "opt-in" to the behaviors they actually need. Because the Goalie 
+/// needs to practice everything, it simply implements BOTH interfaces. 
+/// 
+/// We accommodated the complex requirements of the Goalie without polluting 
+/// the Midfielder's codebase!
+/// </summary>
 public class Goalie : IFieldPlayerTraining, IGoalieTraining
 {
     public void PracticeShooting() 
