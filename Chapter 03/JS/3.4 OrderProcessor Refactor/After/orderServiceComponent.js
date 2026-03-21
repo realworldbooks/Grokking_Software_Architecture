@@ -1,6 +1,14 @@
-// --- Step 1: The Individual Service Classes ---
+/**
+ * SRP SOLUTION: Service Isolation.
+ * * ARCHITECTURE NOTE: We have broken the monolith into highly focused, 
+ * independent service classes. Each class now has exactly ONE reason to 
+ * change.
+ */
 
-// Handles only validation logic
+/**
+ * Handles only validation logic.
+ * ARCHITECTURE NOTE: This can now be unit tested without any external mocks.
+ */
 class OrderValidator {
     validate(order) {
         console.log("  [Validate] Validating order...");
@@ -10,28 +18,34 @@ class OrderValidator {
     }
 }
 
-// Handles only payment processing
+/**
+ * Handles only payment processing.
+ * ARCHITECTURE NOTE: Isolates third-party API logic (like Stripe or PayPal).
+ */
 class PaymentService {
     processPayment(order) {
         console.log(`  [Payment] Processing payment for $${order.total.toFixed(2)}...`);
-        // Real payment gateway logic would go here
         return true;
     }
 }
 
-// Handles only inventory updates
+/**
+ * Handles only inventory updates.
+ * ARCHITECTURE NOTE: Isolates database/infrastructure concerns.
+ */
 class InventoryManager {
     updateInventory(order) {
         console.log("  [Inventory] Updating inventory...");
-        // Real database logic to update stock would go here
     }
 }
 
-// Handles only sending notifications
+/**
+ * Handles only sending notifications.
+ * ARCHITECTURE NOTE: Isolates communication logic (like SendGrid or AWS SES).
+ */
 class NotificationService {
     sendConfirmationEmail(order) {
         console.log(`  [Notify] Sending confirmation email to ${order.customerEmail}...`);
-        // Real email sending logic would go here
     }
 }
 
