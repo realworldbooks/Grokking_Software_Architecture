@@ -1,9 +1,9 @@
 # 4.4 Anti-Patterns: Rich Domain & Thin Controller (After Refactoring)
 
-This Python project demonstrates the "After" state of a professionally structured N-Tier architecture. It resolves the "Fat Controller" and "Anemic Domain" anti-patterns by isolating business rules into a **Rich Domain Model** and coordinating data via a **Service Layer** (Orchestrator).
+This Python project demonstrates the "After" state of a professionally structured Layered Architecture. It resolves the "Fat Controller" and "Anemic Domain" anti-patterns by isolating business rules into a **Rich Domain Model** and coordinating data via a **Service Layer** (Orchestrator).
 
 ## Architectural Highlights
-
+* **Logical Layering, Not Tiers**: This project is structured logically into four distinct layers (Presentation, Business Logic, Data Access, and Domain). Because they all run within the same physical process during execution, this is a Layered Architecture rather than an N-Tier architecture.
 * **No Framework Magic Needed**: Unlike C# (`.csproj`) or Java (`pom.xml`), this pure Python implementation requires no heavy configuration files to demonstrate N-Tier separation.
 * **The Composition Root**: The `presentation/main.py` file sits at the very top of the architecture. It is responsible for wiring all layers together via Dependency Injection before executing the application.
 * **Secure Data Lookup (Source of Truth)**: The `OrderRequest` DTO now only accepts an `item_id` and `quantity`. The `OrderService` securely fetches the official item price from the `SqlItemRepository`, preventing clients from manipulating prices via the API.
@@ -43,12 +43,13 @@ Step 2: Run the application using the -m (module) flag:
 
 ```bash
 python -m presentation.main
+```
 Expected Output
 When executed successfully, you will see the Composition Root wire the dependencies, followed by the simulated database lookups and the final successful HTTP 200 response:
-```
-
+```Plaintext
 --- Running Traditional 4-Layer Architecture ---
 Fat Controller and Anemic Domain eliminated.
   [DB] Fetching official data for Item ID: 1 from SQL.
   [DB] Fetching official data for Item ID: 2 from SQL.
 HTTP 200 OK: 1
+```
