@@ -4,12 +4,12 @@ This Java (Spring Boot) project demonstrates the "After" state of a professional
 ## Architectural Highlights
 * **Logical Layering, Not Tiers:** This project is structured logically into four distinct layers (Presentation, Business Logic, Data Access, and Domain). Because they all run within the same physical JVM process during execution, this is a Layered Architecture rather than an N-Tier architecture.
 
-* **The Composition Root:** The Main.java (or Application.java) file, annotated with @SpringBootApplication, sits at the very top of the application. It acts as the Composition Root, where Spring's Inversion of Control (IoC) container wires all layers together via Dependency Injection.
-* **Targeted Component Scanning:** Because this example shares a single Maven project (pom.xml) with the rest of Chapter 4, Main.java uses @ComponentScan to strictly isolate and load only the classes in the after_rich_domain_thin_controller package.
+* **The Composition Root:** The Main.java (or Application.java) file, annotated with `@SpringBootApplication`, sits at the very top of the application. It acts as the Composition Root, where Spring's Inversion of Control (IoC) container wires all layers together via Dependency Injection.
+* **Targeted Component Scanning:** Because this example shares a single Maven project (`pom.xml`) with the rest of Chapter 4, `Main.java` uses `@ComponentScan` to strictly isolate and load only the classes in the `after_rich_domain_thin_controller` package.
 
-* **Secure Data Lookup (Source of Truth):** The OrderRequest DTO now only accepts an itemId and quantity. The OrderServiceImpl securely fetches the official item price from the SqlItemRepository, preventing clients from manipulating prices via the API.
+* **Secure Data Lookup (Source of Truth):** The `OrderRequest` DTO only accepts an `itemId` and `quantity`. The `OrderServiceImpl` securely fetches the official item price from the `SqlItemRepository`, preventing clients from manipulating prices via the API.
 
-* **Rich Domain Encapsulation:** The Order domain model natively handles its own state, discount calculations, and business logic without leaking it to the Service layer.
+* **Rich Domain Encapsulation:** The `Order` domain model natively handles its own state, discount calculations, and business logic without leaking it to the Service layer.
 
 ## Project Structure
 ```Plaintext
@@ -38,19 +38,19 @@ after_rich_domain_thin_controller/
 └── pom.xml                          (Maven Dependencies & Spring Boot Config)
 ```
 ## How to Run
-This project uses Maven and Spring Boot to provide an enterprise-grade web server and an automated Swagger UI, identical to the C# experience.
+Because all of Chapter 4 shares a single `pom.xml`, you need to tell Maven exactly which `Main.java` file to execute so it doesn't try to run the "Before" examples.
 
-**Step 1:** Open your terminal and navigate to the root of this specific example (where the pom.xml is located):
+**Step 1:** Open your terminal and navigate to the directory containing the `pom.xml`:
 
 ```Bash
-cd "Chapter 04/Java/section_4_4_anti_patterns/after_rich_domain_thin_controller"
+cd "Chapter 04/Java/"
 ```
 **Step 2:** Run the application using the Spring Boot Maven plugin:
 
 ```Bash
-mvn spring-boot:run -Dspring-boot.run.main-class=com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.presentation.Application
+mvn spring-boot:run -Dspring-boot.run.main-class=com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.presentation.Main
 ```
-(Alternatively, you can open the project in IntelliJ IDEA, Eclipse, or VS Code, navigate to this specific Main.java file, and click the "Run" play button next to the public static void main method).
+(Alternatively, you can open the project in IntelliJ IDEA, Eclipse, or VS Code, navigate to this specific `Main.java` file, and click the "Run" play button next to the `public static void main` method).
 ## Expected Output & Testing
 When executed successfully, you will see the Spring Boot banner and logs confirming the server has started on port 8080:
 
@@ -69,6 +69,6 @@ Started Application in 2.145 seconds
 ```
 ### To test the API, you have two options:
 
-* **Interactive UI:** Open your browser to http://localhost:8080/swagger-ui/index.html to view and interact with the automatically generated OpenAPI documentation.
+* **Interactive UI:** Open your browser to `http://localhost:8080/swagger-ui/index.html` to view and interact with the automatically generated OpenAPI documentation.
 
-* **Standardized Testing:** Use the .http file shared across the book's examples. Ensure the @host variable at the top of the .http file is set to http://localhost:8080.
+* **Standardized Testing:** Use the `.http` file shared across the book's examples. Ensure the `@host` variable at the top of the `.http` file is set to `http://localhost:8080`.
