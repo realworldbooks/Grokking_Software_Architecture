@@ -4,7 +4,7 @@ This Python project demonstrates the "After" state of a professionally structure
 
 ## Architectural Highlights
 * **Logical Layering, Not Tiers**: This project is structured logically into four distinct layers (Presentation, Business Logic, Data Access, and Domain). Because they all run within the same physical process during execution, this is a Layered Architecture rather than an N-Tier architecture.
-* **No Framework Magic Needed**: Unlike C# (`.csproj`) or Java (`pom.xml`), this pure Python implementation requires no heavy configuration files to demonstrate N-Tier separation.
+* **No Framework Magic Needed**: Unlike `C#` (`.csproj`) or `Java` (`pom.xml`), this pure Python implementation requires no heavy configuration files to demonstrate Layer separation.
 * **The Composition Root**: The `presentation/main.py` file sits at the very top of the architecture. It is responsible for wiring all layers together via Dependency Injection before executing the application.
 * **Secure Data Lookup (Source of Truth)**: The `OrderRequest` DTO now only accepts an `item_id` and `quantity`. The `OrderService` securely fetches the official item price from the `SqlItemRepository`, preventing clients from manipulating prices via the API.
 * **Rich Domain Encapsulation**: The `Order` domain model natively handles its own state, discount calculations, and business logic without leaking it to the Service layer.
@@ -45,7 +45,7 @@ cd "Chapter 04/Python/section_4_4_anti_patterns/after_rich_domain_thin_controlle
 python -m presentation.main
 ```
 ## Expected Output
-When executed successfully, you will see the Composition Root wire the dependencies, followed by the simulated database lookups and the final successful HTTP 200 response:
+When executed successfully, you will see the Composition Root wire the dependencies, followed by the simulated database lookups and the final successful `HTTP 200` response:
 ```Plaintext
 --- Running Traditional 4-Layer Architecture ---
 Fat Controller and Anemic Domain eliminated.
