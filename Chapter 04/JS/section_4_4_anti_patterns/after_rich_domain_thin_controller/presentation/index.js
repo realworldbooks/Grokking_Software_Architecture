@@ -21,10 +21,13 @@ const emailService = new SmtpEmailService();
 
 const orderService = new OrderService(orderRepo, customerRepo, itemRepo, emailService);
 
+// Instantiate your dedicated Controller class!
+const orderController = new OrderController(orderService); 
+
 /**
- * THE THIN CONTROLLER
- * ARCHITECTURE NOTE: This route is cured of the "Fat Controller" anti-pattern. 
- * Its ONLY job is to translate an HTTP POST request into a Business Logic call.
+ * THE EXPRESS ROUTE (The Web Framework Boundary)
+ * ARCHITECTURE NOTE: Express handles the HTTP parsing, but we immediately 
+ * delegate the actual control flow to our pure-architecture OrderController.
  */
 app.post('/order', (req, res) => {
     try {
@@ -32,16 +35,15 @@ app.post('/order', (req, res) => {
         const items = req.body.items.map(i => new OrderItemRequest(i.itemId, i.quantity));
         const requestDto = new OrderRequest(req.body.customerId, items);
 
-        // 2. Delegate to the Business Logic layer
-        const orderId = orderService.createOrder(requestDto);
+        // 2. Pass the DTO to your pure Controller class
+        const jsonResponse = orderController.createOrder(requestDto); //
         
-        // 3. Return the response
-        res.status(200).json({ orderId: orderId });
+        // 3. Express returns the response headers and the JSON string
+        res.status(200).type('json').send(jsonResponse); 
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 });
-
 // --- SWAGGER UI CONFIGURATION ---
 // This provides an interactive UI identical to the C# and Java versions.
 const swaggerDocument = {
