@@ -1,7 +1,7 @@
 // Chapter 04/JavaScript/4.4 Anti-Patterns/After-RichDomain/data_access/dataAccessInterfaces.js
 
 /**
- * ARCHITECTURE NOTE: In a traditional N-Tier architecture, the 
+ * ARCHITECTURE NOTE: In a traditional Layered Architecture, the 
  * Data Access Layer defines the contracts for accessing data. 
  * The Business Logic layer above will be forced to depend on 
  * this layer to use these interfaces.

@@ -15,9 +15,10 @@ class OrderService {
      * Dependencies on the Data Access layer below it
      * @param {Object} orderRepo 
      * @param {Object} customerRepo 
+     * @param {Object} itemRepo
      * @param {Object} emailService 
      */
-    constructor(orderRepo, customerRepo, emailService) {
+    constructor(orderRepo, customerRepo, itemRepo, emailService) {
         this._orderRepo = orderRepo;
         this._customerRepo = customerRepo;
         this._emailService = emailService;
@@ -30,18 +31,25 @@ class OrderService {
     createOrder(request) {
         // 1. Fetch data from lower layer
         const customer = this._customerRepo.getById(request.customerId);
-        if (!customer) {
-            throw new Error("Not found.");
-        }
+        if (!customer) throw new Error("Customer not found.");
 
         // 2. Instantiate the Rich Domain Model
         const order = new Order(customer.email);
 
         // 3. Delegate business logic to the Rich Model
-        for (const item of request.items) {
+        for (const itemReq of request.items) {
+            // SECURITY NOTE: We look up the item from the repository 
+            // to get the true price, rather than trusting the price 
+            // provided in the HTTP request DTO.
+            const actualItem = this._itemRepo.getById(itemReq.itemId);
+            if (!actualItem) throw new Error(`Item ${itemReq.itemId} not found.`);
+
+            // Map the quantity from the request to the domain object
+            actualItem.quantity = itemReq.quantity;
+
             // The service doesn't care about discount rules; 
             // the Order model handles that internally.
-            order.addItem(item, customer);
+            order.addItem(actualItem, customer);
         }
 
         // 4. Send the updated model back down to Data Access
@@ -53,5 +61,4 @@ class OrderService {
         return order.id;
     }
 }
-
 module.exports = OrderService;
