@@ -1,6 +1,6 @@
 # 4.4 Anti-Patterns: Rich Domain & Thin Controller (After Refactoring)
 
-This Python project demonstrates the "After" state of a professionally structured Layered Tier architecture. It resolves the "Fat Controller" and "Anemic Domain" anti-patterns by isolating business rules into a **Rich Domain Model** and coordinating data via a **Service Layer** (Orchestrator).
+This Python project demonstrates the "After" state of a professionally structured Layered Architecture. It resolves the "Fat Controller" and "Anemic Domain" anti-patterns by isolating business rules into a **Rich Domain Model** and coordinating data via a **Service Layer** (Orchestrator).
 
 ## Architectural Highlights
 
