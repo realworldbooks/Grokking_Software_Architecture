@@ -43,12 +43,13 @@ Step 2: Run the application using the -m (module) flag:
 
 ```bash
 python -m presentation.main
+```
 Expected Output
 When executed successfully, you will see the Composition Root wire the dependencies, followed by the simulated database lookups and the final successful HTTP 200 response:
-```
-
+```Plaintext
 --- Running Traditional 4-Layer Architecture ---
 Fat Controller and Anemic Domain eliminated.
   [DB] Fetching official data for Item ID: 1 from SQL.
   [DB] Fetching official data for Item ID: 2 from SQL.
 HTTP 200 OK: 1
+```
