@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domainmodels;
+package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain_models;
 
 /**
  * ARCHITECTURE NOTE: A simple data entity. The behavior regarding 

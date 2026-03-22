@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.dataaccess;
+package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.data_access;
 
 /**
  * ARCHITECTURE NOTE: By isolating Email logic here, we prevent 

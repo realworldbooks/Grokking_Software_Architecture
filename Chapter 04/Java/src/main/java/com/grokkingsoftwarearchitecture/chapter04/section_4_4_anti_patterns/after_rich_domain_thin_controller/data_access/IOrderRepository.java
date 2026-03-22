@@ -1,7 +1,7 @@
 // Chapter 04/Java/src/main/java/com/grokkingsoftwarearchitecture/chapter04/section_4_4_anti_patterns/after_rich_domain/dataaccess/IOrderRepository.java
-package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.dataaccess;
+package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.data_access;
 
-import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domainmodels.Order;
+import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain_models.Order;
 
 /**
  * Interface for saving an order. In a real app, this would
