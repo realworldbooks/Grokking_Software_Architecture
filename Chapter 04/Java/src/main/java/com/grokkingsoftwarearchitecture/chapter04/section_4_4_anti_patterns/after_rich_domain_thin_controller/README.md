@@ -50,8 +50,7 @@ cd "Chapter 04/Java/section_4_4_anti_patterns/after_rich_domain_thin_controller"
 ```Bash
 mvn spring-boot:run -Dspring-boot.run.main-class=com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.presentation.Application
 ```
-(Alternatively, you can open the project in IntelliJ IDEA, Eclipse, or VS Code and click "Run" on the Application.java file).
-
+(Alternatively, you can open the project in IntelliJ IDEA, Eclipse, or VS Code, navigate to this specific Main.java file, and click the "Run" play button next to the public static void main method).
 ## Expected Output & Testing
 When executed successfully, you will see the Spring Boot banner and logs confirming the server has started on port 8080:
 
