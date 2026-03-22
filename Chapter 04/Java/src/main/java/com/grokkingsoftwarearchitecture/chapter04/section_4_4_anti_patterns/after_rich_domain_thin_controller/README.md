@@ -5,6 +5,7 @@ This Java (Spring Boot) project demonstrates the "After" state of a professional
 * **Logical Layering, Not Tiers:** This project is structured logically into four distinct layers (Presentation, Business Logic, Data Access, and Domain). Because they all run within the same physical JVM process during execution, this is a Layered Architecture rather than an N-Tier architecture.
 
 * **The Composition Root:** The Main.java (or Application.java) file, annotated with @SpringBootApplication, sits at the very top of the application. It acts as the Composition Root, where Spring's Inversion of Control (IoC) container wires all layers together via Dependency Injection.
+* **Targeted Component Scanning:** Because this example shares a single Maven project (pom.xml) with the rest of Chapter 4, Main.java uses @ComponentScan to strictly isolate and load only the classes in the after_rich_domain_thin_controller package.
 
 * **Secure Data Lookup (Source of Truth):** The OrderRequest DTO now only accepts an itemId and quantity. The OrderServiceImpl securely fetches the official item price from the SqlItemRepository, preventing clients from manipulating prices via the API.
 
