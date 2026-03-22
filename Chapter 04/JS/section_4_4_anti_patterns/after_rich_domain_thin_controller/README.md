@@ -30,24 +30,24 @@ after_rich_domain_thin_controller/
 ## How to Run
 Because this project utilizes Express.js and Swagger UI to demonstrate a professional Web API setup, you need to install the Node.js dependencies before running it.
 
-Step 1: Open your terminal and navigate to the root of this specific example:
+**Step 1:** Open your terminal and navigate to the root of this specific example:
 
 ```Bash
 cd "Chapter 04/JavaScript/section_4_4_anti_patterns/after_rich_domain_thin_controller"
 ```
-Step 2: Install the required packages:
+**Step 2:** Install the required packages:
 
 ``Bash
 npm install
 ```
-Step 3: Start the application:
+**Step 3:** Start the application:
 
 ```Bash
 npm start
 ```
 (Note: This runs the node presentation/index.js command defined in the package.json)
 
-Expected Output & Testing
+## Expected Output & Testing
 When executed successfully, you will see the console output confirming the server has started:
 
 ```Plaintext
@@ -55,10 +55,9 @@ When executed successfully, you will see the console output confirming the serve
 Fat Controller and Anemic Domain eliminated.
 API listening on port 3000
 Swagger UI available at http://localhost:3000/swagger
-
-To test the API, you have two options:
-
-Interactive UI: Open your browser to http://localhost:3000/swagger to view and interact with the API documentation.
-
-Standardized Testing: Use the .http file shared across the book's examples. Ensure the @host variable at the top of the .http file is set to http://localhost:3000.
 ```
+### To test the API, you have two options:
+
+* **Interactive UI:** Open your browser to http://localhost:3000/swagger to view and interact with the API documentation.
+
+* **Standardized Testing:** Use the .http file shared across the book's examples. Ensure the @host variable at the top of the .http file is set to http://localhost:3000.
