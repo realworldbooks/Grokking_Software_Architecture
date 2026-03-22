@@ -5,8 +5,16 @@ import java.util.List;
 
 /**
  * DTO (Data Transfer Object) for incoming requests.
+ * ARCHITECTURE NOTE: We use a specific Request DTO rather than the 
+ * Domain Model to define our API contract. This prevents "Over-posting" 
+ * attacks where a user might try to send a fake price in the JSON.
  */
 public class OrderRequest {
     public int customerId;
-    public List<Item> items;
+    public List<OrderItemRequest> items;
+
+    public static class OrderItemRequest {
+        public int itemId;
+        public int quantity;
+    }
 }

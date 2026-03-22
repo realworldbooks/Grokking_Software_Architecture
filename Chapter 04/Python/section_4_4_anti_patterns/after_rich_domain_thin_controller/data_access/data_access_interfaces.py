@@ -1,5 +1,6 @@
 # Chapter 04/Python/4.4 Anti-Patterns/After-RichDomain/data_access/data_access_interfaces.py
 from abc import ABC, abstractmethod
+from ..domain_models.item import Item
 
 class IOrderRepository(ABC):
     """
@@ -14,6 +15,11 @@ class IOrderRepository(ABC):
 
     @abstractmethod
     def save(self, order):
+        pass
+
+class IItemRepository(ABC):
+    @abstractmethod
+    def get_by_id(self, item_id: int) -> Item:
         pass
 
 class ICustomerRepository(ABC):

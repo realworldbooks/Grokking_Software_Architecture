@@ -7,6 +7,7 @@ from ..domain_models.order import Order
 from ..data_access.data_access_interfaces import (
     IOrderRepository,
     ICustomerRepository,
+    IItemRepository, 
     IEmailService
 )
 
@@ -22,11 +23,13 @@ class OrderService(IOrderService):
         self,
         order_repo: IOrderRepository,
         customer_repo: ICustomerRepository,
+        item_repo: IItemRepository, # New dependency
         email_service: IEmailService
     ):
         # Dependencies on the Data Access layer below it
         self._order_repo = order_repo
         self._customer_repo = customer_repo
+        self._item_repo = item_repo
         self._email_service = email_service
 
     def create_order(self, request: OrderRequest) -> int:
@@ -39,10 +42,20 @@ class OrderService(IOrderService):
         order = Order(customer.email)
 
         # 3. Delegate business logic to the Rich Model
-        for item in request.items:
+        for item_req in request.items:
+            # SECURITY NOTE: We look up the item from the repository 
+            # to get the true price, rather than trusting the price 
+            # provided in the HTTP request DTO.
+            actual_item = self._item_repo.get_by_id(item_req.item_id)
+            if not actual_item:
+                raise ValueError(f"Item {item_req.item_id} not found.")
+
+            # Map the quantity from the request to the domain object
+            actual_item.quantity = item_req.quantity
+
             # The service doesn't care about discount rules; 
             # the Order model handles that internally.
-            order.add_item(item, customer)
+            order.add_item(actual_item, customer)
 
         # 4. Send the updated model back down to Data Access
         self._order_repo.save(order)

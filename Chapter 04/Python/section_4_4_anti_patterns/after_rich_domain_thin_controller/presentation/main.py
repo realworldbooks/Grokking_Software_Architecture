@@ -1,10 +1,13 @@
 # Chapter 04/Python/4.4 Anti-Patterns/After-RichDomain/presentation/main.py
 
-from ..data_access.repositories import SqlOrderRepository, SqlCustomerRepository
+from ..data_access.repositories import SqlOrderRepository, SqlCustomerRepository, SqlItemRepository
 from ..data_access.email_service import SmtpEmailService
 from ..business_logic.order_service import OrderService
-from ..business_logic.order_request import OrderRequest
-from ..domain_models.item import Item
+from ..business_logic.order_request import OrderRequest, OrderItemRequest
+
+# ARCHITECTURE NOTE: We don't import the 'Item' Domain Model here. 
+# The Presentation layer should only deal with DTOs, completely shielding 
+# the internal Domain Models from the outside world.
 from .controllers.order_controller import OrderController
 
 def main():
@@ -16,12 +19,14 @@ def main():
     # 1. Instantiate the Data Access Layer (Infrastructure)
     order_repo = SqlOrderRepository()
     customer_repo = SqlCustomerRepository()
+    item_repo = SqlItemRepository() # <-- Added the new secure lookup repository
     email_service = SmtpEmailService()
 
     # 2. Inject Data Access into the Business Logic Layer
     order_service = OrderService(
         order_repo=order_repo,
         customer_repo=customer_repo,
+        item_repo=item_repo, # <-- Inject the new dependency
         email_service=email_service
     )
 
@@ -32,17 +37,16 @@ def main():
     print("Fat Controller and Anemic Domain eliminated.")
 
     # --- Simulate an incoming HTTP request ---
-    item1 = Item()
-    item1.price = 100.0
-    item1.quantity = 1
-
-    item2 = Item()
-    item2.price = 50.0
-    item2.quantity = 2
+    # ARCHITECTURE NOTE: Instead of passing a Domain Model with a vulnerable 
+    # price that a user could manipulate, we pass a simple DTO containing 
+    # only the item_id and the requested quantity.
+    
+    item_req1 = OrderItemRequest(item_id=1, quantity=1)
+    item_req2 = OrderItemRequest(item_id=2, quantity=2)
 
     request = OrderRequest(
         customer_id=123,
-        items=[item1, item2]
+        items=[item_req1, item_req2]
     )
 
     # Execute the controller endpoint

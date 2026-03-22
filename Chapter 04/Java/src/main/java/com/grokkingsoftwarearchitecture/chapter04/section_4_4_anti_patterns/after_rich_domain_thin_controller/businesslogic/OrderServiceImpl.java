@@ -7,22 +7,24 @@ import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.afte
 /**
  * THE SERVICE LAYER (Orchestrator)
  * ARCHITECTURE NOTE: This class replaces the massive "God Method" 
- * from the Fat Controller. It simply coordinates the flow of data 
+ * from the Fat Controller. It doesn't write to the DB, nor does 
+ * it calculate math. It simply coordinates the flow of data 
  * between the Data Access layer and the Rich Domain Models.
  */
 public class OrderServiceImpl implements OrderService {
-    
-    // Dependencies on the Data Access layer below it
     private final OrderRepository orderRepo;
     private final CustomerRepository customerRepo;
+    private final ItemRepository itemRepo; // New dependency for secure lookups
     private final EmailService emailService;
 
     public OrderServiceImpl(
-            OrderRepository orderRepo,
+            OrderRepository orderRepo, 
             CustomerRepository customerRepo,
+            ItemRepository itemRepo,
             EmailService emailService) {
         this.orderRepo = orderRepo;
         this.customerRepo = customerRepo;
+        this.itemRepo = itemRepo;
         this.emailService = emailService;
     }
 
@@ -31,23 +33,35 @@ public class OrderServiceImpl implements OrderService {
         // 1. Fetch data from lower layer
         Customer customer = customerRepo.getById(request.customerId);
         if (customer == null) {
-            throw new IllegalStateException("Customer not found.");
+            throw new RuntimeException("Customer not found.");
         }
 
         // 2. Instantiate the Rich Domain Model
         Order order = new Order(customer.email);
 
         // 3. Delegate business logic to the Rich Model
-        for (Item item : request.items) {
-            order.addItem(item, customer);
+        for (OrderRequest.OrderItemRequest itemReq : request.items) {
+            // SECURITY LOOKUP: Fetch the actual Item from the DB to get the valid Price
+            // This ensures the system uses the official price, not the one from the request.
+            Item actualItem = itemRepo.getById(itemReq.itemId);
+            if (actualItem == null) {
+                throw new RuntimeException("Item " + itemReq.itemId + " not found.");
+            }
+
+            // Set the quantity from the user's request onto the domain object
+            actualItem.quantity = itemReq.quantity;
+
+            // The service doesn't care about discount rules; 
+            // the Order model handles that internally.
+            order.addItem(actualItem, customer);
         }
 
         // 4. Send the updated model back down to Data Access
         orderRepo.save(order);
         emailService.send(
             order.getCustomerEmail(), 
-            "Order Confirmed!", 
-            "Your order is confirmed."
+            "Confirmed!", 
+            "Your order has been placed."
         );
 
         return order.getId();
