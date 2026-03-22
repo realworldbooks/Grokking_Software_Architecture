@@ -3,7 +3,7 @@
 This Python project demonstrates the "After" state of a professionally structured Layered Architecture. It resolves the "Fat Controller" and "Anemic Domain" anti-patterns by isolating business rules into a **Rich Domain Model** and coordinating data via a **Service Layer** (Orchestrator).
 
 ## Architectural Highlights
-
+* **Logical Layering, Not Tiers**: This project is structured logically into four distinct layers (Presentation, Business Logic, Data Access, and Domain). Because they all run within the same physical process during execution, this is a Layered Architecture rather than an N-Tier architecture.
 * **No Framework Magic Needed**: Unlike C# (`.csproj`) or Java (`pom.xml`), this pure Python implementation requires no heavy configuration files to demonstrate N-Tier separation.
 * **The Composition Root**: The `presentation/main.py` file sits at the very top of the architecture. It is responsible for wiring all layers together via Dependency Injection before executing the application.
 * **Secure Data Lookup (Source of Truth)**: The `OrderRequest` DTO now only accepts an `item_id` and `quantity`. The `OrderService` securely fetches the official item price from the `SqlItemRepository`, preventing clients from manipulating prices via the API.
