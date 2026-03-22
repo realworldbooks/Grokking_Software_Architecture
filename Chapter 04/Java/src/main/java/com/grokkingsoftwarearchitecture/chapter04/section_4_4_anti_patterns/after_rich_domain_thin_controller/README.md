@@ -19,9 +19,14 @@ after_rich_domain_thin_controller/
 │   │   ├── OrderServiceImpl.java    (The Orchestrator)
 │   │   └── OrderRequest.java        (The DTOs)
 │   ├── data_access/
-│   │   ├── ItemRepository.java      (Data Contracts)
-│   │   ├── SqlItemRepository.java   (Simulated DB Lookups)
-│   │   └── EmailService.java
+│   │   ├── CustomerRepository.java    (Data Contracts)
+│   │   ├── ItemRepository.java        
+│   │   ├── OrderRepository.java       
+│   │   ├── EmailService.java          
+│   │   ├── SqlCustomerRepository.java (Simulated DB Lookups)
+│   │   ├── SqlItemRepository.java     
+│   │   ├── SqlOrderRepository.java    
+│   │   └── SmtpEmailService.java
 │   ├── domain_models/
 │   │   ├── Customer.java
 │   │   ├── Item.java
@@ -42,7 +47,7 @@ cd "Chapter 04/Java/section_4_4_anti_patterns/after_rich_domain_thin_controller"
 **Step 2:** Run the application using the Spring Boot Maven plugin:
 
 ```Bash
-mvn spring-boot:run
+mvn spring-boot:run -Dspring-boot.run.main-class=com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.presentation.Application
 ```
 (Alternatively, you can open the project in IntelliJ IDEA, Eclipse, or VS Code and click "Run" on the Application.java file).
 
