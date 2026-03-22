@@ -3,6 +3,7 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.aft
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.businesslogic.*;
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.dataaccess.*;
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domainmodels.*;
+import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.presentation.controllers.OrderController;
 
 import java.util.Arrays;
 
