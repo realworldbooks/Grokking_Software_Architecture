@@ -30,21 +30,21 @@ after_rich_domain_thin_controller/
     │   └── order_controller.py  (The Thin Controller)
     └── main.py                  (The Composition Root & Entry Point)
 ```
-How to Run
+## How to Run
 Because this project enforces strict architectural boundaries using Python's relative imports (e.g., from ..business_logic...), you cannot run the main script directly from inside the presentation folder. Doing so will result in an ImportError.
 
 To run the application correctly, you must execute it as a module from the root After-RichDomain directory.
 
-Step 1: Open your terminal and navigate to the root of this specific example:
+**Step 1:** Open your terminal and navigate to the root of this specific example:
 ```bash
 cd "Chapter 04/Python/section_4_4_anti_patterns/after_rich_domain_thin_controller"
 ```
-Step 2: Run the application using the -m (module) flag:
+**Step 2:** Run the application using the -m (module) flag:
 
 ```bash
 python -m presentation.main
 ```
-Expected Output
+## Expected Output
 When executed successfully, you will see the Composition Root wire the dependencies, followed by the simulated database lookups and the final successful HTTP 200 response:
 ```Plaintext
 --- Running Traditional 4-Layer Architecture ---
