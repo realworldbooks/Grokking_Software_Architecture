@@ -1,7 +1,7 @@
 # 4.4 Anti-Patterns: Rich Domain & Thin Controller (After Refactoring)
 This Java (Spring Boot) project demonstrates the "After" state of a professionally structured Layered Architecture. It resolves the "Fat Controller" and "Anemic Domain" anti-patterns by logically isolating business rules into a Rich Domain Model and coordinating data via a Service Layer (Orchestrator).
 
-##Architectural Highlights
+## Architectural Highlights
 * **Logical Layering, Not Tiers:** This project is structured logically into four distinct layers (Presentation, Business Logic, Data Access, and Domain). Because they all run within the same physical JVM process during execution, this is a Layered Architecture rather than an N-Tier architecture.
 
 * **The Composition Root:** The Main.java (or Application.java) file, annotated with @SpringBootApplication, sits at the very top of the application. It acts as the Composition Root, where Spring's Inversion of Control (IoC) container wires all layers together via Dependency Injection.
