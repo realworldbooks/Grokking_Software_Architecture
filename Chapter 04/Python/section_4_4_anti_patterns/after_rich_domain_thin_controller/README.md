@@ -13,15 +13,15 @@ This Python project demonstrates the "After" state of a professionally structure
 
 ```text
 after_rich_domain_thin_controller/
-├── business_logic/
+├── application/
 │   ├── i_order_service.py       (The Interface Contract)
 │   ├── order_request.py         (The DTOs)
 │   └── order_service.py         (The Orchestrator)
-├── data_access/
+├── infrastructure/
 │   ├── data_access_interfaces.py 
 │   ├── email_service.py
 │   └── repositories.py          (Simulated DB Lookups)
-├── domain_models/
+├── domain/
 │   ├── customer.py
 │   ├── item.py
 │   └── order.py                 (The Rich Domain Model)

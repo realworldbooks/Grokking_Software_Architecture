@@ -1,22 +1,22 @@
 # 4.4 After: Rich Domain Refactor
 
-This is a multi-project .NET solution demonstrating the correct, layered refactor of the "Fat Controller" example.
+This is a multi-project .NET solution demonstrating the correct, layered refactor of the "Fat Controller" example. It also implements the Secure Item Lookup pattern to prevent price tampering.
 
 ## Projects
 
-* **After.Core:** The Domain Layer. Contains the "rich" `Order` model.
-* **After.Application:** The Application Layer. Contains services and interfaces (`IOrderService`, `IOrderRepository`).
-* **After.Infrastructure:** The Infrastructure Layer. Contains concrete implementations (`SqlOrderRepository`).
-* **After.WebAPI:** The Presentation Layer. This is the runnable startup project.
+* **After.Domain:** The Domain Layer. Contains the "rich" `Order` model.
+* **After.Application:** The Application Layer. Contains services and interfaces (`IOrderService`, `IOrderRepository`, `IItemRepository`).
+* **After.Infrastructure:** The Infrastructure Layer. Contains concrete implementations (`SqlOrderRepository`, `SqlItemRepository`).
+* **After.Presentation:** The Presentation Layer. This is the runnable startup project.
 
 ## How to Run the Server
 
 1.  Make sure you have the .NET 8 SDK installed.
 2.  You can open `After.sln` in Visual Studio or VS Code.
 3.  You have a few ways to run this: 
-	a) From the command line (in this `After-RichDomain` directory), run:
+	a) From the command line (in this `After_Rich_Domain_Thin_Controller` directory), run:
        ```bash
-       dotnet run --project After.WebAPI/After.WebAPI.csproj
+       dotnet run --project After.Presentation/After.Presentation.csproj
        ```
 	b) Press the green triangle button in Visual Studio or Visual Code to start the application.
 4.  The server will start. Your console will show it's listening on `http://localhost:7200`.
@@ -37,11 +37,11 @@ This is the easiest way to test your API. The `dotnet new webapi` template inclu
       "customerId": 123,
       "items": [
         {
-          "price": 100,
+          "itemId": 1,
           "quantity": 1
         },
         {
-           "price": 25,
+           "itemId": 2,
            "quantity": 2
         }
       ]
@@ -56,6 +56,8 @@ This is the easiest way to test your API. The `dotnet new webapi` template inclu
     ```
     (API) Received request...
     (INFRA) Getting customer from SQL DB...
+    (INFRA) Fetching official data for Item ID: 1 from SQL...
+    (INFRA) Fetching official data for Item ID: 2 from SQL...
     (DOMAIN) Calculating total...
     (DOMAIN) Applying Gold discount.
     (INFRA) Saving order to SQL DB...

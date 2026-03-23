@@ -13,14 +13,14 @@ This `JavaScript (Node.js)` project demonstrates the "After" state of a professi
 ## Project Structure
 ```Plaintext
 after_rich_domain_thin_controller/
-├── business_logic/
+├── application/
 │   ├── orderRequest.js      (The API Contract / DTOs)
 │   └── orderService.js      (The Orchestrator)
-├── data_access/
+├── infrastructure/
 |   ├── dataAccessInterfaces.js (Simulated Interfaces)
 │   ├── emailService.js
 │   └── repositories.js      (Simulated DB Lookups)
-├── domain_models/
+├── domain/
 │   ├── customer.js
 │   ├── item.js
 │   └── order.js             (The Rich Domain Model)
@@ -61,6 +61,32 @@ Swagger UI available at http://localhost:3000/swagger
 ```
 ### To test the API, you have two options:
 
-* **Interactive UI:** Open your browser to `http://localhost:3000/swagger` to view and interact with the API documentation.
+* **Swagger UI (Recommended):** This is the easiest way to test your API.
+
+1.  After the server is running, open your web browser.
+2.  In the address bar, go to:
+    **`http://localhost:3000/swagger`**
+3.  You will see the Swagger UI page. Click on the `POST /order` endpoint to expand it.
+4.  Click the **"Try it out"** button (on the right).
+5.  The "Request body" text box will become editable. Replace the contents with this JSON:
+    ```json
+    {
+      "customerId": 123,
+      "items": [
+        {
+          "itemId": 1,
+          "quantity": 1
+        },
+        {
+           "itemId": 2,
+           "quantity": 2
+        }
+      ]
+    }
+    ```
+6.  Click the big blue **"Execute"** button.
 
 * **Standardized Testing:** Use the `.http` file shared across the book's examples. Ensure the `@host` variable at the top of the `.http` file is set to `http://localhost:3000`.
+
+### Expected Result
+You will see a "Server response" with a `200` code and a response body showing your new order ID (e.g., `{"orderId": 8264}`).
