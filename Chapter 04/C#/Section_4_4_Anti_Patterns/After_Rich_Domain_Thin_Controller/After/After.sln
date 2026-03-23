@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "After.DomainModels", "After.DomainModels\After.DomainModels.csproj", "{DD2C7A4F-52FB-4BF2-AC00-B84AA4A49058}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "After.Domain", "After.Domain\After.Domain.csproj", "{DD2C7A4F-52FB-4BF2-AC00-B84AA4A49058}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "After.BusinessLogic", "After.BusinessLogic\After.BusinessLogic.csproj", "{749106CA-5F21-4A9B-A305-9CB910218669}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "After.Application", "After.Application\After.Application.csproj", "{749106CA-5F21-4A9B-A305-9CB910218669}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "After.DataAccess", "After.DataAccess\After.DataAccess.csproj", "{6243CC60-F69C-4900-ADAC-3568738D3DED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "After.Infrastructure", "After.Infrastructure\After.Infrastructure.csproj", "{6243CC60-F69C-4900-ADAC-3568738D3DED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "After.Presentation", "After.Presentation\After.Presentation.csproj", "{170D176E-02EA-417F-A5B5-B284A7DE2B4B}"
 EndProject

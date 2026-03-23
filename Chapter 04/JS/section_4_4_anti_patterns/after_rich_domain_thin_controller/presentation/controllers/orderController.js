@@ -1,5 +1,3 @@
-// Chapter 04/JavaScript/4.4 Anti-Patterns/After-RichDomain/presentation/controllers/orderController.js
-
 /**
  * THE THIN CONTROLLER
  * ARCHITECTURE NOTE: This controller is finally cured of the "Fat 

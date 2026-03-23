@@ -1,7 +1,7 @@
 # Chapter 04/Python/4.4 Anti-Patterns/After-RichDomain/presentation/controllers/order_controller.py
 import json
-from ...business_logic.i_order_service import IOrderService
-from ...business_logic.order_request import OrderRequest
+from ...application.i_order_service import IOrderService
+from ...application.order_request import OrderRequest
 
 class OrderController:
     """

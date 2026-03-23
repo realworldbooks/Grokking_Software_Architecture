@@ -1,9 +1,7 @@
-# Chapter 04/Python/4.4 Anti-Patterns/After-RichDomain/presentation/main.py
-
-from ..data_access.repositories import SqlOrderRepository, SqlCustomerRepository, SqlItemRepository
-from ..data_access.email_service import SmtpEmailService
-from ..business_logic.order_service import OrderService
-from ..business_logic.order_request import OrderRequest, OrderItemRequest
+from ..infrastructure.repositories import SqlOrderRepository, SqlCustomerRepository, SqlItemRepository
+from ..infrastructure.email_service import SmtpEmailService
+from ..application.order_service import OrderService
+from ..application.order_request import OrderRequest, OrderItemRequest
 
 # ARCHITECTURE NOTE: We don't import the 'Item' Domain Model here. 
 # The Presentation layer should only deal with DTOs, completely shielding 
@@ -16,17 +14,17 @@ def main():
     # top of the 4-layer stack, it is responsible for wiring all the 
     # layers together via Dependency Injection.
     
-    # 1. Instantiate the Data Access Layer (Infrastructure)
+    # 1. Instantiate the Infrastructure Layer
     order_repo = SqlOrderRepository()
     customer_repo = SqlCustomerRepository()
     item_repo = SqlItemRepository() # <-- Added the new secure lookup repository
     email_service = SmtpEmailService()
 
-    # 2. Inject Data Access into the Business Logic Layer
+    # 2. Inject Data Access into the Application Layer
     order_service = OrderService(
         order_repo=order_repo,
         customer_repo=customer_repo,
-        item_repo=item_repo, # <-- Inject the new dependency
+        item_repo=item_repo, 
         email_service=email_service
     )
 

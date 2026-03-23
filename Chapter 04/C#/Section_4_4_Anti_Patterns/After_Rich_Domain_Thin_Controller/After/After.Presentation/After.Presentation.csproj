@@ -11,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\After.DomainModels\After.DomainModels.csproj" />
-    <ProjectReference Include="..\After.BusinessLogic\After.BusinessLogic.csproj" />
-    <ProjectReference Include="..\After.DataAccess\After.DataAccess.csproj" />
+    <ProjectReference Include="..\After.Domain\After.Domain.csproj" />
+    <ProjectReference Include="..\After.Application\After.Application.csproj" />
+    <ProjectReference Include="..\After.Infrastructure\After.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

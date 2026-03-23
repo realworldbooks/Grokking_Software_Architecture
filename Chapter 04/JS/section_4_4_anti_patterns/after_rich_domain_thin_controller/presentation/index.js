@@ -1,4 +1,3 @@
-// Chapter 04/JavaScript/4.4 Anti-Patterns/After-RichDomain/presentation/index.js
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 
