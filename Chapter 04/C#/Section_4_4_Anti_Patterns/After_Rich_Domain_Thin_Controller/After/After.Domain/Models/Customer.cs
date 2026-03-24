@@ -1,4 +1,4 @@
-﻿namespace After.DomainModels
+﻿namespace After.Domain.Models
 {
     /// <summary>
     /// ARCHITECTURE NOTE: Not every domain model needs complex behavior. 

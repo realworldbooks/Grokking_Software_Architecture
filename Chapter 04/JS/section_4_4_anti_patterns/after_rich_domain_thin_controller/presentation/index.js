@@ -1,10 +1,10 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 
-const { SqlOrderRepository, SqlCustomerRepository, SqlItemRepository } = require('../data_access/repositories');
-const SmtpEmailService = require('../data_access/emailService');
-const OrderService = require('../business_logic/orderService');
-const { OrderRequest, OrderItemRequest } = require('../business_logic/orderRequest');
+const { SqlOrderRepository, SqlCustomerRepository, SqlItemRepository } = require('../infrastructure/repositories');
+const SmtpEmailService = require('../infrastructure/emailService');
+const OrderService = require('../application/orderService');
+const { OrderRequest, OrderItemRequest } = require('../application/orderRequest');
 
 const app = express();
 app.use(express.json());

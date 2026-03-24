@@ -1,4 +1,4 @@
-﻿namespace After.DomainModels
+﻿namespace After.Domain.Models
 {
     /// <summary>
     /// ARCHITECTURE NOTE: A simple data entity. The behavior regarding 
@@ -7,6 +7,7 @@
     /// </summary>
     public class Item
     {
+        public int Id { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
     }

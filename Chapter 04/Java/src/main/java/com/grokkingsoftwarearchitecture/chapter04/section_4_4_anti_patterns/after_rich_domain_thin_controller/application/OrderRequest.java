@@ -2,7 +2,7 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.aft
 
 import java.util.List;
 
-import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.Item;
+import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.models.Item;
 
 /**
  * DTO (Data Transfer Object) for incoming requests.

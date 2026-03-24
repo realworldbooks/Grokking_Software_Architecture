@@ -1,4 +1,4 @@
-﻿using After.DomainModels;
+﻿using After.Domain.Interfaces;
 
 namespace After.DataAccess
 {
@@ -8,7 +8,7 @@ namespace After.DataAccess
     /// Business layers.
     /// </summary>
     // Concrete implementation for an email provider
-   public class SmtpEmailService : IEmailService
+    public class SmtpEmailService : IEmailService
     {
         public void Send(string to, string sub, string body) { }
     }

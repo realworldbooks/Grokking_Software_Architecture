@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using After.BusinessLogic;
+using After.Application;
 
 namespace After.Presentation.Controllers
 {
@@ -25,11 +25,18 @@ namespace After.Presentation.Controllers
         [HttpPost]
         public IActionResult CreateOrder(OrderRequest request)
         {
-            // Controller simply delegates work to the layer below it
-            var orderId = _orderService.CreateOrder(request);
-            
-            // Controller formats the HTTP response
-            return Ok(new { OrderId = orderId });
+            try
+            {
+                // 'response' is already an OrderResponse object
+                OrderResponse response = _orderService.CreateOrder(request);
+
+                // Return the object directly for a clean JSON structure
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

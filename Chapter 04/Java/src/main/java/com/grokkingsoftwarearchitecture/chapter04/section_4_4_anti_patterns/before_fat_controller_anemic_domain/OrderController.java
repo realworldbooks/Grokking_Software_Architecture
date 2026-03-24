@@ -1,9 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter04;
-
-// Explicit imports for clarity and to avoid naming conflicts
-import com.grokkingsoftwarearchitecture.chapter04.Order;
-import com.grokkingsoftwarearchitecture.chapter04.MyDbContext;
-import com.grokkingsoftwarearchitecture.chapter04.SmtpEmailService;
+package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.before_fat_controller_anemic_domain;
 
 /**
  * ANTI-PATTERN: THE FAT CONTROLLER.

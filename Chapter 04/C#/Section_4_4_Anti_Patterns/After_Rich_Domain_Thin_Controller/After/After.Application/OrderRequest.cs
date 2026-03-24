@@ -1,7 +1,7 @@
 ﻿// Chapter 04/CSharp/4.4-Rich-After/After.BusinessLogic/OrderRequest.cs
 using System.Collections.Generic;
 
-namespace After.BusinessLogic
+namespace After.Application
 {
     /// <summary>
     /// DTO for the items within a request.

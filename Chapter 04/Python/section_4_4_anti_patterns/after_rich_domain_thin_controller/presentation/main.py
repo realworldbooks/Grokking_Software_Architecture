@@ -47,9 +47,10 @@ def main():
         items=[item_req1, item_req2]
     )
 
-    # Execute the controller endpoint
-    response = app.create_order(request)
-    print(f"HTTP 200 OK: {response}")
+    # 4. Execute the controller and display the flat JSON response
+    # This now reflects the OrderId, TotalPrice, and Email
+    response_json = app.create_order(request)
+    print(f"HTTP Response: {response_json}")
 
 if __name__ == "__main__":
     main()

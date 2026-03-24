@@ -1,20 +1,20 @@
 ﻿// Chapter 04/CSharp/4.4-Rich-After/After.BusinessLogic/OrderService.cs
 using System;
-using After.DomainModels;
-using After.DataAccess; // <-- THE DOWNWARD DEPENDENCY
+using After.Domain.Interfaces;
+using After.Domain.Models;
 
-namespace After.BusinessLogic
+namespace After.Application
 {
     /// <summary>
     /// THE SERVICE LAYER (Orchestrator)
     /// ARCHITECTURE NOTE: This class replaces the massive "God Method" 
     /// from the Fat Controller. It doesn't write to the DB, nor does 
     /// it calculate math. It simply coordinates the flow of data 
-    /// between the Data Access layer and the Rich Domain Models.
+    /// between the Infrastructure layer and the Rich Domain Models.
     /// </summary>
     public class OrderService : IOrderService
     {
-        // Dependencies on the Data Access layer below it
+        // Dependencies on the Infrastructure layer below it
         private readonly IOrderRepository _orderRepo;
         private readonly ICustomerRepository _customerRepo;
         private readonly IItemRepository _itemRepo; // Added to facilitate secure lookups
@@ -32,7 +32,7 @@ namespace After.BusinessLogic
             _emailService = emailService;
         }
 
-        public int CreateOrder(OrderRequest request)
+        public OrderResponse CreateOrder(OrderRequest request)
         {
             // 1. Fetch data from lower layer
             var customer = _customerRepo.GetById(request.CustomerId);
@@ -40,7 +40,7 @@ namespace After.BusinessLogic
                 throw new InvalidOperationException("Not found.");
 
             // 2. Instantiate the Rich Domain Model
-            var order = new Order(customer.Email); 
+            var order = new Order(customer); 
 
             // 3. Delegate business logic to the Rich Model
             foreach (var itemRequest in request.Items)
@@ -66,7 +66,13 @@ namespace After.BusinessLogic
                 order.CustomerEmail, "Confirmed!", "Success."
             );
 
-            return order.Id;
+            // 5. Return the calculated results
+            return new OrderResponse
+            {
+                OrderId = order.Id,
+                TotalPrice = order.TotalPrice, // This is the "Rich" logic result!
+                CustomerEmail = order.CustomerEmail
+            };
         }
     }
 }

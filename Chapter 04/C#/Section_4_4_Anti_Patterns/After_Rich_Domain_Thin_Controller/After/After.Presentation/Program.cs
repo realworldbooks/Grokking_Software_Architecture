@@ -2,8 +2,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using After.BusinessLogic;
+using After.Application;
 using After.DataAccess;
+using After.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddSwaggerGen();           //
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderRepository, SqlOrderRepository>();
 builder.Services.AddScoped<ICustomerRepository, SqlCustomerRepository>();
+builder.Services.AddScoped<IItemRepository, SqlItemRepository>();
 builder.Services.AddScoped<IEmailService, SmtpEmailService>();
 
 var app = builder.Build();

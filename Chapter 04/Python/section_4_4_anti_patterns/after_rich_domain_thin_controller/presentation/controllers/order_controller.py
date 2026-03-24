@@ -15,9 +15,18 @@ class OrderController:
     def __init__(self, order_service: IOrderService):
         self._order_service = order_service
 
-    def create_order(self, request: OrderRequest) -> str:
-        # Controller simply delegates work to the layer below it
-        order_id = self._order_service.create_order(request)
-        
-        # Controller formats the HTTP response
-        return json.dumps({"OrderId": order_id})
+    def create_order(self, request: OrderRequest):
+       try:
+            # 'response' is now an OrderResponse DTO, not just an ID
+            # This matches the C# return Ok(response) logic
+            response = self._order_service.create_order(request)
+
+            # Return the object as a flat JSON structure for the API
+            return json.dumps({
+                "OrderId": response.order_id,
+                "TotalPrice": response.total_price,
+                "CustomerEmail": response.customer_email
+            })
+       except Exception as ex:
+            # Matches the C# BadRequest(ex.Message) logic
+            return json.dumps({"Error": str(ex)}), 400

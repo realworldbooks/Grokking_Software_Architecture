@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter04;
+package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.before_fat_controller_anemic_domain;
 
 /**
  * INFRASTRUCTURE LAYER: DATABASE.

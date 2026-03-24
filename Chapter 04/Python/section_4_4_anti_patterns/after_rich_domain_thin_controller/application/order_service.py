@@ -1,9 +1,10 @@
 from .i_order_service import IOrderService
 from .order_request import OrderRequest
-from ..domain.order import Order
+from .order_response import OrderResponse
+from ..domain.models.order import Order
 
 # THE DOWNWARD DEPENDENCY
-from ..infrastructure.data_access_interfaces import (
+from ..domain.interfaces.data_access_interfaces import (
     IOrderRepository,
     ICustomerRepository,
     IItemRepository, 
@@ -31,14 +32,14 @@ class OrderService(IOrderService):
         self._item_repo = item_repo
         self._email_service = email_service
 
-    def create_order(self, request: OrderRequest) -> int:
+    def create_order(self, request: OrderRequest) -> OrderResponse:
         # 1. Fetch data from lower layer
         customer = self._customer_repo.get_by_id(request.customer_id)
         if not customer:
-            raise ValueError("Not found.")
+            raise ValueError("Customer not found.")
 
         # 2. Instantiate the Rich Domain Model
-        order = Order(customer.email)
+        order = Order(customer)
 
         # 3. Delegate business logic to the Rich Model
         for item_req in request.items:
@@ -54,12 +55,15 @@ class OrderService(IOrderService):
 
             # The service doesn't care about discount rules; 
             # the Order model handles that internally.
-            order.add_item(actual_item, customer)
+            order.add_item(actual_item)
 
         # 4. Send the updated model back down to Data Access
         self._order_repo.save(order)
         self._email_service.send(
             order.customer_email, "Confirmed!", "Success."
         )
-
-        return order.id
+        return OrderResponse(
+            order_id=order.id,
+            total_price=order.total_price,
+            customer_email=order.customer_email
+        )

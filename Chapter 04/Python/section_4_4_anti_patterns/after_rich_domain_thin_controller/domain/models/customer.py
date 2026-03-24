@@ -5,7 +5,7 @@ class Customer:
     around the Order, this Customer class can remain a simple data 
     entity holding state.
     """
-    def __init__(self):
-        self.id = 0
-        self.type = ""  # e.g., "Gold"
-        self.email = ""
+    def __init__(self, id: int = 0, type: str = "", email: str = ""):
+        self.id = id
+        self.type = type
+        self.email = email

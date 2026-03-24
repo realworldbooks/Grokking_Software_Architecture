@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ..domain.item import Item
+from ..models.item import Item
 
 class IOrderRepository(ABC):
     """
@@ -19,6 +19,7 @@ class IOrderRepository(ABC):
 class IItemRepository(ABC):
     @abstractmethod
     def get_by_id(self, item_id: int) -> Item:
+        """This is the 'Security Hook' the Service uses to verify prices"""
         pass
 
 class ICustomerRepository(ABC):

@@ -1,6 +1,6 @@
-from .data_access_interfaces import IOrderRepository, ICustomerRepository
-from ..domain.customer import Customer
-
+from ..domain.interfaces.data_access_interfaces import IOrderRepository, ICustomerRepository, IItemRepository
+from ..domain.models.customer import Customer
+from ..domain.models.item import Item
 class SqlOrderRepository(IOrderRepository):
     """
     ARCHITECTURE NOTE: By isolating SQL logic here, we prevent 
@@ -9,15 +9,34 @@ class SqlOrderRepository(IOrderRepository):
     """
     # Concrete implementation for a SQL database (simulated)
     def get_by_id(self, order_id: int):
+        # In a real app, this would perform a SQL query
+        print(f"(INFRA) SQL: Fetching Order {order_id}")
         return None
         
-    def save(self, order):
-        pass # SQL Logic
+    def save(self, order) -> None:
+        print(f"(INFRA) SQL: Saving Order {order.id} with Total {order.total_price}")
 
 class SqlCustomerRepository(ICustomerRepository):
-    def get_by_id(self, customer_id: int):
-        customer = Customer()
-        customer.id = customer_id
-        customer.type = "Gold"
-        customer.email = "a@b.com"
-        return customer
+    """Concrete implementation for a SQL database (Simulated)"""
+    def get_by_id(self, customer_id: int) -> Customer:
+       print(f"(INFRA) SQL: Fetching Customer {customer_id}")
+        # Returning a dummy Gold customer to test the Rich Domain logic
+       return Customer(id=customer_id, customer_type="Gold", email="gold@example.com")
+    
+class SqlItemRepository(IItemRepository):
+    """
+    CONCRETE INFRASTRUCTURE IMPLEMENTATION
+    ARCHITECTURE NOTE: This is the "Security Guard" of our system. 
+    By fetching the Item directly from the database here, we ensure 
+    the 'Price' used in calculations is the official one, not a 
+    manipulated value sent from a malicious user's JSON request.
+    """
+    def get_by_id(self, item_id: int) -> Item:
+        print(f"(INFRA) SQL: Fetching official price for Item {item_id}")
+        
+        # Simulated database lookup
+        if item_id == 1:
+            return Item(id=1, price=100.0, quantity=0)
+        elif item_id == 2:
+            return Item(id=2, price=50.0, quantity=0)  
+        return None
