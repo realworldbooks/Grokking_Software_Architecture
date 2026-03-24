@@ -2,6 +2,8 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.bef
 
 import java.util.List;
 
+
+
 /**
  * THE ANEMIC DOMAIN MODEL.
  * ARCHITECTURE WARNING: This is just a data container #A.

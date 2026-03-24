@@ -5,5 +5,5 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.aft
  * ARCHITECTURE NOTE: Idiomatic Java omits the "I" prefix for interfaces.
  */
 public interface OrderService {
-    int createOrder(OrderRequest request);
+    OrderResponse createOrder(OrderRequest request);
 }

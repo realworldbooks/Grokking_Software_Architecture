@@ -33,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public int createOrder(OrderRequest request) {
+    public OrderResponse createOrder(OrderRequest request) {
         // 1. Fetch data from lower layer
         Customer customer = customerRepo.getById(request.customerId);
         if (customer == null) {
@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // 2. Instantiate the Rich Domain
-        Order order = new Order(customer.email);
+        Order order = new Order(customer);
 
         // 3. Delegate business logic to the Rich Model
         for (OrderRequest.OrderItemRequest itemReq : request.items) {
@@ -51,13 +51,12 @@ public class OrderServiceImpl implements OrderService {
             if (actualItem == null) {
                 throw new RuntimeException("Item " + itemReq.itemId + " not found.");
             }
-
             // Set the quantity from the user's request onto the domain object
             actualItem.quantity = itemReq.quantity;
 
             // The service doesn't care about discount rules; 
             // the Order model handles that internally.
-            order.addItem(actualItem, customer);
+            order.addItem(actualItem);
         }
 
         // 4. Send the updated model back down to Infrastructure
@@ -68,6 +67,11 @@ public class OrderServiceImpl implements OrderService {
             "Your order has been placed."
         );
 
-        return order.getId();
+        // 5. Map to Response DTO
+        OrderResponse response = new OrderResponse();
+        response.orderId = order.getId();
+        response.totalPrice = order.getTotalPrice();
+        response.customerEmail = order.getCustomerEmail();
+        return response;
     }
 }

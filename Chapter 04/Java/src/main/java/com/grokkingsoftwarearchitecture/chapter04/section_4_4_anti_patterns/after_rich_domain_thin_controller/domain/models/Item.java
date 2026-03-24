@@ -6,6 +6,7 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.aft
  * Rich 'Order' model, not here.
  */
 public class Item {
+    public int id;
     public double price;
     public int quantity;
 }

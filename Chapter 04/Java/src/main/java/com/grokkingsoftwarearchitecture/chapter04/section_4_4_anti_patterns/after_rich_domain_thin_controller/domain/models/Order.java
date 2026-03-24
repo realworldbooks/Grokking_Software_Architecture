@@ -18,58 +18,57 @@ public class Order {
     // Encapsulation: External classes cannot arbitrarily change 
     // the total or the id. They must use the provided methods.
     private int id;
-    private double total;
-    private String customerEmail;
+    private Customer customer;
     
     // Encapsulation: Prevents external code from doing items.add() 
     // which would bypass our recalculateTotal logic.
     private final List<Item> items = new ArrayList<>();
 
-    public Order(String customerEmail) {
-        if (customerEmail == null || customerEmail.isEmpty()) {
-            throw new IllegalArgumentException("Email is required.");
-        }
-        this.customerEmail = customerEmail;
-        this.id = new Random().nextInt(9000) + 1000; // Simulated ID
+    /**
+     * ARCHITECTURE NOTE: By injecting the full Customer entity instead of just 
+     * an email string, the Order gains the "context" needed to calculate 
+     * its own TotalPrice.
+     */
+    public Order(Customer customer) {
+        if (customer == null) throw new IllegalArgumentException("Customer cannot be null");
+        this.customer = customer;
+        this.id = new Random().nextInt(9000) + 1000;
     }
 
     public int getId() { return id; }
-    public double getTotal() { return total; }
-    public String getCustomerEmail() { return customerEmail; }
+    public Customer getCustomer() { return customer; }
 
-    public List<Item> getItems() {
-        return Collections.unmodifiableList(items);
+    /** Encapsulation: Prevents external code from bypassing our business rules. */
+    public List<Item> getItems() { return Collections.unmodifiableList(items); }
+
+    public boolean isEligibleForDiscount() {
+        return customer != null && "Gold".equals(customer.type);
+    }
+
+    /**
+     * ARCHITECTURE NOTE: We use an alias here to reflect the customer's current email.
+     * If the business required a 'snapshot', we would store this as a separate string.
+     */
+    public String getCustomerEmail() { return customer.email; }
+
+    /**
+     * THE ATOMIC TRUTH: Logic and data are now perfectly unified.
+     * This replaces the manual 'RecalculateTotal' method.
+     */
+    public double getTotalPrice() {
+        double sum = items.stream().mapToDouble(i -> i.price * i.quantity).sum();
+        return isEligibleForDiscount() ? sum * GOLD_DISCOUNT_RATE : sum;
     }
 
     /**
      * Behavior is now co-located with the data it mutates.
      */
-    public void addItem(Item item, Customer customer) {
+    public void addItem(Item item) {
         // Business Rule: Prices must be positive
         if (item.price <= 0) {
             throw new IllegalStateException(
                 "Item price must be positive.");
-        }
-        
+        }   
         items.add(item);
-        recalculateTotal(customer);
-    }
-
-    /**
-     * The discount logic lives here! If another part of the system 
-     * creates an Order, they get this logic automatically. No more 
-     * duplicated logic scattered across multiple controllers.
-     */
-    private void recalculateTotal(Customer customer) {
-        System.out.println("(DOMAIN) Calculating total...");
-        double sum = items.stream()
-                          .mapToDouble(i -> i.price * i.quantity)
-                          .sum();
-                          
-        if ("Gold".equals(customer.type)) {
-            System.out.println("(DOMAIN) Applying Gold discount.");
-            sum *= GOLD_DISCOUNT_RATE; // 10% discount logic
-        }
-        this.total = sum;
     }
 }
