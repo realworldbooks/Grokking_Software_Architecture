@@ -1,4 +1,4 @@
-const { IEmailService } = require("./dataAccessInterfaces");
+const { IEmailService } = require("../domain/interfaces/dataAccessInterfaces");
 
 /**
  * Simulates sending an order confirmation email via SMTP.

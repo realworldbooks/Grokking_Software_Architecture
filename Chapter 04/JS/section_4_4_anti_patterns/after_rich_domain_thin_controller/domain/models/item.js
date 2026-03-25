@@ -4,10 +4,10 @@
  * Rich 'Order' model, not here.
  */
 class Item {
-    constructor() {
-        this.price = 0.0;
-        this.quantity = 0;
+    constructor(id = 0, price = 0.0, quantity = 0) {
+        this.id = id;
+        this.price = price;
+        this.quantity = quantity;
     }
 }
-
 module.exports = Item;

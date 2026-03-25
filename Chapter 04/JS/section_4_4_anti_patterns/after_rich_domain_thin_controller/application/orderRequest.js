@@ -16,7 +16,7 @@ class OrderItemRequest {
  * attacks where a user might try to send a fake price in the JSON.
  */
 class OrderRequest {
-    constructor(customerId, items) {
+    constructor(customerId, items = []) {
         this.customerId = customerId;
         this.items = items; // Array of OrderItemRequest objects
     }

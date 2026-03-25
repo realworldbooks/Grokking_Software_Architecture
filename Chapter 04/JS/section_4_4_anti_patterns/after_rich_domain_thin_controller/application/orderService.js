@@ -1,5 +1,5 @@
-const Order = require('../domain/order');
-
+const Order = require('../domain/models/order');
+const OrderResponse = require('./orderResponse');
 /**
  * THE SERVICE LAYER (Orchestrator)
  * ARCHITECTURE NOTE: This class replaces the massive "God Method" 
@@ -19,6 +19,7 @@ class OrderService {
     constructor(orderRepo, customerRepo, itemRepo, emailService) {
         this._orderRepo = orderRepo;
         this._customerRepo = customerRepo;
+        this._itemRepo = itemRepo;
         this._emailService = emailService;
     }
 
@@ -32,7 +33,9 @@ class OrderService {
         if (!customer) throw new Error("Customer not found.");
 
         // 2. Instantiate the Rich Domain Model
-        const order = new Order(customer.email);
+        // ARCHITECTURE NOTE: By injecting the full Customer entity, the Order 
+        // gains the context needed to calculate its own TotalPrice.
+        const order = new Order(customer);
 
         // 3. Delegate business logic to the Rich Model
         for (const itemReq of request.items) {
@@ -56,7 +59,13 @@ class OrderService {
             order.customerEmail, "Confirmed!", "Success."
         );
 
-        return order.id;
+        // 5. Return the calculated results via a Response DTO
+        // This matches the C# logic of returning the "Rich" logic results
+        return new OrderResponse(
+            order.id,
+            order.totalPrice,
+            order.customerEmail
+        );
     }
 }
 module.exports = OrderService;

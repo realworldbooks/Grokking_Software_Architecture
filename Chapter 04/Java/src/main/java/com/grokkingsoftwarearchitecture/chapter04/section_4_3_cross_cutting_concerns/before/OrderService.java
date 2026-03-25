@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter04;
+package com.grokkingsoftwarearchitecture.chapter04.section_4_3_cross_cutting_concerns.before;
 
 /**
  * BUSINESS LOGIC LAYER.
@@ -8,7 +8,7 @@ package com.grokkingsoftwarearchitecture.chapter04;
  */
 public class OrderService {
     public void saveOrder(Order order) {
-        // 🚨 HIDDEN DEPENDENCY: This is not visible in the API.
+        // HIDDEN DEPENDENCY: This is not visible in the API.
         StaticFileLogger.log("Saving order...");
         System.out.println("(BEFORE_SERVICE) Order saved.");
     }

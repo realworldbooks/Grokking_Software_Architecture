@@ -51,11 +51,16 @@ class OrderController {
      * @returns {string} Simulated JSON response
      */
     createOrder(request) {
-        // Controller simply delegates work to the layer below it
-        const orderId = this._orderService.createOrder(request);
+       // The service now returns a full OrderResponse DTO
+        const response = this._orderService.createOrder(request);
         
-        // Controller formats the HTTP response
-        return JSON.stringify({ OrderId: orderId });
+        // Controller formats the rich object into a JSON string
+        // This matches the C# Ok(response) logic
+        return JSON.stringify({ 
+            OrderId: response.orderId,
+            TotalPrice: response.totalPrice,
+            CustomerEmail: response.customerEmail
+        });
     }
 }
 

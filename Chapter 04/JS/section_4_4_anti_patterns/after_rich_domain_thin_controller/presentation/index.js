@@ -1,11 +1,16 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 
-const { SqlOrderRepository, SqlCustomerRepository, SqlItemRepository } = require('../infrastructure/repositories');
-const SmtpEmailService = require('../infrastructure/emailService');
+const { 
+    SqlOrderRepository, 
+    SqlCustomerRepository, 
+    SqlItemRepository, 
+    SmtpEmailService 
+} = require('../infrastructure/repositories');
+
 const OrderService = require('../application/orderService');
 const { OrderRequest, OrderItemRequest } = require('../application/orderRequest');
-
+const OrderController = require('./controllers/orderController');
 const app = express();
 app.use(express.json());
 
@@ -17,7 +22,6 @@ const orderRepo = new SqlOrderRepository();
 const customerRepo = new SqlCustomerRepository();
 const itemRepo = new SqlItemRepository();
 const emailService = new SmtpEmailService();
-
 const orderService = new OrderService(orderRepo, customerRepo, itemRepo, emailService);
 
 // Instantiate your dedicated Controller class!
@@ -59,7 +63,16 @@ const swaggerDocument = {
                         }
                     }
                 },
-                responses: { '200': { description: 'Success' } }
+               responses: { 
+                    '200': { 
+                        description: 'Success',
+                        content: {
+                            'application/json': {
+                                example: { OrderId: 1234, TotalPrice: 180.0, CustomerEmail: "gold@example.com" }
+                            }
+                        }
+                    } 
+                }
             }
         }
     }

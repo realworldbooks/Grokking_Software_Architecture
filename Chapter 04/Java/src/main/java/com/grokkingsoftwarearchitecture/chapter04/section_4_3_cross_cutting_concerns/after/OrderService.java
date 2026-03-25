@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter04;
+package com.grokkingsoftwarearchitecture.chapter04.section_4_3_cross_cutting_concerns.after;
 
 /**
  * 2. THE CLASS "ASKS" FOR THE DEPENDENCY.

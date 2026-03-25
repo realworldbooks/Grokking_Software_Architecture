@@ -5,11 +5,10 @@
  * entity holding state.
  */
 class Customer {
-    constructor() {
-        this.id = 0;
-        this.type = ""; // e.g., "Gold"
-        this.email = "";
+    constructor(id = 0, type = "", email = "") {
+        this.id = id;
+        this.type = type;
+        this.email = email;
     }
 }
-
 module.exports = Customer;

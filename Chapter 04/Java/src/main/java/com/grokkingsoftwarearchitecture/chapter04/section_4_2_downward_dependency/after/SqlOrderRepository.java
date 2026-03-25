@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter04;
+package com.grokkingsoftwarearchitecture.chapter04.section_4_2_downward_dependency.after;
 
 /**
  * DATA ACCESS LAYER.
