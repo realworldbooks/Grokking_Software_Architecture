@@ -1,40 +1,53 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Chapter03.CouplingTest.Before;
+using Chapter03.CouplingTest.After;
+using Chapter03.SRP.Before;
+using Chapter03.SRP.After;
 
 namespace Chapter03;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
-        Console.WriteLine("=== Grokking Software Architecture: Chapter 3 ===\n");
-        Console.WriteLine("Uncomment a specific lesson below to run it!\n");
+        var examples = new Dictionary<string, Func<Task>>
+        {
+            { "Coupling (Before)", () => { CouplingTest.Before.Demo.Run(); return Task.CompletedTask; } },
+            { "Coupling (After)", () => { CouplingTest.After.Demo.Run(); return Task.CompletedTask; } },
+            { "SRP (Before)", () => { SRP.Before.Demo.Run(); return Task.CompletedTask; } },
+            { "SRP (After)", () => { SRP.After.Demo.Run(); return Task.CompletedTask; } }
+        };
 
-        // --- 3.1 Coupling Test ---
-        // CouplingTest.Before.Demo.Run();
-        // CouplingTest.After.Demo.Run();
+        while (true)
+        {
+            Console.WriteLine("=== Please choose an example to run: ===\n");
+            int i = 1;
+            foreach (var example in examples)
+            {
+                Console.WriteLine($"{i++}. {example.Key}");
+            }
+            Console.WriteLine("\nType 'exit' to quit.");
+            
+            Console.Write("\nEnter your choice: ");
+            var choice = Console.ReadLine();
 
-        // --- 3.2 Single Responsibility Principle (SRP) ---
-        // SRP.Before.Demo.Run();
-        // SRP.After.Demo.Run();
-
-        // --- 3.3 Open/Closed Principle (OCP) ---
-        // OCP.Before.Demo.Run();
-        // OCP.After.Demo.Run();
-
-        // --- 3.4 Liskov Substitution Principle (LSP) ---
-        // LSP.Before.Demo.Run();
-        // LSP.After.Demo.Run();
-
-        // --- 3.5 Interface Segregation Principle (ISP) ---
-        // ISP.Before.Demo.Run();
-        // ISP.After.Demo.Run();
-
-        // --- 3.6 Dependency Inversion Principle (DIP) ---
-        // DIP.Before.Demo.Run();
-        // DIP.After.Demo.Run();
-
-        // --- 3.7 OrderProcessor Refactor ---
-        // OrderProcessorRefactor.Before.Demo.Run();
-        // OrderProcessorRefactor.After.Demo.Run();
+            if (int.TryParse(choice, out int selection) && selection > 0 && selection <= examples.Count)
+            {
+                var exampleToRun = examples.Values.ElementAt(selection - 1);
+                Console.Clear();
+                await exampleToRun();
+            }
+            else if (choice?.ToLower() == "exit")
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Please try again.");
+            }
+        }
     }
 }

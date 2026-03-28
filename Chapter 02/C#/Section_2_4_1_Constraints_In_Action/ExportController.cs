@@ -48,7 +48,7 @@ public class ExportController
             //    (e.g., a web browser) knows how to handle the response (e.g., prompt a file download).
             Console.WriteLine("  [HTTP 200] OK");
             Console.WriteLine("  [Headers] Content-Type: text/csv");
-            Console.WriteLine($"  [Headers] Content-Disposition: attachment; filename=\\"user_data_{userId}.csv\\"");
+            Console.WriteLine($"  [Headers] Content-Disposition: attachment; filename=\"user_data_{userId}.csv\"");
             Console.WriteLine("\\n--- File Body ---");
             Console.Write(csvData);
             Console.WriteLine("-----------------");
