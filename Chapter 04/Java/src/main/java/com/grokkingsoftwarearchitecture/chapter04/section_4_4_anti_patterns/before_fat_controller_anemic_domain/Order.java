@@ -13,5 +13,4 @@ public class Order {
     public int id;
     public double total;
     public String customerEmail;
-    public List<Item> items;
 }

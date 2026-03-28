@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.dip.before;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_dip.before;
 
 /**
  * ANTI-PATTERN: Violation of the Dependency Inversion Principle (DIP).

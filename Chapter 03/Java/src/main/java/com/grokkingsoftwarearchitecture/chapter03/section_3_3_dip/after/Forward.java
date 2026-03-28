@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.dip.after;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_dip.after;
 
 /**
  * A Low-Level Detail.

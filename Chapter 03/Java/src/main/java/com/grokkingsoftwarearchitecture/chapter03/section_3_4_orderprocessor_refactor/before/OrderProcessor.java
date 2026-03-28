@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.orderprocessor.before;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_4_orderprocessor_refactor.before;
 
 /**
  * ANTI-PATTERN: The "God Class" / Monolithic Transaction Script.

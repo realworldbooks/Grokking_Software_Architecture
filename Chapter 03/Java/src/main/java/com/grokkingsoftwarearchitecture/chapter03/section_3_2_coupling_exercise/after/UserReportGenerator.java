@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.couplingexercise.after;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_2_coupling_exercise.after;
 
 /**
  * THE SOLUTION: The Loosely Coupled Client.

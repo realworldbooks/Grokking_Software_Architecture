@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.couplingexercise.before;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_2_coupling_exercise.before;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,34 +1,27 @@
 package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.before_fat_controller_anemic_domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
-/**
- * ENTRY POINT.
- * ARCHITECTURE NOTE: In this "Before" state, we simply trigger 
- * the controller. Note how the controller handles its own 
- * dependencies (New is Glue), making this Main class look 
- * deceptively simple while the internals are a mess.
- */
+@SpringBootApplication
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("--- Chapter 4: Fat Controller (Before) ---");
+        SpringApplication.run(Main.class, args);
+        System.out.println("--- FAT CONTROLLER APP RUNNING (JAVA/SPRING) ---");
+        System.out.println("Swagger UI available at: http://localhost:8080/swagger-ui/index.html");
+        System.out.println("------------------------------------------------");
+    }
 
-        OrderController controller = new OrderController();
-        
-        // Mocking a request object
-        OrderRequest request = new OrderRequest();
-        request.customerEmail = "customer@example.com";
-        request.customerType = "Gold";
-        request.items = Arrays.asList(
-            new Item("Laptop", 1200.00, 1),
-            new Item("Mouse", 25.00, 2)
-        );
-
-        // This call triggers validation, DB, and Email all at once
-        Response response = controller.createOrder(request);
-
-        System.out.println("Order Status: " + response.status);
-        System.out.println("-------------------------------------------");
+    // ARCHITECTURAL NOTE: Swagger Configuration.
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI().info(new Info()
+            .title("Grokking Software Architecture: The Fat Controller")
+            .version("v1")
+            .description("Demonstrating the pitfalls of tight coupling and anemic models."));
     }
 }

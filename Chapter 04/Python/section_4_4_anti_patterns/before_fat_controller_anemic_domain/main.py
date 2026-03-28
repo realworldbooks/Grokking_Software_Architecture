@@ -1,35 +1,22 @@
-from order_controller import OrderController
+import uvicorn
+from fastapi import FastAPI
+from order_controller import router
 
-class MockRequest:
-    """Simulates an incoming web request object."""
-    def __init__(self, items, customer_type, customer_email):
-        self.items = items
-        self.customer_type = customer_type
-        self.customer_email = customer_email
+# ARCHITECTURAL NOTE: Swagger Configuration.
+# FastAPI automatically generates Swagger UI based on these parameters.
+# Setting docs_url="/" puts the Swagger UI directly at localhost:5000.
+app = FastAPI(
+    title="Grokking Software Architecture: The Fat Controller",
+    description="Demonstrating the pitfalls of tight coupling and anemic models in Python.",
+    version="v1",
+    docs_url="/"
+)
 
-def main():
-    """
-    ENTRY POINT.
-    ARCHITECTURE NOTE: The 'Fat Controller' logic is triggered 
-    here. Because the controller creates its own database 
-    connections and email services, we have no way to 
-    intercept or mock them in this main script.
-    """
-    print("--- Chapter 4: Fat Controller (Before) ---")
-
-    controller = OrderController()
-
-    # Creating a mock request with 'Gold' status
-    request = MockRequest(
-        items=[{"name": "Monitor", "price": 300, "qty": 2}],
-        customer_type="Gold",
-        customer_email="python@arch.org"
-    )
-
-    result = controller.create_order(request)
-    print(f"Controller Response: {result}")
-    
-    print("-------------------------------------------")
+# Register the Fat Controller routes
+app.include_router(router)
 
 if __name__ == "__main__":
-    main()
+    print("--- FAT CONTROLLER APP RUNNING (PYTHON) ---")
+    print("Swagger UI available at: http://localhost:5000/")
+    print("---------------------------------------------")
+    uvicorn.run(app, host="127.0.0.1", port=5000)

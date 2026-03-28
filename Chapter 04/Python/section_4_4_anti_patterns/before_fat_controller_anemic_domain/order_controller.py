@@ -1,33 +1,63 @@
-# The filename (module) comes after 'from', 
-# and the class name comes after 'import'.
-from order import Order
-from my_db_context import MyDbContext
-from smtp_email_service import SmtpEmailService
+import random
+from fastapi import APIRouter, HTTPException
+from models import OrderRequest, MyDbContext, SmtpEmailService, Order
 
-class OrderController:
+router = APIRouter()
+
+@router.post("/api/Order")
+def create_order(request: OrderRequest):
     """
-    ANTI-PATTERN: THE FAT CONTROLLER.
-    A ticking time bomb of mixed concerns.
+    ARCHITECTURAL NOTE: The Fat Controller Anti-Pattern.
+    This controller produces the EXACT SAME output as the clean architecture, 
+    but it does so by violating the Single Responsibility Principle.
     """
-    def create_order(self, request):
-        # 1. Validation Logic
-        if not request.items:
-            return "Error: Order must have items", 400
+    
+    # 1. Validation Logic
+    if not request.items or len(request.items) == 0:
+        raise HTTPException(status_code=400, detail="Order must have items.")
 
-        # 2 & 3. Business Logic
-        total = sum(i.price * i.qty for i in request.items)
-        if request.customer_type == "Gold":
-            total *= 0.9
+    # 2. Infrastructure Coupling (Using direct instantiation)
+    # By directly instantiating MyDbContext, we cannot swap out the database 
+    # for testing or future migrations.
+    db_context = MyDbContext()
 
-        # 4. Data Access Logic
-        db = MyDbContext()
-        order = Order()
-        order.total = total
-        db.orders.add(order)
-        db.commit()
+    # Messy Inline Lookup (Controller acting as a repository)
+    customer = next((c for c in db_context.customers if c.id == request.customerId), None)
+    if not customer:
+        raise HTTPException(status_code=400, detail="Customer not found.")
 
-        # 5. External Service Logic
-        email_svc = SmtpEmailService()
-        email_svc.send(request.customer_email, "Confirmed!")
+    # 3. Core Business Logic & Leaked Data Access
+    total = 0.0
+    for req_item in request.items:
+        # The controller is doing messy inline database queries instead of 
+        # delegating to a dedicated data access layer.
+        db_item = next((i for i in db_context.items if i.id == req_item.itemId), None)
+        if not db_item:
+            raise HTTPException(status_code=400, detail=f"Item {req_item.itemId} not found.")
+        
+        total += db_item.price * req_item.quantity
 
-        return {"id": order.id}, 200
+    # 4. Hardcoded Business Rules (Applying Discount)
+    if customer.type == "Gold":
+        total *= 0.9  # 10% discount #A
+
+    # 5. Anemic Model Usage & Persistence
+    # We just stuff the calculated data into a dumb property bag.
+    order = Order()
+    order.id = random.randint(1000, 9999)
+    order.total = total
+    order.customer_email = customer.email
+
+    db_context.orders.append(order)
+    db_context.save_changes()
+
+    # 6. External Service Logic (Hidden Side Effects)
+    email_service = SmtpEmailService()
+    email_service.send(order.customer_email, "Order Confirmed!")
+
+    # Return exactly matching JSON keys
+    return {
+        "orderId": order.id,
+        "totalPrice": order.total,
+        "customerEmail": order.customer_email
+    }

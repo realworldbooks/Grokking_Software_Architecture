@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.ocp.after;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_2_ocp.after;
 
 /**
  * OCP SOLUTION: Open for Extension.

@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter02.constraintsinaction;
+package com.grokkingsoftwarearchitecture.chapter02.section_2_4_1_constraints_in_action;
 
 import java.util.concurrent.CompletableFuture;
 

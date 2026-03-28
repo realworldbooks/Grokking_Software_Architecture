@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.lsp.after;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_3_lsp.after;
 
 /**
  * The Confident Consumer.

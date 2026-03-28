@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.orderprocessor.after;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_4_orderprocessor_refactor.after;
 
 /**
  * SRP SOLUTION: Infrastructure Isolation.

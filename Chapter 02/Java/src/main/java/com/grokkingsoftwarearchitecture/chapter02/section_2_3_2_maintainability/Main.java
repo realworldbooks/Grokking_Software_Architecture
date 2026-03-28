@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter02.maintainability;
+package com.grokkingsoftwarearchitecture.chapter02.section_2_3_2_maintainability;
 
 import java.util.Arrays;
 import java.util.List;

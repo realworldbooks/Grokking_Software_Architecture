@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter02.constraintsinaction;
+package com.grokkingsoftwarearchitecture.chapter02.section_2_4_1_constraints_in_action;
 
 public class ExportController {
     private final Database db = new Database();

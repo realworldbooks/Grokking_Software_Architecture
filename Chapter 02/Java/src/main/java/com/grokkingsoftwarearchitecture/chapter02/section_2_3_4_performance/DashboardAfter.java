@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter02.performance;
+package com.grokkingsoftwarearchitecture.chapter02.section_2_3_4_performance;
 import java.util.HashMap;
 import java.util.Map;
 

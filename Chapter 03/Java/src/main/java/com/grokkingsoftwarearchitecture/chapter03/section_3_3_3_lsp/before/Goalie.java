@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.lsp.before;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_3_lsp.before;
 
 /**
  * ANTI-PATTERN: Violation of the Liskov Substitution Principle (LSP).

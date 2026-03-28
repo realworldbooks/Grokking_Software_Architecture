@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter02.testability;
+package com.grokkingsoftwarearchitecture.chapter02.section_2_3_3_testability;
 
 import java.util.List;
 

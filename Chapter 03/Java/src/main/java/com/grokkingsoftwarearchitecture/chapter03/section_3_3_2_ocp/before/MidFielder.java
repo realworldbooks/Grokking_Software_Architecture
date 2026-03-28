@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.ocp.before;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_2_ocp.before;
 
 /**
  * ANTI-PATTERN: Violation of the Open/Closed Principle (OCP).

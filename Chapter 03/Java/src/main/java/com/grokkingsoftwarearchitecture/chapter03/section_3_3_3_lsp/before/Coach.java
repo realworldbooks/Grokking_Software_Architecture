@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.lsp.before;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_3_lsp.before;
 
 /**
  * The Consumer (The Victim of the LSP Violation).

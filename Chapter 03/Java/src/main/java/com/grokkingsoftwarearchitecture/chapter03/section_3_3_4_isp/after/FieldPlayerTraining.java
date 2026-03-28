@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.isp.after;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_4_isp.after;
 
 /**
  * ISP SOLUTION: Segregated Interfaces.

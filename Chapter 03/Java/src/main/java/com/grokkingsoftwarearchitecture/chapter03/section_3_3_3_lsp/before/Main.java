@@ -1,4 +1,4 @@
-package grokkingsoftwarearchitecture.chapter03.lsp.before;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_3_lsp.before;
 
 public class Main {
     public static void main(String[] args) {

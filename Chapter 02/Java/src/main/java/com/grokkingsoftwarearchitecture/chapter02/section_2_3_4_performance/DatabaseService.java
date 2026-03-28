@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter02.performance;
+package com.grokkingsoftwarearchitecture.chapter02.section_2_3_4_performance;
 
 public class DatabaseService {
     public String getProfile(String id) {

@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter02.maintainability;
+package com.grokkingsoftwarearchitecture.chapter02.section_2_3_2_maintainability;
 
 public class CartItem {
     private String name;

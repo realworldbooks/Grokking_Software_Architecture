@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter03.srp.after;
+package com.grokkingsoftwarearchitecture.chapter03.section_3_3_1_srp.after;
 
 /**
  * Responsibility 2: Tactical / AI Logic.
