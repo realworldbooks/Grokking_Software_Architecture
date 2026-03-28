@@ -17,6 +17,8 @@ public class Database
     /// <param name="userId">The ID of the user to fetch.</param>
     /// <returns>
     /// A `User` object if the user is found; otherwise, `null`.
+    /// 
+    /// ARCHITECTURAL NOTE: The Nullable Constraint
     /// Returning nullable `User?` is an explicit design choice. It forces the
     /// calling code (the controller) to acknowledge and handle the possibility
     /// that the user may not exist, which is a crucial business constraint.

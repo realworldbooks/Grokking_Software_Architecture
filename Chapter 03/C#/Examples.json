@@ -1,0 +1,16 @@
+{
+"1": { "name": "Coupling (Before)", "type": "Chapter03.CouplingTest.Before.Demo" },
+"2": { "name": "Coupling (After)", "type": "Chapter03.CouplingTest.After.Demo" },
+"3": { "name": "SRP (Before)", "type": "Chapter03.SRP.Before.Demo" },
+"4": { "name": "SRP (After)", "type": "Chapter03.SRP.After.Demo" },
+"5": { "name": "OCP (Before)", "type": "Chapter03.OCP.Before.Demo" },
+"6": { "name": "OCP (After)", "type": "Chapter03.OCP.After.Demo" },
+"7": { "name": "LSP (Before)", "type": "Chapter03.LSP.Before.Demo" },
+"8": { "name": "LSP (After)", "type": "Chapter03.LSP.After.Demo" },
+"9": { "name": "ISP (Before)", "type": "Chapter03.ISP.Before.Demo" },
+"10": { "name": "ISP (After)", "type": "Chapter03.ISP.After.Demo" },
+"11": { "name": "DIP (Before)", "type": "Chapter03.DIP.Before.Demo" },
+"12": { "name": "DIP (After)", "type": "Chapter03.DIP.After.Demo" },
+"13": { "name": "Order Processor Refactor (Before)", "type": "Chapter03.OrderProcessorRefactor.Before.Demo" },
+"14": { "name": "Order Processor Refactor (After)", "type": "Chapter03.OrderProcessorRefactor.After.Demo" }
+}

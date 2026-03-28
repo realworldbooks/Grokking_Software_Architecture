@@ -1,52 +1,88 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Chapter03.CouplingTest.Before;
-using Chapter03.CouplingTest.After;
-using Chapter03.SRP.Before;
-using Chapter03.SRP.After;
-
+using System.Reflection;
+using System.Text.Json;
 namespace Chapter03;
+
+// This class perfectly maps to the JSON structure
+public class ExampleConfig
+{
+    public string Name { get; set; } = string.Empty;
+    public string Type { get; set; } = string.Empty;
+}
 
 class Program
 {
     static async Task Main()
     {
-        var examples = new Dictionary<string, Func<Task>>
+        // BULLETPROOF CHECK: Does the config file exist?
+        if (!File.Exists("examples.json"))
         {
-            { "Coupling (Before)", () => { CouplingTest.Before.Demo.Run(); return Task.CompletedTask; } },
-            { "Coupling (After)", () => { CouplingTest.After.Demo.Run(); return Task.CompletedTask; } },
-            { "SRP (Before)", () => { SRP.Before.Demo.Run(); return Task.CompletedTask; } },
-            { "SRP (After)", () => { SRP.After.Demo.Run(); return Task.CompletedTask; } }
-        };
+            Console.WriteLine("[ERROR] examples.json not found!");
+            Console.WriteLine("Make sure it is set to 'Copy to Output Directory' in your project.");
+            return;
+        }
+
+        string jsonString = await File.ReadAllTextAsync("examples.json");
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var examples = JsonSerializer.Deserialize<Dictionary<string, ExampleConfig>>(jsonString, options);
 
         while (true)
         {
-            Console.WriteLine("=== Please choose an example to run: ===\n");
-            int i = 1;
-            foreach (var example in examples)
-            {
-                Console.WriteLine($"{i++}. {example.Key}");
-            }
-            Console.WriteLine("\nType 'exit' to quit.");
-            
-            Console.Write("\nEnter your choice: ");
-            var choice = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("=== Grokking Software Architecture Chapter 03: C# Examples ===\n");
 
-            if (int.TryParse(choice, out int selection) && selection > 0 && selection <= examples.Count)
+            // C# Dictionaries don't naturally keep their order, so we sort them by their numeric keys
+            var orderedExamples = examples.OrderBy(x => int.Parse(x.Key));
+
+            foreach (var kvp in orderedExamples)
             {
-                var exampleToRun = examples.Values.ElementAt(selection - 1);
-                Console.Clear();
-                await exampleToRun();
+                Console.WriteLine($"{kvp.Key}. {kvp.Value.Name}");
             }
-            else if (choice?.ToLower() == "exit")
+
+            Console.WriteLine("\nType 'exit' to quit.");
+            Console.Write("\nEnter your choice: ");
+            var choice = Console.ReadLine()?.Trim();
+
+            if (choice?.ToLower() == "exit") break;
+
+            if (examples.TryGetValue(choice, out var selectedExample))
             {
-                break;
+                Console.Clear();
+
+                // ARCHITECTURAL NOTE: Reflection finds the exact class string at runtime
+                Type type = Type.GetType(selectedExample.Type);
+
+                if (type == null)
+                {
+                    Console.WriteLine($"[ERROR] Could not find class: {selectedExample.Type}");
+                    Console.WriteLine("Check your namespace and class name in examples.json.");
+                }
+                else
+                {
+                    // Find the public, static Run() method inside that class
+                    MethodInfo method = type.GetMethod("Run", BindingFlags.Public | BindingFlags.Static);
+
+                    if (method == null)
+                    {
+                        Console.WriteLine($"[ERROR] Could not find a public static Run() method on {selectedExample.Type}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"--- Running {selectedExample.Name} ---\n");
+
+                        // Execute the method!
+                        var result = method.Invoke(null, null);
+                        if (result is Task task) await task;
+                    }
+                }
+
+                Console.WriteLine("\nPress any key to return to the main menu...");
+                Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("Invalid choice. Please try again.");
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
             }
         }
     }

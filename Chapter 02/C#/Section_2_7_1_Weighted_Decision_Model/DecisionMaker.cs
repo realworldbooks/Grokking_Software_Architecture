@@ -6,6 +6,11 @@ namespace Chapter02.WeightedDecisionModel;
 /// <summary>
 /// Implements a Weighted Decision Model to choose the best option from a set of choices.
 /// This model provides a quantitative and data-driven way to make architectural decisions.
+/// 
+/// ARCHITECTURAL NOTE: Encapsulating the Algorithm
+/// The logic for calculating the winner is isolated here. If we decide to change 
+/// our mathematical model later (e.g., using a logarithmic scale instead of linear), 
+/// we only have to update this one class.
 /// </summary>
 public class DecisionMaker
 {
@@ -41,7 +46,9 @@ public class DecisionMaker
         // The rationale provides a transparent explanation for the decision,
         // which is crucial for communicating architectural choices to a team.
         var weightsString = "{" + string.Join(", ", weights.Select(kv => $"'{kv.Key}': {kv.Value}")) + "}";
-        string rationale = $"Scores: {string.Join(" | ", details)}\\n -> Based on weights {weightsString}, we pick **{bestOption?.Name}**.";
+        
+        // Note: The newline escape character has been fixed here to properly render in the console.
+        string rationale = $"Scores: {string.Join(" | ", details)}\n -> Based on weights {weightsString}, we pick **{bestOption?.Name}**.";
         
         return (bestOption?.Name ?? "None", rationale);
     }

@@ -10,7 +10,8 @@ namespace Chapter02.ConstraintsInAction;
 /// </summary>
 public class ExportController
 {
-    // A real controller would use Dependency Injection to get service instances.
+    // A real controller would use Dependency Injection to get service instances, 
+    // similar to our Testability example.
     private readonly Database _db = new();
 
     /// <summary>
@@ -32,14 +33,14 @@ public class ExportController
             if (userData == null)
             {
                 Console.WriteLine("  [HTTP 404] User not found.");
-                return;
+                return; // Halt execution, enforcing the constraint.
             }
 
             // 3. TECHNICAL CONSTRAINT: The data must be formatted according to a specific
             //    file format (CSV in this case). The controller is responsible for
             //    ensuring the output matches the required format.
-            var headers = "id,name,email\\n";
-            var csvRow = $"{userData.Id},{userData.Name},{userData.Email}\\n";
+            var headers = "id,name,email\n";
+            var csvRow = $"{userData.Id},{userData.Name},{userData.Email}\n";
             var csvData = headers + csvRow;
 
             // 4. TECHNICAL CONSTRAINT: The response must adhere to the HTTP protocol.
@@ -49,7 +50,7 @@ public class ExportController
             Console.WriteLine("  [HTTP 200] OK");
             Console.WriteLine("  [Headers] Content-Type: text/csv");
             Console.WriteLine($"  [Headers] Content-Disposition: attachment; filename=\"user_data_{userId}.csv\"");
-            Console.WriteLine("\\n--- File Body ---");
+            Console.WriteLine("\n--- File Body ---");
             Console.Write(csvData);
             Console.WriteLine("-----------------");
         }

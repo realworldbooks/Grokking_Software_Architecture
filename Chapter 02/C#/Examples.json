@@ -1,0 +1,10 @@
+{
+  "1": { "name": "Maintainability: Shopping Cart (Before)", "type": "Chapter02.ShoppingCart.Before.Demo" },
+  "2": { "name": "Maintainability: Shopping Cart (After)", "type": "Chapter02.ShoppingCart.After.Demo" },
+  "3": { "name": "Testability: Dependency Injection (Before)", "type": "Chapter02.Testability.Before.Demo" },
+  "4": { "name": "Testability: Dependency Injection (After)", "type": "Chapter02.Testability.After.Demo" },
+  "5": { "name": "Performance: Caching (Before)", "type": "Chapter02.Performance.Before.Demo" },
+  "6": { "name": "Performance: Caching (After)", "type": "Chapter02.Performance.After.Demo" },
+  "7": { "name": "Constraints in Action", "type": "Chapter02.ConstraintsInAction.ConstraintsDemo" },
+  "8": { "name": "Weighted Decision Model", "type": "Chapter02.WeightedDecisionModel.WeightedDecisionModelDemo" }
+}

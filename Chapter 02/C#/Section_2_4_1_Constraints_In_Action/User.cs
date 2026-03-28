@@ -6,6 +6,10 @@ namespace Chapter02.ConstraintsInAction;
 /// or a DTO (Data Transfer Object). Its job is to represent the structure of our data
 /// as it moves between different layers of the application (e.g., from the database
 /// to the controller).
+/// 
+/// ARCHITECTURAL NOTE: Structural Constraints
+/// By isolating this model into its own file, we ensure that the shape of our data 
+/// is completely decoupled from how it is retrieved or processed.
 /// </summary>
 public class User
 {
@@ -13,6 +17,7 @@ public class User
     /// The unique identifier for the user.
     /// The `required` keyword is a C# feature that enforces a constraint:
     /// this property MUST be initialized when a new User object is created.
+    /// This prevents developers from accidentally creating invalid, empty users.
     /// </summary>
     public required string Id { get; set; }
 

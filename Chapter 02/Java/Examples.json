@@ -1,0 +1,10 @@
+{
+  "1": { "name": "Maintainability: Shopping Cart (Before)", "type": "com.grokkingsoftwarearchitecture.chapter02.section_2_3_2_maintainability.before.Demo" },
+  "2": { "name": "Maintainability: Shopping Cart (After)", "type": "com.grokkingsoftwarearchitecture.chapter02.section_2_3_2_maintainability.after.Demo" },
+  "3": { "name": "Testability: Dependency Injection (Before)", "type": "com.grokkingsoftwarearchitecture.chapter02.section_2_3_3_testability.before.Demo" },
+  "4": { "name": "Testability: Dependency Injection (After)", "type": "com.grokkingsoftwarearchitecture.chapter02.section_2_3_3_testability.after.Demo" },
+  "5": { "name": "Performance: Caching (Before)", "type": "com.grokkingsoftwarearchitecture.chapter02.section_2_3_4_performance.before.Demo" },
+  "6": { "name": "Performance: Caching (After)", "type": "com.grokkingsoftwarearchitecture.chapter02.section_2_3_4_performance.after.Demo" },
+  "7": { "name": "Constraints in Action", "type": "com.grokkingsoftwarearchitecture.chapter02.section_2_4_1_constraints_in_action.Demo" },
+  "8": { "name": "Weighted Decision Model", "type": "com.grokkingsoftwarearchitecture.chapter02.section_2_7_1_weighted_decision_model.WeightedDecisionModelDemo" }
+}

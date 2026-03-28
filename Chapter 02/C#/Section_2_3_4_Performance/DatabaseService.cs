@@ -6,6 +6,9 @@ namespace Chapter02.Performance;
 /// <summary>
 /// Simulates a slow, expensive database service.
 /// In a real application, these methods would contain logic to query a database.
+/// 
+/// ARCHITECTURAL NOTE: In this "Before" state, every single request to the 
+/// dashboard will be forced to wait for these slow network calls to finish.
 /// </summary>
 public class DatabaseService
 {

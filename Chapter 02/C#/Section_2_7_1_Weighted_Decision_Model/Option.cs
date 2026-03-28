@@ -5,6 +5,11 @@ namespace Chapter02.WeightedDecisionModel;
 /// <summary>
 /// Represents a single architectural choice to be evaluated.
 /// This is a simple data-holding class (POCO).
+/// 
+/// ARCHITECTURAL NOTE: Data Structures
+/// By keeping this class purely for data, we can easily serialize it, 
+/// deserialize it from a database, or pass it around without dragging 
+/// any heavy calculation logic along with it.
 /// </summary>
 public class Option
 {

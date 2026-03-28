@@ -1,0 +1,16 @@
+{
+"1": { "name": "Coupling (Before)", "path": "section_3_2_coupling_exercise/before/index.js" },
+"2": { "name": "Coupling (After)", "path": "section_3_2_coupling_exercise/after/index.js" },
+"3": { "name": "SRP (Before)", "path": "section_3_2_srp_exercise/before/index.js" },
+"4": { "name": "SRP (After)", "path": "section_3_2_srp_exercise/after/index.js" },
+"5": { "name": "OCP (Before)", "path": "section_3_2_ocp_exercise/before/index.js" },
+"6": { "name": "OCP (After)", "path": "section_3_2_ocp_exercise/after/index.js" },
+"7": { "name": "LSP (Before)", "path": "section_3_2_lsp_exercise/before/index.js" },
+"8": { "name": "LSP (After)", "path": "section_3_2_lsp_exercise/after/index.js" },
+"9": { "name": "ISP (Before)", "path": "section_3_2_isp_exercise/before/index.js" },
+"10": { "name": "ISP (After)", "path": "section_3_2_isp_exercise/after/index.js" },
+"11": { "name": "DIP (Before)", "path": "section_3_2_dip_exercise/before/index.js" },
+"12": { "name": "DIP (After)", "path": "section_3_2_dip_exercise/after/index.js" },
+"13": { "name": "Order Processor Refactor (Before)", "path": "section_3_3_order_processor_refactor/before/index.js" },
+"14": { "name": "Order Processor Refactor (After)", "path": "section_3_3_order_processor_refactor/after/index.js" }
+}
