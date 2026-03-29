@@ -10,8 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // 1. REQUIRED FOR SWAGGER: Add the API explorer and generator
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer(); //
-builder.Services.AddSwaggerGen();           //
+builder.Services.AddEndpointsApiExplorer(); // Required for Swagger to discover API endpoints
+builder.Services.AddSwaggerGen();           // Required for Swagger to generate the JSON documentation
 
 // --- THE COMPOSITION ROOT ---
 // ARCHITECTURE NOTE: Because the Presentation layer sits at the very 
@@ -26,10 +26,17 @@ builder.Services.AddScoped<IEmailService, SmtpEmailService>();
 var app = builder.Build();
 
 // 2. REQUIRED FOR SWAGGER: Enable the middleware in development mode
-if (app.Environment.IsDevelopment()) // Matches appsettings.Development.json
+if (app.Environment.IsDevelopment()) 
 {
     app.UseSwagger();
-    app.UseSwaggerUI(); // This enables the UI at /swagger
+    app.UseSwaggerUI(c => 
+    {
+        // Explicitly tell the UI where the JSON file is
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Clean Architecture API v1"); 
+        
+        // Load the UI at the root of the localhost URL
+        c.RoutePrefix = string.Empty; 
+    });
 }
 
 app.MapControllers();
@@ -37,4 +44,4 @@ app.MapControllers();
 Console.WriteLine("--- Running Traditional 4-Layer Architecture ---");
 Console.WriteLine("Fat Controller and Anemic Domain eliminated.");
 
-app.Run();
+await app.RunAsync();

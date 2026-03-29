@@ -24,6 +24,7 @@
     <ProjectReference Include=".\Section_4_3_Cross_Cutting_Concerns\Before\Before4_3.csproj" />
     <ProjectReference Include=".\Section_4_3_Cross_Cutting_Concerns\After\After4_3.csproj" />
     <ProjectReference Include=".\Section_4_4_Anti_Patterns\Before_Fat_Controller_Anemic_Domain\Before.csproj" />
+    <ProjectReference Include=".\Section_4_4_Anti_Patterns\After_Rich_Domain_Thin_Controller\After\After.Presentation\After.Presentation.csproj" />
 </ItemGroup>
 
 </Project>
