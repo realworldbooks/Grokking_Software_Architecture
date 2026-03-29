@@ -12,27 +12,27 @@ Welcome to the companion code for Chapter 2 of Grokking Software Architecture. I
 ## How to Run the Examples
 
 1. .NET (C#) 
-Prerequisites: .NET 6.0 SDK or later.
-Navigate to Chapter02/C#/
-Run 
+- Prerequisites: .NET 6.0 SDK or later.
+- Navigate to Chapter02/C#/
+- Run: 
 ```bash 
 dotnet run
 ``` 
 The menu uses Reflection to dynamically execute the chosen class.
 
 2. Java
-Prerequisites: Java 17 and Maven.
-Navigate to Chapter02/Java/
-Run 
+- Prerequisites: Java 17 and Maven.
+- Navigate to Chapter02/Java/
+- Run: 
 ```bash
 mvn clean compile exec:java
 ```
 Note: Uses the Jackson library to parse the examples.json manifest.
 
 3. Node.js (JavaScript)
-Prerequisites: Node.js (v16+) and npm.
-Navigate to Chapter02/Node/
-Run 
+- Prerequisites: Node.js (v16+) and npm.
+- Navigate to Chapter02/Node/
+- Run:  
 ```bash 
 npm install
 npm start
@@ -40,9 +40,9 @@ npm start
 Note: Uses dynamic require() to load modules at runtime.
 
 4. Python
-Prerequisites: Python 3.10+.
-Navigate to Chapter02/Python/
-Run 
+- Prerequisites: Python 3.10+.
+- Navigate to Chapter02/Python/
+- Run:  
 ```bash
 python menu.py
 ```
@@ -59,6 +59,7 @@ Each language follows this standardized folder hierarchy. For sections involving
 ├── section_2_4_1_constraints/      # Layered Architecture & HTTP
 └── section_2_7_1_decision_model/   # Weighted Decision Matrix
 ```
+
 ## Feature Comparison 
 
 | Section | Architectural Goal | Key Pattern | Implementation Detail |
