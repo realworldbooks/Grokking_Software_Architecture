@@ -1,9 +1,9 @@
 
 # Chapter 3: The Principles of Sound Design
 
-Welcome to the companion code for Chapter 3. While Chapter 2 focused on individual quality attributes, Chapter 3 dives into the "connective tissue" of software architecture: how components interact and how logic is grouped.
+Welcome to the companion code for Chapter 3. While Chapter 2 focused on individual quality attributes, Chapter 3 follows up by getting into the "connective tissue" of software architecture: how components interact and how logic is grouped.
 
-These examples demonstrate the transition from Tight Coupling to Loose Coupling using the Order Processor Refactor and a deep dive into the SOLID Principles.
+These examples demonstrate the transition from Tight Coupling to Loose Coupling, Low Cohesion to High Cohesion, individual SOLID Principles, and finally the Order Processor Refactor for putting it all together.
 
 ## Architectural Concepts Covered
 1. **Coupling and Cohesion:**
@@ -16,7 +16,7 @@ Each principle is isolated into its own directory to show how specific refactori
 - SRP (Section 3.3.1): Single Responsibility Principle.
 - OCP (Section 3.3.2): Open/Closed Principle.
 - LSP (Section 3.3.3): Liskov Substitution Principle.
-- ISP (Section 3.3.4): Interface Segregation Principle.
+- ISP (Section 3.3.4): Interface Segregation Principle.update README
 - DIP (Section 3.3.5): Dependency Inversion Principle.
 
 3. **The Order Processor Refactor:**
