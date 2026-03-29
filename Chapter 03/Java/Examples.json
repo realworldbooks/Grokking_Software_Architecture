@@ -1,0 +1,16 @@
+{
+"1": { "name": "Coupling (Before)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_2_coupling_exercise.before.Demo" },
+"2": { "name": "Coupling (After)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_2_coupling_exercise.after.Demo" },
+"3": { "name": "SRP (Before)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_1_srp.before.Demo" },
+"4": { "name": "SRP (After)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_1_srp.after.Demo" },
+"5": { "name": "OCP (Before)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_2_ocp.before.Demo" },
+"6": { "name": "OCP (After)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_2_ocp.after.Demo" },
+"7": { "name": "LSP (Before)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_3_lsp.before.Demo" },
+"8": { "name": "LSP (After)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_3_lsp.after.Demo" },
+"9": { "name": "ISP (Before)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_4_isp.before.Demo" },
+"10": { "name": "ISP (After)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_4_isp.after.Demo" },
+"11": { "name": "DIP (Before)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_5_dip.before.Demo" },
+"12": { "name": "DIP (After)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_3_5_dip.after.Demo" },
+"13": { "name": "Order Processor Refactor (Before)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_4_order_processor_refactor.before.Demo" },
+"14": { "name": "Order Processor Refactor (After)", "type": "com.grokkingsoftwarearchitecture.chapter03.section_3_4_order_processor_refactor.after.Demo" }
+}
