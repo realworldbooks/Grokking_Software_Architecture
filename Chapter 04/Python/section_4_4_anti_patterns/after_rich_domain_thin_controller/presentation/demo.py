@@ -33,7 +33,7 @@ class OrderAPIRequest(BaseModel):
 
 # --- FASTAPI SETUP ---
 app = FastAPI(
-    title="Rich Domain / Thin Controller Layered Architecture API",
+    title="Rich Domain / Thin Controller Traditional 4-Layer Architecture API",
     description="Fat Controller and Anemic Domain eliminated.",
     version="1.0.0"
 )
