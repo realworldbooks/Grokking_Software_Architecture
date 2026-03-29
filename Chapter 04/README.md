@@ -15,7 +15,7 @@ These examples demonstrate how to structure a layered application, manage depend
 3. **The Web API Anti-Patterns:**
    - **The Fat Controller:** A monolithic endpoint that mixes HTTP orchestration, database queries, and business rules into a single file.
    - **The Anemic Domain:** Data entities that are nothing more than "bags of getters and setters" devoid of behavior.
-   - **The Clean Architecture Solution:** Moving logic into a Rich Domain Model, leaving a "Thin Controller" whose only job is translating HTTP requests into domain commands.
+   - **The Traditional 4-Layer Architecture Solution:** Moving logic into a Rich Domain Model, leaving a "Thin Controller" whose only job is translating HTTP requests into domain commands.
 
 4. **Live Web Frameworks & Swagger UI:**
    - The Chapter 4 "After" examples launch actual web servers (ASP.NET Core, Spring Boot, Express, and FastAPI) complete with interactive OpenAPI/Swagger documentation.
