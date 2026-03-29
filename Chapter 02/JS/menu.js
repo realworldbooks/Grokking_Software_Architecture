@@ -22,7 +22,7 @@ return new Promise(resolve => rl.question(query, resolve));
 async function main() {
 while (true) {
 clearScreen();
-console.log("=== Grokking Software Architecture Chapter 03: JS Examples ===\n");
+console.log("=== Grokking Software Architecture Chapter 02: JS Examples ===\n");
 
     for (const [key, example] of Object.entries(examples)) {
         console.log(`${key}. ${example.name}`);
@@ -52,7 +52,7 @@ console.log("=== Grokking Software Architecture Chapter 03: JS Examples ===\n");
             continue; 
         }
 
-       console.log(`--- Running ${name} ---\n`);
+console.log(`--- Running ${name} ---\n`);
         
         try {
             // 1. Clear the cache so you can run the same demo multiple times 

@@ -1,38 +1,50 @@
 /**
- * @file Simulates a slow, expensive database service.
- * 
- * NOTE: In a real-world Node.js application, all I/O operations (like database calls)
- * MUST be asynchronous to avoid blocking the event loop. These functions would
- * return Promises, and you would use `async/await` to handle them.
- * 
- * For simplicity in this demonstration, we are using synchronous functions.
+ * Simulates a slow, expensive database service.
+ * In a real application, these methods would contain logic to query a database.
+ * * ARCHITECTURAL NOTE: In this "Before" state, every single request to the 
+ * dashboard will be forced to wait for these slow network calls to finish.
  */
-const databaseService = {
+class DatabaseService {
+    /**
+     * Simulates the real-world latency of network I/O and query execution.
+     * @returns {Promise<void>}
+     */
+    #simulateNetworkLatency() {
+        return new Promise(resolve => setTimeout(resolve, 500));
+    }
+
     /**
      * Simulates fetching a user profile from the database.
-     * @param {string} id The user's ID.
+     * @param {string} id 
      */
-    getProfile: (id) => { 
-        console.log(`    [DB] Fetching Profile for ${id}... (Simulating 500ms latency)`);
-        // In a real async function, you would see `await sleep(500);`
+    async getProfile(id) {
+        console.log(`    [DB] Fetching Profile for ${id}...`);
+        await this.#simulateNetworkLatency();
+        console.log("    [DB] >> Profile data received.");
         return "User_Profile_Data";
-    },
+    }
+
     /**
      * Simulates fetching a user's orders from the database.
-     * @param {string} id The user's ID.
+     * @param {string} id 
      */
-    getOrders: (id) => { 
-        console.log(`    [DB] Fetching Orders for ${id}... (Simulating 500ms latency)`);
+    async getOrders(id) {
+        console.log(`    [DB] Fetching Orders for ${id}...`);
+        await this.#simulateNetworkLatency();
+        console.log("    [DB] >> Order data received.");
         return "User_Orders_Data";
-    },
+    }
+
     /**
      * Simulates fetching a user's activity from the database.
-     * @param {string} id The user's ID.
+     * @param {string} id 
      */
-    getActivity: (id) => { 
-        console.log(`    [DB] Fetching Activity for ${id}... (Simulating 500ms latency)`);
+    async getActivity(id) {
+        console.log(`    [DB] Fetching Activity for ${id}...`);
+        await this.#simulateNetworkLatency();
+        console.log("    [DB] >> Activity data received.");
         return "User_Activity_Data";
     }
-};
+}
 
-module.exports = databaseService;
+module.exports = DatabaseService;

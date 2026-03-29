@@ -1,32 +1,28 @@
+const User = require('./user');
+
 /**
- * @file Simulates a Data Access Layer (DAL) or "Service" module.
- * 
+ * Simulates a Data Access Layer (DAL) or "Service" class.
  * Its single responsibility is to handle all interactions with the database.
- * This separation of concerns means that if we were to change our database technology
- * (e.g., from a file system to a real MongoDB or PostgreSQL database), this is 
- * the only module we would need to modify. The controller would remain unchanged.
  */
-const database = {
+class Database {
     /**
      * Fetches a user's data from the database.
-     * @param {string} userId - The ID of the user to fetch.
-     * @returns {Promise<object|null>} A Promise that resolves to a user object if found, otherwise null.
-     * Returning null is an explicit design choice to signal that the user was not found,
-     * allowing the controller to handle this specific business case.
+     * @param {string} userId 
+     * @returns {Promise<User|null>}
+     * * ARCHITECTURAL NOTE: The Nullable Constraint
+     * Returning null is an explicit design choice. It forces the calling 
+     * code (the controller) to acknowledge and handle the possibility 
+     * that the user may not exist.
      */
-    fetchUserData: async (userId) => {
-        // In a real application, this would be an asynchronous call to a database.
-        // e.g., `await UserModel.findById(userId);`
+    async fetchUserDataAsync(userId) {
+        // Simulating an asynchronous database call.
         if (userId === "User123") {
-            return {
-                id: "User123",
-                name: "Alice",
-                email: "alice@example.com"
-            };
+            return new User("User123", "Alice", "alice@example.com");
         }
-        // If the user is not found, we resolve the promise with null.
+        
+        // If the user is not found, we return null to signal this to the caller.
         return null;
     }
-};
+}
 
-module.exports = database;
+module.exports = Database;

@@ -1,11 +1,18 @@
 /**
- * A simple class to hold an option and its scores.
- * Scores are from 1 (bad) to 5 (good) for each criterion.
+ * Represents a single architectural choice to be evaluated.
+ * * ARCHITECTURAL NOTE: Data Structures
+ * By keeping this class purely for data, we can easily serialize it, 
+ * deserialize it from a database, or pass it around without dragging 
+ * any heavy calculation logic along with it.
  */
 class Option {
+    /**
+     * @param {string} name - e.g., "Redis", "In-Memory Cache"
+     * @param {Object.<string, number>} scores - e.g., { "performance": 5, "cost": 2 }
+     */
     constructor(name, scores) {
         this.name = name;
-        this.scores = scores; // e.g., { availability: 1, performance: 5, simplicity: 5 }
+        this.scores = scores;
     }
 }
 

@@ -1,26 +1,27 @@
+from typing import Optional
+from .user import User
+
 class Database:
     """
-    Simulates a Data Access Layer (DAL) or "Service" class.
-    Its single responsibility is to handle all interactions with the database.
-    This separation of concerns is a key architectural principle.
+    Simulates a Data Access Layer (DAL).
+    Single responsibility: handle all interactions with the database.
     """
-    def fetch_user_data(self, user_id):
+
+    async def fetch_user_data_async(self, user_id: str) -> Optional[User]:
         """
         Fetches a user's data from the database.
         
-        Args:
-            user_id (str): The ID of the user to fetch.
-            
-        Returns:
-            A dictionary with user data if found, otherwise None.
-            Returning None is an explicit design choice to signal that the user
-            was not found, allowing the caller to handle this case.
+        ARCHITECTURAL NOTE: The Nullable Constraint
+        Returning Optional[User] (which can be None) forces the caller 
+        to handle the case where a user doesn't exist.
         """
-        # In a real app, this would be an async database call.
+        # Simulating an asynchronous database call
         if user_id == "User123":
-            return {
-                "id": "User123",
-                "name": "Alice",
-                "email": "alice@example.com"
-            }
+            return User(
+                user_id="User123", 
+                name="Alice", 
+                email="alice@example.com"
+            )
+        
+        # Signal the user was not found
         return None

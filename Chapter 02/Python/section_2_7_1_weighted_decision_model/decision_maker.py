@@ -1,33 +1,38 @@
-from typing import Dict, Tuple, List
-from option import Option
+"""
+Implements a Weighted Decision Model to choose the best option from a set of choices.
+ARCHITECTURAL NOTE: Encapsulating the Algorithm
+The logic for calculating the winner is isolated here. This provides 
+a quantitative and data-driven way to make architectural decisions.
+"""
 
-def pick_option(options: List[Option], weights: Dict[str, float]) -> Tuple[str, str]:
-    """
-    Implements a Weighted Decision Model to choose the best option from a set of choices.
-    This model provides a quantitative and data-driven way to make architectural decisions.
+class DecisionMaker:
+    def pick_option(self, options: list['Option'], weights: dict[str, float]) -> tuple[str, str]:
+        """
+        Picks the best option based on a set of weighted criteria.
+        
+        Formula: FinalScore = sum(Score_i * Weight_i)
+        """
+        best_option = None
+        highest_score = float('-inf')
+        details = []
 
-    Args:
-        options: A list of options to evaluate. Each option has scores for various criteria.
-        weights: A dictionary where the key is the criterion name and the value is its importance (weight).
+        for opt in options:
+            # THE CORE LOGIC: Weighted sum calculation
+            # We multiply each criterion score by its weight and sum them up.
+            score = sum(opt.scores.get(criterion, 0) * weight 
+                        for criterion, weight in weights.items())
+            
+            details.append(f"{opt.name}: {score:.2f}")
 
-    Returns:
-        A tuple containing the name of the best option and a string explaining the rationale.
-    """
-    best_option = None
-    highest_score = float("-inf")
-    details = []
+            if score > highest_score:
+                highest_score = score
+                best_option = opt
 
-    for opt in options:
-        # THE CORE LOGIC: Calculate the weighted score.
-        # Formula: FinalScore = (Score_A * Weight_A) + (Score_B * Weight_B) + ...
-        score = sum(opt.scores.get(k, 0) * weights.get(k, 0.0) 
-                    for k in weights)
-        details.append(f"{opt.name}: {score:.2f}")
-
-        if score > highest_score:
-            highest_score = score
-            best_option = opt
-
-    # The rationale provides a transparent explanation for the decision.
-    rationale = f"Scores: {' | '.join(details)}\\n -> Based on weights {weights}, we pick **{best_option.name}**."
-    return best_option.name, rationale
+        # The rationale provides transparency for communicating the choice to the team.
+        weights_str = str(weights)
+        best_name = best_option.name if best_option else "None"
+        
+        rationale = (f"Scores: {' | '.join(details)}\n"
+                     f" -> Based on weights {weights_str}, we pick **{best_name}**.")
+        
+        return best_name, rationale

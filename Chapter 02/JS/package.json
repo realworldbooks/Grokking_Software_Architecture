@@ -1,0 +1,12 @@
+{
+  "name": "grokking-architecture-chapter02",
+  "version": "1.0.0",
+  "description": "JavaScript examples for Grokking Software Architecture Chapter 02",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}

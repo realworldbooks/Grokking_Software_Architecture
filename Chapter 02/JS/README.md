@@ -1,28 +1,72 @@
-# Chapter 2: The Architect's Decision Toolkit (JavaScript)
+# Chapter 02: Architectural Fundamentals in Action
 
-Welcome to the JavaScript/Node.js companion code for **Chapter 2**. 
+This repository contains the interactive code examples for Chapter 02. These examples are designed to demonstrate the "Before" (unoptimized) and "After" (architecturally sound) states of common software patterns, focusing on Maintainability, Testability, and Performance.
 
-In this chapter, we transition from writing "scripts" to designing "systems." These examples demonstrate how a Clarity Engineer applies core architectural principles to make code more maintainable, testable, and performant.
+## Architectural Concepts Covered
+- **Maintainability:** Eliminating "Magic Numbers" and "God Methods" through Separation of Concerns.
 
-## What's Inside
+- **Testability:** Implementing Dependency Injection (DI) to decouple business logic from infrastructure.
 
-This directory contains standalone examples mapped directly to the book sections, broken down into their own folders to enforce proper Separation of Concerns:
+- **Performance:** Utilizing the Cache-Aside pattern to protect data sources and reduce latency.
 
-1. **Section 2.3.2: Maintainability (`/2.3.2 Maintainability`)** - Refactoring a tightly coupled shopping cart into isolated data, logic, and execution layers.
-2. **Section 2.3.3: Testability (`/2.3.3 Testability`)** - Using Dependency Injection (DI) to decouple a report generator from a live database, making it instantly testable.
-3. **Section 2.3.4: Performance (`/2.3.4 Performance`)** - Implementing the "Smart Cache" architecture to bypass expensive, brute-force database queries.
-4. **Section 2.4.1: Constraints in Action (`/2.4.1 Constraints In Action`)** - A pragmatic, "good enough for now" inline CSV exporter simulating an Express.js web endpoint constraint.
-5. **Section 2.7.1: Weighted Decision Model (`/2.7.1 Weighted Decision Model`)** - A mathematical, matrix-driven approach to choosing the right technology stack without relying on guesswork.
+- **Constraints:** Managing technical and business constraints within a Layered Architecture.
 
-## How to Run the Code
+- **Decision Making:** Applying a Weighted Decision Model for objective technology selection.
 
-This project is designed to be **100% zero-setup**. There is no `package.json`, and no `npm install` is required. Everything runs perfectly using vanilla Node.js.
+## How to Run the Examples
+**1. .NET (C#)**
+Prerequisites: .NET 6.0 SDK or later.
 
-To run an example, simply navigate to its folder in your terminal (using quotes for the folder names) and execute the `index.js` file:
+Navigate to the Chapter02/CSharp directory.
 
-```bash
-# Example: Running the Performance / Caching lesson
-cd "2.3.4 Performance"
-node index.js
+Run the application using the dotnet CLI:
 
-Alternatively, you can open the entire javascript folder in an IDE like VS Code, open the index.js file for the section you are currently reading, and run it directly from your integrated terminal!
+```Bash
+dotnet run
+```
+
+**2. Java**
+Prerequisites: Java 17 and Maven.
+
+Navigate to the Chapter02/Java directory.
+
+Compile and execute the interactive menu:
+
+```Bash
+mvn clean compile exec:java
+Note: This project uses the Jackson library for dynamic JSON parsing of the example manifest.
+```
+
+**3. Node.js (JavaScript)**
+Prerequisites: Node.js (v16+) and npm.
+
+Navigate to the Chapter02/Node directory.
+
+Install the menu dependencies:
+
+```Bash
+npm install
+```
+Launch the interactive menu:
+
+```Bash
+npm start
+```
+## Project Structure
+The project is organized by architectural quality attribute to allow for easy comparison:
+
+```Plaintext
+├── section_2_3_2_maintainability/  # Shopping Cart refactoring
+├── section_2_3_3_testability/    # Dependency Injection & Mocking
+├── section_2_3_4_performance/    # Cache-Aside pattern implementation
+├── section_2_4_constraints/      # Layered architecture & HTTP constraints
+└── section_2_5_decisionmodel/    # Quantitative Decision Matrix
+```
+## Using the Interactive Menu
+Each implementation features a dynamic menu driven by an examples.json file.
+
+Select a numeric option to trigger a specific architectural scenario.
+
+Observe the console output to see architectural notes and execution logic.
+
+Compare the before and after folders in the source code to see the refactoring in detail.
