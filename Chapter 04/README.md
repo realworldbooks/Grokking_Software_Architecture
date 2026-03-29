@@ -61,7 +61,7 @@ python menu.py
 Note: Ensure you have `__init__.py` files in your subdirectories so the dynamic import system can locate the demo modules.
 
 ## Project Structure
-The folders are organized by section number. Each scenario contains a before/ (Anti-Pattern) and after/ (Clean Architecture) implementation.
+The folders are organized by section number. Each scenario contains a before/ (Anti-Pattern) and after/ (Layered Architecture) implementation.
 
 ```Plaintext
 ├── section_4_2_downward_dependency/         # Layering and Dependency Direction
