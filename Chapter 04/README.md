@@ -40,7 +40,7 @@ These examples demonstrate how to structure a layered application, manage depend
 
 ### 3. Node.js (JavaScript)
 - **Prerequisites:** Node.js (v16+) and npm.
-- Navigate to the Chapter04/Node/ directory.
+- Navigate to the Chapter04/JS/ directory.
 - Install the web dependencies (express, swagger-ui-express) and start the menu:
 ```Bash
 npm install
