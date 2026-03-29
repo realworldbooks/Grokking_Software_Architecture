@@ -1,3 +1,5 @@
+from .player import Player
+
 """
 Responsibility 2: Tactical / AI Logic.
 * ARCHITECTURE NOTE: This class is a "Service." By moving tactical decisions 

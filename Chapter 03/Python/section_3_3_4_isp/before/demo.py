@@ -1,4 +1,4 @@
-from midfielder import Midfielder
+from .midfielder import Midfielder
 
 class Demo:
     @staticmethod

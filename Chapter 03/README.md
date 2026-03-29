@@ -1,28 +1,83 @@
-# Chapter 3: Coupling, Cohesion, and SOLID Principles
 
-Welcome to the companion code for **Chapter 3**. 
+# Chapter 3: The Principles of Sound Design
 
-In this chapter, we tackle the structural integrity of your code. We explore how tight coupling creates brittle systems, and how applying the SOLID principles acts as the ultimate antidote, allowing us to build flexible, "plug-and-play" architectures.
+Welcome to the companion code for Chapter 3. While Chapter 2 focused on individual quality attributes, Chapter 3 dives into the "connective tissue" of software architecture: how components interact and how logic is grouped.
 
-## Core Concepts Covered
+These examples demonstrate the transition from Tight Coupling to Loose Coupling using the Order Processor Refactor and a deep dive into the SOLID Principles.
 
-This repository contains the code for the seven major architectural lessons taught in the book. Almost all examples include a `Before` (the anti-pattern) and an `After` (the refactored architecture) state for direct comparison:
+## Architectural Concepts Covered
+1. **Coupling and Cohesion:**
+- We explore the fundamental tension in architecture: keeping related things together (Cohesion) while keeping unrelated things apart (Coupling).
+- The "Chatty" Interface Problem: Identifying when a client is forced to know too much about the internal workflow of a service.
+- Functional Cohesion: Moving away from "Utility" classes toward modules with a single, well-defined business purpose.
 
-1. **Section 3.1: Coupling Test** - Refactoring a "chatty" API into a "chunky" payload to reduce overhead and client complexity.
-2. **Section 3.2: Single Responsibility Principle (SRP)** - Breaking up a bloated `Player` God Class into focused tactical, action, and persistence components.
-3. **Section 3.3: Open/Closed Principle (OCP)** - Eliminating endless `if/else` statements by injecting new playbook strategies into a `Midfielder`.
-4. **Section 3.4: Liskov Substitution Principle (LSP)** - Proving why a `Goalie` cannot safely substitute a generic field player contract.
-5. **Section 3.5: Interface Segregation Principle (ISP)** - Curing the "Fat Interface" trap by separating field drills from goalie drills.
-6. **Section 3.6: Dependency Inversion Principle (DIP)** - Forcing a `Coach` to depend on abstract `IPlayer` contracts rather than concrete player implementations.
-7. **Section 3.7: Order Processor Refactor** - The grand finale: refactoring a monolithic script into a clean `OrderService` coordinator that delegates to injected, single-responsibility components.
+2. **SOLID Principles in Practice:**
+Each principle is isolated into its own directory to show how specific refactorings improve the overall system architecture:
+- SRP (Section 3.3.1): Single Responsibility Principle.
+- OCP (Section 3.3.2): Open/Closed Principle.
+- LSP (Section 3.3.3): Liskov Substitution Principle.
+- ISP (Section 3.3.4): Interface Segregation Principle.
+- DIP (Section 3.3.5): Dependency Inversion Principle.
 
-## Choose Your Language
+3. **The Order Processor Refactor:**
+This is our primary "Before and After" study.
+- Before: A monolithic "God Method" that handles validation, database writes, payment processing, and emailing in one place.
+- After: A clean Coordinator (Facade) that orchestrates specialized, injected services.
 
-Every example has been translated into four major enterprise languages. Choose your preferred language folder below. **Each folder contains its own `README.md` with exact instructions on how to run the code.**
+## How to Run the Examples
 
-* 🟦 **[C# (.NET)](./csharp/)**
-* ☕ **[Java](./java/)**
-* 🐍 **[Python](./python/)**
-* 🟨 **[JavaScript (Node.js)](./javascript/)**
+1. .NET (C#)
+- Prerequisites: .NET 6.0 SDK+.
+- Navigate to the Chapter03/CSharp/ directory.
+- Run the project:
+```Bash
+dotnet run
+```
+2. Java
+- Prerequisites: Java 17 and Maven.
+- Navigate to the Chapter03/Java/ directory.
+- Compile and execute:
+```Bash
+mvn clean compile exec:java
+```
+3. Node.js (JavaScript)
+- Prerequisites: Node.js (v16+) and npm.
+- Navigate to the Chapter03/Node/ directory.
+- Install dependencies and start:
+```Bash
+npm install
+npm start
+```
 
-**All examples in this chapter are 100% zero-setup.**
+4. Python
+- Prerequisites: Python 3.10+.
+- Navigate to the Chapter03/Python/ directory.
+- Run the interactive menu:
+```Bash
+python menu.py
+```
+Note: Ensure you have __init__.py files in your subdirectories to support the dynamic import system.
+
+## Project Structure
+The folders are organized by section number, with the SOLID principles broken out individually for clarity. Each scenario contains a before/ (Problem) and after/ (Solution) implementation.
+
+```Plaintext
+├── section_3_2_coupling_exercise/           # Managing Chatty Interfaces
+├── section_3_3_1_srp/              # Single Responsibility Principle
+├── section_3_3_2_ocp/              # Open/Closed Principle
+├── section_3_3_3_lsp/              # Liskov Substitution Principle
+├── section_3_3_4_isp/              # Interface Segregation Principle
+├── section_3_3_5_dip/              # Dependency Inversion Principle
+└── section_3_4_order_processor/    # The Full Order Processor Refactor
+```
+## Feature Comparison Map
+
+| Section | Architectural Goal | Key Principle | Solution (After) |
+| :--- | :--- | :--- | :--- |
+| **3.2** | **Reduce Coupling, Increase Cohesion** | Abstraction | **Facade Pattern**: Single entry point for workflow. |
+| **3.3.1** | **Maintainability** | **SRP** | Separating data processing from reporting logic. |
+| **3.3.2** | **Extensibility** | **OCP** | Adding new features without modifying existing code. |
+| **3.3.3** | **Reliability** | **LSP** | Ensuring subclasses can stand in for their parents. |
+| **3.3.4** | **Flexibility** | **ISP** | Splitting large interfaces into specific, small ones. |
+| **3.3.5** | **Testability** | **DIP** | Orchestrating via injected contracts (Interfaces). |
+| **3.5** | **System Design** | **SOLID** | Full Order Processor decoupled into discrete services. |

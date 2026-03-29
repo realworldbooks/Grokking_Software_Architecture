@@ -1,4 +1,4 @@
-from player import Player
+from .player import Player
 
 """
 ANTI-PATTERN: Violation of the Liskov Substitution Principle (LSP).

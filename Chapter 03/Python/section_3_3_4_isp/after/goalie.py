@@ -1,4 +1,4 @@
-from interfaces import FieldPlayerTraining, GoalieTraining
+from .interfaces import FieldPlayerTraining, GoalieTraining
 
 """
 INTERFACE COMPOSITION.

@@ -1,6 +1,6 @@
-from player import Player
-from tactics_engine import TacticsEngine
-from player_repository import PlayerRepository
+from .player import Player
+from .tactics_engine import TacticsEngine
+from .player_repository import PlayerRepository
 
 class Demo:
     @staticmethod

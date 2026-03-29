@@ -1,5 +1,5 @@
-from forward import Forward
-from midfielder import Midfielder
+from .forward import Forward
+from .midfielder import Midfielder
 
 """
 ANTI-PATTERN: Violation of the Dependency Inversion Principle (DIP).

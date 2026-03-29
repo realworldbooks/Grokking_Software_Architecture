@@ -1,16 +1,16 @@
 {
 "1": { "name": "Coupling (Before)", "path": "section_3_2_coupling_exercise.before.demo" },
 "2": { "name": "Coupling (After)", "path": "section_3_2_coupling_exercise.after.demo" },
-"3": { "name": "SRP (Before)", "path": "section_3_2_srp_exercise.before.demo" },
-"4": { "name": "SRP (After)", "path": "section_3_2_srp_exercise.after.demo" },
-"5": { "name": "OCP (Before)", "path": "section_3_2_ocp_exercise.before.demo" },
-"6": { "name": "OCP (After)", "path": "section_3_2_ocp_exercise.after.demo" },
-"7": { "name": "LSP (Before)", "path": "section_3_2_lsp_exercise.before.demo" },
-"8": { "name": "LSP (After)", "path": "section_3_2_lsp_exercise.after.demo" },
-"9": { "name": "ISP (Before)", "path": "section_3_2_isp_exercise.before.demo" },
-"10": { "name": "ISP (After)", "path": "section_3_2_isp_exercise.after.demo" },
-"11": { "name": "DIP (Before)", "path": "section_3_2_dip_exercise.before.demo" },
-"12": { "name": "DIP (After)", "path": "section_3_2_dip_exercise.after.demo" },
-"13": { "name": "Order Processor Refactor (Before)", "path": "section_3_3_order_processor_refactor.before.demo" },
-"14": { "name": "Order Processor Refactor (After)", "path": "section_3_3_order_processor_refactor.after.demo" }
+"3": { "name": "SRP (Before)", "path": "section_3_3_1_srp.before.demo" },
+"4": { "name": "SRP (After)", "path": "section_3_3_1_srp.after.demo" },
+"5": { "name": "OCP (Before)", "path": "section_3_3_2_ocp.before.demo" },
+"6": { "name": "OCP (After)", "path": "section_3_3_2_ocp.after.demo" },
+"7": { "name": "LSP (Before)", "path": "section_3_3_3_lsp.before.demo" },
+"8": { "name": "LSP (After)", "path": "section_3_3_3_lsp.after.demo" },
+"9": { "name": "ISP (Before)", "path": "section_3_3_4_isp.before.demo" },
+"10": { "name": "ISP (After)", "path": "section_3_3_4_isp.after.demo" },
+"11": { "name": "DIP (Before)", "path": "section_3_3_5_dip.before.demo" },
+"12": { "name": "DIP (After)", "path": "section_3_3_5_dip.after.demo" },
+"13": { "name": "Order Processor Refactor (Before)", "path": "section_3_4_order_processor_refactor.before.demo" },
+"14": { "name": "Order Processor Refactor (After)", "path": "section_3_4_order_processor_refactor.after.demo" }
 }

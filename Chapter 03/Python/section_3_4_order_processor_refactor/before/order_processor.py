@@ -1,3 +1,5 @@
+from .order import Order
+
 """
 ANTI-PATTERN: The "God Class" / Monolithic Script.
 * ARCHITECTURE PROBLEM: This class is the "Everything Hub." It violates 

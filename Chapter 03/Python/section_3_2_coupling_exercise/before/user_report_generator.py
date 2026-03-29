@@ -1,4 +1,4 @@
-from user_data_service import UserDataService
+from .user_data_service import UserDataService
 
 """
 ANTI-PATTERN: The Tightly Coupled Client.

@@ -1,27 +1,32 @@
 """
-SRP SOLUTION: Service Isolation.
-* ARCHITECTURE NOTE: Each class here represents a specific domain boundary. 
-The validator only knows how to check data, the payment service only 
-knows how to talk to a gateway, etc. 
-* This isolation makes each component independently testable and reusable 
-across different parts of the application.
+THE SOLUTION: The Coordinator / Facade.
+* ARCHITECTURE NOTE: This class no longer contains "how-to" logic; it only 
+* contains "when-to" logic. 
+* By using Constructor Injection, we've achieved full Dependency Inversion (DIP). 
+* This class doesn't care HOW an order is validated or HOW a payment is 
+* processed; it simply coordinates the flow between its injected dependencies.
 """
+class OrderService:
+    """
+    Dependencies are injected from the outside.
+    """
+    def __init__(self, validator, payment_service, inventory_manager, notification_service):
+        self.validator = validator
+        self.payment_service = payment_service
+        self.inventory_manager = inventory_manager
+        self.notification_service = notification_service
 
-class OrderValidator:
-    def validate(self, order):
-        print("  [Validate] Validating order...")
-        if not order.items or order.total <= 0:
-            raise ValueError("Order is invalid.")
+    """
+    Orchestrates the high-level business process.
+    """
+    def process_order(self, order):
+        # Step 1: Delegate validation
+        self.validator.validate(order)
 
-class PaymentService:
-    def process_payment(self, order):
-        print(f"  [Payment] Processing payment for ${order.total:.2f}...")
-        return True
-
-class InventoryManager:
-    def update_inventory(self, order):
-        print("  [Inventory] Updating inventory...")
-
-class NotificationService:
-    def send_confirmation_email(self, order):
-        print(f"  [Notify] Sending confirmation email to {order.customer_email}...")
+        # Step 2: Orchestrate the successful path
+        if self.payment_service.process_payment(order):
+            self.inventory_manager.update_inventory(order)
+            self.notification_service.send_confirmation_email(order)
+            return "Order processed successfully."
+        else:
+            return "Payment failed."

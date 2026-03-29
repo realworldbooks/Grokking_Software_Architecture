@@ -1,7 +1,7 @@
-from coach import Coach
-from forward import Forward
-from midfielder import Midfielder
-from winger import Winger
+from .coach import Coach
+from .forward import Forward
+from .midfielder import Midfielder
+from .winger import Winger
 
 class Demo:
     @staticmethod

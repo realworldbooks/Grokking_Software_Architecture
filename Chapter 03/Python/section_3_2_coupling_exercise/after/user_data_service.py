@@ -1,4 +1,4 @@
-from user_report_data import UserReportData
+from .user_report_data import UserReportData
 
 """
 THE SOLUTION: The "Chunky" API and High Cohesion.

@@ -1,4 +1,4 @@
-from training_session import TrainingSession
+from .training_session import TrainingSession
 
 """
 ANTI-PATTERN: The Incomplete Implementation.

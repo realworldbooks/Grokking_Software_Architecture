@@ -1,4 +1,4 @@
-from interfaces import FieldPlayerTraining
+from .interfaces import FieldPlayerTraining
 
 """
 THE CLEAN IMPLEMENTATION.

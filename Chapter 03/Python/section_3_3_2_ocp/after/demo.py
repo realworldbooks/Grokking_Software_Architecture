@@ -1,7 +1,7 @@
-from midfielder import Midfielder
-from dribble_past_opponent import DribblePastOpponent
-from defensive_formation import DefensiveFormation
-from pass_to_striker import PassToStriker
+from .midfielder import Midfielder
+from .dribble_past_opponent import DribblePastOpponent
+from .defensive_formation import DefensiveFormation
+from .pass_to_striker import PassToStriker
 
 class Demo:
     @staticmethod

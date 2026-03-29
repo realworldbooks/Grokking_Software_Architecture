@@ -1,4 +1,4 @@
-from play import Play
+from .play import Play
 
 """
 OCP SOLUTION: Open for Extension.

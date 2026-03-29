@@ -1,5 +1,5 @@
-from coach import Coach
-from goalie import Goalie
+from .coach import Coach
+from .goalie import Goalie
 
 class Demo:
     @staticmethod

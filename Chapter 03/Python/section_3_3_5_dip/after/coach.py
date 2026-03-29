@@ -1,3 +1,5 @@
+from .player import Player
+
 """
 DIP SOLUTION: Dependency Injection.
 * ARCHITECTURE NOTE: The 'Coach' is now completely decoupled from specific 

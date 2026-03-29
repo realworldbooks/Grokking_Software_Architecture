@@ -1,5 +1,5 @@
-from order import Order
-from order_processor import OrderProcessor
+from .order import Order
+from .order_processor import OrderProcessor
 
 class Demo:
     @staticmethod

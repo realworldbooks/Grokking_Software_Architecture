@@ -1,6 +1,6 @@
-from order import Order
-from services import OrderValidator, PaymentService, InventoryManager, NotificationService
-from order_service import OrderService
+from .order import Order
+from .order_service_components import OrderValidator, PaymentService, InventoryManager, NotificationService
+from .order_service import OrderService
 
 class Demo:
     @staticmethod

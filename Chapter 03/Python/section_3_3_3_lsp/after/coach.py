@@ -1,3 +1,5 @@
+from .player import Player
+
 """
 THE CONFIDENT CONSUMER.
 * ARCHITECTURE NOTE: Because we strictly adhered to LSP, the Coach class 
