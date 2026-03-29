@@ -3,12 +3,14 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.aft
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.models.Order;
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.interfaces.OrderRepository;
 
+import org.springframework.stereotype.Repository;
 /**
  * ARCHITECTURE NOTE: By isolating SQL logic here, we prevent 
  * database concerns from "leaking" into the Presentation or 
  * Business layers.
  */
 // Concrete implementation for a SQL database (simulated)
+@Repository
 public class SqlOrderRepository implements OrderRepository {
     @Override
     public Order getById(int orderId) { return null; }

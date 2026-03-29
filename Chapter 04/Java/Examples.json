@@ -1,0 +1,36 @@
+{
+  "chapter": "04",
+  "title": "Grokking Software Architecture Chapter 04: Java Examples",
+  "examples": [
+    {
+      "id": "1",
+      "title": "Section 4.2 - Before (Upward Dependency)",
+      "targetClass": "com.grokkingsoftwarearchitecture.chapter04.section_4_2_downward_dependency.before.Demo"
+    },
+    {
+      "id": "2",
+      "title": "Section 4.2 - After  (Downward Dependency)",
+      "targetClass": "com.grokkingsoftwarearchitecture.chapter04.section_4_2_downward_dependency.after.Demo"
+    },
+    {
+      "id": "3",
+      "title": "Section 4.3 - Before (Missing Abstraction)",
+      "targetClass": "com.grokkingsoftwarearchitecture.chapter04.section_4_3_cross_cutting_concerns.before.Demo"
+    },
+    {
+      "id": "4",
+      "title": "Section 4.3 - After  (Dependency Inversion)",
+      "targetClass": "com.grokkingsoftwarearchitecture.chapter04.section_4_3_cross_cutting_concerns.after.Demo"
+    },
+    {
+      "id": "5",
+      "title": "Section 4.4 - Before (Fat Controller / Anemic Domain)",
+      "targetClass": "com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.before_fat_controller_anemic_domain.Demo"
+    },
+    {
+      "id": "6",
+      "title": "Section 4.4 - After  (Rich Domain / Thin Controller)",
+      "targetClass": "com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.presentation.Demo"
+    }
+  ]
+}

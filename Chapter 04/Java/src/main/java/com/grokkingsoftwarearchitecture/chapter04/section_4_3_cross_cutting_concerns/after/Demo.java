@@ -1,7 +1,7 @@
 package com.grokkingsoftwarearchitecture.chapter04.section_4_3_cross_cutting_concerns.after;
 
-public class Main {
-    public static void main(String[] args) {
+public class Demo {
+    public static void run() {
         System.out.println("--- Running 'After' (Injected Logger) ---");
         
         // Dependencies are created and injected at the start

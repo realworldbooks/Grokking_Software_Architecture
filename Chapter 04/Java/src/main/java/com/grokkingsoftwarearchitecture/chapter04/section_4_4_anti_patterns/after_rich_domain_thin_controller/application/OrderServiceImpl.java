@@ -8,6 +8,7 @@ import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.afte
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.models.Item;
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.models.Order;
 
+import org.springframework.stereotype.Service;
 /**
  * THE SERVICE LAYER (Orchestrator)
  * ARCHITECTURE NOTE: This class replaces the massive "God Method" 
@@ -15,6 +16,7 @@ import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.afte
  * it calculate math. It simply coordinates the flow of data 
  * between the Data Access layer and the Rich Domain Models.
  */
+@Service
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepo;
     private final CustomerRepository customerRepo;

@@ -3,8 +3,8 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_2_downward_dependen
 /**
  * The entry point for the Java application.
  */
-public class Main {
-    public static void main(String[] args) {
+public class Demo {
+    public static void run() {
         System.out.println("--- Running 'Before' (Upward Dep) ---");
         
         SomeRepository beforeRepo = new SomeRepository();

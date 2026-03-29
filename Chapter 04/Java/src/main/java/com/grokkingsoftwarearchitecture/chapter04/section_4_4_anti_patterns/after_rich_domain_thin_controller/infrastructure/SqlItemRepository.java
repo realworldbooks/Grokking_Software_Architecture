@@ -3,12 +3,14 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.aft
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.models.Item;
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.interfaces.ItemRepository;
 
+import org.springframework.stereotype.Repository;
 /**
  * INFRASTRUCTURE LAYER: SQL IMPLEMENTATION
  * ARCHITECTURE NOTE: This simulates a database lookup. By fetching the 
  * Item here, we ensure the Business Logic uses the official price 
  * stored in our system, rather than a price sent by the client.
  */
+@Repository
 public class SqlItemRepository implements ItemRepository {
 
     @Override

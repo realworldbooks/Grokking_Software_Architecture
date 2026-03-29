@@ -33,10 +33,10 @@ namespace Chapter04.Section_4_4.After
             {
                 var process = new Process
                 {
-                    StartInfo = new ProcessStartInfo
+                    StartInfo = new ProcessStartInfo // Use 'dotnet run' to launch the API project
                     {
                         FileName = "dotnet",
-                        Arguments = $"run --project \"{projectFile}\"",
+                        Arguments = $"run --project \"{projectFile}\"", 
                         WorkingDirectory = projectFolder,
                         UseShellExecute = false, 
                         RedirectStandardOutput = true,

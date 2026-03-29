@@ -4,40 +4,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.grokkingsoftwarearchitecture</groupId>
+    <artifactId>chapter04</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.3</version>
         <relativePath/> 
     </parent>
 
-    <groupId>com.grokkingsoftwarearchitecture</groupId>
-    <artifactId>chapter04</artifactId>
-    <version>1.0.0</version>
-    <name>Grokking Software Architecture - Chapter 04</name>
-    <description>Chapter 4 Examples: Layered Architecture and Anti-Patterns</description>
-
     <properties>
-        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <exec.mainClass>com.grokkingsoftwarearchitecture.chapter04.Main</exec.mainClass>
     </properties>
 
-    <profiles>
-        <profile>
-            <id>before</id>
-            <properties>
-                <start-class>com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.before_fat_controller_anemic_domain.Main</start-class>
-            </properties>
-        </profile>
-        <profile>
-            <id>after</id>
-            <properties>
-                <start-class>com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.presentation.Main</start-class>
-            </properties>
-        </profile>
-    </profiles>
-
     <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -53,8 +44,12 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>${exec.mainClass}</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
