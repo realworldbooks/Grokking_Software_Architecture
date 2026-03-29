@@ -1,4 +1,4 @@
-namespace Before
+namespace Chapter04.Section_4_3.Before
 {
     // The problematic static logger
     public static class StaticFileLogger

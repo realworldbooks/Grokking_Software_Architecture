@@ -1,0 +1,26 @@
+{
+  "1": {
+    "name": "Downward Dependency (Before - Tight Coupling)",
+    "type": "Chapter04.Section_4_2.Before.Demo"
+  },
+  "2": {
+    "name": "Downward Dependency (After - Dependency Inversion)",
+    "type": "Chapter04.Section_4_2.After.Demo"
+  },
+  "3": {
+    "name": "Cross-Cutting Concerns (Before - Hardcoded Logging)",
+    "type": "Chapter04.Section_4_3.Before.Demo"
+  },
+  "4": {
+    "name": "Cross-Cutting Concerns (After - Abstracted Logging)",
+    "type": "Chapter04.Section_4_3.After.Demo"
+  },
+  "5": {
+    "name": "Anti-Patterns (Before - The Fat Controller)",
+    "type": "Chapter04.Section_4_4.Before.Demo"
+  },
+  "6": {
+    "name": "Anti-Patterns (After - Rich Domain / Thin Controller)",
+    "type": "Chapter04.Section_4_4.After.Demo"
+  }
+}

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Examples.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+<ItemGroup>
+    <ProjectReference Include=".\Section_4_2_Downward_Dependency\Before\Before4_2.csproj" />
+    <ProjectReference Include=".\Section_4_2_Downward_Dependency\After\After4_2.csproj" />
+    <ProjectReference Include=".\Section_4_3_Cross_Cutting_Concerns\Before\Before4_3.csproj" />
+    <ProjectReference Include=".\Section_4_3_Cross_Cutting_Concerns\After\After4_3.csproj" />
+    <ProjectReference Include=".\Section_4_4_Anti_Patterns\Before_Fat_Controller_Anemic_Domain\Before.csproj" />
+</ItemGroup>
+
+</Project>

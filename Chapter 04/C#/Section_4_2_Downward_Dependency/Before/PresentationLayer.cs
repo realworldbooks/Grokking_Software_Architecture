@@ -1,4 +1,4 @@
-namespace Before
+namespace Chapter04.Section_4_2.Before
 {
     // A fake UI layer class to illustrate the bad dependency
     public class PresentationLayer

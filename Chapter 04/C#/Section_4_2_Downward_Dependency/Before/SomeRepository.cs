@@ -1,4 +1,4 @@
-namespace Before
+namespace Chapter04.Section_4_2.Before
 {
     // DataAccessLayer.cs 
     public class SomeRepository 

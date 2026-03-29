@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using MyProject.Before.Models;
 
-namespace MyProject.Before.Controllers
+namespace Chapter04.Section_4_4.Before
 {
     [ApiController]
     [Route("api/[controller]")]

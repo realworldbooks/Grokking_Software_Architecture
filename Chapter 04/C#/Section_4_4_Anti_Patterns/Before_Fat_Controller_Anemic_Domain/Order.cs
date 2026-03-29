@@ -1,5 +1,5 @@
 using System.ComponentModel;
-namespace MyProject.Before.Models
+namespace Chapter04.Section_4_4.Before
 {
     /// <summary>
     /// ARCHITECTURAL NOTE: The Anemic Domain Model.
