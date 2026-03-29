@@ -64,11 +64,28 @@ const swaggerOptions = {
 };
 
 // Map Swagger UI to the root URL using the options
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
+app.use('/', swaggerUi.serveFiles(swaggerDocument), swaggerUi.setup(swaggerDocument, swaggerOptions));
+
+// Add a friendly redirect from the root so you don't get a "Cannot GET /" error
+app.get('/', (req, res) => {
+    res.redirect('/swagger/');
+});
 
 const PORT = 5000;
-app.listen(PORT, () => {
-    console.log("--- FAT CONTROLLER APP RUNNING (NODE.JS) ---");
-    console.log(`Swagger UI available at: http://localhost:${PORT}/`);
-    console.log("---------------------------------------------");
-});
+
+// Wrap the execution in a run() method
+const run = () => {
+    return new Promise((resolve) => {
+        const server = app.listen(PORT, () => {
+            console.log("--- FAT CONTROLLER / ANEMIC DOMAIN APP RUNNING (NODE.JS) ---");
+            console.log(`Swagger UI available at: http://localhost:${PORT}/`);
+            console.log("---------------------------------------------");
+            
+            // Return the server instance back to the menu
+            resolve(server); 
+        });
+    });
+};
+
+// Export the run method so menu.js can find it
+module.exports = { run };

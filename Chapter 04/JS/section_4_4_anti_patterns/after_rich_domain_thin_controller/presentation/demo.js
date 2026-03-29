@@ -77,13 +77,29 @@ const swaggerDocument = {
         }
     }
 };
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/swagger', swaggerUi.serveFiles(swaggerDocument), swaggerUi.setup(swaggerDocument));
+
+// Add a friendly redirect from the root so you don't get a "Cannot GET /" error
+app.get('/', (req, res) => {
+    res.redirect('/swagger/');
+});
 
 // --- STARTUP ---
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log("--- Running Traditional 4-Layer Architecture ---");
-    console.log("Fat Controller and Anemic Domain eliminated.");
-    console.log(`API listening on port ${PORT}`);
-    console.log(`Swagger UI available at http://localhost:${PORT}/swagger`);
-});
+const PORT = 5000;
+
+// Wrap the execution in a run() method
+const run = () => {
+    return new Promise((resolve) => {
+        const server = app.listen(PORT, () => {
+            console.log("--- RICH DOMAIN / THIN CONTROLLER APP RUNNING (NODE.JS) ---");
+            console.log(`Swagger UI available at: http://localhost:${PORT}/`);
+            console.log("---------------------------------------------");
+            
+            // Return the server instance back to the menu
+            resolve(server); 
+        });
+    });
+};
+
+// Export the run method so menu.js can find it
+module.exports = { run };

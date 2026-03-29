@@ -1,0 +1,8 @@
+{
+"1": { "name": "Section 4.2 - Before (Upward Dependency)", "path": "section_4_2_downward_dependency/before/demo.js" },
+"2": { "name": "Section 4.2 - After (Downward Dependency)", "path": "section_4_2_downward_dependency/after/demo.js" },
+"3": { "name": "Section 4.3 - Before (Missing Abstraction)", "path": "section_4_3_cross_cutting_concerns/before/demo.js" },
+"4": { "name": "Section 4.3 - After (Dependency Inversion)", "path": "section_4_3_cross_cutting_concerns/after/demo.js" },
+"5": { "name": "Section 4.4 - Before (Fat Controller / Anemic Domain)", "path": "section_4_4_anti_patterns/before_fat_controller_anemic_domain/demo.js" },
+"6": { "name": "Section 4.4 - After (Rich Domain / Thin Controller)", "path": "section_4_4_anti_patterns/after_rich_domain_thin_controller/presentation/demo.js" }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "grokking-software-architecture-chapter04",
+  "version": "1.0.0",
+  "description": "JavaScript examples for Chapter 4",
+  "main": "menu.js",
+  "scripts": {
+    "start": "node menu.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "swagger-ui-express": "^5.0.0"
+  }
+}
