@@ -1,6 +1,11 @@
 from user_report_generator import UserReportGenerator
 
-if __name__ == "__main__":
+class Demo:
+    """
+    Demonstrates loose coupling and 'chunky' interfaces.
+    """
+@staticmethod   
+def run():
     print("=== Chapter 3: Coupling Test (AFTER) ===")
     print("Notice how clean and 'chunky' the interaction is now!\n")
 
