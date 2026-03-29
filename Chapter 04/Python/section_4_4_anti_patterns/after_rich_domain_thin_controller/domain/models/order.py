@@ -72,7 +72,7 @@ class Order:
             return sum_total * self.GOLD_DISCOUNT_RATE
         return sum_total
 
-    def add_item(self, item: Item, customer: Customer):
+    def add_item(self, item: Item):
         """
         Behavior is now co-located with the data it mutates.
         """

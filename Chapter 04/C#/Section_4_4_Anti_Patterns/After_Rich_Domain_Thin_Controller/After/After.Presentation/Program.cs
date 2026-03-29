@@ -32,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => 
     {
         // Explicitly tell the UI where the JSON file is
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Clean Architecture API v1"); 
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rich Domain /Thin Controller Layered Architecture API v1"); 
         
         // Load the UI at the root of the localhost URL
         c.RoutePrefix = string.Empty; 
@@ -41,7 +41,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 
-Console.WriteLine("--- Running Traditional 4-Layer Architecture ---");
+Console.WriteLine("--- Running Rich Domain / Thin Controller Traditional 4-Layer Architecture ---");
 Console.WriteLine("Fat Controller and Anemic Domain eliminated.");
 
 await app.RunAsync();

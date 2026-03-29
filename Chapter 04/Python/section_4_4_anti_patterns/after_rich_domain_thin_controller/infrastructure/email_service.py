@@ -1,4 +1,5 @@
-from .data_access_interfaces import IEmailService
+from ..domain.interfaces.data_access_interfaces import IEmailService
+
 
 class SmtpEmailService(IEmailService):
     """

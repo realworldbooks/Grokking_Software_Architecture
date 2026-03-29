@@ -1,4 +1,4 @@
-from static_file_logger import StaticFileLogger
+from .static_file_logger import StaticFileLogger
 
 class OrderService:
     """

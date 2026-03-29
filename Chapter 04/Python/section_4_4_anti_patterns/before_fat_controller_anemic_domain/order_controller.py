@@ -1,15 +1,16 @@
 import random
 from fastapi import APIRouter, HTTPException
-from models import OrderRequest, MyDbContext, SmtpEmailService, Order
+from .models import OrderRequest, MyDbContext, SmtpEmailService, Order
 
 router = APIRouter()
 
 @router.post("/api/Order")
 def create_order(request: OrderRequest):
     """
-    ARCHITECTURAL NOTE: The Fat Controller Anti-Pattern.
-    This controller produces the EXACT SAME output as the clean architecture, 
-    but it does so by violating the Single Responsibility Principle.
+    ARCHITECTURAL NOTE: The Fat Controller / Anemic Domain Anti-Pattern.
+    This controller produces the EXACT SAME output as the rich domain / 
+    thin controller layered architecture, but it does so by violating 
+    the Single Responsibility Principle (SRP) and Separation of Concerns (SoC).
     """
     
     # 1. Validation Logic

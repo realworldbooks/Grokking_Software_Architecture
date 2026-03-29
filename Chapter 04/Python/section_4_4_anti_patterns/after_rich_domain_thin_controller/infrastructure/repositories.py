@@ -21,7 +21,7 @@ class SqlCustomerRepository(ICustomerRepository):
     def get_by_id(self, customer_id: int) -> Customer:
        print(f"(INFRA) SQL: Fetching Customer {customer_id}")
         # Returning a dummy Gold customer to test the Rich Domain logic
-       return Customer(id=customer_id, customer_type="Gold", email="gold@example.com")
+       return Customer(id=customer_id, type="Gold", email="gold@example.com")
     
 class SqlItemRepository(IItemRepository):
     """

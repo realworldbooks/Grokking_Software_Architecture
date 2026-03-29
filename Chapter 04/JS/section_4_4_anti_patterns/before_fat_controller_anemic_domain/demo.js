@@ -13,7 +13,7 @@ app.post('/api/Order', createOrder);
 const swaggerDocument = {
     openapi: "3.0.0",
     info: {
-        title: "Grokking Software Architecture: The Fat Controller",
+        title: "Grokking Software Architecture: The Fat Controller / Anemic Domain",
         version: "v1",
         description: "Demonstrating the pitfalls of tight coupling and anemic models in JS."
     },
@@ -55,7 +55,7 @@ const swaggerDocument = {
 
 // Explicitly override the default Swagger options
 const swaggerOptions = {
-    customSiteTitle: "Fat Controller Anti-Pattern",
+    customSiteTitle: "Fat Controller / Anemic Domain Anti-Pattern",
     swaggerOptions: {
         // This stops Swagger from caching or falling back to the Petstore URL
         persistAuthorization: true,

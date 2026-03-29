@@ -9,7 +9,7 @@ namespace Chapter04.Section_4_4.Before
     {
         public static void Run()
         {
-            Console.WriteLine("--- Launching 'The Fat Controller' (Anti-Pattern) ---");
+            Console.WriteLine("--- Launching 'The Fat Controller / Anemic Domain' (Anti-Pattern) ---");
             
             // 1. Auto-discover the project file instead of hardcoding the path
             string currentDir = Directory.GetCurrentDirectory();

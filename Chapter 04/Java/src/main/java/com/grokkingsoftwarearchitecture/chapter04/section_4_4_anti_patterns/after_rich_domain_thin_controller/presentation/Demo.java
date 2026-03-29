@@ -26,7 +26,7 @@ public class Demo {
         // 1. Boot the server directly inside this same terminal window
         ConfigurableApplicationContext context = SpringApplication.run(Demo.class, new String[]{});
 
-        System.out.println("\n[SUCCESS] CLEAN ARCHITECTURE APP RUNNING (JAVA/SPRING)");
+        System.out.println("\n[SUCCESS] RICH DOMAIN / THIN CONTROLLER TRADITIONAL 4-LAYER ARCHITECTURE APP RUNNING (JAVA/SPRING)");
         System.out.println("Swagger UI available at: http://localhost:8080");
         System.out.println("\nPress ENTER to stop the server and return to the main menu...");
 

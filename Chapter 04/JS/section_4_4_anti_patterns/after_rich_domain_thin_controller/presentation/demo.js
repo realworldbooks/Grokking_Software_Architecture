@@ -51,7 +51,7 @@ app.post('/order', (req, res) => {
 // This provides an interactive UI identical to the C# and Java versions.
 const swaggerDocument = {
     openapi: '3.0.0',
-    info: { title: 'Layered Architecture API', version: '1.0.0' },
+    info: { title: 'Rich Domain / Thin Controller Traditional 4-Layer Architecture API', version: '1.0.0' },
     paths: {
         '/order': {
             post: {
@@ -91,7 +91,7 @@ const PORT = 5000;
 const run = () => {
     return new Promise((resolve) => {
         const server = app.listen(PORT, () => {
-            console.log("--- RICH DOMAIN / THIN CONTROLLER APP RUNNING (NODE.JS) ---");
+            console.log("--- RICH DOMAIN / THIN CONTROLLER TRADITIONAL 4-LAYER ARCHITECTURE APP RUNNING (NODE.JS) ---");
             console.log(`Swagger UI available at: http://localhost:${PORT}/`);
             console.log("---------------------------------------------");
             

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from order import Order
+from .order import Order
 
 class OrderRepository(ABC):
     """

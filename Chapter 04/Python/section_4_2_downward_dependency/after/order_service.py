@@ -1,5 +1,5 @@
-from order_repository import OrderRepository
-from order import Order
+from .order_repository import OrderRepository
+from .order import Order
 
 class OrderService:
     """
