@@ -28,7 +28,7 @@ This is our primary "Before and After" study.
 
 1. .NET (C#)
 - Prerequisites: .NET 6.0 SDK+.
-- Navigate to the Chapter03/CSharp/ directory.
+- Navigate to the Chapter03/C#/ directory.
 - Run the project:
 ```Bash
 dotnet run
@@ -63,12 +63,12 @@ The folders are organized by section number, with the SOLID principles broken ou
 
 ```Plaintext
 ├── section_3_2_coupling_exercise/           # Managing Chatty Interfaces
-├── section_3_3_1_srp/              # Single Responsibility Principle
-├── section_3_3_2_ocp/              # Open/Closed Principle
-├── section_3_3_3_lsp/              # Liskov Substitution Principle
-├── section_3_3_4_isp/              # Interface Segregation Principle
-├── section_3_3_5_dip/              # Dependency Inversion Principle
-└── section_3_4_order_processor/    # The Full Order Processor Refactor
+├── section_3_3_1_srp/                       # Single Responsibility Principle
+├── section_3_3_2_ocp/                       # Open/Closed Principle
+├── section_3_3_3_lsp/                       # Liskov Substitution Principle
+├── section_3_3_4_isp/                       # Interface Segregation Principle
+├── section_3_3_5_dip/                       # Dependency Inversion Principle
+└── section_3_4_order_processor_refactor/    # The Full Order Processor Refactor
 ```
 ## Feature Comparison Map
 
