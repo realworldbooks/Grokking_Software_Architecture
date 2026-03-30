@@ -6,7 +6,7 @@ This repository contains all the practical examples, anti-patterns, and refactor
 
 ---
 
-## 🌍 The Language-Agnostic Approach
+## The Language-Agnostic Approach
 
 Software architecture is not about syntax, frameworks, or libraries—it is about structure, communication, and managing complexity. 
 
@@ -67,6 +67,19 @@ To run the code in this repository, you will need the standard runtime environme
 - **Node.js:** Node.js v16+ and npm
 
 - **Python:** Python 3.10+ (3.12 recommended)
+
+## Recommended IDE: Visual Studio Code
+
+Because this repository spans four different programming languages, you might not want to juggle four different heavy-duty IDEs just to read the companion code. 
+
+We highly recommend using **[Visual Studio Code](https://code.visualstudio.com/)**. It is lightweight, free, and by installing a few official extensions, you can run, debug, and explore every single example in this book from one unified editor:
+
+* **C# (.NET):** Install the *C# Dev Kit* extension by Microsoft.
+* **Java:** Install the *Extension Pack for Java* by Microsoft.
+* **Node.js:** JavaScript is supported right out-of-the-box.
+* **Python:** Install the *Python* extension by Microsoft.
+
+Simply open the root `grokking-software-architecture` folder in VS Code, and you will be able to seamlessly navigate between all four language implementations!
 
 ## 🐛 Issues and Contributions
 If you spot a bug in the code, a typo in the documentation, or an architectural implementation that could be clearer, please feel free to open an Issue or submit a Pull Request! We want this repository to be the best possible learning resource for the software engineering community.
