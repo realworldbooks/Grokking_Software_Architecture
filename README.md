@@ -82,7 +82,7 @@ We highly recommend using **[Visual Studio Code](https://code.visualstudio.com/)
 Simply open the root `grokking-software-architecture` folder in VS Code, and you will be able to seamlessly navigate between all four language implementations!
 
 ## 🐛 Issues and Contributions
-If you spot a bug in the code, a typo in the documentation, or an architectural implementation that could be clearer, please feel free to open an Issue or submit a Pull Request! We want this repository to be the best possible learning resource for the software engineering community.
+If you spot a bug in the code, a typo in the documentation, or an architectural implementation that could be clearer, please feel free to open an Issue or submit a Pull Request! We want this repository to be the best possible learning resource for our readers and the software engineering community.
 
 Happy architecting!
 
