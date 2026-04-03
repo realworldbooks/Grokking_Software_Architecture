@@ -1,0 +1,6 @@
+{
+  "1": { "name": "Server Monitor: Tight Coupling (Before)", "type": "Chapter05.ServerMonitor.Before.Demo" },
+  "2": { "name": "Server Monitor: Hexagonal Architecture (After)", "type": "Chapter05.ServerMonitor.After.Demo" },
+  "3": { "name": "Crypto Tracker: Tight Coupling (Before)", "type": "Chapter05.CryptoTracker.Before.Demo" },
+  "4": { "name": "Crypto Tracker: Hexagonal Architecture (After)", "type": "Chapter05.CryptoTracker.After.Demo" }
+}

@@ -2,7 +2,7 @@
 
 Welcome to the official companion code repository for **Grokking Software Architecture**!
 
-This repository contains all the practical examples, anti-patterns, and refactoring exercises discussed throughout the book. Whether you are learning how to decouple chatty interfaces, apply SOLID principles, or transition from a Fat Controller to a Layered Architecture, you will find the working code here.
+This repository contains all the practical examples, anti-patterns, and refactoring exercises discussed throughout the book. Whether you are learning how to decouple chatty interfaces, apply SOLID principles, or transition from a Fat Controller to a Layered Architecture you will find the working code here.
 
 ---
 

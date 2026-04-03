@@ -14,9 +14,9 @@ public class SqlCustomerRepository implements CustomerRepository {
     @Override
     public Customer getById(int customerId) {
         Customer c = new Customer();
-        c.id = customerId;
-        c.type = "Gold";
-        c.email = "a@b.com";
+        c.setId(customerId);
+        c.setType("Gold");
+        c.setEmail("a@b.com");
         return c;
     }
 }

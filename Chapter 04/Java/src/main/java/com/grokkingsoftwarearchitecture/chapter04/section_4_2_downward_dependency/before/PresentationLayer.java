@@ -1,15 +1,15 @@
 package com.grokkingsoftwarearchitecture.chapter04.section_4_2_downward_dependency.before;
 
-// A fake UI layer class to illustrate the bad dependency
-public class PresentationLayer {
-    private static final PresentationLayer INSTANCE = 
-        new PresentationLayer();
+import com.grokkingsoftwarearchitecture.chapter04.shared.LogManager;
 
-    public static PresentationLayer getInstance() {
-        return INSTANCE;
+// A fake UI layer class to illustrate the bad dependency
+public final class PresentationLayer {
+
+    private PresentationLayer() {
+        // Private constructor to prevent instantiation
     }
 
-    public void updateStatusLabel(String text) {
-        System.out.println("[UI UPDATE]: " + text);
+    public static void updateStatusLabel(String text) {
+        LogManager.info(PresentationLayer.class, "[UI UPDATE]: {0}", text);
     }
 }

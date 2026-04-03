@@ -6,7 +6,13 @@ import java.util.List;
 
 public class OrderRequest {
     @Schema(defaultValue = "1")
-    public int customerId = 1;
+    private int customerId = 1;
     
-    public List<OrderItemRequest> items = new ArrayList<>(List.of(new OrderItemRequest()));
+    private List<OrderItemRequest> items = new ArrayList<>(List.of(new OrderItemRequest()));
+
+    public int getCustomerId() { return customerId; }
+    public void setCustomerId(int customerId) { this.customerId = customerId; }
+
+    public List<OrderItemRequest> getItems() { return items; }
+    public void setItems(List<OrderItemRequest> items) { this.items = items; }
 }

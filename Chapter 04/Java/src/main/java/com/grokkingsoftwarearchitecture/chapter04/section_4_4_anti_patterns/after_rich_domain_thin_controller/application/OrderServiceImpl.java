@@ -37,24 +37,24 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponse createOrder(OrderRequest request) {
         // 1. Fetch data from lower layer
-        Customer customer = customerRepo.getById(request.customerId);
+        Customer customer = customerRepo.getById(request.getCustomerId());
         if (customer == null) {
-            throw new RuntimeException("Customer not found.");
+            throw new IllegalArgumentException("Customer not found.");
         }
 
         // 2. Instantiate the Rich Domain
         Order order = new Order(customer);
 
         // 3. Delegate business logic to the Rich Model
-        for (OrderRequest.OrderItemRequest itemReq : request.items) {
+        for (OrderRequest.OrderItemRequest itemReq : request.getItems()) {
             // SECURITY LOOKUP: Fetch the actual Item from the DB to get the valid Price
             // This ensures the system uses the official price, not the one from the request.
-            Item actualItem = itemRepo.getById(itemReq.itemId);
+            Item actualItem = itemRepo.getById(itemReq.getItemId());
             if (actualItem == null) {
-                throw new RuntimeException("Item " + itemReq.itemId + " not found.");
+                throw new IllegalArgumentException("Item " + itemReq.getItemId() + " not found.");
             }
             // Set the quantity from the user's request onto the domain object
-            actualItem.quantity = itemReq.quantity;
+            actualItem.setQuantity(itemReq.getQuantity());
 
             // The service doesn't care about discount rules; 
             // the Order model handles that internally.
@@ -71,9 +71,9 @@ public class OrderServiceImpl implements OrderService {
 
         // 5. Map to Response DTO
         OrderResponse response = new OrderResponse();
-        response.orderId = order.getId();
-        response.totalPrice = order.getTotalPrice();
-        response.customerEmail = order.getCustomerEmail();
+        response.setOrderId(order.getId());
+        response.setTotalPrice(order.getTotalPrice());
+        response.setCustomerEmail(order.getCustomerEmail());
         return response;
     }
 }

@@ -42,21 +42,21 @@ public class Order {
     public List<Item> getItems() { return Collections.unmodifiableList(items); }
 
     public boolean isEligibleForDiscount() {
-        return customer != null && "Gold".equals(customer.type);
+        return customer != null && "Gold".equals(customer.getType());
     }
 
     /**
      * ARCHITECTURE NOTE: We use an alias here to reflect the customer's current email.
      * If the business required a 'snapshot', we would store this as a separate string.
      */
-    public String getCustomerEmail() { return customer.email; }
+    public String getCustomerEmail() { return customer.getEmail(); }
 
     /**
      * THE ATOMIC TRUTH: Logic and data are now perfectly unified.
      * This replaces the manual 'RecalculateTotal' method.
      */
     public double getTotalPrice() {
-        double sum = items.stream().mapToDouble(i -> i.price * i.quantity).sum();
+        double sum = items.stream().mapToDouble(i -> i.getPrice() * i.getQuantity()).sum();
         return isEligibleForDiscount() ? sum * GOLD_DISCOUNT_RATE : sum;
     }
 
@@ -65,7 +65,7 @@ public class Order {
      */
     public void addItem(Item item) {
         // Business Rule: Prices must be positive
-        if (item.price <= 0) {
+        if (item.getPrice() <= 0) {
             throw new IllegalStateException(
                 "Item price must be positive.");
         }   

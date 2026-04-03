@@ -1,5 +1,7 @@
 package com.grokkingsoftwarearchitecture.chapter04.section_4_3_cross_cutting_concerns.after;
 
+import com.grokkingsoftwarearchitecture.chapter04.shared.LogManager;
+
 /**
  * 2. THE CLASS "ASKS" FOR THE DEPENDENCY.
  * ARCHITECTURE NOTE: By injecting the Logger via the constructor,
@@ -14,7 +16,7 @@ public class OrderService {
 
     public void saveOrder(Order order) {
         // 3. Use the abstraction
-        logger.log("Saving order...");
-        System.out.println("(AFTER_SERVICE) Order saved.");
+        logger.log("Saving order... " + order.getId());
+        LogManager.info(OrderService.class, "(AFTER_SERVICE) Order saved.");
     }
 }

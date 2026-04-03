@@ -9,16 +9,18 @@ import java.util.Random;
 @RequestMapping("/api/Order")
 public class OrderController {
 
+    private static final Random RANDOM = new Random();
+
     /**
      * ARCHITECTURAL NOTE: The "God Method" Transaction Script
      * Because this method instantiates its own dependencies (using the 'new' keyword), 
      * it is completely untestable in isolation.
      */
     @PostMapping
-    public ResponseEntity<?> createOrder(@RequestBody OrderRequest request) {
+    public ResponseEntity<Object> createOrder(@RequestBody OrderRequest request) {
         
         // 1. Validation Logic
-        if (request.items == null || request.items.isEmpty()) {
+        if (request.getItems() == null || request.getItems().isEmpty()) {
             return ResponseEntity.badRequest().body("Order must have items.");
         }
 
@@ -27,7 +29,7 @@ public class OrderController {
         try {
             // ARCHITECTURAL NOTE: Messy Inline Lookup
             Customer customer = dbContext.customers.stream()
-                .filter(c -> c.id == request.customerId)
+                .filter(c -> c.id == request.getCustomerId())
                 .findFirst()
                 .orElse(null);
                 
@@ -38,7 +40,7 @@ public class OrderController {
             double total = 0;
 
             // ARCHITECTURAL NOTE: Leaked Data Access & Core Business Logic
-            for (OrderItemRequest reqItem : request.items) {
+            for (OrderItemRequest reqItem : request.getItems()) {
                 DbItem dbItem = dbContext.items.stream()
                     .filter(i -> i.id == reqItem.itemId)
                     .findFirst()
@@ -58,21 +60,21 @@ public class OrderController {
 
             // ARCHITECTURAL NOTE: The Anemic Domain Model Usage
             Order order = new Order();
-            order.id = new Random().nextInt(9000) + 1000;
-            order.total = total;
-            order.customerEmail = customer.email;
+            order.setId(RANDOM.nextInt(9000) + 1000);
+            order.setTotal(total);
+            order.setCustomerEmail(customer.email);
 
             dbContext.orders.add(order);
             dbContext.saveChanges();
 
             // ARCHITECTURAL NOTE: Hidden Side Effects
             SmtpEmailService emailService = new SmtpEmailService();
-            emailService.send(order.customerEmail, "Order Confirmed!");
+            emailService.send(order.getCustomerEmail(), "Order Confirmed!");
 
             return ResponseEntity.ok(Map.of(
-                "orderId", order.id,
-                "totalPrice", order.total,
-                "customerEmail", order.customerEmail
+                "orderId", order.getId(),
+                "totalPrice", order.getTotal(),
+                "customerEmail", order.getCustomerEmail()
             ));
             
         } finally {

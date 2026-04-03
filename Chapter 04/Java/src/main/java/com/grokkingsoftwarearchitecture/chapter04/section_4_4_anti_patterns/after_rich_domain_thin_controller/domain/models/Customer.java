@@ -7,7 +7,20 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.aft
  * entity holding state.
  */
 public class Customer {
-    public int id;
-    public String type; // e.g., "Gold"
-    public String email;
+    private int id;
+    private String type; // e.g., "Gold"
+    private String email;
+
+    public Customer() {
+        // Default constructor
+    }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }
