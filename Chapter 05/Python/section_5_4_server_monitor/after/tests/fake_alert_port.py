@@ -1,4 +1,4 @@
-from core.ports.alert_port import AlertPort
+from ..core.ports.alert_port import AlertPort
 
 class FakeAlertPort(AlertPort):
     """

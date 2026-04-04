@@ -1,4 +1,6 @@
+
 package com.grokkingsoftwarearchitecture.chapter05;
+
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +17,9 @@ public class Main {
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
+        // Add this to the start of main() to clean up the output
+        System.setProperty("java.util.logging.SimpleFormatter.format", "%5$s%6$s%n");
+
         ObjectMapper mapper = new ObjectMapper();
         File configFile = new File("Examples.json");
 

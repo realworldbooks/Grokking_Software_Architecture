@@ -1,22 +1,30 @@
-// Dummies to allow compilation without installing real NuGet packages
+using System;
+
 namespace Chapter05.ServerMonitor.After.Infrastructure.ExternalLibs
 {
+    /// <summary>
+    /// Dummies to allow compilation without installing real NuGet packages.
+    /// Represents the "Chaotic Outside World" SDKs.
+    /// </summary>
     public class TwilioClient
     {
-        public TwilioClient(string key) { }
-        public void SendSms(string to, string msg) { }
+        private readonly string _key;
+
+        public TwilioClient(string key) { _key = key; }
+
+        public void SendSms(string to, string msg) 
+        {
+            // Accessing _key prevents the "mark as static" warning.
+            _ = _key; 
+        }
     }
 
-    public interface IProducer<TKey, TValue>
+    /// <summary>
+    /// Interface for a generic message producer.
+    /// Uses 'in' for contravariance to maximize architectural flexibility.
+    /// </summary>
+    public interface IProducer<in TKey, in TValue>
     {
-        void Produce(string topic, TValue value);
-    }
-    
-    public class FakeKafkaProducer : IProducer<string, string>
-    {
-        public void Produce(string topic, string value) 
-        {
-             Console.WriteLine($"[Kafka] Pushed to {topic}: {value}");
-        }
+        void Produce(TKey key, string topic, TValue value);
     }
 }

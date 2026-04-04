@@ -1,4 +1,4 @@
-from portfolio_manager import PortfolioManager
+from .portfolio_manager import PortfolioManager
 
 class AttemptedTest:
     """A demonstration of why Tight Coupling ruins testability."""

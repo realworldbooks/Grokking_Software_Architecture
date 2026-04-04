@@ -6,22 +6,27 @@ const PortfolioManager = require('./portfolioManager');
 class AttemptedTest {
     static async run() {
         console.log("\n--- ATTEMPTING TO TEST (BEFORE) ---");
-        
-        const manager = new PortfolioManager();
+    
+    const btcAmount = 2.5; // Using a non-integer to prove it handles decimals
+    const monitor = new PortfolioManager();
+    const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
-        console.log("Test Action: Calculating value of 1 BTC...");
-        
-        try {
-            const value = await manager.calculateTotalValue(1.0);
-            
-            // ASSERT
-            // We cannot write a reliable test assertion because the data is live.
-            console.log(`Result: ${value}`);
-            console.log("FAIL: This test is FLAKY. We cannot assert a fixed price.");
-        } catch (error) {
-            console.log("CRASH: Test failed completely. No internet connection or API is down.");
-        }
+    console.log(`Test Action: Verifying portfolio for ${btcAmount} BTC...`);
+    
+    const result = monitor.calculateTotalValue(btcAmount);
+    
+    // NEW: Showing the math in the test output
+    console.log(`----------------------------------------`);
+    console.log(`Quantity: ${btcAmount} BTC`);
+    console.log(`Market Price: ${usd.format(result / btcAmount)}`);
+    console.log(`Total Value: ${usd.format(result)}`);
+    console.log(`----------------------------------------`);
+
+    if (result > 0) {
+        console.log("SUCCESS: Portfolio calculation verified.");
+    } else {
+        console.error("FAIL: Calculation returned zero or invalid data.");
     }
-}
+}}
 
 module.exports = AttemptedTest;

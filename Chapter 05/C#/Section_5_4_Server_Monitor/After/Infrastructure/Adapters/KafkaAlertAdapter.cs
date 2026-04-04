@@ -1,27 +1,35 @@
-using System;
-using System.Text.Json; // Native .NET JSON
 using Chapter05.ServerMonitor.After.Core.Ports;
-using Chapter05.ServerMonitor.After.Infrastructure.ExternalLibs; // Fake 3rd party lib
+using Chapter05.ServerMonitor.After.Infrastructure.ExternalLibs;
+using System;
 
 namespace Chapter05.ServerMonitor.After.Infrastructure.Adapters
 {
-    // ADAPTER 3: The "Scale" Adapter (Async Messaging)
+    /// <summary>
+    /// ADAPTER 3: The "Scale" Adapter (Async Messaging).
+    /// Handles the transformation of domain alerts into JSON messages for Kafka.
+    /// </summary>
     public class KafkaAlertAdapter : IAlertPort
     {
-        private readonly IProducer<string, string> _kafkaProducer;
+        private readonly IProducer<string, string> _producer;
 
-        public KafkaAlertAdapter(IProducer<string, string> kafkaProducer)
+        /// <summary>
+        /// Injects a Messaging Producer into the adapter.
+        /// </summary>
+        public KafkaAlertAdapter(IProducer<string, string> producer)
         {
-            _kafkaProducer = kafkaProducer;
+            _producer = producer;
         }
 
+        /// <summary>
+        /// Formats and pushes the alert to an asynchronous message broker.
+        /// </summary>
         public void SendAlert(string message)
         {
-            var payload = new { Error = message, Timestamp = DateTime.UtcNow };
-            var json = JsonSerializer.Serialize(payload);
+            // The Adapter is responsible for formatting data for the outside world.
+            string payload = $"{{\"Error\": \"{message}\", \"Timestamp\": \"{DateTime.UtcNow}\"}}";
             
-            // Fire and forget! The Core doesn't need to wait for an ACK.
-            _kafkaProducer.Produce("server-alerts-topic", json);
+            // We use a static key to ensure chronological ordering within a single partition.
+            _producer.Produce("Server-01", "server-alerts", payload);
         }
     }
 }

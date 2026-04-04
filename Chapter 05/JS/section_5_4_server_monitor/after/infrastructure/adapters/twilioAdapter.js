@@ -2,23 +2,29 @@ const AlertPort = require('../../core/ports/alertPort');
 const { TwilioClient } = require('../externalLibs/fakeLibs');
 
 /**
- * ADAPTER 1: The "Real" Production Adapter.
- * This class is the bridge between the internal AlertPort and the external Twilio API.
+ * THE ADAPTER (Production).
+ * Bridges the domain's AlertPort to the external Twilio SMS SDK.
+ * This class acts as the 'Clarity Engineer' between inside and outside.
  */
 class TwilioAdapter extends AlertPort {
     /**
-     * Configuration is injected here, keeping 'God Mode' keys out of the Core.
+     * Initializes the adapter with infrastructure-specific configuration.
+     * * @param apiKey The secret key used for authenticating with Twilio.
+     * @param targetPhoneNumber The destination number for the SMS alert.
      */
     constructor(apiKey, targetPhoneNumber) {
         super();
-        this.apiKey = apiKey;
+        // Initializing the client once at the boundary for resource efficiency.
+        this.client = new TwilioClient(apiKey);
         this.targetPhoneNumber = targetPhoneNumber;
     }
 
+    /**
+     * Implements the Port by mapping a domain message to an SDK call.
+     * * @param message The alert text to be sent.
+     */
     sendAlert(message) {
-        // We encapsulate the 'Chaotic' 3rd party SDK here.
-        const client = new TwilioClient(this.apiKey);
-        client.sendSms(this.targetPhoneNumber, message);
+        this.client.sendSms(this.targetPhoneNumber, message);
         console.log(`(PROD ADAPTER) SMS sent via Twilio: ${message}`);
     }
 }

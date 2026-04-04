@@ -1,19 +1,30 @@
-from core.ports.alert_port import AlertPort
-from infrastructure.external_libs.fake_libs import TwilioClient
+from ...core.ports.alert_port import AlertPort
+from ...infrastructure.external_libs.fake_libs import TwilioClient
+from shared.log_manager import LogManager
 
 class TwilioAdapter(AlertPort):
-    """
-    ADAPTER 1: The 'Real' Production Adapter.
-    This class is the bridge between the internal AlertPort and the external Twilio API.
+    """THE ADAPTER (Production).
+    
+    Bridges the internal AlertPort to the external Twilio SMS API.
+    This class is the 'Clarity Engineer' that translates domain 
+    intent into infrastructure-specific SDK calls.
     """
 
     def __init__(self, api_key: str, target_phone_number: str):
-        """Configuration is injected here, keeping 'God Mode' keys out of the Core."""
-        self.api_key = api_key
+        """Configures the adapter with environment-specific secrets.
+        
+        Args:
+            api_key (str): The 'God Mode' secret used to auth with Twilio.
+            target_phone_number (str): The recipient of the SMS alerts.
+        """
+        self.client = TwilioClient(api_key)
         self.target_phone_number = target_phone_number
 
     def send_alert(self, message: str) -> None:
-        # We encapsulate the 'Chaotic' 3rd party SDK here.
-        client = TwilioClient(self.api_key)
-        client.send_sms(self.target_phone_number, message)
-        print(f"(PROD ADAPTER) SMS sent via Twilio: {message}")
+        """Encapsulates the chaotic 3rd-party SDK call.
+        
+        Args:
+            message (str): The message provided by the Core.
+        """
+        self.client.send_sms(self.target_phone_number, message)
+        LogManager.info("TwilioAdapter", "(PROD ADAPTER) SMS sent via Twilio: {0}", message)

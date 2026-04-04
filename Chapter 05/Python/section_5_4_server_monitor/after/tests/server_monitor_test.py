@@ -1,5 +1,5 @@
-from core.domain.server_monitor import ServerMonitor
-from tests.fake_alert_port import FakeAlertPort
+from ..core.domain.server_monitor import ServerMonitor
+from ..tests.fake_alert_port import FakeAlertPort
 
 class ServerMonitorTests:
     """

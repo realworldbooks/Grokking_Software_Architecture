@@ -1,15 +1,23 @@
-from core.ports.alert_port import AlertPort
+from ...core.ports.alert_port import AlertPort
+from shared.log_manager import LogManager
 
 class ConsoleAdapter(AlertPort):
-    """
-    ADAPTER 2: The 'Dev' Adapter.
-    Proves to Archie that the Core doesn't care if the alert goes to a 
-    cloud messaging service or simply prints to the local screen.
+    """ADAPTER 2: The 'Dev' Adapter.
+    
+    This adapter provides immediate visual feedback during local development. 
+    It proves that the Core remains identical regardless of whether the 
+    alert goes to a cloud service or a terminal screen.
     """
 
     def send_alert(self, message: str) -> None:
-        # We use ANSI escape codes to mimic a real red alert,
-        # but the Core logic remains completely unaware of this UI detail.
+        """Prints a high-visibility alert to the local console.
+        
+        Args:
+            message (str): The alert message provided by the Core.
+        """
+        # ANSI escape codes for red text mimic professional UI feedback
         ansi_red = "\033[91m"
         ansi_reset = "\033[0m"
+        
+        # We wrap the output to ensure the 'Dev' context is clear to Archie
         print(f"{ansi_red}(DEV ADAPTER) ALERT: {message}{ansi_reset}")

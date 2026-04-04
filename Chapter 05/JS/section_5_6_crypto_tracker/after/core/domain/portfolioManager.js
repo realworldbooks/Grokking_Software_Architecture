@@ -5,16 +5,27 @@
 class PortfolioManager {
     /**
      * Dependency Injection via Constructor.
-     * @param {Object} priceProvider - An adapter that implements getBitcoinPrice()
+     * @param priceProvider - An adapter that satisfies the PriceProvider contract.
      */
     constructor(priceProvider) {
         this.priceProvider = priceProvider;
     }
 
+    /**
+     * Calculates total value by awaiting the external price data.
+     * @param btcAmount - The quantity of Bitcoin to calculate.
+     */
     async calculateTotalValue(btcAmount) {
-        // We just call the port. We don't care WHERE the price comes from.
+        // We must await the result from the provider
         const currentPrice = await this.priceProvider.getBitcoinPrice();
-        return btcAmount * currentPrice;
+        const totalValue = btcAmount * currentPrice;
+
+        const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+
+        // Now currentPrice will be a number, not a Promise object
+        console.log(`[Core] Calculating: ${btcAmount} BTC x ${usd.format(currentPrice)}/BTC`);
+        
+        return totalValue;
     }
 }
 

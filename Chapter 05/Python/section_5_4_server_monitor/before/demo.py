@@ -1,5 +1,5 @@
-from server_monitor import ServerMonitor
-from attempted_test import AttemptedTest
+from .server_monitor import ServerMonitor
+from .attempted_test import AttemptedTest
 
 class Demo:
     """
@@ -28,6 +28,3 @@ class Demo:
         AttemptedTest.run()
 
         print("\n--- SCENARIO COMPLETE ---")
-
-if __name__ == "__main__":
-    Demo.run()

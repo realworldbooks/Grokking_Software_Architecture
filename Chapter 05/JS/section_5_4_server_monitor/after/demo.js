@@ -1,6 +1,6 @@
 const ServerMonitor = require('./core/domain/serverMonitor');
 const TwilioAdapter = require('./infrastructure/adapters/twilioAdapter');
-const ServerMonitorTests = require('./Tests/serverMonitor.test');
+const ServerMonitorTests = require('./tests/serverMonitorTest');
 
 /**
  * The Execution Layer.

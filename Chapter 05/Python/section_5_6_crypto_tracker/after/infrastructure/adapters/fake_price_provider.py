@@ -1,4 +1,4 @@
-from core.ports.price_provider_port import PriceProviderPort
+from ...core.ports.price_provider_port import PriceProviderPort
 
 class FakePriceProvider(PriceProviderPort):
     """

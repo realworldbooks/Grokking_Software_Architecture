@@ -2,7 +2,7 @@ using System;
 
 namespace Chapter05.ServerMonitor.Before
 {
-    public class AttemptedTest
+    public static class AttemptedTest
     {
         public static void Run()
         {

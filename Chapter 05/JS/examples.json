@@ -1,0 +1,18 @@
+{
+  "1": { 
+    "name": "Server Monitor: Tight Coupling (Before)", 
+    "path": "./section_5_4_server_monitor/before/demo.js" 
+  },
+  "2": { 
+    "name": "Server Monitor: Hexagonal Architecture (After)", 
+    "path": "./section_5_4_server_monitor/after/demo.js" 
+  },
+  "3": { 
+    "name": "Crypto Tracker: Tight Coupling (Before)", 
+    "path": "./section_5_6_crypto_tracker/before/demo.js" 
+  },
+  "4": { 
+    "name": "Crypto Tracker: Hexagonal Architecture (After)", 
+    "path": "./section_5_6_crypto_tracker/after/demo.js" 
+  }
+}

@@ -1,9 +1,9 @@
 /**
  * Domain Constants.
- * Acts as the 'Single Source of Truth' for business rules, 
- * preventing 'Magic Numbers' from being scattered throughout the code.
+ * Centralized source of truth for all business rules in the Chapter 05 namespace.
  */
 const Constants = {
+    /** Threshold at which a server is considered to be overheating. */
     HIGH_TEMP_THRESHOLD: 95
 };
 

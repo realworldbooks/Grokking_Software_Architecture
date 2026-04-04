@@ -1,13 +1,13 @@
 /**
  * PRIMARY PORT (Driven).
- * Since JavaScript lacks native interfaces, we use this base class 
- * to define the 'Contract'. If an Adapter fails to implement sendAlert, 
- * the application will throw a clear architectural error.
+ * Defines the contract that all infrastructure adapters must follow.
+ * This ensures the Core remains agnostic of specific 3rd-party implementations.
  */
 class AlertPort {
     /**
      * Sends an alert message to an external destination.
-     * @param {string} message 
+     * @param {string} message - The content of the alert.
+     * @throws {Error} If the subclass does not implement this method.
      */
     sendAlert(message) {
         throw new Error("Method 'sendAlert(message)' must be implemented by the Adapter.");

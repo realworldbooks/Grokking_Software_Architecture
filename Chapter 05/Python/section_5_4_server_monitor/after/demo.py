@@ -1,6 +1,6 @@
-from core.domain.server_monitor import ServerMonitor
-from infrastructure.adapters.twilio_adapter import TwilioAdapter
-from tests.server_monitor_test import ServerMonitorTests
+from .core.domain.server_monitor import ServerMonitor
+from .infrastructure.adapters.twilio_adapter import TwilioAdapter
+from .tests.server_monitor_test import ServerMonitorTests
 
 class Demo:
     """
@@ -36,6 +36,3 @@ class Demo:
         ServerMonitorTests.run()
 
         print("\n========================================")
-
-if __name__ == "__main__":
-    Demo.run()

@@ -1,5 +1,5 @@
-from portfolio_manager import PortfolioManager
-from attempted_test import AttemptedTest
+from .portfolio_manager import PortfolioManager
+from .attempted_test import AttemptedTest
 
 class Demo:
     """The Execution Layer."""
@@ -22,6 +22,3 @@ class Demo:
         AttemptedTest.run()
         
         print("\n========================================")
-
-if __name__ == "__main__":
-    Demo.run()

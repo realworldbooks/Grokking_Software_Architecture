@@ -1,4 +1,4 @@
-from server_monitor import ServerMonitor
+from .server_monitor import ServerMonitor
 
 class AttemptedTest:
     @staticmethod

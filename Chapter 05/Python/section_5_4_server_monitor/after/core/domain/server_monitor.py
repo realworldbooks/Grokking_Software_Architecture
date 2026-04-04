@@ -1,26 +1,37 @@
-from core.domain import constants
-from core.ports.alert_port import AlertPort
+from ...core.domain import constants
+from ...core.ports.alert_port import AlertPort
+from shared.log_manager import LogManager
 
 class ServerMonitor:
-    """
-    THE INSIDE (The Core).
-    This is the Pure Domain Logic. It has been 'Isolated' from the 
-    infrastructure. It contains zero references to Console, Twilio, or Kafka.
+    """THE INSIDE (The Core).
+    
+    This class represents the Pure Domain Logic of the system. It has been 
+    'Isolated' from the infrastructure, meaning it contains zero references 
+    to low-level details like Console, Twilio, or Kafka.
     """
 
     def __init__(self, alert_port: AlertPort):
-        """
-        Constructor Injection.
-        We 'plug in' the adapter, allowing the Core to remain 
-        agnostic of the specific implementation.
+        """Initializes the monitor with an abstract alert port.
+        
+        Args:
+            alert_port (AlertPort): An implementation of the AlertPort contract
+                (Constructor Injection). This allows the Core to remain 
+                agnostic of the specific notification technology used.
         """
         self.alert_port = alert_port
 
     def check_temperature(self, temp: int) -> None:
-        """Evaluates temperature against domain constants."""
+        """Evaluates a temperature reading against business rules.
+        
+        The Core acts as the 'Boundary Keeper' here—it defines 'What' needs 
+        to happen (an alert), while delegating the 'How' (the transport) 
+        to the outside world.
+
+        Args:
+            temp (int): The current server temperature in degrees.
+        """
         if temp > constants.HIGH_TEMP_THRESHOLD:
-            # The Core acts as the 'Boundary Keeper,' defining 'What' needs to 
-            # happen, while leaving the 'How' to the outside world.
+            # Domain logic decides that an alert is necessary
             self.alert_port.send_alert(f"Temp is {temp} degrees! Take cover!")
         else:
-            print(f"[Core] Temp {temp} is normal.")
+            LogManager.info("ServerMonitor", "[Core] Temp {0} is normal.", temp)
