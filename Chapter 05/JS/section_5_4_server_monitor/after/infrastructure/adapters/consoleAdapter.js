@@ -2,7 +2,7 @@ const AlertPort = require('../../core/ports/alertPort');
 
 /**
  * ADAPTER 2: The "Dev" Adapter.
- * Proves to Archie that the Core doesn't care if the alert goes to a 
+ * Proves that the Core doesn't care if the alert goes to a 
  * cloud messaging service or simply prints to the local screen.
  */
 class ConsoleAdapter extends AlertPort {

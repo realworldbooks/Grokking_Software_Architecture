@@ -15,7 +15,7 @@ class CoinGeckoAdapter {
             return data.bitcoin.usd;
         } catch (error) {
             console.error(`[Adapter] Failed to fetch price: ${error.message}`);
-            // Fallback for Archie's demo if the internet is down
+            // Fallback for the demo if the internet is down
             return 65000; 
         }
     }

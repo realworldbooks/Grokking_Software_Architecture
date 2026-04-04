@@ -5,7 +5,7 @@ namespace Chapter05.CryptoTracker.After.Infrastructure.Adapters
 {
     /// <summary>
     /// ADAPTER 1: The "Airplane Mode" / Test Adapter.
-    /// Proves to Archie that we can run and test the system without an internet connection.
+    /// Proves that we can run and test the system without an internet connection.
     /// </summary>
     public class FakePriceProvider : IPriceProviderPort
     {

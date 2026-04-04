@@ -4,7 +4,7 @@ class AlertPort(ABC):
     """PRIMARY PORT (Driven).
     
     This Abstract Base Class defines the 'Contract' between the Domain 
-    and the Infrastructure. It ensures that any adapter Archie plugs 
+    and the Infrastructure. It ensures that any adapter you plug 
     into the system is compatible with the Core's expectations.
     """
     

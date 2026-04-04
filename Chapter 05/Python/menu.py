@@ -24,7 +24,7 @@ async def main():
         clear_screen()
         print("=== Grokking Software Architecture Chapter 05: Python Examples ===\n")
 
-        # Sort keys numerically to ensure a logical progression for Archie
+        # Sort keys numerically to ensure a logical progression for the user
         keys = sorted(examples.keys(), key=lambda x: int(x))
 
         for key in keys:

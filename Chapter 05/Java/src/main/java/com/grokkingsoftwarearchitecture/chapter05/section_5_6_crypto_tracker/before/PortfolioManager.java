@@ -10,18 +10,18 @@ import java.io.UncheckedIOException;
 /**
  * THE CORE (Tightly Coupled).
  * WARNING: This class is a "Liability" because it violates the 
- * Golden Rule of Separation of Concerns. [cite: 1]
+ * Golden Rule of Separation of Concerns. 
  */
 public class PortfolioManager {
 
     /**
      * Checks the server temperature and sends an alert if it's too high.
-     * In a real system, this is the "Chaotic Outside World"[cite: 1].
+     * In a real system, this is the "Chaotic Outside World".
      */
     public double calculateTotalValue(double btcAmount) {
         
         // FIX 1: Try-with-resources handles the "Close this HttpClient" warning.
-        // VIOLATION: Hardcoded infrastructure dependency inside the logic. [cite: 1]
+        // VIOLATION: Hardcoded infrastructure dependency inside the logic.
         try (HttpClient client = HttpClient.newHttpClient()) {
             
             double currentPrice = fetchBitcoinPrice(client);
@@ -29,7 +29,7 @@ public class PortfolioManager {
             return btcAmount * currentPrice;
 
         } catch (Exception e) {
-            // VIOLATION: Infrastructure failures bleed directly into domain logic. [cite: 1]
+            // VIOLATION: Infrastructure failures bleed directly into domain logic.
             // Final fallback: Still specific to the state of the portfolio calculation.
             throw new IllegalStateException("Portfolio calculation failed due to infrastructure error.", e);
         }
@@ -44,7 +44,7 @@ public class PortfolioManager {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             
-            // VIOLATION: Tight coupling to a specific 3rd party JSON structure. [cite: 1]
+            // VIOLATION: Tight coupling to a specific 3rd party JSON structure.
             String json = response.body();
             String priceString = json.split("\"usd\":")[1].replace("}}", "").trim();
             return Double.parseDouble(priceString);

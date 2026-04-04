@@ -19,5 +19,5 @@ class ConsoleAdapter(AlertPort):
         ansi_red = "\033[91m"
         ansi_reset = "\033[0m"
         
-        # We wrap the output to ensure the 'Dev' context is clear to Archie
+        # We wrap the output to ensure the 'Dev' context is clear
         print(f"{ansi_red}(DEV ADAPTER) ALERT: {message}{ansi_reset}")

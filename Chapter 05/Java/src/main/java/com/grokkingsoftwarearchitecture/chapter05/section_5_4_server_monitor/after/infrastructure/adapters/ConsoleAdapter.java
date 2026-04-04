@@ -5,7 +5,7 @@ import com.grokkingsoftwarearchitecture.chapter05.shared.LogManager;
 
 /**
  * ADAPTER 2: The "Dev" Adapter.
- * This adapter is perfect for local development. It proves to Archie that 
+ * This adapter is perfect for local development. It proves that 
  * the Core doesn't care if the alert goes to a multi-million dollar cloud 
  * messaging service or simply prints to the local screen.
  */

@@ -25,7 +25,7 @@ public class TwilioClient {
      */
     public void sendSms(String to, String msg) {
         // By logging the parameters, we 'use' them to satisfy the compiler
-        // and provide diagnostic feedback for Archie's demo.
+        // and provide diagnostic feedback for the demo.
         LogManager.info(TwilioClient.class, 
             "[Twilio SDK] Using Key: {0} to send message to {1}: {2}", 
             this.key, to, msg);

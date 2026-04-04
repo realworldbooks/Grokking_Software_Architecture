@@ -15,7 +15,7 @@ namespace Chapter05.ServerMonitor.After.Infrastructure.Adapters
         /// </summary>
         public void SendAlert(string message)
         {
-            // Visual feedback for development to help Archie track the state.
+            // Visual feedback for development to help developers track the state.
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"(DEV ADAPTER) ALERT: {message}");
             Console.ResetColor();
