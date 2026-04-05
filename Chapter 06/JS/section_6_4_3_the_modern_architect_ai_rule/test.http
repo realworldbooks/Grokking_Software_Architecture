@@ -1,0 +1,22 @@
+# Change this port based on which server is running
+# C# = 5000, Node = 3000, Python = 8000, Java = 8080
+@port = 3000
+@host = http://localhost:{{port}}
+
+### 1. Test a Physical Item (Expected: 200 OK with 5.99)
+POST {{host}}/api/shipping/calculate-shipping
+Content-Type: application/json
+
+{
+  "productId": "WIDGET-99",
+  "zipCode": "12211"
+}
+
+### 2. Test a Digital Item (Expected: 400 Bad Request)
+POST {{host}}/api/shipping/calculate-shipping
+Content-Type: application/json
+
+{
+  "productId": "DIGITAL-EBOOK-01",
+  "zipCode": "12211"
+}

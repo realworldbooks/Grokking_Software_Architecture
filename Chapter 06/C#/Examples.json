@@ -1,0 +1,14 @@
+{
+  "1": {
+    "name": "REST API: The Over-Fetching Problem (Before)",
+    "type": "Chapter06.RestExample.Demo"
+  },
+  "2": {
+    "name": "GraphQL: Precision Data Fetching (After)",
+    "type": "Chapter06.GraphQLExample.Demo"
+  },
+  "3": {
+    "name": "AI-Driven API: Prompt Engineering via Swagger",
+    "type": "Chapter06.AiApiExample.Demo"
+  }
+}
