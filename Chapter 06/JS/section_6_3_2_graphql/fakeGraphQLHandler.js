@@ -12,11 +12,11 @@ class FakeGraphQLHandler {
     async post(url, payload) {
         // The exact JSON response. Notice there is NO over-fetching here!
         const jsonResponse = `{
-  "data": {
-    "chipItem": { "name": "Salt & Vinegar Chips" },
-    "sodaItem": { "price": 1.50 }
-  }
-}`;
+          "data": {
+            "chipItem": { "name": "Salt & Vinegar Chips" },
+            "sodaItem": { "price": 1.50 }
+          }
+        }`;
         return jsonResponse;
     }
 }

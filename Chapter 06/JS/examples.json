@@ -1,0 +1,18 @@
+{
+  "title": "Grokking Software Architecture Chapter 06: AI-Ready APIs",
+  "examples": {
+    "1": {
+      "name": "Section 6.1 - Basic REST Implementation (The Over-Fetching Problem)",
+      "path": "section_6_3_1_rest/demo.js"
+    },
+    "2": {
+      "name": "Section 6.2 - GraphQL Implementation (Precision Data Fetching)",
+      "path": "section_6_3_2_graphql/demo.js"
+    },
+    "3": {
+      "name": "Section 6.3 - AI-Driven API (Prompt Engineering via Swagger)",
+      "path": "section_6_4_3_the_modern_architect_ai_rule/demo.js",
+      "isServer": true
+    }
+  }
+}

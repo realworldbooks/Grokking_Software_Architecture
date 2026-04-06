@@ -12,13 +12,13 @@ class FakeRestHandler {
     async get(url) {
         // The exact JSON payload representing our bloated REST resource
         const jsonResponse = `{
-  "id": "123",
-  "name": "Salt & Vinegar Chips",
-  "price": 1.50,
-  "calories": 250,
-  "ingredients": [ "Potatoes", "Oil", "Salt" ],
-  "manufacturer": { "name": "SnackCorp", "address": "123 Food Lane" }
-}`;
+        "id": "123",
+        "name": "Salt & Vinegar Chips",
+        "price": 1.50,
+        "calories": 250,
+        "ingredients": [ "Potatoes", "Oil", "Salt" ],
+        "manufacturer": { "name": "SnackCorp", "address": "123 Food Lane" }
+        }`;
         
         return jsonResponse;
     }

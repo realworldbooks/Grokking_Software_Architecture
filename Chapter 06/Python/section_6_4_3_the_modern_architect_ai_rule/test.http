@@ -1,22 +1,64 @@
-# Change this port based on which server is running
-# C# = 5000, Node = 3000, Python = 8000, Java = 8080
+# FastAPI default port is 8000
 @port = 8000
 @host = http://localhost:{{port}}
 
-### 1. Test a Physical Item (Expected: 200 OK with 5.99)
-POST {{host}}/api/shipping/calculate-shipping
+### 1. Test East Coast Delivery (Zip starts with 1)
+# 2 Widgets = $39.98 items. Weight = 10 lbs. Shipping = $3.49 + ($0.50 * 10) = $8.49. Total = $48.47
+POST {{host}}/api/OrderPricing/calculate-totals
 Content-Type: application/json
 
 {
-  "productId": "WIDGET-99",
-  "zipCode": "12211"
+  "zipCode": "12211",
+  "items": [
+    { "productId": "WIDGET-99", "quantity": 2 }
+  ]
 }
 
-### 2. Test a Digital Item (Expected: 400 Bad Request)
-POST {{host}}/api/shipping/calculate-shipping
+### 2. Test West Coast Delivery (Zip starts with 9)
+# 2 Widgets = $39.98 items. Weight = 10 lbs. Shipping = $3.49 + ($1.50 * 10) = $18.49. Total = $58.47
+POST {{host}}/api/OrderPricing/calculate-totals
 Content-Type: application/json
 
 {
-  "productId": "DIGITAL-EBOOK-01",
-  "zipCode": "12211"
+  "zipCode": "90210",
+  "items": [
+    { "productId": "WIDGET-99", "quantity": 2 }
+  ]
+}
+
+### 3. Test Mixed Cart (Physical + Digital)
+# 1 Widget ($19.99) + 1 eBook ($29.99) = $49.98. Under $75, so shipping is charged.
+POST {{host}}/api/OrderPricing/calculate-totals
+Content-Type: application/json
+
+{
+  "zipCode": "12211",
+  "items": [
+    { "productId": "WIDGET-99", "quantity": 1 },
+    { "productId": "DIGITAL-EBOOK-01", "quantity": 1 }
+  ]
+}
+
+### 4. Test Pure Digital Cart
+# Returns ShippingCost of 0, because no physical items were found!
+POST {{host}}/api/OrderPricing/calculate-totals
+Content-Type: application/json
+
+{
+  "zipCode": "12211",
+  "items": [
+    { "productId": "DIGITAL-EBOOK-01", "quantity": 1 }
+  ]
+}
+
+### 5. NEW: Test Free Shipping Threshold (Over $75)
+# 4 Widgets = $79.96. Threshold met! ShippingCost MUST be 0.
+POST {{host}}/api/OrderPricing/calculate-totals
+Content-Type: application/json
+
+{
+  "zipCode": "12211",
+  "items": [
+    { "productId": "WIDGET-99", "quantity": 4 }
+  ]
 }

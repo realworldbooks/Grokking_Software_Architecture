@@ -16,10 +16,10 @@ class FakeRestHandler:
         """
         # The exact JSON payload, showcasing the rigid structure of a REST endpoint
         return '''{
-  "id": "123",
-  "name": "Salt & Vinegar Chips",
-  "price": 1.50,
-  "calories": 250,
-  "ingredients": [ "Potatoes", "Oil", "Salt" ],
-  "manufacturer": { "name": "SnackCorp", "address": "123 Food Lane" }
-}'''
+            "id": "123",
+            "name": "Salt & Vinegar Chips",
+            "price": 1.50,
+            "calories": 250,
+            "ingredients": [ "Potatoes", "Oil", "Salt" ],
+            "manufacturer": { "name": "SnackCorp", "address": "123 Food Lane" }
+        }'''

@@ -2,6 +2,7 @@ import threading
 import uvicorn
 from fastapi import FastAPI
 from .order_controller import router
+from shared.log_manager import LogManager
 
 # ARCHITECTURAL NOTE: Swagger Configuration.
 # FastAPI automatically generates Swagger UI based on these parameters.
@@ -19,25 +20,26 @@ app.include_router(router)
 class Demo:
     @staticmethod
     def run():
-        print("--- Launching 'The Fat Controller / Anemic Domain' (Anti-Pattern) ---")
-        print("Starting the FastAPI Web Server...")
+        LogManager.info("Demo", "--- Launching 'The Fat Controller / Anemic Domain' (Anti-Pattern) ---")
+        LogManager.info("Demo", "Starting the FastAPI Web Server...")
 
         # Configure the Uvicorn server
         config = uvicorn.Config(app, host="127.0.0.1", port=8000, log_level="error")
         server = uvicorn.Server(config)
 
         # Run it in a background thread so the terminal doesn't freeze
-        thread = threading.Thread(target=server.run)
+        thread = threading.Thread(target=server.run, daemon=True) # Set as daemon to allow main program to exit
         thread.start()
 
-        print("\n[SUCCESS] FAT CONTROLLER / ANEMIC DOMAIN APP RUNNING (PYTHON/FASTAPI)")
-        print("Swagger UI available at: http://localhost:8000/")
+        LogManager.info("Demo", "\n[SUCCESS] FAT CONTROLLER / ANEMIC DOMAIN APP RUNNING (PYTHON/FASTAPI)")
+        LogManager.info("Demo", "Swagger UI available at: http://localhost:8000/")
         
         # Wait for the user to test the API in their browser
-        input("\nPress ENTER to stop the server and return to the main menu...\n")
+        LogManager.info("Demo", "\nPress ENTER to stop the server and return to the main menu...\n")
+        input()
         
         # Gracefully shut down the background server
-        print("Shutting down the FastAPI server...")
+        LogManager.info("Demo", "Shutting down the FastAPI server...")
         server.should_exit = True
         thread.join()
-        print("Server stopped successfully.")
+        LogManager.info("Demo", "Server stopped successfully.")

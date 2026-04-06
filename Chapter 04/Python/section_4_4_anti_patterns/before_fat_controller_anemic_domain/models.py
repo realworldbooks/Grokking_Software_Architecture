@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import List
+from shared.log_manager import LogManager
 
 # --- DTOs (Data Transfer Objects) ---
 
@@ -56,4 +57,4 @@ class MyDbContext:
 
 class SmtpEmailService:
     def send(self, email, message):
-        print(f"Email sent to {email}")
+        LogManager.info("SmtpEmailService", "Email sent to {0}", email)

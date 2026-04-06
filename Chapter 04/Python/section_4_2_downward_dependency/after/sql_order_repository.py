@@ -1,5 +1,6 @@
 from .order_repository import OrderRepository
 from .order import Order
+from shared.log_manager import LogManager
 
 class SqlOrderRepository(OrderRepository):
     """
@@ -9,4 +10,4 @@ class SqlOrderRepository(OrderRepository):
     OrderRepository contract.
     """
     def save(self, order: Order):
-        print("(After Refactor) Saving order to SQL...")
+        LogManager.info("SqlOrderRepository", "(After Refactor) Saving order to SQL...")

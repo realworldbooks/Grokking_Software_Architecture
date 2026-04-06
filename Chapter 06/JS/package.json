@@ -1,0 +1,14 @@
+{
+  "name": "grokking-software-architecture-chapter06",
+  "version": "1.0.0",
+  "description": "JavaScript examples for Chapter 6: AI-Ready APIs",
+  "main": "menu.js",
+  "scripts": {
+    "start": "node menu.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  }
+}

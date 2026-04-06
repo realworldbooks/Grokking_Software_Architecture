@@ -1,5 +1,4 @@
-package graphqlexample.demo;
-
+package com.grokkingsoftwarearchitecture.chapter06.section_6_3_2_graphql;
 /**
  * THE FAKE ENDPOINT.
  * Intercepts the HTTP call and returns our precise GraphQL JSON response.

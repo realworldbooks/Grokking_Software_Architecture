@@ -1,0 +1,15 @@
+{
+    "1": {
+        "name": "Section 6.1 - Basic REST Implementation (The Over-Fetching Problem)",
+        "path": "section_6_3_1_rest.demo"
+        },
+    "2": {
+        "name": "Section 6.2 - GraphQL Implementation (Precision Data Fetching)",
+        "path": "section_6_3_2_graphql.demo"
+        },
+    "3": {
+        "name": "Section 6.4.3 - The Modern Architect (AI-Ready API)",
+        "path": "section_6_4_3_the_modern_architect_ai_rule.demo",
+        "isServer": true
+        }
+}

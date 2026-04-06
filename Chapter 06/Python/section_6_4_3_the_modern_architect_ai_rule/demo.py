@@ -1,23 +1,25 @@
 import uvicorn
 from fastapi import FastAPI
-from .controllers.shipping_controller import router
+from .repositories import ProductRepository
+from .services import ShippingCalculatorServiceImpl, OrderPricingServiceImpl
+from .router import get_order_router
 
 class Demo:
-    """
-    The Execution Layer.
-    Configures the API and mounts the controllers.
-    """
     @staticmethod
-    def run() -> None:
-        print("--- STARTING AI-DRIVEN API DEMO ---")
-        print("Swagger UI will be available at: http://localhost:8000/docs")
+    def run():
+        print("\n--- STARTING THE MODERN AI ARCHITECT DEMO (PYTHON) ---")
+        print("Goal: Turn our Python codebase into a perfect LLM Prompt.")
+        print("Swagger UI: http://localhost:8000/docs\n")
 
         app = FastAPI(
-            title="AI Shipping API",
-            description="An API designed specifically for AI Agents to calculate shipping costs."
+            title="Chapter 06 AI-Ready API",
+            description="The API bridge between business logic and LLM Agents."
         )
 
-        app.include_router(router)
+        repo = ProductRepository()
+        shipping = ShippingCalculatorServiceImpl()
+        pricing = OrderPricingServiceImpl(shipping, repo)
 
-        # Run the API host
-        uvicorn.run(app, host="127.0.0.1", port=8000, log_level="info")
+        app.include_router(get_order_router(pricing))
+
+        uvicorn.run(app, host="127.0.0.1", port=8000)

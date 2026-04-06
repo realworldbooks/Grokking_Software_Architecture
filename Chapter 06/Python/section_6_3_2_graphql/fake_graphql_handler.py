@@ -1,3 +1,4 @@
+import textwrap
 class FakeGraphQLHandler:
     """THE FAKE ENDPOINT.
     
@@ -15,9 +16,9 @@ class FakeGraphQLHandler:
             str: A raw JSON string representing the exact requested data.
         """
         # The exact JSON response. Notice there is NO over-fetching here!
-        return '''{
-  "data": {
-    "chipItem": { "name": "Salt & Vinegar Chips" },
-    "sodaItem": { "price": 1.50 }
-  }
-}'''
+        return textwrap.dedent('''{
+            "data": {
+                "chipItem": { "name": "Salt & Vinegar Chips" },
+                "sodaItem": { "price": 1.50 }
+            }
+        }''')

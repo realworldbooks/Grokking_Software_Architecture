@@ -24,11 +24,11 @@ class Demo:
             value = manager.calculate_total_value(btc_to_check)
             
             # Professional currency formatting for the final summary
-            print(f"Live Portfolio Value: ${value:,.2f}")
+            LogManager.info("Demo", "Live Portfolio Value: ${0:,.2f}", value)
         except Exception as e:
             LogManager.info("Demo", "Live API failed, but architecture is safe: {0}", str(e))
 
-        print("\n" + "-" * 40 + "\n")
+        LogManager.info("Demo", "\n{0}\n", "-" * 40)
 
         # 3. Verification
         PortfolioTests.run()

@@ -3,6 +3,7 @@ The Core Business Logic.
 WARNING: This class is a 'Liability' because it violates the 
 Golden Rule of Separation of Concerns.
 """
+from shared.log_manager import LogManager
 
 class TwilioClient:
     """
@@ -13,7 +14,7 @@ class TwilioClient:
         self.key = key
 
     def send_sms(self, to: str, body: str) -> None:
-        print(f"[Twilio API] Sending SMS to {to}: {body}")
+        LogManager.info("TwilioClient", "[Twilio API] Sending SMS to {0}: {1}", to, body)
 
 
 class ServerMonitor:
@@ -29,4 +30,4 @@ class ServerMonitor:
             twilio = TwilioClient("API_KEY")
             twilio.send_sms("555-1234", "Server is overheating!")
         else:
-            print(f"Temp {temp} is nominal.")
+            LogManager.info("ServerMonitor", "Temp {0} is nominal.", temp)

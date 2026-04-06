@@ -1,41 +1,64 @@
+const path = require('path');
 const express = require('express');
-const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const shippingController = require('./controllers/shippingController');
-require('./models/shippingRequest'); // Ensure schema is loaded into memory
 
-class Demo {
-    static run() {
-        console.log("--- STARTING AI-DRIVEN API DEMO ---");
-        
+const ProductRepository = require('./repositories/productRespositoryImpl');
+const ShippingService = require('./services/shippingCalculatorServiceImpl');
+const PricingService = require('./services/orderPricingService');
+const OrderController = require('./controllers/orderPricingController');
+
+/**
+ * The Execution Layer.
+ * Replaces Program.cs to maintain consistency with the rest of the book's architecture.
+ * Configures Swagger to act as the bridge between our code and the AI Agent.
+ */
+const run = () => {
+    return new Promise((resolve) => {
+        console.log("--- STARTING THE MODERN AI ARCHITECT DEMO (NODE.JS) ---");
+        console.log("Goal: Turn our JS codebase into a perfect LLM Prompt.");
+        console.log("Swagger UI will be available at: http://localhost:3000/api-docs");
+        console.log("\n--> Open the URL above and read the descriptions.");
+        console.log("--> Notice how we are commanding the AI exactly how to behave!\n");
+
         const app = express();
         app.use(express.json());
 
-        const swaggerOptions = {
-            swaggerDefinition: {
+        // Dependency Injection / Singleton setup
+        const repo = new ProductRepository();
+        const shipping = new ShippingService();
+        const pricing = new PricingService(shipping, repo);
+
+        const options = {
+            definition: {
                 openapi: '3.0.0',
                 info: {
-                    title: 'AI Shipping API',
+                    title: 'Chapter 06 AI-Ready API',
                     version: '1.0.0',
-                    description: 'An API designed specifically for AI Agents.'
-                }
+                    description: 'The API bridge between business logic and LLM Agents.'
+                },
+                servers: [
+                    {
+                        url: "http://localhost:3000",
+                        description: "Local Development Server"
+                    }
+                ]
             },
-            apis: ['./*.js'], // Scrape all JS files for annotations
+            // Path to the controller containing JSDoc/OpenAPI annotations
+            // Note: Adjusted to ../../ to reach the root-level controllers directory if nested
+            apis: [path.join(__dirname, './controllers/*.js')], 
         };
 
-        const swaggerDocs = swaggerJsDoc(swaggerOptions);
-        app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+        const specs = swaggerJsdoc(options);
+        app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+        
+        // Mount the Controller
+        app.use('/', OrderController(pricing));
 
-        app.use('/api/shipping', shippingController);
-
-        app.listen(3000, () => {
-            console.log('Swagger UI available at: http://localhost:3000/swagger');
+        const server = app.listen(3000, () => {
+            resolve(server);
         });
-    }
-}
+    });
+};
 
-if (require.main === module) {
-    Demo.run();
-}
-
-module.exports = Demo;
+module.exports = { run };

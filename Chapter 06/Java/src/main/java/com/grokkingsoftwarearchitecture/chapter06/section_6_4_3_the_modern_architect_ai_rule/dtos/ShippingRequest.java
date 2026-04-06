@@ -1,4 +1,4 @@
-package aiapi.demo.models;
+package com.grokkingsoftwarearchitecture.chapter06.section_6_4_3_the_modern_architect_ai_rule.dtos;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

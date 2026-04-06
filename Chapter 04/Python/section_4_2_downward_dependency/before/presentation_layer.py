@@ -1,6 +1,7 @@
 """
 A fake UI layer class to illustrate the bad dependency.
 """
+from shared.log_manager import LogManager
 class PresentationLayer:
     _instance = None
 
@@ -11,4 +12,4 @@ class PresentationLayer:
         return cls._instance
 
     def update_status_label(self, text: str):
-        print(f"[UI UPDATE]: {text}")
+        LogManager.info("PresentationLayer", "[UI UPDATE]: {0}", text)

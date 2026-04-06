@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter06;
+package com.grokkingsoftwarearchitecture.chapter06.section_6_3_1_rest;
 
 /**
  * THE FAKE ENDPOINT.

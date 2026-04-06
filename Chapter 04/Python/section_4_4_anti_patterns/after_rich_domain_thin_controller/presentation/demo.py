@@ -8,6 +8,7 @@ from typing import List
 from ..infrastructure.repositories import SqlOrderRepository, SqlCustomerRepository, SqlItemRepository
 from ..infrastructure.email_service import SmtpEmailService
 from ..application.order_service import OrderService
+from shared.log_manager import LogManager
 from ..application.order_request import OrderRequest, OrderItemRequest
 from .controllers.order_controller import OrderController
 
@@ -77,27 +78,27 @@ def create_order(request: OrderAPIRequest):
 class Demo:
     @staticmethod
     def run():
-        print("--- Launching Rich Domain / Thin Controller Traditional 4-Layer Architecture (After) ---")
-        print("Starting the FastAPI Web Server...")
+        LogManager.info("Demo", "--- Launching Rich Domain / Thin Controller Traditional 4-Layer Architecture (After) ---")
+        LogManager.info("Demo", "Starting the FastAPI Web Server...")
 
         # Configure the Uvicorn server
         config = uvicorn.Config(app, host="127.0.0.1", port=8000, log_level="error")
         server = uvicorn.Server(config)
 
         # Run it in a background thread so the terminal doesn't freeze
-        thread = threading.Thread(target=server.run)
+        thread = threading.Thread(target=server.run, daemon=True) # Set as daemon to allow main program to exit
         thread.start()
 
-        print("\n[SUCCESS] RICH DOMAIN / THIN CONTROLLER TRADITIONAL 4-LAYER ARCHITECTURE APP RUNNING (PYTHON/FASTAPI)")
-        print("Swagger UI available at: http://localhost:8000")
+        LogManager.info("Demo", "\n[SUCCESS] RICH DOMAIN / THIN CONTROLLER TRADITIONAL 4-LAYER ARCHITECTURE APP RUNNING (PYTHON/FASTAPI)")
+        LogManager.info("Demo", "Swagger UI available at: http://localhost:8000")
         
         # Wait for the user to test the API in their browser
         input("\nPress ENTER to stop the server and return to the main menu...\n")
         
         # Gracefully shut down the background server
-        print("Shutting down the FastAPI server...")
+        LogManager.info("Demo", "Shutting down the FastAPI server...")
         server.should_exit = True
         thread.join()
-        print("Server stopped successfully.")
+        LogManager.info("Demo", "Server stopped successfully.")
 
 Demo.run()

@@ -1,5 +1,5 @@
 import json
-from fake_graphql_handler import FakeGraphQLHandler
+from .fake_graphql_handler import FakeGraphQLHandler
 
 class Demo:
     """The Execution Layer.
@@ -22,11 +22,16 @@ class Demo:
 
         url = "https://api.snackcorp.com/graphql"
         print(f"\nCalling: POST {url}")
+        raw_result = client.post(url, payload)
         
-        result = client.post(url, payload)
+        # 1. Parse the messy string into a Python dictionary
+        parsed_data = json.loads(raw_result)
+        
+        # 2. Convert it back to a string with an exact 2-space indent
+        formatted_result = json.dumps(parsed_data, indent=2)
 
         # 3. THE VISUAL EVIDENCE
         print("\nResult:")
-        print(result)
+        print(formatted_result)
         print("\nSuccess: Zero over-fetching!")
         print("We got exactly what we asked for in ONE call.")

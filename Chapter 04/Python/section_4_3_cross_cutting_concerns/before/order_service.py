@@ -1,4 +1,5 @@
 from .static_file_logger import StaticFileLogger
+from shared.log_manager import LogManager
 
 class OrderService:
     """
@@ -9,4 +10,4 @@ class OrderService:
     def save_order(self, order):
         # 🚨 VIOLATION: Hidden, rigid dependency.
         StaticFileLogger.log("Saving order...")
-        print("(BEFORE_SERVICE) Order saved.")
+        LogManager.info("OrderService", "(BEFORE_SERVICE) Order saved.")

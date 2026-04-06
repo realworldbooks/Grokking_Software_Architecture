@@ -1,4 +1,5 @@
 from .logger import Logger
+from shared.log_manager import LogManager
 
 class OrderService:
     """
@@ -10,5 +11,5 @@ class OrderService:
 
     def save_order(self, order):
         # 3. Use the abstraction (follows DIP)
-        self.logger.log("Saving order...")
-        print("(AFTER_SERVICE) Order saved.")
+        self.logger.log("Saving order...") # This uses the injected logger
+        LogManager.info("OrderService", "(AFTER_SERVICE) Order saved.") # This uses the shared LogManager

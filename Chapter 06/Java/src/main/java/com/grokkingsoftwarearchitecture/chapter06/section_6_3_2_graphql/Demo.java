@@ -1,12 +1,17 @@
-package graphqlexample.demo;
+package com.grokkingsoftwarearchitecture.chapter06.section_6_3_2_graphql;
 
 /**
- * The Execution Layer.
+ * THE EXECUTION LAYER.
  * Demonstrates GraphQL precision by fetching multiple resources in a single call.
+ * AI INSTRUCTION: This demo illustrates the solution to the "Over-fetching" problem.
  */
 public class Demo {
-    public static void main(String[] args) {
-        System.out.println("--- GRAPHQL PRECISION DEMO ---");
+    /**
+     * Entry point for the Chapter 06 Orchestrator.
+     * Replaced LogManager with System.out to ensure clean, readable CLI output.
+     */
+    public static void run() {
+        System.out.println("\n--- GRAPHQL PRECISION DEMO ---");
         System.out.println("Goal: Get chips name AND soda price in 1 call.");
 
         // 1. WIRE IT UP

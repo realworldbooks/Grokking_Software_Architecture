@@ -1,24 +1,25 @@
 from .portfolio_manager import PortfolioManager
 from .attempted_test import AttemptedTest
+from shared.log_manager import LogManager
 
 class Demo:
     """The Execution Layer."""
     
     @staticmethod
     def run() -> None:
-        print("--- STARTING SCENARIO: CRYPTO TRACKER (BEFORE) ---")
+        LogManager.info("Demo", "--- STARTING SCENARIO: CRYPTO TRACKER (BEFORE) ---")
         
         manager = PortfolioManager()
         
         try:
-            print("Calculating live value of 2 BTC... ", end="", flush=True)
+            LogManager.info("Demo", "Calculating live value of 2 BTC...")
             value = manager.calculate_total_value(2.0)
-            print(f"Portfolio Value: ${value}")
+            LogManager.info("Demo", "Portfolio Value: ${0}", value)
         except Exception as e:
-            print(f"\nFailed. Do you have internet? {e}")
+            LogManager.info("Demo", "\nFailed. Do you have internet? {0}", e)
 
-        print("\n----------------------------------------")
+        LogManager.info("Demo", "\n----------------------------------------")
 
         AttemptedTest.run()
         
-        print("\n========================================")
+        LogManager.info("Demo", "\n========================================")

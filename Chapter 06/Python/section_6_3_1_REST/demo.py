@@ -1,4 +1,6 @@
-from fake_rest_handler import FakeRestHandler
+import json
+
+from .fake_rest_handler import FakeRestHandler
 
 class Demo:
     """The Execution Layer.
@@ -17,10 +19,15 @@ class Demo:
         # 2. MAKE THE CALL
         url = "https://api.snackcorp.com/products/123"
         print(f"\nCalling: GET {url}\n")
-        
-        result = client.get(url)
+        raw_result = client.get(url)
 
+        # 1. Parse the messy string into a Python dictionary
+        parsed_data = json.loads(raw_result)
+
+        # 2. Convert it back to a string with an exact 2-space indent
+        formatted_result = json.dumps(parsed_data, indent=2)
+        
         # 3. THE VISUAL EVIDENCE
         print("Result:")
-        print(result)
+        print(formatted_result)
         print("\nProblem: We got 5 extra fields we didn't ask for (Over-fetching)!")
