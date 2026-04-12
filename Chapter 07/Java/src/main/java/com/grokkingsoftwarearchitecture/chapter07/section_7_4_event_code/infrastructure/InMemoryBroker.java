@@ -1,9 +1,9 @@
-package chapter07.eventcode.infrastructure;
+package com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.infrastructure;
 
-import chapter07.eventcode.core.EventPublisher;
-import chapter07.eventcode.shared.Event;
-import chapter07.eventcode.shared.OrderPlaced;
-import chapter07.eventcode.handlers.ShippingLabelPrinter;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.core.EventPublisher;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.shared.Event;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.shared.OrderPlaced;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.handlers.ShippingLabelPrinter;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

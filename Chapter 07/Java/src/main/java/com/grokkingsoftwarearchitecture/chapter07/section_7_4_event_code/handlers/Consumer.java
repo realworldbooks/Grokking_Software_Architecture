@@ -1,6 +1,6 @@
-package chapter07.eventcode.handlers;
+package com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.handlers;
 
-import chapter07.eventcode.shared.Event;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.shared.Event;
 import java.util.concurrent.CompletableFuture;
 
 /**

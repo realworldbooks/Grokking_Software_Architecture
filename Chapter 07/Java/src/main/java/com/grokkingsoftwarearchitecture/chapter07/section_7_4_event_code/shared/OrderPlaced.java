@@ -1,4 +1,4 @@
-package chapter07.eventcode.shared;
+package com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.shared;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -24,6 +24,7 @@ public record OrderPlaced(
     Instant occurredOn
 ) implements Event {
     public OrderPlaced(UUID correlationId, UUID orderId, UUID userId, double totalAmount) {
-        this(UUID.randomUUID(), correlationId, Instant.now(), orderId, userId, totalAmount);
+        // CORRECTED: Instant.now() moved to the end to match the record definition order
+        this(UUID.randomUUID(), correlationId, orderId, userId, totalAmount, Instant.now());
     }
 }

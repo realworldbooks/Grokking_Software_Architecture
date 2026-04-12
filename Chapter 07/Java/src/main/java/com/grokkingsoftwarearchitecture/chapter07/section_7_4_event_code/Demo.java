@@ -1,7 +1,7 @@
-package chapter07.eventcode;
+package com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code;
 
-import chapter07.eventcode.infrastructure.InMemoryBroker;
-import chapter07.eventcode.controllers.OrderController;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.infrastructure.InMemoryBroker;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.controllers.OrderController;
 import java.util.UUID;
 
 /**
@@ -9,7 +9,7 @@ import java.util.UUID;
  * together and executes the simulation.
  */
 public class Demo {
-    public void runAsync() throws InterruptedException {
+    public static void runAsync() throws InterruptedException {
         System.out.println("=== Section 7.4: Event Definition & Decoupling ===\n");
 
         // 1. Wire up the Shared Infrastructure (The Broker)

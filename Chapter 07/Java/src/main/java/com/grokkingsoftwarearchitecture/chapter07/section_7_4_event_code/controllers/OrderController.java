@@ -1,7 +1,7 @@
-package chapter07.eventcode.controllers;
+package com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.controllers;
 
-import chapter07.eventcode.core.EventPublisher;
-import chapter07.eventcode.shared.OrderPlaced;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.core.EventPublisher;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.shared.OrderPlaced;
 import java.util.UUID;
 
 /**

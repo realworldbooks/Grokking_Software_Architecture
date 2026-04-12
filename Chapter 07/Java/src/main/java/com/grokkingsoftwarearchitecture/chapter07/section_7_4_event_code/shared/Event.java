@@ -1,4 +1,4 @@
-package chapter07.eventcode.shared;
+package com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.shared;
 
 import java.time.Instant;
 import java.util.UUID;

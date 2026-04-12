@@ -1,6 +1,6 @@
-package chapter07.eventcode.core;
+package com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.core;
 
-import chapter07.eventcode.shared.Event;
+import com.grokkingsoftwarearchitecture.chapter07.section_7_4_event_code.shared.Event;
 
 /**
  * THE ABSTRACTION: This keeps your domain logic clean. The Order Service knows it 
