@@ -1,0 +1,13 @@
+{
+  "name": "chapter07-event-driven-architecture",
+  "version": "1.0.0",
+  "description": "Event-Driven Architecture Demo using RxJS",
+  "main": "menu.js",
+  "type": "module",
+  "scripts": {
+    "start": "node menu.js"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.1"
+  }
+}

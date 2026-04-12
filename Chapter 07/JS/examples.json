@@ -1,0 +1,10 @@
+{
+  "title": "Grokking Software Architecture Chapter 07: Event-Driven Architecture",
+  "examples": {
+    "1": {
+      "name": "Section 7.4 - Temporal Decoupling (RxJS In-Memory Broker)",
+      "path": "section_7_4_event_code/demo.js",
+      "isServer": false
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "1": {
+        "name": "Section 7.4 - Temporal Decoupling (In-Memory Broker)",
+        "path": "section_7_4_event_code.demo",
+        "isServer": false
+    }
+}
