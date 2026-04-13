@@ -1,0 +1,7 @@
+{
+  "name": "chapter08-database-architecture",
+  "type": "module",
+  "dependencies": {
+    "better-sqlite3": "^11.0.0"
+  }
+}
