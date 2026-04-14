@@ -1,0 +1,23 @@
+// THE DATABASE CONTEXT (Infrastructure Layer):
+// Tells Prisma we are using SQLite and where to save the file.
+datasource db {
+  provider = "sqlite"
+  url      = "file:../orm_demo.db"
+}
+
+// Tells Prisma to generate a native JavaScript client for us to use.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// THE DOMAIN MODEL (Declarative Mapping):
+// TEACHING NOTE:
+// We don't write SQL strings. We define our ideal object shape here, 
+// and Prisma automatically figures out how to build the tables.
+model User {
+  id        Int     @id @default(autoincrement())
+  firstName String
+  lastName  String
+  age       Int
+  isActive  Boolean
+}

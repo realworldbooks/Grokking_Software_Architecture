@@ -5,11 +5,14 @@
   "main": "menu.js",
   "type": "module",
   "scripts": {
-    "start": "node menu.js"
+    "start": "node menu.js",
+    "db:setup": "prisma db push"
   },
   "dependencies": {
+    "@prisma/client": "^5.12.0",
     "better-sqlite3": "^11.0.0"
   },
-  "author": "Grokking Software Architecture",
-  "license": "MIT"
+  "devDependencies": {
+    "prisma": "^5.12.0"
+  }
 }
