@@ -1,7 +1,15 @@
 {
-  "name": "chapter08-database-architecture",
+  "name": "chapter08-database-comparison",
+  "version": "1.0.0",
+  "description": "Companion code for Chapter 8: SQL vs. NoSQL vs. Vector",
+  "main": "menu.js",
   "type": "module",
+  "scripts": {
+    "start": "node menu.js"
+  },
   "dependencies": {
     "better-sqlite3": "^11.0.0"
-  }
+  },
+  "author": "Grokking Software Architecture",
+  "license": "MIT"
 }

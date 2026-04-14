@@ -1,4 +1,3 @@
-// infrastructure/MockSqlDatabase.java
 package com.grokkingsoftwarearchitecture.chapter08.section_8_1_4_database_comparison.infrastructure;
 
 import java.util.ArrayList;

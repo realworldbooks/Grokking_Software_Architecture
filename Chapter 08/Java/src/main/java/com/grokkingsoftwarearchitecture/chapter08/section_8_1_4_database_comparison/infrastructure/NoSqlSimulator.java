@@ -5,18 +5,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * THE DOCUMENT WAY (INFRASTRUCTURE LAYER): Fast, loose. Like a messy desk.
+ * Simulates MongoDB's document storage using standard Java lists and objects.
+ */
 public class NoSqlSimulator {
-    public record Document(String name, List<String> tags) {}
-    private final List<Document> collection = new ArrayList<>();
+    public final List<NoSqlDocument> collection = new ArrayList<>();
 
-    public void insertOne(Document document) {
+    public void insertOne(NoSqlDocument document) {
         collection.add(document);
     }
 
-    public List<String> findByTag(String tag) {
+    // The naive literal search
+    public List<String> findByName(String name) {
         return collection.stream()
-                .filter(doc -> doc.tags().contains(tag))
-                .map(Document::name)
+                .filter(doc -> doc.name.equals(name))
+                .map(doc -> doc.name)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> findByTag(String tag) {
+        // Contains Match: Better, but still relies on exact spelling of the tag.
+        return collection.stream()
+                .filter(doc -> doc.tags.contains(tag))
+                .map(doc -> doc.name)
                 .collect(Collectors.toList());
     }
 }
