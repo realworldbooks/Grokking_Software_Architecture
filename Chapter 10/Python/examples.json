@@ -1,0 +1,12 @@
+{
+    "1": {
+        "name": "The Fragile Way (Temporal Coupling Liability)",
+        "path": "section_10_3_resilience_decorators.fragile.demo",
+        "isServer": false
+    },
+    "2": {
+        "name": "The Resilient Way (Hexagonal + Retry Shield)",
+        "path": "section_10_3_resilience_decorators.resilient.demo",
+        "isServer": false
+    }
+}

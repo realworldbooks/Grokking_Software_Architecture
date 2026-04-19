@@ -1,0 +1,8 @@
+# Physical Networking
+requests>=2.31.0
+
+# Resilience & Retries
+tenacity>=8.2.3
+
+# Persistence for local-queues
+persist-queue>=0.8.1

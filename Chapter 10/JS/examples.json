@@ -1,0 +1,15 @@
+{
+  "title": "Grokking Software Architecture Chapter 10: Architecting for Resilience and Scale",
+  "examples": {
+    "1": {
+      "name": "Section 10.3 - Resilience Decorators - Fragile",
+      "path": "section_10_3_resilience_decorators/fragile/demo.js",
+      "isServer": false
+    },
+    "2": {
+      "name": "Section 10.3 - Resilience Decorators - Resilent",
+      "path": "section_10_3_resilience_decorators/resilient/demo.js",
+      "isServer": false
+    }
+  }
+}
