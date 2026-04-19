@@ -1,18 +1,24 @@
-package com.grokking.resilience.core.ports;
+package com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.core.ports;
 
-import com.grokking.resilience.core.domain.OrderStatus;
+import java.util.Map;
 
 /**
  * THE CORE PORT (The Asynchronous Airlock):
- * * DESIGN NOTE:
- * This port defines the system's capability to "defer work." The Core 
- * logic invokes this when the synchronous payment path is unavailable.
+ * * @description 
+ * Defines the contract for deferring work. This represents the "Producer" 
+ * side of a message handoff.
  * * ARCHITECTURAL CRITIQUE:
- * By defining this Port in the Core, we ensure the business logic is 
- * decoupled from specific infrastructure. The Core doesn't care if 
- * we use RabbitMQ, ActiveMQ, or AWS SQS. It only knows that it has a 
- * reliable way to secure the data during an infrastructure crisis.
+ * 1. ASYNC HANDOFF: This port ensures the Core can offload data without 
+ * waiting for a physical payment response, protecting the system from 
+ * cascading latency.
+ * 2. PORTABILITY: By defining this as a Java interface, we allow the 
+ * system to swap between a local MVStore (for the lab) and a production 
+ * RabbitMQ broker without touching the Core logic.
  */
 public interface MessageQueue {
-    void enqueue(String orderId, double amount, OrderStatus status, String idempotencyKey);
+    /**
+     * Deploys a payload to the durable message store.
+     * @param payload The transaction data to be secured.
+     */
+    void enqueue(Map<String, Object> payload);
 }

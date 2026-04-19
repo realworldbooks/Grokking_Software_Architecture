@@ -1,37 +1,55 @@
-package com.grokking.resilience;
+package com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient;
 
-import com.grokking.resilience.core.application.CheckoutOrchestrator;
-import com.grokking.resilience.infrastructure.adapters.ZebraPaymentAdapter;
-import com.grokking.resilience.infrastructure.adapters.MockMessageQueueAdapter;
+import com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.core.application.CheckoutOrchestrator;
+import com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.infrastructure.adapters.ZebraPaymentAdapter;
+import com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.infrastructure.adapters.LocalQueueAdapter;
 
+/**
+ * THE DEMO COMPOSER:
+ * * @description
+ * This file serves as the "Composition Root." In a production system, this 
+ * role might be handled by a Dependency Injection framework, but doing it 
+ * manually here makes the Hexagonal boundaries visible.
+ *
+ * ARCHITECTURAL CRITIQUE:
+ * Notice that we import the concrete Adapters here at the edge. We then 
+ * "Plug" them into the Orchestrator. The Orchestrator itself only knows 
+ * about the Ports (Interfaces), which is why it can survive a total 
+ * infrastructure swap with zero code changes to the Core.
+ */
 public class Demo {
-    public static void runResilienceScenario() {
-        System.out.println("\n=== Chapter 10.3: Resilience in Java (Hexagonal + Resilience4j) ===");
+    /**
+     * Entry point for the laboratory execution.
+     */
+    public static void run() {
+        System.out.println("\n=== Chapter 10.3: Resilience with Local Persistence (Java) ===");
 
-        // 1. ASSEMBLY (Dependency Injection)
-        // We fetch the configuration from the environment, not hardcoded strings.
-        String apiUrl = System.getenv().getOrDefault("PAYMENT_API_URL", "https://api.zebra.com");
+        // ASSEMBLY: Wiring concrete infrastructure into abstract core ports
+        // We use a local MVStore file for durability without external dependencies.
+        var paymentAdapter = new ZebraPaymentAdapter("https://api.zebra.com");
+        var queueAdapter = new LocalQueueAdapter("./payment_backlog.db");
         
-        var paymentAdapter = new ZebraPaymentAdapter(apiUrl);
-        var queueAdapter = new MockMessageQueueAdapter();
-        
+        // The Orchestrator (Core) is instantiated with its dependencies injected.
         var orchestrator = new CheckoutOrchestrator(paymentAdapter, queueAdapter);
 
-        // 2. SCENARIO EXECUTION
-        System.out.println("--- SCENARIO: Network unstable, executing Resilience4j-shielded adapter ---");
-        var result = orchestrator.processCheckout("ORD-JVM-101", 450.00);
+        System.out.println("--- SCENARIO: Simulating Primary Failure -> Plan B Fallback ---");
         
-        System.out.println("      [Final Result] Orchestrator returned status: " + result);
+        // Execute the business logic
+        var result = orchestrator.processCheckout("ORD-JAVA-LOCAL-99", 499.99);
+        
+        System.out.println("      [Final Result] Transaction State: " + result);
+        
+        // --- THE ARCHITECTURAL VERDICT ---
+        String separator = "=".repeat(60);
+        String subSeparator = "-".repeat(60);
 
-        // 3. THE ARCHITECTURAL VERDICT
-        System.out.println("\n" + "=".repeat(60));
-        System.out.println("ARCHITECTURAL VERDICT:");
-        System.out.println("-".repeat(60));
-        System.out.println("RESILIENCE4J: Policy is physically locked in the Adapter (Core stays pure).");
-        System.out.println("GRACEFUL DEGRADATION: Fallback to MessageQueue is a first-class Port.");
-        System.out.println("IDEMPOTENCY: Safely generated in Application Layer to survive retries.");
-        System.out.println("\nREALITY CHECK: A Clarity Engineer builds bulkheads, so a leak");
-        System.out.println("in one port (Payment) doesn't sink the whole ship.");
-        System.out.println("=".repeat(60));
+        System.out.println("\n" + separator);
+        System.out.println("ARCHITECTURAL VERDICT: THE RESILIENT WAY WITH MESSAGE QUEUE FALLBACK");
+        System.out.println(subSeparator);
+        System.out.println("DURABILITY: Failure data is secured to disk (SQLite/MVStore), not lost in RAM.");
+        System.out.println("ZERO-TRUST: No external accounts or servers needed for the lab.");
+        System.out.println("PURITY: The business logic is 100% library-agnostic.");
+        System.out.println("\nREALITY CHECK: A Clarity Engineer ensures the Core survives.");
+        System.out.println(separator + "\n");
     }
 }

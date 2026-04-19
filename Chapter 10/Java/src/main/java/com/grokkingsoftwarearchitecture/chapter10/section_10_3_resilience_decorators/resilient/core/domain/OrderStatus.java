@@ -1,4 +1,4 @@
-package com.grokking.resilience.core.domain;
+package com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.core.domain;
 
 /**
  * * DESIGN NOTE:

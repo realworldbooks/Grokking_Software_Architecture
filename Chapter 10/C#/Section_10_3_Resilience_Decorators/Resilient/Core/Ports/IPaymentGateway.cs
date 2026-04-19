@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Chapter10.Resilience.Core.Ports;
+namespace Chapter10.Resilient.Core.Ports;
 
 /// <summary>
 /// THE CORE PORT (The Primary Airlock):

@@ -24,7 +24,7 @@ class Demo:
 
     @staticmethod
     def run():
-        print("\n=== Chapter 10.3: Resilience with Local Persistence (Hexagonal) ===")
+        print("\n=== Chapter 10.3: Resilience with Local Persistence ===")
         
         # ENVIRONMENT DECOUPLING
         # We fetch the vendor location from the environment, not hardcoded strings.
@@ -50,7 +50,7 @@ class Demo:
 
         # ARCHITECTURAL VERDICT
         print("\n" + "="*60)
-        print("ARCHITECTURAL VERDICT: THE DURABLE HEXAGON")
+        print("ARCHITECTURAL VERDICT: THE RESILIENT WAY WITH MESSAGE QUEUE FALLBACK")
         print("-" * 60)
         print("DURABILITY: Failure data is secured to disk (SQLite), not lost in RAM.")
         print("ZERO-TRUST: No external accounts or servers needed for the lab.")

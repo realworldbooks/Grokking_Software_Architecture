@@ -1,6 +1,6 @@
-package com.grokking.chapter10.resilience;
+package com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.fragile;
 
-import com.grokking.chapter10.resilience.infrastructure.FragilePaymentService;
+//import com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.fragile.FragilePaymentService;
 
 /**
  * THE FRAGILE DEMO COMPOSER:
@@ -21,9 +21,9 @@ import com.grokking.chapter10.resilience.infrastructure.FragilePaymentService;
  * is simply forgotten. In a professional system, this is a loss of 
  * revenue and customer trust.
  */
-public class DemoFragile {
+public class Demo {
 
-    public static void runFragileScenario() {
+    public static void run() {
         System.out.println("\n=== Chapter 10.3: The Fragile Way (Java) ===");
 
         // We instantiate the liability directly.

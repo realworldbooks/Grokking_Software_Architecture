@@ -1,0 +1,10 @@
+{
+  "1": {
+    "name": "Section 10.3 - Resilience Decorators - Fragile Demo",
+    "type": "Chapter10.Fragile.Demo"
+  },
+  "2": {
+    "name": "Section 10.3 - Resilience Decorators - Resilient Demo",
+    "type": "Chapter10.Resilient.Demo"
+  }
+}

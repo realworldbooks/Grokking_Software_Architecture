@@ -1,4 +1,4 @@
-package com.grokking.chapter10.resilience.infrastructure;
+package com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.fragile;
 
 import java.net.URI;
 import java.net.http.HttpClient;

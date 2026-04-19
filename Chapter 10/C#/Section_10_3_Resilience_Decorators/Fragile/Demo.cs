@@ -1,8 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Chapter10.Resilience.Infrastructure;
 
-namespace Chapter10.Resilience;
+namespace Chapter10.Fragile;
 
 /// <summary>
 /// THE FRAGILE DEMO COMPOSER:
@@ -28,7 +27,7 @@ namespace Chapter10.Resilience;
 /// </summary>
 public static class Demo
 {
-    public static async Task RunFragileScenarioAsync()
+    public static async Task Run()
     {
         Console.WriteLine("\n=== Chapter 10.3: The Fragile Way (C#) ===");
 

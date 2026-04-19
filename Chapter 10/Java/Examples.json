@@ -1,21 +1,14 @@
 {
-  "chapter": "06",
-  "title": "Grokking Software Architecture Chapter 06: AI-Ready APIs",
-  "examples": [
-    {
-      "id": "1",
-      "title": "Section 6.1 - Basic REST Implementation (The Over-Fetching Problem)",
-      "targetClass": "com.grokkingsoftwarearchitecture.chapter06.section_6_3_1_rest.Demo"
+  "chapter": "10",
+  "title": "Grokking Software Architecture Chapter 10: Java Examples",
+  "examples": {
+    "1": {
+      "name": "Section 10.3 - Resilience Decorators - Fragile Example",
+      "type": "com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.fragile.Demo"
     },
-    {
-      "id": "2",
-      "title": "Section 6.2 - GraphQL Implementation (Precision Data Fetching)",
-      "targetClass": "com.grokkingsoftwarearchitecture.chapter06.section_6_3_2_graphql.Demo"
-    },
-    {
-      "id": "3",
-      "title": "Section 6.3 - AI-Driven API (Prompt Engineering via Swagger)",
-      "targetClass": "com.grokkingsoftwarearchitecture.chapter06.section_6_4_3_the_modern_architect_ai_rule.Demo"
+    "2": {
+      "name": "Section 10.3 - Resilience Decorators - Resilient Example",
+      "type": "com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.Demo"
     }
-  ]
+  }
 }

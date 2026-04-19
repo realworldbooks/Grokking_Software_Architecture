@@ -1,50 +1,67 @@
 using System;
 using System.Threading.Tasks;
-using Chapter10.Resilience.Core.Domain;
-using Chapter10.Resilience.Core.Ports;
+using Chapter10.Resilient.Core.Domain;
+using Chapter10.Resilient.Core.Ports;
 
-namespace Chapter10.Resilience.Core.Application;
-
-public class CheckoutOrchestrator
+namespace Chapter10.Resilient.Core.Application
 {
-    private readonly IPaymentGateway _paymentGateway;
-    private readonly IMessageQueue _messageQueue;
-
-    public CheckoutOrchestrator(IPaymentGateway paymentGateway, IMessageQueue messageQueue)
+    /// <summary>
+    /// THE CORE APPLICATION LAYER:
+    /// * @description
+    /// This orchestrator coordinates the business flow using Ports. It 
+    /// manages the "What" (Business Policy) while remaining blind 
+    /// to the "How" (Infrastructure Implementation).
+    ///
+    /// ARCHITECTURAL CRITIQUE:
+    /// 1. PIVOT ON FAILURE: When the primary gateway's internal retries are 
+    ///    exhausted, the Orchestrator executes 'Plan B' (The Queue).
+    /// 2. IDEMPOTENCY: The key is generated in the Core. This ensures that 
+    ///    if a message is processed later from the queue, we don't 
+    ///    double-charge the customer.
+    /// </summary>
+    public class CheckoutOrchestrator
     {
-        _paymentGateway = paymentGateway;
-        _messageQueue = messageQueue;
-    }
+        private readonly IPaymentGateway _paymentPort;
+        private readonly IMessageQueue _queuePort;
 
-    public async Task<OrderStatus> ProcessCheckoutAsync(string orderId, decimal amount)
-    {
-        // #G: Idempotency Key is a Business-Level safety mechanism.
-        // It must remain constant across all retry attempts.
-        string idempotencyKey = Guid.NewGuid().ToString();
-
-        try
+        public CheckoutOrchestrator(IPaymentGateway paymentPort, IMessageQueue queuePort)
         {
-            // 1. THE HAPPY PATH (Hidden retries happen inside the Adapter)
-            await _paymentGateway.ChargeAsync(amount, orderId, idempotencyKey);
-            Console.WriteLine("      [Core Application] PRIMARY SUCCESS: Transaction PAID.");
-            return OrderStatus.Paid;
+            _paymentPort = paymentPort;
+            _queuePort = queuePort;
         }
-        catch (Exception ex)
+
+        public async Task<OrderStatus> ProcessCheckout(string orderId, decimal amount)
         {
-            // #H: THE FALLBACK (Plan B)
-            // When the adapter's Resilience Policy (Polly) finally gives up, 
-            // the Orchestrator executes the recovery path.
-            Console.WriteLine($"      [Core Application] PRIMARY FAILED: {ex.Message}");
-            Console.WriteLine("      [Core Application] EXECUTING PLAN B: Securing data in Queue.");
+            // Idempotency generation is a Core Business concern.
+            string idempotencyKey = Guid.NewGuid().ToString();
 
-            await _messageQueue.EnqueueAsync(new {
-                OrderId = orderId,
-                Total = amount,
-                Status = OrderStatus.PendingPayment,
-                Key = idempotencyKey
-            });
+            try
+            {
+                // 1. THE HAPPY PATH (Hidden retries happen inside the adapter)
+                await _paymentPort.ChargeAsync(amount, orderId, idempotencyKey);
+                Console.WriteLine("      [Core Application] PRIMARY SUCCESS: Transaction PAID.");
+                return OrderStatus.Paid;
+            }
+            catch (Exception ex)
+            {
+                // 2. THE FALLBACK (Plan B)
+                Console.WriteLine($"      [Core Application] PRIMARY FAILED: {ex.Message}");
+                Console.WriteLine("      [Core Application] EXECUTING PLAN B: Securing data in Queue.");
 
-            return OrderStatus.PendingPayment;
+                // We bundle the data into a unified payload for the Port
+                var payload = new
+                {
+                    OrderId = orderId,
+                    Amount = amount,
+                    Status = OrderStatus.PendingPayment.ToString(),
+                    IdempotencyKey = idempotencyKey,
+                    QueuedAt = DateTime.UtcNow
+                };
+
+                await _queuePort.Enqueue(payload);
+
+                return OrderStatus.PendingPayment;
+            }
         }
     }
 }

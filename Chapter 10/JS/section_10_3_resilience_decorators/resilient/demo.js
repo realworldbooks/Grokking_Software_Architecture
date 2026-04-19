@@ -40,7 +40,7 @@ export class Demo {
         const subSeparator = "-".repeat(60);
         
         console.log(`\n${separator}`);
-        console.log("ARCHITECTURAL VERDICT: THE DURABLE HEXAGON");
+        console.log("ARCHITECTURAL VERDICT: THE RESILIENT WAY WITH MESSAGE QUEUE FALLBACK");
         console.log(subSeparator);
         console.log("DURABILITY: Failure data is secured to disk (SQLite), not lost in RAM.");
         console.log("ZERO-TRUST: No external accounts or servers needed for the lab.");

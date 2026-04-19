@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Chapter10.Resilience.Infrastructure;
+namespace Chapter10.Fragile;
 
 /// <summary>
 /// THE FRAGILE IMPLEMENTATION:

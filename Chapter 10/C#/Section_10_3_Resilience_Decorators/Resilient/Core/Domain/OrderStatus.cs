@@ -1,4 +1,4 @@
-namespace Chapter10.Resilience.Core.Domain;
+namespace Chapter10.Resilient.Core.Domain;
 
 /// <summary>
 /// DESIGN NOTE:
