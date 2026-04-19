@@ -1,0 +1,13 @@
+{
+  "name": "gsa-chapter09",
+  "version": "1.0.0",
+  "description": "Companion code for Chapter 9",
+  "main": "menu.js",
+  "type": "module",
+  "scripts": {
+    "start": "node menu.js"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.1"
+  }
+}

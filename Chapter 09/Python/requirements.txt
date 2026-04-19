@@ -1,0 +1,10 @@
+# SECTION 9.2: INFRASTRUCTURE AS CODE & SDKs
+# Used for imperative cloud control and infrastructure mocking
+boto3==1.34.84
+moto==5.0.5
+
+# SECTION 9.3.4: SERVERLESS FUNCTIONS (REACTIVE)
+# Used to model cloud triggers as asynchronous streams (Observables)
+# ARCHITECTURAL NOTE: This library allows us to move away from Promise-based 
+# "wait-states" and into projective data pipelines.
+rx>=3.2.0
