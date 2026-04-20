@@ -1,6 +1,6 @@
-package com.grokking.chapter09.section_9_3_4_serverless_functions.handlers;
+package com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.handlers;
 
-import com.grokking.chapter09.section_9_3_4_serverless_functions.infrastructure.azure.MockAzureContext;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.azure.MockAzureContext;
 import io.reactivex.rxjava3.core.Observable;
 
 public class AzureFunctionHandler {

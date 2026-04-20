@@ -1,6 +1,6 @@
-package com.grokking.chapter09.section_9_2_3_stateful_vs_stateless.infrastructure;
+package com.grokkingsoftwarearchitecture.chapter09.section_9_2_3_stateful_vs_stateless_design.infrastructure;
 
-import com.grokking.chapter09.section_9_2_3_stateful_vs_stateless.services.StorageProvider;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_2_3_stateful_vs_stateless_design.services.StorageProvider;
 import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

@@ -1,4 +1,4 @@
-public package com.grokking.chapter09.section_9_3_4_serverless_functions.infrastructure.web;
+package com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.web;
 
 /**
  * THE INFRASTRUCTURE CONTRACT (Standard Webhook Payload):
@@ -16,6 +16,4 @@ public package com.grokking.chapter09.section_9_3_4_serverless_functions.infrast
  */
 public record MockWebhookPayload(String type, String table, MockWebhookRecord record) {
     public record MockWebhookRecord(String bucketId, String name) {}
-} {
-    
-}
+} 

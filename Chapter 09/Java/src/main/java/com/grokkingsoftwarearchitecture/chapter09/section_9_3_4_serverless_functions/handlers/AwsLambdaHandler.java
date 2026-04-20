@@ -1,7 +1,7 @@
-package com.grokking.chapter09.section_9_3_4_serverless_functions.handlers;
+package com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.handlers;
 
-import com.grokking.chapter09.section_9_3_4_serverless_functions.infrastructure.aws.APIGatewayProxyResponse;
-import com.grokking.chapter09.section_9_3_4_serverless_functions.infrastructure.aws.MockS3Event;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.aws.APIGatewayProxyResponse;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.aws.MockS3Event;
 import io.reactivex.rxjava3.core.Observable;
 
 public class AwsLambdaHandler {

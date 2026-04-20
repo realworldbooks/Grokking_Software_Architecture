@@ -1,46 +1,100 @@
-package com.grokking.chapter09;
+package com.grokkingsoftwarearchitecture.chapter09;
 
-import com.grokking.chapter09.section_9_2_3_stateful_vs_stateless.Demo;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Main {
-    
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        ObjectMapper mapper = new ObjectMapper();
+        File configFile = new File("Examples.json");
 
-        while (true) {
-            System.out.println("\n============================================================");
-            System.out.println("=== Chapter 9: Cloud Native & Stateless Architecture ===");
-            System.out.println("============================================================");
-            
-            System.out.println("\n--- Section 9.2.3: Stateful vs. Stateless Design ---");
-            System.out.println("1. Run Stateful Scenario (The Fragile Monolith)");
-            System.out.println("2. Run Stateless Scenario (Cloud Native S3)");
-            
-            System.out.println("\n0. Exit");
-            System.out.println("============================================================");
-            
-            System.out.print("\nEnter your choice (0-2): ");
-            String choice = scanner.nextLine().trim();
+        if (!configFile.exists()) {
+            System.out.println("[ERROR] Examples.json not found!");
+            return;
+        }
 
-            switch (choice) {
-                case "1": 
-                    Demo.runStatefulScenario(); 
-                    break;
-                case "2": 
-                    Demo.runStatelessScenario(); 
-                    break;
-                case "0":
-                    System.out.println("Exiting Chapter 9 Demo...");
-                    scanner.close();
-                    return; 
-                default:
-                    System.out.println("Invalid choice. Please enter a number between 0 and 2.");
-                    continue;
+        try {
+            
+            ChapterConfig config = mapper.readValue(configFile, ChapterConfig.class);
+            
+            // Sort examples numerically
+            TreeMap<String, ExampleConfig> sortedExamples = new TreeMap<>(
+                    (k1, k2) -> Integer.compare(Integer.parseInt(k1), Integer.parseInt(k2))
+            );
+            sortedExamples.putAll(config.getExamples());
+
+            Scanner scanner = new Scanner(System.in);
+
+            while (true) {
+                System.out.println("\n\n=== " + config.getTitle() + " ===\n");
+
+                for (Map.Entry<String, ExampleConfig> entry : sortedExamples.entrySet()) {
+                    System.out.println(entry.getKey() + ". " + entry.getValue().getName());
+                }
+
+                System.out.print("\nEnter your choice (or 'exit'): ");
+                String choice = scanner.nextLine().trim();
+
+                if ("exit".equalsIgnoreCase(choice)) break;
+
+                ExampleConfig selected = config.getExamples().get(choice);
+                if (selected != null) {
+                    runExample(selected);
+                    System.out.println("\nPress Enter to return to menu...");
+                    scanner.nextLine();
+                }
             }
-            
-            System.out.println("\nPress Enter to return to the main menu...");
-            scanner.nextLine();
+            scanner.close();
+        } catch (Exception e) {
+            System.err.println("[ERROR] Failed to load lab configuration.");
+            e.printStackTrace();
         }
     }
+
+    private static void runExample(ExampleConfig config) {
+        try {
+            Class<?> clazz = Class.forName(config.getType());
+            Method runMethod;
+            try {
+                runMethod = clazz.getMethod("runAsync");
+            } catch (NoSuchMethodException e) {
+                runMethod = clazz.getMethod("run");
+            }
+            runMethod.invoke(null);
+        } catch (Exception e) {
+            System.out.println("[ERROR] Execution failed: " + e.getMessage());
+        }
+    }
+}
+
+/**
+ * THE ROOT CONFIGURATION:
+ * Matches the top-level structure of Examples.json.
+ */
+class ChapterConfig {
+    private String chapter;
+    private String title;
+    private Map<String, ExampleConfig> examples;
+
+    // Getters and Setters
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public Map<String, ExampleConfig> getExamples() { return examples; }
+    public void setExamples(Map<String, ExampleConfig> examples) { this.examples = examples; }
+    public String getChapter() { return chapter; }
+    public void setChapter(String chapter) { this.chapter = chapter; }
+}
+
+class ExampleConfig {
+    private String name;
+    private String type;
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
 }

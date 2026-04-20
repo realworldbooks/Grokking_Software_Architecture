@@ -1,17 +1,11 @@
-package com.grokking.chapter09.section_9_3_4_serverless_functions;
+package com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions;
 
-import com.grokking.chapter09.section_9_3_4_serverless_functions.AwsLambdaHandler;
-import com.grokking.chapter09.section_9_3_4_serverless_functions.handlers.*;
-import com.grokking.chapter09.section_9_3_4_serverless_functions.infrastructure.MockAzureContext;
-import com.grokking.chapter09.section_9_3_4_serverless_functions.infrastructure.aws.*;
-import com.grokking.chapter09.section_9_3_4_serverless_functions.infrastructure.web.*;
-
-import main.java.com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.handlers.AzureFunctionHandler;
-import main.java.com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.handlers.DatabaseWebhookHandler;
-import main.java.com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.web.MockWebhookPayload;
-
+import com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.handlers.*;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.azure.*;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.aws.*;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.web.*;
 public class Demo {
-    public static void runServerlessScenario() {
+    public static void run() {
         System.out.println("\n=== Section 9.3.4: Serverless Functions (Reactive Vendor Comparison) ===");
 
         // 1. AWS REACTIVE SIMULATION

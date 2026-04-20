@@ -1,4 +1,4 @@
-package com.grokking.chapter09.section_9_2_3_stateful_vs_stateless.services;
+package com.grokkingsoftwarearchitecture.chapter09.section_9_2_3_stateful_vs_stateless_design.services;
 
 /**
  * THE PORT (Dependency Inversion Principle):

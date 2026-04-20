@@ -1,15 +1,36 @@
-package com.grokking.chapter09.section_9_2_3_stateful_vs_stateless;
+package com.grokkingsoftwarearchitecture.chapter09.section_9_2_3_stateful_vs_stateless_design;
 
-import com.grokking.chapter09.section_9_2_3_stateful_vs_stateless.services.UserService;
-import com.grokking.chapter09.section_9_2_3_stateful_vs_stateless.infrastructure.LocalStorageProvider;
-import com.grokking.chapter09.section_9_2_3_stateful_vs_stateless.infrastructure.SimulatedCloudStorageProvider;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_2_3_stateful_vs_stateless_design.services.UserService;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_2_3_stateful_vs_stateless_design.infrastructure.LocalStorageProvider;
+import com.grokkingsoftwarearchitecture.chapter09.section_9_2_3_stateful_vs_stateless_design.infrastructure.SimulatedCloudStorageProvider;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * THE ARCHITECTURAL COMPARATOR:
+ * * This class orchestrates two distinct design philosophies to demonstrate 
+ * the "Horizontal Scaling Fallacy." It contrasts local file-system 
+ * dependency with external cloud persistence.
+ */
 public class Demo {
 
-    public static void runStatefulScenario() {
+    /**
+     * THE STATIC ENTRY POINT:
+     * Executes both scenarios sequentially to show the transition from 
+     * fragile stateful logic to robust stateless architecture.
+     */
+    public static void run() {
+        // --- SCENARIO 1: THE FRAGILE MONOLITH ---
+        runStatefulScenario();
+
+        System.out.println("----------------------------------------------------------------------");
+
+        // --- SCENARIO 2: THE CLOUD NATIVE RECOVERY ---
+        runStatelessScenario();
+    }
+
+    private static void runStatefulScenario() {
         System.out.println("\n=== Scenario 1: Stateful Design (The Fragile Monolith) ===");
         System.out.println("THE SETUP: Two web servers running behind a Load Balancer.");
         System.out.println("THE ARCHITECTURE: Using LocalStorageProvider (Stateful).\n");
@@ -22,7 +43,7 @@ public class Demo {
             System.out.println("--- Request 1: User uploads a profile picture ---");
             System.out.println("  [Load Balancer] Routing traffic to Server A...");
             
-            // The file gets saved physically onto Server A's disk.
+            // The file gets saved physically onto Server A's disk and is trapped there.
             serverAService.uploadAvatar("user_123", "face_data_001");
             System.out.println("  [Result] Upload Successful (Saved to Server A's local drive).\n");
 
@@ -46,14 +67,14 @@ public class Demo {
         }
     }
 
-    public static void runStatelessScenario() {
+    private static void runStatelessScenario() {
         System.out.println("\n=== Scenario 2: Stateless Design (Cloud Native) ===");
         System.out.println("THE SETUP: Two web servers running behind a Load Balancer.");
         System.out.println("THE ARCHITECTURE: Using SimulatedCloudStorageProvider (Stateless).\n");
 
         try {
             // 1. Setup: Both server instances now point to the exact same external infrastructure.
-            // We have successfully separated the 'Compute' (servers) from the 'State' (storage).
+            // We have successfully separated 'Compute' (the servers) from 'State' (the storage).
             SimulatedCloudStorageProvider sharedS3 = new SimulatedCloudStorageProvider("grokking-app-bucket");
             UserService serverAService = new UserService(sharedS3);
             UserService serverBService = new UserService(sharedS3);
@@ -61,15 +82,14 @@ public class Demo {
             System.out.println("--- Request 1: User uploads a profile picture ---");
             System.out.println("  [Load Balancer] Routing traffic to Server A...");
             
-            // Server A processes the logic, but immediately hands the data off to the external cloud.
+            // Server A processes logic, but immediately hands data off to the external cloud.
             serverAService.uploadAvatar("user_123", "face_data_001");
             System.out.println("  [Result] Upload Successful (Pushed to S3).\n");
 
             System.out.println("--- Request 2: User refreshes to view their profile ---");
             System.out.println("  [Load Balancer] Routing traffic to Server B...");
             
-            // Server B fetches the data from the central cloud adapter. It doesn't matter that 
-            // Server B wasn't the one who originally handled the upload!
+            // Server B fetches the data from the central cloud. It is interchangeable!
             String data = serverBService.viewAvatar("user_123");
             
             System.out.println("  [Result] SUCCESS! Server B downloaded the file. Data: '" + data + "'");

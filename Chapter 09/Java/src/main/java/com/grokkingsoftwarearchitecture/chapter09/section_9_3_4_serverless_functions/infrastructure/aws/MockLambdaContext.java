@@ -1,4 +1,4 @@
-package com.grokking.chapter09.section_9_3_4_serverless_functions.infrastructure.aws;
+package com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.aws;
 
 /**
  * THE AWS RUNTIME CONTEXT:
