@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
 
-namespace Chapter09.Section3_ServerlessFunctions.Infrastructure.Aws;
+namespace Chapter09.ServerlessFunctions.Infrastructure.Aws;
 
 /// <summary>
 /// THE AWS INFRASTRUCTURE CONTRACT (Reactive S3 Event):

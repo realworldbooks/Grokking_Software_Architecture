@@ -1,4 +1,4 @@
-namespace Chapter09.Section1_StatefulVsStateless.Services;
+namespace Chapter09.StatefulVsStateless.Services;
 
 /// <summary>
 /// THE APPLICATION LAYER (Core Business Logic):

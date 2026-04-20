@@ -1,8 +1,8 @@
 using System;
 using System.IO;
-using Chapter09.Section3_ServerlessFunctions.Infrastructure;
+using Chapter09.ServerlessFunctions.Infrastructure.Azure;
 
-namespace Chapter09.Section3_ServerlessFunctions.Handlers;
+namespace Chapter09.ServerlessFunctions.Handlers;
 
 public class AzureFunctionHandler
 {

@@ -43,7 +43,7 @@ namespace Chapter07
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("=== Grokking Software Architecture Chapter 06: C# Examples ===\n");
+                Console.WriteLine("=== Grokking Software Architecture Chapter 10: C# Examples ===\n");
 
                 // Sort keys numerically for a clean, logical menu display
                 var sortedKeys = examples.Keys.OrderBy(k => int.Parse(k)).ToList();

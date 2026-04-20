@@ -2,7 +2,7 @@ using System;
 using System.Text.Json;
 using System.Reactive.Linq;
 
-namespace Chapter09.Section3_ServerlessFunctions.Infrastructure.Web;
+namespace Chapter09.ServerlessFunctions.Infrastructure.Web;
 
 /// <summary>
 /// THE INFRASTRUCTURE WRAPPER (Standard HTTP Request):
@@ -33,7 +33,7 @@ public class MockHttpRequest
     /// all our cloud implementations.
     /// </summary>
     /// <returns>An IObservable emitting the deserialized payload.</returns>
-    public IObservable<MockWebhookPayload> GetBody$()
+    public IObservable<MockWebhookPayload> GetBody()
     {
         var payload = JsonSerializer.Deserialize<MockWebhookPayload>(_jsonBody, 
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;

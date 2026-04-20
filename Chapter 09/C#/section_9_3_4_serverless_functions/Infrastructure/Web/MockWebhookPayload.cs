@@ -1,4 +1,4 @@
-namespace Chapter09.Section3_ServerlessFunctions.Infrastructure.Web;
+namespace Chapter09.ServerlessFunctions.Infrastructure.Web;
 
 /// <summary>
 /// THE INFRASTRUCTURE CONTRACT (Standard Webhook Payload):

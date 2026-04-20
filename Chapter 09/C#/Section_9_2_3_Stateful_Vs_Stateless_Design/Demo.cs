@@ -1,9 +1,9 @@
 using System;
 using System.IO;
-using Chapter09.Section1_StatefulVsStateless.Services;
-using Chapter09.Section1_StatefulVsStateless.Infrastructure;
+using Chapter09.StatefulVsStateless.Services;
+using Chapter09.StatefulVsStateless.Infrastructure;
 
-namespace Chapter09.Section1_StatefulVsStateless;
+namespace Chapter09.StatefulVsStateless;
 
 public class Demo
 {

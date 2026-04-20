@@ -1,7 +1,7 @@
 using System.IO;
-using Chapter09.Section1_StatefulVsStateless.Services;
+using Chapter09.StatefulVsStateless.Services;
 
-namespace Chapter09.Section1_StatefulVsStateless.Infrastructure;
+namespace Chapter09.StatefulVsStateless.Infrastructure;
 
 /// <summary>
 /// THE STATEFUL ADAPTER (The Fragile Monolith):

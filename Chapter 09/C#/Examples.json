@@ -1,0 +1,10 @@
+{
+  "1": {
+    "name": "Section 9.2.3 - Stateful Vs. Stateless Design",
+    "type": "Chapter09.StatefulVsStateless.Demo"
+  },
+  "2": {
+    "name": "Section 9.3.4- Serverless Functions",
+    "type": "Chapter09.ServerlessFunctions.Demo"
+  }
+}

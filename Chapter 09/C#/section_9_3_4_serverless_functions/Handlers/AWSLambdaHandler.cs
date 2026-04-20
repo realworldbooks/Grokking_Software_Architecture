@@ -1,8 +1,10 @@
 using System;
 using System.Reactive.Linq;
-using Chapter09.Section3_ServerlessFunctions.Infrastructure.Aws;
+using Amazon.Lambda.APIGatewayEvents;
+using Amazon.Lambda.S3Events;
+using Chapter09.ServerlessFunctions.Infrastructure.Aws;
 
-namespace Chapter09.Section3_ServerlessFunctions.Handlers;
+namespace Chapter09.ServerlessFunctions.Handlers;
 
 public class AwsLambdaHandler
 {
@@ -16,7 +18,7 @@ public class AwsLambdaHandler
     /// </summary>
     /// <param name="eventStream">A stream of proprietary AWS S3 events.</param>
     /// <returns>A stream emitting the AWS-compliant response object.</returns>
-    public IObservable<APIGatewayProxyResponse> Handle$(IObservable<MockS3Event> eventStream)
+    public IObservable<APIGatewayProxyResponse> Handle(IObservable<MockS3Event> eventStream)
     {
         return eventStream.Select(s3Event => 
         {

@@ -1,4 +1,4 @@
-namespace Chapter09.Section3_ServerlessFunctions.Infrastructure.Aws;
+namespace Chapter09.ServerlessFunctions.Infrastructure.Aws;
 
 /// <summary>
 /// THE AWS RUNTIME CONTEXT:

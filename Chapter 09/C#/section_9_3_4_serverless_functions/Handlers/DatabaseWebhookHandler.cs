@@ -1,8 +1,8 @@
 using System;
 using System.Reactive.Linq;
-using Chapter09.Section3_ServerlessFunctions.Infrastructure.Web;
+using Chapter09.ServerlessFunctions.Infrastructure.Web;
 
-namespace Chapter09.Section3_ServerlessFunctions.Handlers;
+namespace Chapter09.ServerlessFunctions.Handlers;
 
 public class DatabaseWebhookHandler
 {
@@ -25,9 +25,9 @@ public class DatabaseWebhookHandler
     /// </summary>
     /// <param name="request">The standard mock reactive request object.</param>
     /// <returns>A stream emitting the processing result string.</returns>
-    public IObservable<string> Handle$(MockHttpRequest request)
+    public IObservable<string> Handle(MockHttpRequest request)
     {
-        return request.GetBody$().Select(payload => 
+        return request.GetBody().Select(payload => 
         {
             string fileName = payload.Record.Name;
 

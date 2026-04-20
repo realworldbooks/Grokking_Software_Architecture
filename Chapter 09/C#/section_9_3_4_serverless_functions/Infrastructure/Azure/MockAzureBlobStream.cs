@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Reactive.Linq;
 
-namespace Chapter09.Section3_ServerlessFunctions.Infrastructure.Azure;
+namespace Chapter09.ServerlessFunctions.Infrastructure.Azure;
 
 /// <summary>
 /// THE AZURE INFRASTRUCTURE CONTRACT (Reactive Blob Stream):
