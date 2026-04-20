@@ -1,5 +1,5 @@
 from rx import operators as ops
-from infrastructure.web.mock_http_request import MockHttpRequest
+from ..infrastructure.web.mock_http_request import MockHttpRequest
 
 class SupabaseWebhookHandler:
     """

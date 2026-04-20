@@ -1,37 +1,44 @@
+from rx import operators as ops
 import json
 
-def aws_handler(event: dict, context: dict) -> dict:
+class AwsLambdaHandler:
     """
-    CLOUD 1: AWS LAMBDA (The Imperative Island)
+    CLOUD 1: AWS LAMBDA (The Imperative Island - Reactive)
     
     THE ARCHITECTURAL LESSON: 
-    This code is "Infrastructure-Heavy." AWS gives you the metadata, but it's 
-    up to you to write the instructions to get the actual work done.
+    Even when using modern Observables, AWS remains "Infrastructure-Heavy." 
+    Because the platform only hands you metadata, your reactive pipeline 
+    must contain the "Plumbing" to go fetch the actual data bytes.
     
     TEACHING NOTE:
-    Notice how tightly this code is tied to AWS. The 'event' object is a 
-    proprietary AWS dictionary. To even start resizing an image, we first 
-    have to write code to navigate through AWS-specific keys like ['Records'][0]['s3']. 
-    This is an "Abstraction Leak"—our code knows way too much about Amazon's 
-    internal data structures.
+    Notice how the 'ops.map' operator is used to navigate the proprietary 
+    AWS S3 dictionary. This represents an "Abstraction Leak"—the vendor's 
+    data model is now physically part of our reactive logic.
     """
     
-    # 1. THE CLOUD CONTRACT: Navigating proprietary JSON
-    # This logic only works if the trigger is an AWS S3 event.
-    bucket_name = event['Records'][0]['s3']['bucket']['name']
-    file_name = event['Records'][0]['s3']['object']['key']
+    def handle_stream(self, event_stream_obs, context):
+        """
+        Observes a stream of AWS S3 events and projects a response.
+        """
+        return event_stream_obs.pipe(
+            ops.map(lambda event: self._process_logic(event, context))
+        )
 
-    print(f"      [AWS Lambda] Detected upload in bucket: {bucket_name}")
-    
-    # 2. THE IMPERATIVE FETCH: We are responsible for the network call
-    # If we wanted to test this logic locally, we'd have to mock the Boto3 SDK.
-    print(f"      [AWS Lambda] Manually fetching bytes using Boto3 SDK...")
-    
-    # 3. THE LOGIC: Baked directly into the cloud trigger
-    print(f"      [AWS Lambda] Processing image resize...")
-    
-    # 4. THE RESPONSE: Coupled to AWS API Gateway/Lambda requirements
-    return {
-        'statusCode': 200,
-        'body': json.dumps(f"AWS processed {file_name}")
-    }
+    def _process_logic(self, event, context):
+        # 1. THE CLOUD CONTRACT: Navigating proprietary JSON
+        bucket_name = event['Records'][0]['s3']['bucket']['name']
+        file_name = event['Records'][0]['s3']['object']['key']
+
+        print(f"      [AWS Lambda] Request {context.aws_request_id} observed: {file_name}")
+        
+        # 2. THE IMPERATIVE FETCH: We are responsible for the network call
+        print(f"      [AWS Lambda] Plumbing: Manually fetching bytes via Boto3 SDK...")
+        
+        # 3. THE LOGIC:
+        print(f"      [AWS Lambda] Processing image resize reactively...")
+        
+        # 4. THE RESPONSE: AWS-compliant return structure
+        return {
+            'statusCode': 200,
+            'body': json.dumps(f"AWS reactive processed {file_name}")
+        }

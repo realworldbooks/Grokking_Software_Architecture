@@ -1,10 +1,10 @@
 from rx import of
-from handlers.aws_lambda_handler import AwsLambdaHandler
-from handlers.supabase_webhook_handler import SupabaseWebhookHandler
-from infrastructure.aws.s3_event import MockS3Event
-from infrastructure.aws.lambda_context import MockLambdaContext
-from infrastructure.web.mock_webhook_payload import MockWebhookPayload
-from infrastructure.web.mock_http_request import MockHttpRequest
+from .handlers.aws_lambda import AwsLambdaHandler
+from .handlers.supabase_webhook import SupabaseWebhookHandler
+from .infrastructure.aws.s3_event import MockS3Event
+from .infrastructure.aws.lambda_context import MockLambdaContext
+from .infrastructure.web.mock_webhook_payload import MockWebhookPayload
+from .infrastructure.web.mock_http_request import MockHttpRequest
 
 class Demo:
     """
@@ -22,7 +22,7 @@ class Demo:
     """
 
     @staticmethod
-    def run_serverless_scenario():
+    def run():
         print("\n=== Section 9.3.4: Serverless Functions (Reactive Vendor Comparison) ===")
         print("THE SETUP: We need to resize an image, but we want to see how different")
         print("           Cloud Providers architect their serverless triggers.\n")
@@ -32,11 +32,11 @@ class Demo:
         # ---------------------------------------------------------
         print("--- 1. AWS Lambda Simulator ---")
         # We wrap the proprietary AWS JSON structure into an Observable stream
-        event_stream$ = MockS3Event.create_stream("user-images", "rx_aws_lambda.png")
+        event_stream_obs = MockS3Event.create_stream("user-images", "rx_aws_lambda.png")
         context = MockLambdaContext()
         
         aws_handler = AwsLambdaHandler()
-        aws_handler.handle_stream(event_stream$, context).subscribe(
+        aws_handler.handle_stream(event_stream_obs, context).subscribe(
             on_next=lambda res: print(f"  [AWS Result] Emitted: {res}\n"),
             on_completed=lambda: print("      [AWS Infrastructure] Container Destroyed.")
         )

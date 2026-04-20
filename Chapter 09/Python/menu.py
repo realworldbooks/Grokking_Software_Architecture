@@ -1,39 +1,67 @@
-from demo import Demo
+import json
+import os
+import importlib
+import asyncio
+import inspect
 
-class Chapter9Menu:
-    """
-    THE UI CONTROLLER (Separation of Concerns):
-    Handles the user experience for Chapter 9.
-    """
-    
-    @staticmethod
-    def display() -> None:
-        while True:
-            print("\n" + "="*60)
-            print("=== Chapter 9: Cloud Native & Stateless Architecture ===")
-            print("="*60)
-            
-            print("\n--- Section 9.1: Stateful vs. Stateless Design ---")
-            print("1. Run Stateful Scenario (The Fragile Monolith)")
-            print("2. Run Stateless Scenario (Cloud Native S3)")
-            
-            print("\n0. Exit")
-            print("="*60)
-            
-            choice = input("\nEnter your choice (0-2): ").strip()
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-            if choice == '1':
-                Demo.run_stateful_scenario()
-            elif choice == '2':
-                Demo.run_stateless_scenario()
-            elif choice == '0':
-                print("Exiting Chapter 9 Demo...")
-                break
-            else:
-                print("Invalid choice. Please enter a number between 0 and 2.")
-                continue
+def main():
+    config_path = 'examples.json'
+
+    # BULLETPROOF CHECK: Does the config file exist?
+    if not os.path.exists(config_path):
+        print(f"[ERROR] {config_path} not found!")
+        return
+
+    with open(config_path, 'r') as f:
+        examples = json.load(f)
+
+    while True:
+        clear_screen() 
+        print("=== Grokking Software Architecture Chapter 09: Python Examples ===\n")
+
+        # Sort keys numerically for a clean menu
+        keys = sorted(examples.keys(), key=lambda x: int(x))
+        for key in keys: 
+            print(f"{key}. {examples[key]['name']}")
+
+        print("\nType 'exit' to quit.")
+        choice = input("\nEnter your choice: ").strip()
+
+        if choice.lower() == 'exit':
+            break
+
+        if choice in examples:
+            selected = examples[choice]
+            clear_screen() 
+            print(f"--- Running {selected['name']} ---\n")
+
+            try:
+                module = importlib.import_module(selected['path'])
+                demo_class = getattr(module, 'Demo', None)
+
+                if demo_class:
+                    # We check for the specific run_async method we created in the Demo
+                    if hasattr(demo_class, 'run_async'):
+                        asyncio.run(demo_class.run_async())
+                    elif hasattr(demo_class, 'run'):
+                        if inspect.iscoroutinefunction(demo_class.run):
+                            asyncio.run(demo_class.run())
+                        else:
+                            demo_class.run()
+                    else:
+                        print(f"[ERROR] Could not find method 'run_async' or 'run' in {selected['path']}")
+                else:
+                    print(f"[ERROR] Could not find class 'Demo' in {selected['path']}")
+
+            except Exception as e:
+                print(f"[ERROR] Execution failed: {str(e)}")
             
             input("\nPress Enter to return to the main menu...")
+        else:
+            input("Invalid choice. Press Enter to try again...")
 
 if __name__ == "__main__":
-    Chapter9Menu.display()
+    main()

@@ -1,5 +1,5 @@
 from rx import of
-from infrastructure.web.mock_webhook_payload import MockWebhookPayload
+from ...infrastructure.web.mock_webhook_payload import MockWebhookPayload
 
 class MockHttpRequest:
     """
