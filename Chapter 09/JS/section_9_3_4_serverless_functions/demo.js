@@ -6,7 +6,7 @@ import { execute$ as azureHandler$ } from './handlers/azureFunctionHandler.js';
 import { handler$ as supabaseHandler$ } from './handlers/supabaseEdgeHandler.js';
 
 export class Demo {
-    static runServerlessScenario() {
+    static run() {
         console.log("\n=== Section 9.3.4: Serverless Functions (Reactive Vendor Comparison) ===");
 
         // 1. AWS SIMULATION (Imperative)

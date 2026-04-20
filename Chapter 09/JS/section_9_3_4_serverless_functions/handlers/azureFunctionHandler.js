@@ -23,12 +23,11 @@ export const execute$ = (context) => {
          */
         map(ctx => {
             const fileName = ctx.bindingData.name;
-            const fileSize = ctx.blobData.length;
+            const fileSize = ctx.blobData ? ctx.blobData.length : 0; // Safe access
 
             ctx.log(`      [Azure Function] Stream observed: ${fileName} (${fileSize} bytes)`);
             ctx.log(`      [Azure Function] Declarative logic: Processing resize...`);
 
-            // Mutating the platform object (The Leak)
             ctx.res = {
                 status: 200,
                 body: `Azure reactive processed ${fileName}`

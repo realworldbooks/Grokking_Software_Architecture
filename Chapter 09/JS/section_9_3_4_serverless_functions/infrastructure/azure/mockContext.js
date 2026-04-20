@@ -1,3 +1,4 @@
+import { of } from 'rxjs';
 /**
  * THE AZURE INFRASTRUCTURE CONTRACT (Context Object):
  * * DESIGN NOTE:
@@ -9,9 +10,20 @@
  * instead of standard language features.
  */
 export class MockAzureContext {
-    constructor(fileName) {
+    constructor(fileName, blobData) {
         this.bindingData = { name: fileName };
+        this.blobData = blobData; // FIX: Ensure blob data is stored for the handler
         this.res = { status: 200, body: "" };
+    }
+
+    /**
+     * Lifts the proprietary context into the Reactive Way.
+     * @returns {Observable<MockAzureContext>}
+     */
+    asObservable$() {
+        // We wrap 'this' in an observable so the pipeline can observe 
+        // the platform-injected data.
+        return of(this);
     }
 
     log(message) {

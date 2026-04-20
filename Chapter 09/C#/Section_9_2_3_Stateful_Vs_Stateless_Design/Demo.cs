@@ -7,7 +7,25 @@ namespace Chapter09.StatefulVsStateless;
 
 public class Demo
 {
-    public static void RunStatefulScenario()
+    /// <summary>
+    /// THE ARCHITECTURAL COMPARATOR:
+    /// * @description
+    /// Orchestrates two distinct design philosophies to demonstrate the 
+    /// "Horizontal Scaling Fallacy." It contrasts local file-system 
+    /// dependency with external cloud persistence.
+    /// </summary>
+    public static void Run()
+    {
+        // --- SCENARIO 1: THE FRAGILE MONOLITH ---
+        RunStatefulScenario();
+
+        Console.WriteLine(new string('-', 70));
+
+        // --- SCENARIO 2: THE CLOUD NATIVE RECOVERY ---
+        RunStatelessScenario();
+    }
+
+    private static void RunStatefulScenario()
     {
         Console.WriteLine("\n=== Scenario 1: Stateful Design (The Fragile Monolith) ===");
         Console.WriteLine("THE SETUP: Two web servers running behind a Load Balancer.");
@@ -15,21 +33,21 @@ public class Demo
 
         try
         {
-            // 1. Setup: We simulate two separate servers, each with their own isolated hard drive.
+            // 1. Setup: We simulate two separate servers, each with isolated local storage.
             var serverAService = new UserService(new LocalStorageProvider("ServerA"));
             var serverBService = new UserService(new LocalStorageProvider("ServerB"));
 
             Console.WriteLine("--- Request 1: User uploads a profile picture ---");
             Console.WriteLine("  [Load Balancer] Routing traffic to Server A...");
             
-            // The file gets saved physically onto Server A's disk.
+            // The file gets saved physically onto Server A's disk and is trapped there.
             serverAService.UploadAvatar("user_123", "face_data_001");
             Console.WriteLine("  [Result] Upload Successful (Saved to Server A's local drive).\n");
 
             Console.WriteLine("--- Request 2: User refreshes to view their profile ---");
             Console.WriteLine("  [Load Balancer] Server A is busy. Routing traffic to Server B...");
             
-            // Server B attempts to read the file. It checks its own C: drive, but the file isn't there!
+            // Server B attempts to read the file, but it doesn't exist on its drive!
             serverBService.ViewAvatar("user_123");
         }
         catch (FileNotFoundException)
@@ -47,14 +65,14 @@ public class Demo
         }
     }
 
-    public static void RunStatelessScenario()
+    private static void RunStatelessScenario()
     {
         Console.WriteLine("\n=== Scenario 2: Stateless Design (Cloud Native) ===");
         Console.WriteLine("THE SETUP: Two web servers running behind a Load Balancer.");
         Console.WriteLine("THE ARCHITECTURE: Using SimulatedCloudStorageProvider (Stateless).\n");
 
         // 1. Setup: Both server instances now point to the exact same external infrastructure.
-        // We have successfully separated the 'Compute' (servers) from the 'State' (storage).
+        // We have successfully separated 'Compute' (the servers) from 'State' (the storage).
         var sharedCloudStorage = new SimulatedCloudStorageProvider("grokking-app-bucket");
         var serverAService = new UserService(sharedCloudStorage);
         var serverBService = new UserService(sharedCloudStorage);
@@ -62,15 +80,14 @@ public class Demo
         Console.WriteLine("--- Request 1: User uploads a profile picture ---");
         Console.WriteLine("  [Load Balancer] Routing traffic to Server A...");
         
-        // Server A processes the logic, but immediately hands the data off to the external cloud.
+        // Server A processes logic, but immediately hands data off to the external cloud.
         serverAService.UploadAvatar("user_123", "face_data_001");
         Console.WriteLine("  [Result] Upload Successful (Pushed to Cloud Storage).\n");
 
         Console.WriteLine("--- Request 2: User refreshes to view their profile ---");
         Console.WriteLine("  [Load Balancer] Routing traffic to Server B...");
         
-        // Server B fetches the data from the central cloud adapter. It doesn't matter that 
-        // Server B wasn't the one who originally handled the upload!
+        // Server B fetches the data from the central cloud. It is interchangeable!
         string data = serverBService.ViewAvatar("user_123");
         
         Console.WriteLine($"  [Result] SUCCESS! Server B downloaded the file. Data: '{data}'");

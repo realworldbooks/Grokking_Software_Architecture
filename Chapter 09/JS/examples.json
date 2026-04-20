@@ -1,0 +1,15 @@
+{
+  "title": "Grokking Software Architecture Chapter 09: Architecting for Resilience and Scale",
+  "examples": {
+    "1": {
+      "name": "Section 9.2.3 - Stateful vs Stateless Design",
+      "path": "section_9_2_3_stateful_vs_stateless_design/demo.js",
+      "isServer": false
+    },
+    "2": {
+      "name": "Section 9.3.4 - Serverless Functions",
+      "path": "section_9_3_4_serverless_functions/demo.js",
+      "isServer": false
+    }
+  }
+}

@@ -5,8 +5,30 @@ import { UserService } from './services/userService.js';
 import { LocalStorageProvider } from './infrastructure/localStorageProvider.js';
 import { SimulatedCloudStorageProvider } from './infrastructure/simulatedCloudStorageProvider.js';
 
+/**
+ * THE ARCHITECTURAL COMPARATOR:
+ * * @description
+ * This class orchestrates two distinct design philosophies to demonstrate 
+ * the "Horizontal Scaling Fallacy." It contrasts local file-system 
+ * dependency with external cloud persistence.
+ */
 export class Demo {
     
+    /**
+     * THE STATIC ENTRY POINT:
+     * Executes both scenarios sequentially to show the transition from 
+     * fragile stateful logic to robust stateless architecture.
+     */
+    static async run() {
+        // --- SCENARIO 1: THE FRAGILE MONOLITH ---
+        await Demo.runStatefulScenario();
+
+        console.log("-".repeat(70));
+
+        // --- SCENARIO 2: THE CLOUD NATIVE RECOVERY ---
+        await Demo.runStatelessScenario();
+    }
+
     static runStatefulScenario() {
         return new Promise((resolve) => {
             console.log("\n=== Scenario 1: Stateful Design (The Fragile Monolith) ===");
@@ -46,7 +68,7 @@ export class Demo {
                     // Clean up our simulated local directories
                     rmSync("server_A_drive", { recursive: true, force: true });
                     rmSync("server_B_drive", { recursive: true, force: true });
-                    resolve(); // Releases the CLI menu back to the user
+                    resolve(); 
                 })
             ).subscribe({
                 next: (data) => {
