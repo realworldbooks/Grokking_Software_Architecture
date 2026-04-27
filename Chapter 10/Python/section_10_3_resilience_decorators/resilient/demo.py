@@ -1,6 +1,6 @@
 import os
 from .core.application.checkout_orchestrator import CheckoutOrchestrator
-from .infrastructure.adapters.zebra_payment_adapter import ZebraPaymentAdapter
+from .infrastructure.adapters.flaky_payments_payment_adapter import FlakyPaymentsPaymentAdapter
 from .infrastructure.adapters.local_queue_adapter import LocalQueueAdapter
 
 class Demo:
@@ -28,11 +28,11 @@ class Demo:
         
         # ENVIRONMENT DECOUPLING
         # We fetch the vendor location from the environment, not hardcoded strings.
-        api_url = os.getenv("PAYMENT_API_URL", "https://api.zebra.com")
+        api_url = os.getenv("PAYMENT_API_URL", "https://api.flakypayments.com")
         
         # ASSEMBLY: Constructing the physical adapters
         # We use a local disk path for our SQLite-backed message queue.
-        payment_adapter = ZebraPaymentAdapter(base_url=api_url)
+        payment_adapter = FlakyPaymentsPaymentAdapter(base_url=api_url)
         queue_adapter = LocalQueueAdapter(path="./payment_backlog")
         
         # INJECTION: Plugging the adapters into the Core Application Brain

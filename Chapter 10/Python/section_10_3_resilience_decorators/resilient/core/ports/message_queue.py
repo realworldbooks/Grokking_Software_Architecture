@@ -8,7 +8,7 @@ class MessageQueue(ABC):
     @description
     This abstract base class defines the system's ability to defer work. 
     It is a "Primary Boundary" that allows the Business Logic to offload 
-    transactions when synchronous gateways (like Zebra) are unreachable.
+    transactions when synchronous gateways (like FlakyPayments) are unreachable.
     
     PRODUCTION REALITY (How this works on a Server):
     While our local adapter uses SQLite, this Port represents the 

@@ -7,7 +7,7 @@ from ...core.ports.payment_gateway import PaymentGateway
 # Configure a minimalist logger for the Retry Shield
 logger = logging.getLogger(__name__)
 
-class ZebraPaymentAdapter(PaymentGateway):
+class FlakyPaymentsPaymentAdapter(PaymentGateway):
     """
     THE INFRASTRUCTURE ADAPTER (The Implementation):
     
@@ -28,7 +28,7 @@ class ZebraPaymentAdapter(PaymentGateway):
     BACKOFF_MAX_SEC = 10
     BACKOFF_FACTOR = 2
 
-    def __init__(self, base_url: str = "https://api.zebra.com"):
+    def __init__(self, base_url: str = "https://api.flakypayments.com"):
         self.base_url = base_url
 
     def _log_retry(self, retry_state):
@@ -51,14 +51,14 @@ class ZebraPaymentAdapter(PaymentGateway):
         wait=wait_exponential(multiplier=1, min=BACKOFF_MIN_SEC, max=BACKOFF_MAX_SEC),
         # Attach our custom logging callback
         after=lambda retry_state: None, # Placeholder for standard tenacity logging
-        before_sleep=lambda retry_state: ZebraPaymentAdapter._log_retry_callback(retry_state),
+        before_sleep=lambda retry_state: FlakyPaymentsPaymentAdapter._log_retry_callback(retry_state),
         reraise=True
     )
     def charge(self, amount: float, order_id: str, idempotency_key: str) -> bool:
-        print(f"      [Infrastructure Adapter] Attempting Zebra Charge for {order_id}...")
+        print(f"      [Infrastructure Adapter] Attempting FlakyPayments Charge for {order_id}...")
         
         # SIMULATION: To trigger the shield as seen in your JS examples
-        # raise requests.exceptions.RequestException("Zebra API: Gateway Timeout (504)")
+        # raise requests.exceptions.RequestException("FlakyPayments API: Gateway Timeout (504)")
         
         response = requests.post(
             f"{self.base_url}/charge",
@@ -73,7 +73,7 @@ class ZebraPaymentAdapter(PaymentGateway):
     def _log_retry_callback(retry_state):
         """Helper to route tenacity state to our formatted print statements."""
         # Accessing constants via the class reference
-        adapter = ZebraPaymentAdapter
+        adapter = FlakyPaymentsPaymentAdapter
         attempt = retry_state.attempt_number
         ex = retry_state.outcome.exception()
         

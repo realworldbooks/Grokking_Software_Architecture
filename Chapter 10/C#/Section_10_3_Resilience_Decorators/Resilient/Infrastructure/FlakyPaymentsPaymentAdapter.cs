@@ -11,7 +11,7 @@ namespace Chapter10.Resilient.Infrastructure.Adapters;
 /// <summary>
 /// THE INFRASTRUCTURE ADAPTER (The Implementation):
 ///
-/// This class encapsulates the Physical Resource Policy for the Zebra vendor.
+/// This class encapsulates the Physical Resource Policy for the FlakyPayments vendor.
 /// It uses the Polly library to implement a declarative "Retry Shield."
 ///
 /// ARCHITECTURAL CRITIQUE:
@@ -21,13 +21,13 @@ namespace Chapter10.Resilient.Infrastructure.Adapters;
 /// 2. FAIL-FAST: By using the 'onRetry' hook, we can detect when we are 
 /// about to hit the limit and ensure the final failure is explicitly marked 
 /// as 'Exhausted' before the Orchestrator takes over.
-/// 3. Physical Resource Policy for the Zebra vendor.
+/// 3. Physical Resource Policy for the FlakyPayments vendor.
 /// By moving our SLA (Service Level Agreement) into named constants, we 
 /// transform hidden magic numbers into a documented, tunable boundary.
 /// The Core Application remains pure because the Polly retry policy is 
 /// physically locked inside this adapter.
 /// </summary>
-public class ZebraPaymentAdapter : IPaymentGateway
+public class FlakyPaymentsPaymentAdapter : IPaymentGateway
 {
     private const int TotalRequestTimeoutSec = 10;
     private const int MaxRetryAttempts = 5;
@@ -38,7 +38,7 @@ public class ZebraPaymentAdapter : IPaymentGateway
     private readonly HttpClient _httpClient;
     private readonly AsyncRetryPolicy<bool> _retryPolicy;
 
-    public ZebraPaymentAdapter(string baseUrl)
+    public FlakyPaymentsPaymentAdapter(string baseUrl)
     {
         _httpClient = new HttpClient 
         { 
@@ -80,13 +80,13 @@ public class ZebraPaymentAdapter : IPaymentGateway
     {
         return await _retryPolicy.ExecuteAsync(async () =>
         {
-            Console.WriteLine($"      [Zebra Adapter] Attempting Zebra Charge for {orderId}...");
+            Console.WriteLine($"      [FlakyPayments Adapter] Attempting FlakyPayments Charge for {orderId}...");
 
             _httpClient.DefaultRequestHeaders.Clear();
             _httpClient.DefaultRequestHeaders.Add("Idempotency-Key", idempotencyKey);
 
             // SIMULATION: Throwing an error to trigger the shield as seen in your JS example
-            throw new HttpRequestException("Zebra API: Gateway Timeout (504)");
+            throw new HttpRequestException("FlakyPayments API: Gateway Timeout (504)");
             
             /* // Real implementation would look like this:
             var response = await _httpClient.PostAsJsonAsync("/charge", new { amount, order_id = orderId });

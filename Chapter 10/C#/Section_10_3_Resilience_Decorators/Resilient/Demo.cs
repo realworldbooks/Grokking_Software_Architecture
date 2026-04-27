@@ -25,7 +25,7 @@ namespace Chapter10.Resilient
             Console.WriteLine("\n=== Chapter 10.3: Resilience with Local Persistence (C#) ===");
 
             // 1. ASSEMBLY (Dependency Injection)
-            var paymentAdapter = new ZebraPaymentAdapter("https://api.zebra.com");
+            var paymentAdapter = new FlakyPaymentsPaymentAdapter("https://api.flakypayments.com");
             var queueAdapter = new LocalQueueAdapter("payment_backlog.db");
 
             // The Orchestrator (Core) is instantiated with its dependencies injected.

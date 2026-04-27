@@ -19,7 +19,7 @@ class Demo:
                     to hide behind. Changing vendors requires a surgical strike on this file.
 
                     2. CASCADING FAILURE: Because the fragile service lacks retries, a single
-                    "hiccup" in the Zebra API causes an unhandled exception that explodes
+                    "hiccup" in the FlakyPayments API causes an unhandled exception that explodes
                     here, potentially killing the entire execution thread.
 
                     3. DATA LOSS: There is no 'Plan B'. If the charge fails, the transaction
@@ -32,7 +32,7 @@ class Demo:
     fragile_service = FragilePaymentService()
     amount_to_charge = 50.00
 
-    print("--- SCENARIO: Attempting a naked call to Zebra API ---")
+    print("--- SCENARIO: Attempting a naked call to FlakyPayments API ---")
 
     try:
         # This is a "Naked Call." No shield, no backoff, no

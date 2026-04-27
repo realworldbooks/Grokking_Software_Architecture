@@ -1,7 +1,7 @@
 package com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient;
 
 import com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.core.application.CheckoutOrchestrator;
-import com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.infrastructure.adapters.ZebraPaymentAdapter;
+import com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.infrastructure.adapters.FlakyPaymentsPaymentAdapter;
 import com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.infrastructure.adapters.LocalQueueAdapter;
 
 /**
@@ -26,7 +26,7 @@ public class Demo {
 
         // ASSEMBLY: Wiring concrete infrastructure into abstract core ports
         // We use a local MVStore file for durability without external dependencies.
-        var paymentAdapter = new ZebraPaymentAdapter("https://api.zebra.com");
+        var paymentAdapter = new FlakyPaymentsPaymentAdapter("https://api.flakypayments.com");
         var queueAdapter = new LocalQueueAdapter("./payment_backlog.db");
         
         // The Orchestrator (Core) is instantiated with its dependencies injected.

@@ -14,7 +14,7 @@ import java.time.Duration;
  *
  * ARCHITECTURAL CRITIQUE:
  * 1. TEMPORAL COUPLING: This method is "Locked" to the network. Without a timeout 
- * or retry policy, the calling thread is held hostage by Zebra's server. If the
+ * or retry policy, the calling thread is held hostage by FlakyPayments's server. If the
  * network hangs, this thread is essentially dead until the OS kills it.
  * * 2. ABSTRACTION LEAK: There is no Interface (Port). The business logic is forced 
  * to depend directly on this concrete implementation and the 'java.net.http' 
@@ -41,12 +41,12 @@ public class FragilePaymentService {
         String jsonBody = "{\"amount\": " + amount + ", \"order_id\": \"12345\"}";
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.zebra.com/charge"))
+                .uri(URI.create("https://api.flakypayments.com/charge"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
                 .build();
 
-        // If Zebra is down or the internet blips, this throws an IOException 
+        // If FlakyPayments is down or the internet blips, this throws an IOException 
         // and crashes the application flow instantly.
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 

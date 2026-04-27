@@ -17,7 +17,7 @@ namespace Chapter10.Fragile;
 ///    Changing vendors requires a surgical strike on this file.
 /// 
 /// 2. CASCADING FAILURE: Because the fragile service lacks retries or 
-///    internal timeouts, a single "hiccup" in the Zebra API causes an 
+///    internal timeouts, a single "hiccup" in the FlakyPayments API causes an 
 ///    unhandled exception that explodes here, potentially killing the 
 ///    entire application process.
 /// 
@@ -35,7 +35,7 @@ public static class Demo
         var fragileService = new FragilePaymentService();
         const decimal amountToCharge = 50.00m;
 
-        Console.WriteLine($"--- SCENARIO: Attempting a naked call to Zebra API ---");
+        Console.WriteLine($"--- SCENARIO: Attempting a naked call to FlakyPayments API ---");
 
         try
         {

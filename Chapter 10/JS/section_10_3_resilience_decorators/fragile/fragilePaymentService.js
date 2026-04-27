@@ -29,7 +29,7 @@ export class FragilePaymentService {
 
         // Raw network call with zero failure policy. 
         // This is an "Unprotected Port."
-        const response = await fetch("https://api.zebra.com/charge", {
+        const response = await fetch("https://api.flakypayments.com/charge", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -41,7 +41,7 @@ export class FragilePaymentService {
 
         // Failure is absolute. No second chances.
         if (!response.ok) {
-            throw new Error(`Critical failure from Zebra API: ${response.status}`);
+            throw new Error(`Critical failure from FlakyPayments API: ${response.status}`);
         }
 
         return await response.json();

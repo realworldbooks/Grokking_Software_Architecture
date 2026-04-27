@@ -18,7 +18,7 @@ import { PaymentGateway } from '../../core/ports/PaymentGateway.js';
  * instead of backing off one last time. This prevents "Temporal Leakage" 
  * where the system hangs for no reason before failing over to the queue.
  */
-export class ZebraPaymentAdapter extends PaymentGateway {
+export class FlakyPaymentsPaymentAdapter extends PaymentGateway {
     static CONNECT_TIMEOUT_MS = 2000;
     static READ_TIMEOUT_MS = 8000;
     static MAX_RETRIES = 5;
@@ -26,7 +26,7 @@ export class ZebraPaymentAdapter extends PaymentGateway {
     static MAX_TIMEOUT_MS = 10000;
     static BACKOFF_FACTOR = 2;
 
-    constructor(baseUrl = "https://api.zebra.com") {
+    constructor(baseUrl = "https://api.flakypayments.com") {
         super();
         this.baseUrl = baseUrl;
     }
@@ -38,32 +38,32 @@ export class ZebraPaymentAdapter extends PaymentGateway {
     charge(amount, orderId, idempotencyKey) {
         return from(this._performRawRequest(amount, orderId, idempotencyKey)).pipe(
             retry({
-                count: ZebraPaymentAdapter.MAX_RETRIES,
+                count: FlakyPaymentsPaymentAdapter.MAX_RETRIES,
                 delay: (error, retryCount) => {
                     // LOG THE FAILURE REGARDLESS OF THE ATTEMPT COUNT
                     console.warn(`      [Retry Shield] Attempt ${retryCount} failed: ${error.message}.`);
 
                     // IF WE HAVE EXHAUSTED RETRIES: 
                     // Terminate the stream immediately so the Orchestrator can pivot.
-                    if (retryCount >= ZebraPaymentAdapter.MAX_RETRIES) {
-                        console.error(`      [Retry Shield] MAX_RETRIES (${ZebraPaymentAdapter.MAX_RETRIES}) reached. Exhausted.`);
+                    if (retryCount >= FlakyPaymentsPaymentAdapter.MAX_RETRIES) {
+                        console.error(`      [Retry Shield] MAX_RETRIES (${FlakyPaymentsPaymentAdapter.MAX_RETRIES}) reached. Exhausted.`);
                         return throwError(() => error);
                     }
 
-                    const backoff = ZebraPaymentAdapter.MIN_TIMEOUT_MS * Math.pow(ZebraPaymentAdapter.BACKOFF_FACTOR, retryCount - 1);
-                    const delayTime = Math.min(backoff, ZebraPaymentAdapter.MAX_TIMEOUT_MS);
+                    const backoff = FlakyPaymentsPaymentAdapter.MIN_TIMEOUT_MS * Math.pow(FlakyPaymentsPaymentAdapter.BACKOFF_FACTOR, retryCount - 1);
+                    const delayTime = Math.min(backoff, FlakyPaymentsPaymentAdapter.MAX_TIMEOUT_MS);
                     
                     console.warn(`      [Retry Shield] Backing off ${delayTime}ms...`);
                     
                     return timer(delayTime);
                 }
             }),
-            tap(() => console.log(`      [Zebra Adapter] SUCCESS: Order ${orderId} charged.`))
+            tap(() => console.log(`      [FlakyPayments Adapter] SUCCESS: Order ${orderId} charged.`))
         );
     }
 
     async _performRawRequest(amount, order_id, key) {
         // Simulated failure to test the shield
-        throw new Error("Zebra API: Gateway Timeout (504)");
+        throw new Error("FlakyPayments API: Gateway Timeout (504)");
     }
 }

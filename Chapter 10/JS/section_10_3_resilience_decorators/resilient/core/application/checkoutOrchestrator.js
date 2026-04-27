@@ -19,7 +19,7 @@ import { OrderStatus } from '../domain/OrderStatus.js';
  * the same key is used to ensure the customer isn't double-charged.
  * * 3. PORT-ADAPTER PURITY: The orchestrator depends only on the 
  * 'PaymentGateway' and 'MessageQueue' ports. It has no idea if the 
- * infrastructure uses Zebra, Stripe, SQLite, or RabbitMQ.
+ * infrastructure uses FlakyPayments, Stripe, SQLite, or RabbitMQ.
  */
 export class CheckoutOrchestrator {
     /**

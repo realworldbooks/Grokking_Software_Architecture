@@ -11,7 +11,7 @@ import { FragilePaymentService } from './fragilePaymentService.js';
  * 'FragilePaymentService' directly. There is no Port/Interface. 
  * If we want to change vendors, we have to rewrite this file.
  * * 2. CASCADING FAILURE: Because the fragile service has no internal 
- * retries or timeouts, a failure in Zebra's API bubbles up and 
+ * retries or timeouts, a failure in FlakyPayments's API bubbles up and 
  * explodes here. If this were part of a larger chain, the entire 
  * application would crash.
  * * 3. NO SAFETY NET: There is no 'Plan B'. If the charge fails, the 
@@ -26,7 +26,7 @@ export class Demo {
         const fragileService = new FragilePaymentService();
         const amountToCharge = 50.00;
 
-        console.log(`--- SCENARIO: Attempting a raw, unprotected call to Zebra ---`);
+        console.log(`--- SCENARIO: Attempting a raw, unprotected call to FlakyPayments ---`);
 
         try {
             // This is a "Naked Call." It has no shield, no backoff, and no mercy.

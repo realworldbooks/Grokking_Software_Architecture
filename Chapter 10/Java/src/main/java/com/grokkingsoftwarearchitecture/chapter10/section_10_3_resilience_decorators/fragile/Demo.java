@@ -14,7 +14,7 @@ package com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decor
  * 'FragilePaymentService' directly. There is no Port/Interface to hide behind. 
  * Changing vendors requires a surgical strike on this file.
  * * 2. CASCADING FAILURE: Because the fragile service lacks retries or 
- * internal timeouts, a single "hiccup" in the Zebra API causes an 
+ * internal timeouts, a single "hiccup" in the FlakyPayments API causes an 
  * unhandled exception that explodes here, potentially killing the 
  * entire JVM thread pool.
  * * 3. DATA LOSS: There is no 'Plan B'. If the charge fails, the transaction 
@@ -30,7 +30,7 @@ public class Demo {
         FragilePaymentService fragileService = new FragilePaymentService();
         double amountToCharge = 50.00;
 
-        System.out.println("--- SCENARIO: Attempting a naked call to Zebra API ---");
+        System.out.println("--- SCENARIO: Attempting a naked call to FlakyPayments API ---");
 
         try {
             // This is a "Naked Call." No shield, no backoff, no mercy.

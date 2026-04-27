@@ -10,7 +10,7 @@ import java.time.Duration;
 /**
  * THE INFRASTRUCTURE ADAPTER (The Implementation):
  * * @description
- * This class encapsulates the Physical Resource Policy for Zebra using Resilience4j. 
+ * This class encapsulates the Physical Resource Policy for FlakyPayments using Resilience4j. 
  *
  * ARCHITECTURAL CRITIQUE:
  * 1. OBSERVABILITY: We use a custom 'onRetry' event listener to match our 
@@ -20,7 +20,7 @@ import java.time.Duration;
  * we prevent "Temporal Leakage" where the system waits for a useless 
  * backoff period before failing over to Plan B.
  */
-public class ZebraPaymentAdapter implements PaymentGateway {
+public class FlakyPaymentsPaymentAdapter implements PaymentGateway {
 
     // --- THE PHYSICAL POLICY CONSTANTS (The SLA) ---
     private static final int MAX_RETRIES = 5;
@@ -32,7 +32,7 @@ public class ZebraPaymentAdapter implements PaymentGateway {
     private final String baseUrl;
     private final Retry retryShield;
 
-    public ZebraPaymentAdapter(String baseUrl) {
+    public FlakyPaymentsPaymentAdapter(String baseUrl) {
         this.baseUrl = baseUrl;
 
         // THE SHIELD (Declarative Policy via Resilience4j)
@@ -45,7 +45,7 @@ public class ZebraPaymentAdapter implements PaymentGateway {
                 .retryExceptions(Exception.class)
                 .build();
 
-        this.retryShield = Retry.of("zebra-charge-retry", config);
+        this.retryShield = Retry.of("FlakyPayments-charge-retry", config);
 
         // LOGGING SHIELD: Synchronizing with the trace
     this.retryShield.getEventPublisher().onRetry(event -> {
@@ -65,10 +65,10 @@ public class ZebraPaymentAdapter implements PaymentGateway {
     public boolean charge(double amount, String orderId, String idempotencyKey) {
         // FIX: Explicitly type the CheckedSupplier to Boolean to solve the incompatible types error
         CheckedSupplier<Boolean> resilientCall = Retry.decorateCheckedSupplier(retryShield, () -> {
-            System.out.println("      [Zebra Adapter] Attempting Zebra Charge for " + orderId + "...");
+            System.out.println("      [FlakyPayments Adapter] Attempting FlakyPayments Charge for " + orderId + "...");
             
             // SIMULATION: Triggering the shield as seen in your other implementations
-            throw new RuntimeException("Zebra API: Gateway Timeout (504)");
+            throw new RuntimeException("FlakyPayments API: Gateway Timeout (504)");
         });
 
         // Convert the checked supplier into an unchecked execution

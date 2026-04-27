@@ -9,7 +9,7 @@ It treats a remote network call as if it were a reliable, local constant.
 
 ARCHITECTURAL CRITIQUE:
 1. TEMPORAL COUPLING: This method is "Locked" to the network. Without a timeout 
-    or retry policy, the calling thread is held hostage by Zebra's server response time.
+    or retry policy, the calling thread is held hostage by FlakyPayments's server response time.
 
 2. ABSTRACTION LEAK: There is no Interface (Port). The business logic is forced 
     to depend directly on this concrete implementation and the 'HttpClient' library, 
@@ -26,11 +26,11 @@ class FragilePaymentService:
         # It assumes the network is reliable (The Happy Path Fallacy).
         print(f"      [Payment Service] Attempting to charge ${amount}...")
 
-        # If Zebra is down, this line throws a ConnectionError or Timeout.
+        # If FlakyPayments is down, this line throws a ConnectionError or Timeout.
         # Since there is no retry logic, the user gets an error and the 
         # business loses money.
         response = requests.post(
-            "https://api.zebra.com/charge", 
+            "https://api.flakypayments.com/charge", 
             json={"amount": amount, "order_id": "12345"},
             timeout=2 # Even with a timeout, failure is absolute here.
         )

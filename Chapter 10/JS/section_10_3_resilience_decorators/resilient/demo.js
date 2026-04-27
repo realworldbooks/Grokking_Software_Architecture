@@ -1,6 +1,6 @@
 import { lastValueFrom } from 'rxjs';
 import { CheckoutOrchestrator } from './core/application/CheckoutOrchestrator.js';
-import { ZebraPaymentAdapter } from './infrastructure/adapters/ZebraPaymentAdapter.js';
+import { FlakyPaymentsPaymentAdapter } from './infrastructure/adapters/FlakyPaymentsPaymentAdapter.js';
 import { LocalMessageQueueAdapter } from './infrastructure/adapters/LocalMessageQueueAdapter.js';
 
 /**
@@ -21,7 +21,7 @@ export class Demo {
         console.log("\n=== Chapter 10.3: Resilience with Local Persistence (RxJS) ===");
 
         // ASSEMBLY: Wiring concrete tools into abstract ports
-        const paymentAdapter = new ZebraPaymentAdapter();
+        const paymentAdapter = new FlakyPaymentsPaymentAdapter();
         const queueAdapter = new LocalMessageQueueAdapter();
         
         // The Orchestrator (Core) is instantiated with its dependencies injected.
