@@ -1,5 +1,5 @@
 const Order = require('./order');
-const { OrderValidator, PaymentService, InventoryManager, NotificationService } = require('./services');
+const { OrderValidator, PaymentService, InventoryManager, NotificationService } = require('./orderServiceComponent');
 const OrderService = require('./orderService');
 
 console.log("=== Chapter 3: Order Processor (AFTER) ===");

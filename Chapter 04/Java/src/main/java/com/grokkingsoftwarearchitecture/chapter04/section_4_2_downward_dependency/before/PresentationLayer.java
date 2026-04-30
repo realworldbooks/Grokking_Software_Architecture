@@ -1,15 +1,19 @@
 package com.grokkingsoftwarearchitecture.chapter04.section_4_2_downward_dependency.before;
 
-import com.grokkingsoftwarearchitecture.chapter04.shared.LogManager;
+/**
+ * A fake UI layer class to illustrate the bad dependency.
+ * * ARCHITECTURE NOTE:
+ * High-level layers should be independent of the implementation 
+ * details of lower layers.
+ */
+public class PresentationLayer {
+    private static final PresentationLayer instance = new PresentationLayer();
 
-// A fake UI layer class to illustrate the bad dependency
-public final class PresentationLayer {
-
-    private PresentationLayer() {
-        // Private constructor to prevent instantiation
+    public static PresentationLayer getInstance() {
+        return instance;
     }
 
-    public static void updateStatusLabel(String text) {
-        LogManager.info(PresentationLayer.class, "[UI UPDATE]: {0}", text);
+    public void updateStatusLabel(String text) {
+        System.out.println("[UI UPDATE]: " + text);
     }
 }

@@ -67,15 +67,15 @@ class Program
             try { Assembly.LoadFrom(dll); } catch { }
         }
 
-        // --- NEW DEBUG SECTION ---
-        Console.WriteLine("--- Detailed Search ---");
+        
+        //Console.WriteLine("--- Detailed Search ---");
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies().Where(a => a.GetName().Name == "Before" || a.GetName().Name == "After"))
         {
-            Console.WriteLine($"Scanning Assembly: {assembly.GetName().Name}");
+            //Console.WriteLine($"Scanning Assembly: {assembly.GetName().Name}");
             var types = assembly.GetTypes();
             foreach (var t in types)
             {
-                Console.WriteLine($"  Found Class: '{t.FullName}'");
+                //Console.WriteLine($"  Found Class: '{t.FullName}'");
             }
         }
         // -------------------------

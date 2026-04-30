@@ -1,5 +1,4 @@
 from .presentation_layer import PresentationLayer
-from shared.log_manager import LogManager
 
 class SomeRepository:
     """
@@ -11,7 +10,7 @@ class SomeRepository:
         self._ui_layer = PresentationLayer.get_instance()
 
     def update_data(self, user_id: int, new_data: str):
-        LogManager.info("SomeRepository", "(Before) Saving data to database...")
+        print("(Before) Saving data to database...")
         
         # 🚨 VIOLATION: Calling upwards to the UI Layer.
         self._ui_layer.update_status_label(f"(Before) Data {user_id} Saved!")

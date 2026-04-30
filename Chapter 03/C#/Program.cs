@@ -25,6 +25,12 @@ class Program
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         var examples = JsonSerializer.Deserialize<Dictionary<string, ExampleConfig>>(jsonString, options);
 
+        if (examples == null)
+        {
+            Console.WriteLine("[ERROR] Failed to parse examples.json.");
+            return;
+        }
+
         while (true)
         {
             Console.Clear();
@@ -44,12 +50,12 @@ class Program
 
             if (choice?.ToLower() == "exit") break;
 
-            if (examples.TryGetValue(choice, out var selectedExample))
+            if (choice != null && examples.TryGetValue(choice, out var selectedExample))
             {
                 Console.Clear();
 
                 // ARCHITECTURAL NOTE: Reflection finds the exact class string at runtime
-                Type type = Type.GetType(selectedExample.Type);
+                Type? type = Type.GetType(selectedExample.Type);
 
                 if (type == null)
                 {
@@ -59,7 +65,7 @@ class Program
                 else
                 {
                     // Find the public, static Run() method inside that class
-                    MethodInfo method = type.GetMethod("Run", BindingFlags.Public | BindingFlags.Static);
+                    MethodInfo? method = type.GetMethod("Run", BindingFlags.Public | BindingFlags.Static);
 
                     if (method == null)
                     {

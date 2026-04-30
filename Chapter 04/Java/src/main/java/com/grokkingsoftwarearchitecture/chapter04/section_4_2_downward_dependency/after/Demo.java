@@ -1,7 +1,5 @@
 package com.grokkingsoftwarearchitecture.chapter04.section_4_2_downward_dependency.after;
 
-import com.grokkingsoftwarearchitecture.chapter04.shared.LogManager;
-
 public class Demo {
 
     private Demo() {
@@ -9,13 +7,13 @@ public class Demo {
     }
 
     public static void run() {
-        LogManager.info(Demo.class, "--- Running 'After' (Downward Dep) ---");
+        System.out.println("--- Running 'After Refactoring' (Downward Dependency) ---");
         
         // Composition Root: Wiring the dependencies
         OrderRepository afterRepo = new SqlOrderRepository();
         OrderService afterService = new OrderService(afterRepo);
         
         afterService.saveOrder(new Order());
-        LogManager.info(Demo.class, "--------------------------------------");
+        System.out.println("----------------------------------------------");
     }
 }

@@ -64,7 +64,7 @@ const swaggerOptions = {
 };
 
 // Map Swagger UI to the root URL using the options
-app.use('/', swaggerUi.serveFiles(swaggerDocument), swaggerUi.setup(swaggerDocument, swaggerOptions));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 
 // Add a friendly redirect from the root so you don't get a "Cannot GET /" error
 app.get('/', (req, res) => {

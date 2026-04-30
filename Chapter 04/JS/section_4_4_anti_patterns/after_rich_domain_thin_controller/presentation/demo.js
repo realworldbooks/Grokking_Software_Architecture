@@ -34,17 +34,29 @@ const orderController = new OrderController(orderService);
  */
 app.post('/order', (req, res) => {
     try {
-        // 1. Map raw JSON into our explicit DTOs
-        const items = req.body.items.map(i => new OrderItemRequest(i.itemId, i.quantity));
-        const requestDto = new OrderRequest(req.body.customerId, items);
-
-        // 2. Pass the DTO to your pure Controller class
-        const jsonResponse = orderController.createOrder(requestDto); //
+        // 1. DEFENSIVE FILTERING (The Presentation Boundary)
+        // Explicitly cast to Number to break the "string-based XSS" taint.
+        const sanitizedCustomerId = Number(req.body.customerId);
         
-        // 3. Express returns the response headers and the JSON string
-        res.status(200).type('json').send(jsonResponse); 
+        const sanitizedItems = (req.body.items || []).map(i => {
+            // Mapping to a new object ensures we aren't passing raw req.body refs.
+            return new OrderItemRequest(
+                Number(i.itemId), 
+                Number(i.quantity)
+            );
+        });
+
+        // 2. Instantiate the DTO with cleaned data.
+        const requestDto = new OrderRequest(sanitizedCustomerId, sanitizedItems);
+
+        // 3. The Controller remains 'Thin'.
+        const jsonResponse = orderController.createOrder(requestDto); 
+        
+        // 4. Return as JSON (The Secure Sink).
+        res.status(200).json(jsonResponse); 
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        // DO NOT reflect error.message if it contains user input.
+        res.status(400).json({ error: "Invalid order request structure." });
     }
 });
 // --- SWAGGER UI CONFIGURATION ---

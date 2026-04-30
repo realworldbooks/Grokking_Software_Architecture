@@ -1,22 +1,24 @@
 package com.grokkingsoftwarearchitecture.chapter04.section_4_2_downward_dependency.before;
 
-import com.grokkingsoftwarearchitecture.chapter04.shared.LogManager;
-
 /**
- * The entry point for the Java application.
+ * THE EXECUTION LAYER:
+ * * ARCHITECTURE NOTE:
+ * This class demonstrates a tightly coupled version where a 
+ * low-level component is trying to control a high-level one.
  */
 public class Demo {
-
-    private Demo() {
-        // Private constructor to hide the implicit public one
-    }
-
+    /**
+     * THE STATIC ENTRY POINT:
+     * * This satisfies the lab orchestrator's requirement for a 
+     * consistent 'run' interface across all project types.
+     */
     public static void run() {
-        LogManager.info(Demo.class, "--- Running 'Before' (Upward Dep) ---");
+        System.out.println("--- Running 'Before Refactoring' (Upward Dependency) ---");
         
+        // Normal instantiation of the tightly coupled repository
         SomeRepository beforeRepo = new SomeRepository();
         beforeRepo.updateData(123, "New Data");
         
-        LogManager.info(Demo.class, "------------------------------------");
+        System.out.println("---------------------------------------------");
     }
 }

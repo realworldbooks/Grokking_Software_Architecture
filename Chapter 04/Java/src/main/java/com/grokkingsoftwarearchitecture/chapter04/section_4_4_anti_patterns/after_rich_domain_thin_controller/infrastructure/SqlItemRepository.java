@@ -2,7 +2,6 @@ package com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.aft
 
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.models.Item;
 import com.grokkingsoftwarearchitecture.chapter04.section_4_4_anti_patterns.after_rich_domain_thin_controller.domain.interfaces.ItemRepository;
-import com.grokkingsoftwarearchitecture.chapter04.shared.LogManager;
 
 import org.springframework.stereotype.Repository;
 /**
@@ -16,7 +15,7 @@ public class SqlItemRepository implements ItemRepository {
 
     @Override
    public Item getById(int itemId) {
-        LogManager.info(SqlItemRepository.class, "(INFRA) SQL: Fetching official price for Item {0}", itemId);
+        System.out.println("(INFRA) SQL: Fetching official price for Item " + itemId);
         Item item = new Item();
         item.setId(itemId);
         item.setPrice((itemId == 1) ? 100.0 : 50.0);

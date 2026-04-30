@@ -118,7 +118,20 @@ namespace Chapter04.Section_4_4.Before
         public void Dispose() { }
     }
 
-    public class Customer { public int Id { get; set; } public string Type { get; set; } public string Email { get; set; } }
-    public class DbItem { public int Id { get; set; } public string Name { get; set; } public decimal Price { get; set; } }
-    public class SmtpEmailService { public void Send(string e, string m) { Console.WriteLine($"Email sent to {e}"); } }
+    public class Customer { 
+        public int Id { get; set; } 
+        public string Type { get; set; } 
+        public string Email { get; set; } 
+    }
+    public class DbItem { 
+        public int Id { get; set; } 
+        public string Name { get; set; } = null!;
+        public decimal Price { get; set; } 
+    }
+
+    public class SmtpEmailService { 
+        public void Send(string e, string m) { 
+            Console.WriteLine($"Email sent to {e}"); 
+        } 
+    }
 }

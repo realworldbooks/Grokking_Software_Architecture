@@ -1,7 +1,6 @@
 from ..domain.interfaces.data_access_interfaces import IOrderRepository, ICustomerRepository, IItemRepository
 from ..domain.models.customer import Customer
 from ..domain.models.item import Item
-from shared.log_manager import LogManager
 
 class SqlOrderRepository(IOrderRepository):
     """
@@ -12,18 +11,18 @@ class SqlOrderRepository(IOrderRepository):
     # Concrete implementation for a SQL database (simulated)
     def get_by_id(self, order_id: int):
         # In a real app, this would perform a SQL query
-        LogManager.info("SqlOrderRepository", "(INFRA) SQL: Fetching Order {0}", order_id)
+        print(f"(INFRA) SQL: Fetching Order {order_id}")
         return None
         
     def save(self, order) -> None:
-        LogManager.info("SqlOrderRepository", "(INFRA) SQL: Saving Order {0} with Total {1}", order.id, order.total_price)
+        print(f"(INFRA) SQL: Saving Order {order.id} with Total {order.total_price}")
 
 class SqlCustomerRepository(ICustomerRepository):
     """Concrete implementation for a SQL database (Simulated)"""
     def get_by_id(self, customer_id: int) -> Customer:
-       LogManager.info("SqlCustomerRepository", "(INFRA) SQL: Fetching Customer {0}", customer_id)
+        print(f"(INFRA) SQL: Fetching Customer {customer_id}")
         # Returning a dummy Gold customer to test the Rich Domain logic
-       return Customer(id=customer_id, type="Gold", email="gold@example.com")
+        return Customer(id=customer_id, type="Gold", email="gold@example.com")
     
 class SqlItemRepository(IItemRepository):
     """
@@ -34,7 +33,7 @@ class SqlItemRepository(IItemRepository):
     manipulated value sent from a malicious user's JSON request.
     """
     def get_by_id(self, item_id: int) -> Item:
-        LogManager.info("SqlItemRepository", "(INFRA) SQL: Fetching official price for Item {0}", item_id)
+        print(f"(INFRA) SQL: Fetching official price for Item {item_id}")
         
         # Simulated database lookup
         if item_id == 1:

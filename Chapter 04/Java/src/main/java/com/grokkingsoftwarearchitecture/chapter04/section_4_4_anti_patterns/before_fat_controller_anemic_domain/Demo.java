@@ -10,30 +10,29 @@ import java.util.Scanner;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.grokkingsoftwarearchitecture.chapter04.shared.LogManager;
 
 @SpringBootApplication
 public class Demo {
 
     public static void run() {
-        LogManager.info(Demo.class, "--- Launching 'The Fat Controller' (Anti-Pattern) ---");
-        LogManager.info(Demo.class, "Starting the Spring Boot Web API...");
+        System.out.println("--- Launching 'The Fat Controller' (Anti-Pattern) ---");
+        System.out.println("Starting the Spring Boot Web API...");
 
         // 1. Start the server and capture the running context
         ConfigurableApplicationContext context = SpringApplication.run(Demo.class);
 
-        LogManager.info(Demo.class, "\n[SUCCESS] FAT CONTROLLER APP RUNNING (JAVA/SPRING)");
-        LogManager.info(Demo.class, "Swagger UI available at: http://localhost:8080");
-        LogManager.info(Demo.class, "\nPress ENTER to stop the server and return to the main menu...");
+        System.out.println("\n[SUCCESS] FAT CONTROLLER APP RUNNING (JAVA/SPRING)");
+        System.out.println("Swagger UI available at: http://localhost:8080");
+        System.out.println("\nPress ENTER to stop the server and return to the main menu...");
 
         // 2. Pause the menu while you test the endpoints in your browser
         @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
         // 3. Cleanly shut down the server to prevent zombie processes
-        LogManager.info(Demo.class, "Shutting down the Spring Boot server...");
+        System.out.println("Shutting down the Spring Boot server...");
         context.close();
-        LogManager.info(Demo.class, "Server stopped successfully. Returning to menu...");
+        System.out.println("Server stopped successfully. Returning to menu...");
     }
 
     // ARCHITECTURAL NOTE: Swagger Configuration.

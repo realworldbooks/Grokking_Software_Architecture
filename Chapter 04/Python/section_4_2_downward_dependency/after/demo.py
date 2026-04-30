@@ -1,7 +1,6 @@
 from .order import Order
 from .order_service import OrderService
 from .sql_order_repository import SqlOrderRepository
-from shared.log_manager import LogManager
 
 class Demo:
 
@@ -14,7 +13,7 @@ class Demo:
         pair the High-Level Service with the Low-Level SQL
         implementation.
         """
-        LogManager.info("Demo", "--- Running 'After' (Downward Dep) ---")
+        print("--- Running 'After' (Downward Dep) ---")
 
         # 1. Instantiate the low-level detail
         after_repo = SqlOrderRepository()
@@ -25,4 +24,4 @@ class Demo:
         # 3. Execute the business logic
         after_service.save_order(Order())
         
-        LogManager.info("Demo", "--------------------------------------")
+        print("--------------------------------------")
