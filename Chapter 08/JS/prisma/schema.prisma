@@ -1,23 +1,26 @@
 // THE DATABASE CONTEXT (Infrastructure Layer):
-// Tells Prisma we are using SQLite and where to save the file.
-datasource db {
-  provider = "sqlite"
-  url      = "file:../orm_demo.db"
-}
-
-// Tells Prisma to generate a native JavaScript client for us to use.
+// This defines the connection to our SQLite database.
 generator client {
   provider = "prisma-client-js"
 }
 
-// THE DOMAIN MODEL (Declarative Mapping):
-// TEACHING NOTE:
-// We don't write SQL strings. We define our ideal object shape here, 
-// and Prisma automatically figures out how to build the tables.
+datasource db {
+  provider = "sqlite"
+  url      = "file:./orm_demo.db"
+}
+
+/// THE DOMAIN MODEL (Declarative Mapping):
+/// TEACHING NOTE:
+/// In the old days, you had to write a 'CREATE TABLE' SQL string by hand.
+/// With Prisma, you simply define a schema model. The ORM reads this 
+/// and automatically generates the perfect database schema for you.
 model User {
   id        Int     @id @default(autoincrement())
-  firstName String
-  lastName  String
+  firstName String  @map("first_name")
+  lastName  String  @map("last_name")
   age       Int
-  isActive  Boolean
+  isActive  Boolean @map("is_active")
+
+  // Map the model to a specific table name
+  @@map("users")
 }

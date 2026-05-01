@@ -3,6 +3,8 @@ package com.grokkingsoftwarearchitecture.chapter08.section_8_2_1_declarative_que
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * THE DATABASE CONTEXT (Infrastructure Layer):
@@ -16,6 +18,8 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
+
+            Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
             Configuration config = new Configuration();
             
             // Programmatic Configuration (No messy XML files required!)
