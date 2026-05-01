@@ -2,7 +2,6 @@ package com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.af
 
 import com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.core.ports.AlertPort;
 import com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.infrastructure.externallibs.TwilioClient;
-import com.grokkingsoftwarearchitecture.chapter05.shared.LogManager;
 
 /**
  * THE ADAPTER (Production).
@@ -26,6 +25,6 @@ public class TwilioAdapter implements AlertPort {
     public void sendAlert(String message) {
         // Using the pre-configured client instead of creating a new one every time.
         client.sendSms(targetPhoneNumber, message);
-        LogManager.info(TwilioAdapter.class, "(PROD ADAPTER) SMS sent via Twilio: {0}", message);
+        System.out.println("(PROD ADAPTER) SMS sent via Twilio: " + message);
     }
 }

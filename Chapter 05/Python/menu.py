@@ -2,7 +2,6 @@ import json
 import os
 import importlib
 import asyncio
-from shared.log_manager import LogManager
 import inspect
 
 def clear_screen():
@@ -15,7 +14,7 @@ async def main():
     config_path = 'examples.json'
 
     if not os.path.exists(config_path):
-        LogManager.info("menu", f"[ERROR] {config_path} not found in the current directory!")
+        print(f"[ERROR] {config_path} not found in the current directory!")
         return
 
     with open(config_path, 'r') as f:
@@ -23,15 +22,15 @@ async def main():
 
     while True:
         clear_screen()
-        LogManager.info("menu", "=== Grokking Software Architecture Chapter 05: Python Examples ===\n")
+        print("=== Grokking Software Architecture Chapter 05: Python Examples ===\n")
 
         # Sort keys numerically to ensure a logical progression for the user
         keys = sorted(examples.keys(), key=lambda x: int(x))
 
         for key in keys:
-            LogManager.info("menu", f"{key}. {examples[key]['name']}")
+            print(f"{key}. {examples[key]['name']}")
 
-        LogManager.info("menu", "\nType 'exit' to quit.")
+        print("\nType 'exit' to quit.")
         choice = input("\nEnter your choice: ").strip()
 
         if choice.lower() == 'exit':
@@ -40,7 +39,7 @@ async def main():
         if choice in examples:
             selected = examples[choice]
             # clear_screen() # Keep clear_screen for better user experience, but log the start
-            LogManager.info("menu", f"--- Running: {selected['name']} ---\n")
+            print(f"--- Running: {selected['name']} ---\n")
 
             try:
                 # Dynamic Loading: Python's version of Reflection
@@ -58,10 +57,10 @@ async def main():
                     else:
                         demo_class.run()
                 else:
-                    LogManager.info("menu", f"[ERROR] Could not find class 'Demo' or method 'run' in {selected['path']}")
+                    print(f"[ERROR] Could not find class 'Demo' or method 'run' in {selected['path']}")
 
             except Exception as e:
-                LogManager.info("menu", f"[ERROR] Execution failed: {str(e)}")
+                print(f"[ERROR] Execution failed: {str(e)}")
             
             input("\nPress Enter to return to the main menu...")
         else:

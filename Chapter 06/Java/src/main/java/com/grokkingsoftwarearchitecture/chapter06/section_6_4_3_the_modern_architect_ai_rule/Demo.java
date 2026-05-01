@@ -2,7 +2,6 @@ package com.grokkingsoftwarearchitecture.chapter06.section_6_4_3_the_modern_arch
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.grokkingsoftwarearchitecture.chapter06.shared.LogManager;
 
 /**
  * The Execution Layer.
@@ -14,7 +13,6 @@ import com.grokkingsoftwarearchitecture.chapter06.shared.LogManager;
 public class Demo {
 
     public static void run() {
-        // Use System.out for the startup banner to avoid LogManager metadata spam
         System.out.println("\n--- STARTING THE MODERN AI ARCHITECT DEMO ---");
         System.out.println("Goal: Turn our Java codebase into a perfect LLM Prompt.");
         

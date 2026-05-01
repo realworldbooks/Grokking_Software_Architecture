@@ -3,7 +3,6 @@ package com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.af
 import com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.core.domain.ServerMonitor;
 import com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.infrastructure.adapters.TwilioAdapter;
 import com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.tests.ServerMonitorTests;
-import com.grokkingsoftwarearchitecture.chapter05.shared.LogManager;
 
 /**
  * The Execution Layer.
@@ -16,7 +15,7 @@ public class Demo {
     }
 
     public static void run() {
-        LogManager.info(Demo.class, "--- STARTING SERVER MONITOR (HEXAGONAL) ---");
+        System.out.println("--- STARTING SERVER MONITOR (HEXAGONAL) ---");
 
         // 1. Configuration (Injected from the environment)
         String envApiKey = "SECRET_TWILIO_KEY_12345";
@@ -32,11 +31,11 @@ public class Demo {
         monitor.checkTemperature(80);  // Nominal case
         monitor.checkTemperature(105); // Failure case triggers the AlertPort
 
-        LogManager.info(Demo.class, "\n----------------------------------------\n");
+        System.out.println("\n----------------------------------------\n");
 
         // 5. Automated Verification
         ServerMonitorTests.run();
 
-        LogManager.info(Demo.class, "\n========================================");
+        System.out.println("\n========================================");
     }
 }

@@ -1,7 +1,6 @@
 import urllib.request
 import json
 from ...core.ports.price_provider_port import PriceProviderPort
-from shared.log_manager import LogManager
 
 class CoinGeckoAdapter(PriceProviderPort):
     """THE ADAPTER (Production).
@@ -25,8 +24,8 @@ class CoinGeckoAdapter(PriceProviderPort):
                 price_data = json.loads(json_data)
                 price = float(price_data["bitcoin"]["usd"])
                 
-                LogManager.info("CoinGeckoAdapter", "(PROD ADAPTER) Successfully fetched live price.")
+                print("(PROD ADAPTER) Successfully fetched live price.")
                 return price
         except Exception as e:
-            LogManager.info("CoinGeckoAdapter", "(PROD ADAPTER) API Failure: {0}", str(e))
+            print(f"(PROD ADAPTER) API Failure: {str(e)}")
             raise

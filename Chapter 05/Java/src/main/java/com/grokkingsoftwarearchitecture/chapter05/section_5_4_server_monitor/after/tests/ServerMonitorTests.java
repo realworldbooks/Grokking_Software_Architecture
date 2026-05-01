@@ -1,7 +1,6 @@
 package com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.tests;
 
 import com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.core.domain.ServerMonitor;
-import com.grokkingsoftwarearchitecture.chapter05.shared.LogManager;
 
 /**
  * ARCHITECTURAL TEST
@@ -14,7 +13,7 @@ public class ServerMonitorTests {
     }
 
     public static void run() {
-        LogManager.info(ServerMonitorTests.class, "--- RUNNING ARCHITECTURAL TEST: HEXAGONAL ---");
+        System.out.println("--- RUNNING ARCHITECTURAL TEST: HEXAGONAL ---");
         testServerOverheatingSendsAlertExactlyOnce();
     }
 
@@ -25,15 +24,15 @@ public class ServerMonitorTests {
         ServerMonitor monitor = new ServerMonitor(fakePort);
 
         // 2. Act
-        LogManager.info(ServerMonitorTests.class, "Test Action: Checking temperature at 96 degrees...");
+        System.out.println("Test Action: Checking temperature at 96 degrees...");
         monitor.checkTemperature(96);
 
         // 3. Assert
         if (fakePort.getSentMessages().size() == 1 && 
             fakePort.getSentMessages().get(0).contains("Take cover")) {
-            LogManager.info(ServerMonitorTests.class, "SUCCESS: Alert sent correctly to the Port.");
+            System.out.println("SUCCESS: Alert sent correctly to the Port.");
         } else {
-            LogManager.info(ServerMonitorTests.class, "FAIL: Alert logic failed verification.");
+            System.out.println("FAIL: Alert logic failed verification.");
         }
     }
 }

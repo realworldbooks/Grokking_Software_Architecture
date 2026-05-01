@@ -23,7 +23,7 @@ public class Main {
             JsonNode examples = rootNode.get("examples");
 
             while (true) {
-                // Use System.out instead of LogManager to suppress timestamps/metadata
+                
                 System.out.println("\n=== " + rootNode.get("title").asText() + " ===");
                 
                 for (JsonNode example : examples) {

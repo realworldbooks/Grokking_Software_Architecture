@@ -1,7 +1,6 @@
 from .core.domain.portfolio_manager import PortfolioManager
 from .infrastructure.adapters.coin_gecko_adapter import CoinGeckoAdapter
 from .tests.portfolio_tests import PortfolioTests
-from shared.log_manager import LogManager
 
 class Demo:
     """The Execution Layer.
@@ -12,7 +11,7 @@ class Demo:
 
     @staticmethod
     def run() -> None:
-        LogManager.info("Demo", "--- STARTING SCENARIO: CRYPTO TRACKER (AFTER) ---")
+        print("--- STARTING SCENARIO: CRYPTO TRACKER (AFTER) ---")
 
         # 1. Dependency Injection (Plug in the real world)
         real_adapter = CoinGeckoAdapter()
@@ -24,13 +23,13 @@ class Demo:
             value = manager.calculate_total_value(btc_to_check)
             
             # Professional currency formatting for the final summary
-            LogManager.info("Demo", "Live Portfolio Value: ${0:,.2f}", value)
+            print(f"Live Portfolio Value: ${value:,.2f}")
         except Exception as e:
-            LogManager.info("Demo", "Live API failed, but architecture is safe: {0}", str(e))
+            print(f"Live API failed, but architecture is safe: {str(e)}")
 
-        LogManager.info("Demo", "\n{0}\n", "-" * 40)
+        print(f"\n{'-' * 40}\n")
 
         # 3. Verification
         PortfolioTests.run()
         
-        LogManager.info("Demo", "========================================")
+        print("========================================")

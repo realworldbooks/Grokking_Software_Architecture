@@ -1,7 +1,6 @@
 package com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.core.domain;
 
 import com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.core.ports.PriceProviderPort;
-import com.grokkingsoftwarearchitecture.chapter05.shared.LogManager;
 
 /**
  * CORE – Pure business logic.
@@ -22,8 +21,7 @@ public class PortfolioManager {
         double currentPrice = priceProvider.getBitcoinPrice();
 
         // NEW: Log the data we just got from the "Outside World"
-        LogManager.info(PortfolioManager.class, 
-        "[Core] Calculating value: {0} BTC @ ${1} per coin", btcAmount, currentPrice);
+        System.out.println("[Core] Calculating value: " + btcAmount + " BTC @ $" + currentPrice + " per coin");
 
         return btcAmount * currentPrice;
     }

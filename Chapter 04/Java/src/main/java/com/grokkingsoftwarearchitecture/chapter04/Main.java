@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Scanner;
-import com.grokkingsoftwarearchitecture.chapter04.shared.LogManager;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +16,7 @@ public class Main {
             // Load the menu configuration
             rootNode = mapper.readTree(new File("Examples.json"));
         } catch (Exception e) {
-            LogManager.info(Main.class, "[ERROR] Could not load Examples.json. Make sure it is in the project root.");
+            System.out.println("[ERROR] Could not load Examples.json. Make sure it is in the project root.");
             return;
         }
 
@@ -25,14 +24,14 @@ public class Main {
         JsonNode examples = rootNode.get("examples");
 
         while (true) {
-            LogManager.info(Main.class, "\n=== {0} ===", rootNode.get("title").asText());
+            System.out.println("\n=== " + rootNode.get("title").asText() + " ===");
             
             for (JsonNode example : examples) {
-                LogManager.info(Main.class, "{0}. {1}", example.get("id").asText(), example.get("title").asText());
+                System.out.println(example.get("id").asText() + ". " + example.get("title").asText());
             }
             
-            LogManager.info(Main.class, "Type 'exit' to quit.");
-            LogManager.info(Main.class, "\nEnter your choice: ");
+            System.out.println("Type 'exit' to quit.");
+            System.out.print("\nEnter your choice: ");
 
             String choice = scanner.nextLine().trim();
 
@@ -45,7 +44,7 @@ public class Main {
             if (targetClass != null) {
                 runDemo(targetClass);
             } else {
-                LogManager.info(Main.class, "Invalid choice. Please try again.");
+                System.out.println("Invalid choice. Please try again.");
             }
         }
         
@@ -67,18 +66,18 @@ public class Main {
             Method runMethod = clazz.getMethod("run");
             runMethod.invoke(null);
             
-            LogManager.info(Main.class, "\nPress ENTER to return to the main menu...");
+            System.out.println("\nPress ENTER to return to the main menu...");
             @SuppressWarnings("resource")
             Scanner pauseScanner = new Scanner(System.in);
             pauseScanner.nextLine();
 
         } catch (ClassNotFoundException e) {
-            LogManager.info(Main.class, "[ERROR] Could not find class: {0}", className);
-            LogManager.info(Main.class, "Make sure your Demo.java files are compiled and the package names match exactly.");
+            System.out.println("[ERROR] Could not find class: " + className);
+            System.out.println("Make sure your Demo.java files are compiled and the package names match exactly.");
         } catch (NoSuchMethodException e) {
-            LogManager.info(Main.class, "[ERROR] The class {0} does not have a 'public static void run()' method.", className);
+            System.out.println("[ERROR] The class " + className + " does not have a 'public static void run()' method.");
         } catch (Exception e) {
-            LogManager.info(Main.class, "[RUNTIME ERROR] {0}", e.getCause());
+            System.out.println("[RUNTIME ERROR] " + e.getCause());
         }
     }
 }

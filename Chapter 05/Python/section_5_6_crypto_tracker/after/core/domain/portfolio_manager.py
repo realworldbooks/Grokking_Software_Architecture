@@ -1,5 +1,4 @@
 from ...core.ports.price_provider_port import PriceProviderPort
-from shared.log_manager import LogManager
 
 class PortfolioManager:
     """THE INSIDE (The Core).
@@ -32,9 +31,6 @@ class PortfolioManager:
         total_value = btc_amount * current_price
         
         # Professional trace logging for developers to see the math breakdown
-        LogManager.info(
-            "PortfolioManager", 
-            f"[Core] Calculating: {btc_amount} BTC x ${current_price:,.2f}/BTC"
-        )
+        print(f"[Core] Calculating: {btc_amount} BTC x ${current_price:,.2f}/BTC")
         
         return total_value

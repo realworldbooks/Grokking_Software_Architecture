@@ -20,3 +20,6 @@ class CoinGeckoAdapter {
         }
     }
 }
+
+// FIX: Export the class so the Composition Root (Demo.js) can instantiate it!
+module.exports = CoinGeckoAdapter;

@@ -1,6 +1,5 @@
 package com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.before;
 
-import com.grokkingsoftwarearchitecture.chapter05.shared.LogManager;
 /**
  * The Core Business Logic.
  * This class currently fails as a "Boundary Keeper" because it allows
@@ -21,7 +20,7 @@ public class ServerMonitor {
             TwilioClient twilio = new TwilioClient("API_KEY");
             twilio.sendSms("555-1234", "Server is overheating!");
         } else {
-            LogManager.info(ServerMonitor.class, "Temp {0} is nominal.", temp);
+            System.out.println("Temp " + temp + " is nominal.");
         }
     }
 }
@@ -32,6 +31,6 @@ public class ServerMonitor {
 class TwilioClient {
     public TwilioClient(String key) { }
     public void sendSms(String to, String body) {
-        LogManager.info(TwilioClient.class, "[Twilio API] Sending SMS to {0}: {1}", to, body);
+        System.out.println("[Twilio API] Sending SMS to " + to + ": " + body);
     }
 }

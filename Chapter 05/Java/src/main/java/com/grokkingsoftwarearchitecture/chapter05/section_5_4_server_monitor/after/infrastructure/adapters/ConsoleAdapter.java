@@ -1,7 +1,6 @@
 package com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.infrastructure.adapters;
 
 import com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.core.ports.AlertPort;
-import com.grokkingsoftwarearchitecture.chapter05.shared.LogManager;
 
 /**
  * ADAPTER 2: The "Dev" Adapter.
@@ -19,6 +18,6 @@ public class ConsoleAdapter implements AlertPort {
     public void sendAlert(String message) {
         // We wrap the message in the ANSI codes to print it in red,
         // then immediately reset the color so we don't bleed into other logs.
-        LogManager.info(ConsoleAdapter.class, ANSI_RED + "(DEV ADAPTER) ALERT: {0}" + ANSI_RESET, message);
+        System.out.println(ANSI_RED + "(DEV ADAPTER) ALERT: " + message + ANSI_RESET);
     }
 }

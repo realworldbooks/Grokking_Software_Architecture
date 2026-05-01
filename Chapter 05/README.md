@@ -74,7 +74,6 @@ The folders are organized by section. Each scenario contains a before/ (Tightly 
 ├── section_5_6_crypto_tracker/       # Financial math with external Price APIs
 │   |── after/                        # Deterministic Fakes (Isolated Core)
 │   ├── before/                       # Flaky Tests (Dependencies on live APIs)
-└── shared/                           # Cross-cutting LogManager (Audit Trail)
 ```
 
 ### Feature Comparison Map
@@ -83,5 +82,4 @@ The folders are organized by section. Each scenario contains a before/ (Tightly 
 | :--- | :--- | :--- | :--- |
 | **5.4** | **Infrastructure Agnostic** | **Tight Coupling:** The monitor is hard-coded to a specific SMS provider. | **Ports:** The Core calls an `AlertPort`. We swap SMS for Kafka or Console without touching Core code. |
 | **5.6** | **Deterministic Testing** | **Flaky Tests:** Unit tests fail if the internet is down or the Bitcoin price changes. | **Fakes:** We inject a `FakePriceProvider` that returns a fixed value, ensuring 100% stable assertions. |
-| **Shared** | **Unified Audit Trail** | **Janky Logs:** `print` and `console.log` statements are scattered and inconsistent. | **LogManager:** A centralized utility that handles timestamps, context, and currency formatting. |
 | **Logic** | **Separation of Concerns** | **Leaky Abstractions:** Third-party SDKs and JSON parsing logic live inside business methods. | **Encapsulation:** Messy API details are hidden inside Adapters; the Core only sees clean objects. |

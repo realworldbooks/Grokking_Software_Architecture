@@ -1,6 +1,5 @@
 from ...core.domain import constants
 from ...core.ports.alert_port import AlertPort
-from shared.log_manager import LogManager
 
 class ServerMonitor:
     """THE INSIDE (The Core).
@@ -34,4 +33,4 @@ class ServerMonitor:
             # Domain logic decides that an alert is necessary
             self.alert_port.send_alert(f"Temp is {temp} degrees! Take cover!")
         else:
-            LogManager.info("ServerMonitor", "[Core] Temp {0} is normal.", temp)
+            print(f"[Core] Temp {temp} is normal.")

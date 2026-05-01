@@ -1,5 +1,4 @@
 from ...core.ports.alert_port import AlertPort
-from shared.log_manager import LogManager
 
 class ConsoleAdapter(AlertPort):
     """ADAPTER 2: The 'Dev' Adapter.
@@ -20,4 +19,4 @@ class ConsoleAdapter(AlertPort):
         ansi_reset = "\033[0m"
         
         # We wrap the output to ensure the 'Dev' context is clear, including ANSI codes for visual emphasis
-        LogManager.info("ConsoleAdapter", f"{ansi_red}(DEV ADAPTER) ALERT: {{0}}{ansi_reset}", message)
+        print(f"{ansi_red}(DEV ADAPTER) ALERT: {message}{ansi_reset}")

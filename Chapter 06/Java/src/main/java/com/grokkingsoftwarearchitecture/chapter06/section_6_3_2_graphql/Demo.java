@@ -8,7 +8,6 @@ package com.grokkingsoftwarearchitecture.chapter06.section_6_3_2_graphql;
 public class Demo {
     /**
      * Entry point for the Chapter 06 Orchestrator.
-     * Replaced LogManager with System.out to ensure clean, readable CLI output.
      */
     public static void run() {
         System.out.println("\n--- GRAPHQL PRECISION DEMO ---");

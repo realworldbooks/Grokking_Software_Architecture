@@ -1,7 +1,6 @@
 import json
 from datetime import datetime
 from ...core.ports.alert_port import AlertPort
-from shared.log_manager import LogManager
 
 class KafkaAdapter(AlertPort):
     """ADAPTER 3: The 'Scale' Adapter (Async Messaging).
@@ -34,4 +33,4 @@ class KafkaAdapter(AlertPort):
         # We use a static key to ensure partition affinity (ordering)
         # for this specific server in the Kafka cluster.
         self.kafka_producer.produce("Server-01", "server-alerts-topic", payload)
-        LogManager.info("KafkaAdapter", "(SCALE ADAPTER) Pushed to Kafka topic")
+        print("(SCALE ADAPTER) Pushed to Kafka topic")

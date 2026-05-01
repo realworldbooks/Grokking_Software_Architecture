@@ -1,6 +1,5 @@
 from ...core.ports.alert_port import AlertPort
 from ...infrastructure.external_libs.fake_libs import TwilioClient
-from shared.log_manager import LogManager
 
 class TwilioAdapter(AlertPort):
     """THE ADAPTER (Production).
@@ -27,4 +26,4 @@ class TwilioAdapter(AlertPort):
             message (str): The message provided by the Core.
         """
         self.client.send_sms(self.target_phone_number, message)
-        LogManager.info("TwilioAdapter", "(PROD ADAPTER) SMS sent via Twilio: {0}", message)
+        print(f"(PROD ADAPTER) SMS sent via Twilio: {message}")

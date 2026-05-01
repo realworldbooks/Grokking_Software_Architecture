@@ -9,7 +9,6 @@ package com.grokkingsoftwarearchitecture.chapter06.section_6_3_1_rest;
 public class Demo {
     /**
      * Entry point for the Chapter 06 Orchestrator.
-     * Replaced LogManager with System.out to provide a clean terminal experience.
      */
     public static void run() {
         System.out.println("\n--- REST OVER-FETCHING DEMO ---");

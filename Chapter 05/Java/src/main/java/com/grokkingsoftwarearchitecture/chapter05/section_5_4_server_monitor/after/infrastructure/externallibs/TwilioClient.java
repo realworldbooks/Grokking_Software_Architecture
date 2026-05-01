@@ -1,6 +1,5 @@
 package com.grokkingsoftwarearchitecture.chapter05.section_5_4_server_monitor.after.infrastructure.externallibs;
 
-import com.grokkingsoftwarearchitecture.chapter05.shared.LogManager;
 
 /**
  * Mock of a 3rd party SMS library.
@@ -26,8 +25,6 @@ public class TwilioClient {
     public void sendSms(String to, String msg) {
         // By logging the parameters, we 'use' them to satisfy the compiler
         // and provide diagnostic feedback for the demo.
-        LogManager.info(TwilioClient.class, 
-            "[Twilio SDK] Using Key: {0} to send message to {1}: {2}", 
-            this.key, to, msg);
+        System.out.println("[Twilio SDK] Using Key: " + this.key + " to send message to " + to + ": " + msg);
     }
 }
