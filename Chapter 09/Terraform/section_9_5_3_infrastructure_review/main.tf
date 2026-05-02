@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------
-# Listing 9.3: The Architect's Infrastructure Review
+# Section 9.5.1: The Architect's Infrastructure Review
 # 
 # DESIGN NOTE:
 # This Terraform file represents the "Blueprint" of our cloud environment. 
@@ -10,7 +10,7 @@
 # As an architect, your job isn't just to write this code, but to peer-review 
 # the constraints it creates. Every line in this file represents a cost, 
 # a performance ceiling, or a security boundary.
-
+#
 # ARCHITECTURAL THEME: Infrastructure is the "Physical Contract" of Software.
 # While the code is declarative, the consequences are very much imperative: 
 # costs accrue, latency occurs, and data can be lost.
@@ -33,18 +33,17 @@ resource "aws_db_instance" "primary_db" {
 }
 
 # 3. THE STORAGE
-resource "aws_s3_bucket" "profile_pictures" {
-  bucket = "shopzilla-user-profiles-prod"  #D
-  
-  # CRITICAL OMISSION: No 'versioning' or 'lifecycle_rules'.
-  # Accidental deletions are permanent. Costs will grow forever without cleanup.
+resource "aws_s3_bucket" "user_uploads" {
+  bucket = "company-user-uploads-production" #D
 }
 
 # 4. THE SECURITY
-resource "aws_s3_bucket_public_access_block" "secure_pictures" {
-  bucket                  = aws_s3_bucket.profile_pictures.id
-  block_public_acls       = true
-  block_public_policy     = true   #E 
+resource "aws_s3_bucket_public_access_block" "secure_uploads" {
+  bucket                  = aws_s3_bucket.user_uploads.id
+  block_public_acls       = true #E
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 # ----------------------------------------------------------------------------------
@@ -69,6 +68,6 @@ resource "aws_s3_bucket_public_access_block" "secure_pictures" {
 #     is unrecoverable. IaC should explicitly define our Recovery Point Objective (RPO).
 #
 # #E: DEFENSE IN DEPTH: Blocking public access is the bare minimum. 
-#     The architect should also ask: Are we using server-side encryption (SSE)? 
-#     Are we using IAM Roles (Least Privilege) to ensure only the app can see it?
+#     The architect should also ask: Are we using server-side encryption (SSE-KMS)? 
+#     Are we enforcing HTTPS-only transit via bucket policies?
 # ----------------------------------------------------------------------------------
