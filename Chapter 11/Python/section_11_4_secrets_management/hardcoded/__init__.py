@@ -1,0 +1,1 @@
+# Hardcoded Secrets Example - The WRONG way

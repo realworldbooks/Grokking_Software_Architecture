@@ -1,0 +1,9 @@
+# AWS SDK and Mocking
+boto3>=1.34.0
+moto>=4.2.0
+
+# Database connectivity (for demonstration)
+psycopg2-binary>=2.9.9
+
+# Utilities
+python-dotenv>=1.0.0

@@ -1,0 +1,10 @@
+{
+  "1": {
+    "name": "Section 11.4.1 - The Hardcoded Disaster (What NOT to do)",
+    "type": "Chapter11.Hardcoded.Demo"
+  },
+  "2": {
+    "name": "Section 11.4.2 - Secure Runtime Retrieval (The Right Way)",
+    "type": "Chapter11.Secure.Demo"
+  }
+}

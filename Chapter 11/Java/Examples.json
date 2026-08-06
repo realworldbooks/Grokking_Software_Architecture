@@ -1,0 +1,14 @@
+{
+  "chapter": "11",
+  "title": "Grokking Software Architecture Chapter 11: Secrets Management",
+  "examples": {
+    "1": {
+      "name": "Section 11.4.1 - The Hardcoded Disaster (What NOT to do)",
+      "type": "com.grokkingsoftwarearchitecture.chapter11.section_11_4_secrets_management.hardcoded.Demo"
+    },
+    "2": {
+      "name": "Section 11.4.2 - Secure Runtime Retrieval (The Right Way)",
+      "type": "com.grokkingsoftwarearchitecture.chapter11.section_11_4_secrets_management.secure.Demo"
+    }
+  }
+}
