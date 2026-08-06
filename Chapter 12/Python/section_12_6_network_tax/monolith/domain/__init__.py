@@ -1,0 +1,1 @@
+# Monolith Domain Layer — Business Entities

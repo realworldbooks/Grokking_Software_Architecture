@@ -1,0 +1,14 @@
+{
+  "1": {
+    "name": "Section 12.6.1 - The Monolith Approach",
+    "type": "Chapter12.Section_12_6_NetworkTax.Monolith.Demo"
+  },
+  "2": {
+    "name": "Section 12.6.2 - The Microservice Aggregator",
+    "type": "Chapter12.Section_12_6_NetworkTax.Microservices.Demo"
+  },
+  "3": {
+    "name": "Section 12.7.3 - The Retry Storm",
+    "type": "Chapter12.Section_12_7_RetryStorm.Demo"
+  }
+}

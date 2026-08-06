@@ -1,0 +1,9 @@
+{
+  "name": "chapter12-network-tax",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node menu.js"
+  },
+  "dependencies": {}
+}

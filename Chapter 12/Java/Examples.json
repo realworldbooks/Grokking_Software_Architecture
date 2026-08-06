@@ -1,0 +1,14 @@
+{
+  "1": {
+    "name": "Section 12.6.1 - The Monolith Approach",
+    "type": "com.grokkingsoftwarearchitecture.chapter12.section_12_6_network_tax.monolith.Demo"
+  },
+  "2": {
+    "name": "Section 12.6.2 - The Microservice Aggregator",
+    "type": "com.grokkingsoftwarearchitecture.chapter12.section_12_6_network_tax.microservices.Demo"
+  },
+  "3": {
+    "name": "Section 12.7.3 - The Retry Storm",
+    "type": "com.grokkingsoftwarearchitecture.chapter12.section_12_7_retry_storm.Demo"
+  }
+}

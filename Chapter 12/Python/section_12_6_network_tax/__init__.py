@@ -1,0 +1,1 @@
+# Section 12.6: The Network Tax in Action — The Blog Endpoint

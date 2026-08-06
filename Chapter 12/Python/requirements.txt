@@ -1,0 +1,5 @@
+# Chapter 12 requires no external dependencies.
+# All examples use only the Python standard library.
+# - asyncio: concurrent HTTP call simulation (Listing 12.2, 12.3)
+# - dataclasses: domain models (Author, Comment, BlogPost)
+# - time, random: latency simulation, backoff + jitter

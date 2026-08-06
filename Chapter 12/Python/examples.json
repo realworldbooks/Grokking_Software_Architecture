@@ -1,0 +1,17 @@
+{
+    "1": {
+        "name": "Section 12.6.1 - The Monolith Approach: Simple and Fast",
+        "path": "section_12_6_network_tax.monolith.demo",
+        "isServer": false
+    },
+    "2": {
+        "name": "Section 12.6.2 - The Microservice Aggregator: 3 HTTP Calls + Fallbacks",
+        "path": "section_12_6_network_tax.microservices.demo",
+        "isServer": false
+    },
+    "3": {
+        "name": "Section 12.7.3 - The Retry Storm: DDoS of Your Own Partner",
+        "path": "section_12_7_retry_storm.demo",
+        "isServer": false
+    }
+}
