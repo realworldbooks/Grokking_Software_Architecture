@@ -7,10 +7,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load architectural data separated from logic
+// Load architectural data separated from logic (flat schema: the whole file is the examples map)
 const configPath = path.join(__dirname, 'examples.json');
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-const examples = config.examples;
+const examples = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -28,7 +27,7 @@ function askQuestion(query) {
 async function main() {
     while (true) {
         clearScreen();
-        console.log(`=== ${config.title} ===\n`);
+        console.log("=== Grokking Software Architecture Chapter 10: Resilience and Scale ===\n");
 
         for (const [key, example] of Object.entries(examples)) {
             console.log(`${key}. ${example.name}`);

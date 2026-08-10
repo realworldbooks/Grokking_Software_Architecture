@@ -1,14 +1,10 @@
 {
-  "chapter": "09",
-  "title": "Grokking Software Architecture Chapter 09: Java Examples",
-  "examples": {
     "1": {
-      "name": "Section 9.2.3 - Stateful vs. Stateless Design",
-      "type": "com.grokkingsoftwarearchitecture.chapter09.section_9_2_3_stateful_vs_stateless_design.Demo"
+        "name": "Section 9.2.3 - Stateful vs. Stateless Design",
+        "type": "com.grokkingsoftwarearchitecture.chapter09.section_9_2_3_stateful_vs_stateless_design.Demo"
     },
     "2": {
-      "name": "Section 9.3.4 - Serverless Functions",
-      "type": "com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.Demo"
+        "name": "Section 9.3.4 - Serverless Functions",
+        "type": "com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.Demo"
     }
-  }
 }

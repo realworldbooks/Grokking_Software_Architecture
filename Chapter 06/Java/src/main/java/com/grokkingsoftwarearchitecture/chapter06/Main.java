@@ -1,11 +1,14 @@
 package com.grokkingsoftwarearchitecture.chapter06;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringApplication;
 import java.io.File;
 import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,23 +22,34 @@ public class Main {
                 return;
             }
 
-            JsonNode rootNode = mapper.readTree(configFile);
-            JsonNode examples = rootNode.get("examples");
+            // Flat schema: the whole file is a map of "id" -> ExampleConfig
+            Map<String, ExampleConfig> examples = mapper.readValue(
+                    configFile, new TypeReference<Map<String, ExampleConfig>>() {});
+
+            // Sort examples numerically
+            TreeMap<String, ExampleConfig> sortedExamples = new TreeMap<>(
+                    (k1, k2) -> Integer.compare(Integer.parseInt(k1), Integer.parseInt(k2))
+            );
+            sortedExamples.putAll(examples);
 
             while (true) {
-                
-                System.out.println("\n=== " + rootNode.get("title").asText() + " ===");
-                
-                for (JsonNode example : examples) {
-                    System.out.println(example.get("id").asText() + ". " + example.get("title").asText());
+                System.out.println("\n=== Grokking Software Architecture Chapter 06: Java Examples ===\n");
+
+                for (Map.Entry<String, ExampleConfig> entry : sortedExamples.entrySet()) {
+                    System.out.println(entry.getKey() + ". " + entry.getValue().getName());
                 }
-                
+
                 System.out.print("\nType 'exit' to quit or enter your choice: ");
                 String choice = scanner.nextLine().trim();
 
                 if (choice.equalsIgnoreCase("exit")) break;
 
-                runExample(examples, choice, args);
+                ExampleConfig selected = examples.get(choice);
+                if (selected != null) {
+                    runExample(selected, args);
+                } else {
+                    System.out.println("Invalid choice. Please try again.");
+                }
             }
         } catch (Exception e) {
             System.err.println("[CRITICAL ERROR] " + e.getMessage());
@@ -44,31 +58,41 @@ public class Main {
         }
     }
 
-    private static void runExample(JsonNode examples, String choice, String[] args) {
-        for (JsonNode example : examples) {
-            if (example.get("id").asText().equals(choice)) {
-                String className = example.get("targetClass").asText();
-                boolean isSpringBoot = example.has("isSpringBoot") && example.get("isSpringBoot").asBoolean();
+    private static void runExample(ExampleConfig config, String[] args) {
+        try {
+            Class<?> clazz = Class.forName(config.getType());
+            boolean isSpringBoot = config.isSpringBoot();
 
-                try {
-                    Class<?> clazz = Class.forName(className);
-                    if (isSpringBoot) {
-                        // Spring Boot handle its own logging/startup
-                        SpringApplication.run(clazz, args);
-                    } else {
-                        // Standard Java execution for REST/GraphQL demos
-                        Method runMethod = clazz.getMethod("run");
-                        runMethod.invoke(null);
-                        
-                        System.out.println("\nPress ENTER to return to the main menu...");
-                        new Scanner(System.in).nextLine();
-                    }
-                } catch (Exception e) {
-                    System.err.println("[LAUNCH ERROR] Could not run " + className + ": " + e.getMessage());
-                }
-                return;
+            if (isSpringBoot) {
+                // Spring Boot handles its own logging/startup
+                SpringApplication.run(clazz, args);
+            } else {
+                // Standard Java execution for REST/GraphQL demos
+                Method runMethod = clazz.getMethod("run");
+                runMethod.invoke(null);
+
+                System.out.println("\nPress ENTER to return to the main menu...");
+                new Scanner(System.in).nextLine();
             }
+        } catch (Exception e) {
+            System.err.println("[LAUNCH ERROR] Could not run " + config.getType() + ": " + e.getMessage());
         }
-        System.out.println("Invalid choice. Please try again.");
     }
+}
+
+/**
+ * Maps to each entry in the flat Examples.json schema.
+ */
+class ExampleConfig {
+    private String name;
+    private String type;
+    @JsonProperty("isSpringBoot")
+    private boolean isSpringBoot;
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
+    public boolean isSpringBoot() { return isSpringBoot; }
+    public void setSpringBoot(boolean springBoot) { isSpringBoot = springBoot; }
 }

@@ -1,14 +1,10 @@
 {
-  "chapter": "10",
-  "title": "Grokking Software Architecture Chapter 10: Java Examples",
-  "examples": {
     "1": {
-      "name": "Section 10.3 - Resilience Decorators - Fragile Example",
-      "type": "com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.fragile.Demo"
+        "name": "Section 10.3 - Resilience Decorators - Fragile Example",
+        "type": "com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.fragile.Demo"
     },
     "2": {
-      "name": "Section 10.3 - Resilience Decorators - Resilient Example",
-      "type": "com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.Demo"
+        "name": "Section 10.3 - Resilience Decorators - Resilient Example",
+        "type": "com.grokkingsoftwarearchitecture.chapter10.section_10_3_resilience_decorators.resilient.Demo"
     }
-  }
 }

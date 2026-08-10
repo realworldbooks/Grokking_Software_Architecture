@@ -2,9 +2,9 @@ const readline = require('readline');
 const path = require('path');
 const fs = require('fs');
 
-// Load architectural data separated from logic
+// Load architectural data separated from logic (flat schema: the whole file is the examples map)
 const config = require('./examples.json');
-const examples = config.examples;
+const examples = config;
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -22,7 +22,7 @@ function askQuestion(query) {
 async function main() {
     while (true) {
         clearScreen();
-        console.log(`=== ${config.title} ===\n`);
+        console.log("=== Grokking Software Architecture Chapter 06: Node.js Examples ===\n");
 
         for (const [key, example] of Object.entries(examples)) {
             console.log(`${key}. ${example.name}`);

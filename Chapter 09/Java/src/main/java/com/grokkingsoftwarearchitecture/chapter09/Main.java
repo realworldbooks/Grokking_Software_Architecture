@@ -1,5 +1,6 @@
 package com.grokkingsoftwarearchitecture.chapter09;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.lang.reflect.Method;
@@ -18,19 +19,20 @@ public class Main {
         }
 
         try {
-            
-            ChapterConfig config = mapper.readValue(configFile, ChapterConfig.class);
-            
+            // Flat schema: the whole file is a map of "id" -> ExampleConfig
+            Map<String, ExampleConfig> examples = mapper.readValue(
+                    configFile, new TypeReference<Map<String, ExampleConfig>>() {});
+
             // Sort examples numerically
             TreeMap<String, ExampleConfig> sortedExamples = new TreeMap<>(
                     (k1, k2) -> Integer.compare(Integer.parseInt(k1), Integer.parseInt(k2))
             );
-            sortedExamples.putAll(config.getExamples());
+            sortedExamples.putAll(examples);
 
             Scanner scanner = new Scanner(System.in);
 
             while (true) {
-                System.out.println("\n\n=== " + config.getTitle() + " ===\n");
+                System.out.println("\n\n=== Grokking Software Architecture Chapter 09: Java Examples ===\n");
 
                 for (Map.Entry<String, ExampleConfig> entry : sortedExamples.entrySet()) {
                     System.out.println(entry.getKey() + ". " + entry.getValue().getName());
@@ -41,7 +43,7 @@ public class Main {
 
                 if ("exit".equalsIgnoreCase(choice)) break;
 
-                ExampleConfig selected = config.getExamples().get(choice);
+                ExampleConfig selected = examples.get(choice);
                 if (selected != null) {
                     runExample(selected);
                     System.out.println("\nPress Enter to return to menu...");
@@ -72,23 +74,8 @@ public class Main {
 }
 
 /**
- * THE ROOT CONFIGURATION:
- * Matches the top-level structure of Examples.json.
+ * Maps to each entry in the flat Examples.json schema.
  */
-class ChapterConfig {
-    private String chapter;
-    private String title;
-    private Map<String, ExampleConfig> examples;
-
-    // Getters and Setters
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
-    public Map<String, ExampleConfig> getExamples() { return examples; }
-    public void setExamples(Map<String, ExampleConfig> examples) { this.examples = examples; }
-    public String getChapter() { return chapter; }
-    public void setChapter(String chapter) { this.chapter = chapter; }
-}
-
 class ExampleConfig {
     private String name;
     private String type;

@@ -1,21 +1,15 @@
 {
-  "chapter": "06",
-  "title": "Grokking Software Architecture Chapter 06: AI-Ready APIs",
-  "examples": [
-    {
-      "id": "1",
-      "title": "Section 6.1 - Basic REST Implementation (The Over-Fetching Problem)",
-      "targetClass": "com.grokkingsoftwarearchitecture.chapter06.section_6_3_1_rest.Demo"
+    "1": {
+        "name": "Section 6.1 - Basic REST Implementation (The Over-Fetching Problem)",
+        "type": "com.grokkingsoftwarearchitecture.chapter06.section_6_3_1_rest.Demo"
     },
-    {
-      "id": "2",
-      "title": "Section 6.2 - GraphQL Implementation (Precision Data Fetching)",
-      "targetClass": "com.grokkingsoftwarearchitecture.chapter06.section_6_3_2_graphql.Demo"
+    "2": {
+        "name": "Section 6.2 - GraphQL Implementation (Precision Data Fetching)",
+        "type": "com.grokkingsoftwarearchitecture.chapter06.section_6_3_2_graphql.Demo"
     },
-    {
-      "id": "3",
-      "title": "Section 6.3 - AI-Driven API (Prompt Engineering via Swagger)",
-      "targetClass": "com.grokkingsoftwarearchitecture.chapter06.section_6_4_3_the_modern_architect_ai_rule.Demo"
+    "3": {
+        "name": "Section 6.3 - AI-Driven API (Prompt Engineering via Swagger)",
+        "type": "com.grokkingsoftwarearchitecture.chapter06.section_6_4_3_the_modern_architect_ai_rule.Demo",
+        "isSpringBoot": true
     }
-  ]
 }
