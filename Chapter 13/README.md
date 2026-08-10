@@ -78,9 +78,11 @@ All languages share a unified folder structure. Each language contains the **Sho
     └── presentation/                         # Controllers (BaseController, OrderController)
 ```
 
-Additionally, the **GitHub Actions Delivery Pipeline** (Listing 13.2) lives at the Chapter 13 root as a fully-commented YAML blueprint:
+Additionally, the **GitHub Actions Delivery Pipeline** (Listing 13.2) lives in its own section folder under the `YAML/` directory as a fully-commented YAML blueprint:
 ```text
-├── Listing 13.2 - GitHub Actions Delivery Pipeline.yml
+├── YAML/
+    └── section_13_5_github_actions_delivery_pipeline/   # Listing 13.2: GitHub Actions Delivery Pipeline
+        └── Listing 13.2 - GitHub Actions Delivery Pipeline.yml
 ```
 
 ## Feature Comparison Map
