@@ -1,0 +1,1 @@
+"""Observability infrastructure for Section 14.6."""

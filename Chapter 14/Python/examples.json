@@ -1,0 +1,7 @@
+{
+    "1": {
+        "name": "Section 14.6 - Unit Test and Instrumentation Logging (MDC + IoC)",
+        "path": "section_14_6_instrumentation_logging.demo",
+        "isServer": false
+    }
+}

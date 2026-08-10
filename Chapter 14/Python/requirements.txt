@@ -1,0 +1,4 @@
+# No external dependencies required for Chapter 14 examples.
+# All examples use only the Python standard library.
+# Tests use pytest (optional, for running the test suite):
+#   pip install pytest

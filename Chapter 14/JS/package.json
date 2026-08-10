@@ -1,0 +1,10 @@
+{
+  "name": "chapter14",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node menu.js",
+    "test": "node --test section_14_6_instrumentation_logging/tests/*.js"
+  },
+  "dependencies": {}
+}

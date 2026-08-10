@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!--
+    Logback configuration for Chapter 14 Section 14.6.
+    Demonstrates Mapped Diagnostic Context (MDC) enrichment:
+    the %X{orderId} pattern pulls the thread-local orderId value
+    and stamps it onto every log line emitted within the MDC block.
+  -->
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSS'Z', UTC} [%thread] %-5level %logger{36} - %msg | orderId=%X{orderId}%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE" />
+  </root>
+</configuration>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Exclude the test project from the main project's compile glob -->
+  <ItemGroup>
+    <Compile Remove="Chapter14.Tests/**/*.cs" />
+  </ItemGroup>
+</Project>
