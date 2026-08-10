@@ -1,0 +1,195 @@
+# ==============================================================================
+# Listing 13.2: GitHub Actions Delivery Pipeline Blueprint
+#
+# The Automated Conveyor Belt of Truth (Section 13.4 -> 13.5)
+#
+# This YAML file is the declarative, code-as-configuration engine that turns
+# the visual CI/CD pipeline diagram from Section 13.4 into an executable
+# script that GitHub Actions can run on every commit and every Pull Request.
+#
+# NOTE: This file is the exact "Delivery Lifecycle Blueprint" from the book.
+# It is intentionally C#/.NET specific because that is what the book shows,
+# but the STAGE-GATE LOGIC is language-agnostic:
+#
+#   1. TRIGGER  -> A developer pushes code or opens a Pull Request
+#   2. CI GATES -> Lint, Restore, Unit Tests + Architectural Fitness Functions
+#   3. ASSEMBLY -> Bake an immutable container image, tagged with the git SHA
+#   4. DELIVERY -> Push the artifact to a secure container registry
+#
+# The tool itself (GitHub Actions) is NOT the lesson. Focus on the structural
+# stage-gate logic: a predictable, repeatable model that pulls code from a
+# clean environment, runs automated boundaries, compiles an unchangeable
+# artifact, and safely pushes it down the line.
+#
+# To use this file in a real repository, place it at:
+#   .github/workflows/order-service-lifecycle.yml
+#
+# Then every push/PR to main will trigger the automated conveyor belt.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# PIPELINE TRIGGERS (#A in the book):
+#
+# The `on:` block ensures that the code validation conveyor belt spins up
+# instantly whenever a developer commits code directly, or attempts to open
+# a Pull Request against the stable `main` branch.
+#
+# - push:     Runs on every commit pushed to main (after PR merge)
+# - pull_request: Runs on every PR opened/synchronized targeting main
+# ------------------------------------------------------------------------------
+name: Order Service Lifecycle Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  verify-and-build:
+    # ------------------------------------------------------------------------
+    # IMMUTABLE CATTLE RUNNERS (#B in the book):
+    #
+    # The pipeline sets up `ubuntu-latest` as an ephemeral, containerized
+    # build runner. This directly pays off our "Pets vs. Cattle" paradigm
+    # from Chapter 9. We don't maintain a legacy, hand-patched machine to
+    # compile our code. We grab a clean, completely pristine server instance
+    # from the cloud provider, use it for ~60 seconds, and immediately destroy it.
+    # ------------------------------------------------------------------------
+    runs-on: ubuntu-latest
+
+    steps:
+      # ----------------------------------------------------------------------
+      # STEP 1: CHECKOUT SOURCE CODE
+      #
+      # Pulls the exact code at the triggering commit/PR head. Every pipeline
+      # run starts from a pristine copy of the repository - no drift possible.
+      # ----------------------------------------------------------------------
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      # ----------------------------------------------------------------------
+      # STEP 2: SETUP .NET SDK RUNTIME
+      #
+      # Pins the SDK version used to compile the Order Service. Using a
+      # versioned runtime guarantees build reproducibility - the same code
+      # always compiles the same way, regardless of when the pipeline runs.
+      # ----------------------------------------------------------------------
+      - name: Setup .NET SDK Runtime
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      # ----------------------------------------------------------------------
+      # STEP 3: RESTORE PACKAGE CACHE DEPENDENCIES
+      #
+      # Downloads NuGet package dependencies (including NetArchTest.Rules from
+      # Listing 13.1). The package cache speeds up subsequent builds.
+      # ----------------------------------------------------------------------
+      - name: Restore Package Cache Dependencies
+        run: dotnet restore
+
+      # ----------------------------------------------------------------------
+      # STEP 4: THE GOVERNANCE GATE (#C in the book)
+      #
+      # dotnet test runs ALL tests in our automated verification framework.
+      # This includes both:
+      #   - Traditional unit tests (business logic correctness)
+      #   - Architectural Fitness Functions from Listing 13.1 (NetArchTest)
+      #
+      # If a developer (or an AI assistant) sneaks an unauthorized dependency
+      # from the Domain layer up to the Infrastructure layer, the test suite
+      # fails here. If an unauthorized controller is created without the
+      # 'Controller' suffix, the test suite fails here.
+      #
+      # The process exits immediately and the execution chain breaks.
+      # The deployment is BLOCKED before it can ever reach a server.
+      #
+      # ------------------------------------------------------------------
+      # LANGUAGE MAPPING: The Governance Gate command is the ONLY step
+      # that changes between languages. Everything else in this pipeline
+      # (triggers, checkout, immutable runners, registry login, SHA tags)
+      # is identical across all four ecosystems.
+      #
+      #   C# (.NET):   dotnet test --no-restore --configuration Release
+      #                (runs NetArchTest fitness functions from Listing 13.1)
+      #
+      #   Java:        mvn test
+      #                (runs ArchUnit fitness functions from Listing 13.1)
+      #
+      #   Python:      pytest
+      #                (runs the custom AST-based fitness function engine)
+      #
+      #   JavaScript:  npm test
+      #                (runs the custom source-parsing fitness function engine)
+      #
+      # The corresponding setup step (Step 2) also swaps to the matching
+      # runtime: actions/setup-java@v4, actions/setup-python@v5, or
+      # actions/setup-node@v4. The structural stage-gate logic never changes.
+      # ------------------------------------------------------------------
+      - name: Execute Logic & Architecture Test Suites
+        run: dotnet test --no-restore --configuration Release
+
+      # ----------------------------------------------------------------------
+      # STEP 5: LOGIN TO SECURE CONTAINER REGISTRY
+      #
+      # Only runs on a `push` to `main` (not on PRs - see `if:` guard).
+      # PRs validate the code, but only merged code becomes an artifact.
+      # ----------------------------------------------------------------------
+      - name: Login to Secure Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: registry.shopzilla.com
+          # ----------------------------------------------------------------
+          # PERIMETER SECURITY ISOLATION (#D in the book):
+          #
+          # Notice that we NEVER hardcode passwords or production tokens
+          # inside this repository workspace file. We inherit the security
+          # protocols constructed in Chapter 11, using the cloud platform's
+          # protected repository vault engine (secrets.REGISTRY_USERNAME)
+          # to dynamically inject credentials into the execution memory
+          # space at runtime.
+          # ----------------------------------------------------------------
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      # ----------------------------------------------------------------------
+      # STEP 6: BAKE AND PUSH IMMUTABLE CONTAINER ARTIFACT
+      #
+      # Only runs on `push` to `main` (not on PRs).
+      #
+      # DOUBLE-TAGGED IMMUTABLE ARTIFACTS (#E in the book):
+      #
+      # When building the container image, the pipeline appends two distinct tags:
+      #   - latest:         for pointer convenience
+      #   - ${{ github.sha }}: the exact cryptographic git commit hash
+      #
+      # This guarantees that the container matches an explicit, traceable
+      # fingerprint in source history - completely eliminating the risk of
+      # unverified modifications sneaking into active deployment clusters.
+      # ----------------------------------------------------------------------
+      - name: Bake and Push Immutable Container Artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./ShopZilla.OrderService/Dockerfile
+          push: true
+          tags: |
+            registry.shopzilla.com/order-service:latest
+            registry.shopzilla.com/order-service:${{ github.sha }}
+
+# ==============================================================================
+# DESIGN TAKEAWAY:
+#
+# Look at the SHAPE, not the syntax. The structural stage-gate logic is:
+#
+#   Raw Code -> [Lint/Tests/Fitness Functions] -> Immutable Container -> Registry
+#
+# This single blueprint, combined with the deployment strategies from
+# Section 13.2 (Rolling / Blue-Green / Canary) and the Expand/Contract
+# data migrations from Section 13.3.3, is the complete "Conveyor Belt of
+# Truth" that transforms software delivery from a terrifying manual gauntlet
+# into a safe, rapid, and repeatable automated background process.
+# ==============================================================================

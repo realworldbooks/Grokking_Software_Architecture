@@ -1,0 +1,6 @@
+# Chapter 13 requires no external dependencies.
+# All examples use only the Python standard library, including:
+# - ast, pathlib: The fitness function engine (Listing 13.1) that parses
+#   the source tree and enforces architectural boundaries - replicating
+#   NetArchTest (.NET) and ArchUnit (Java) functionality in pure Python.
+# - dataclasses, enum: The Shop-Zilla Order Service Domain layer models.
