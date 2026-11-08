@@ -1,9 +1,15 @@
 const Coach = require('./coach');
 
-console.log("=== Chapter 3: DIP (BEFORE) ===");
-console.log("The Coach is tightly coupled to concrete players.\n");
+class Demo {
+    static run() {
+        console.log("=== Chapter 3: DIP (BEFORE) ===");
+        console.log("The Coach is tightly coupled to concrete players.\n");
 
-const coach = new Coach();
-coach.executeGamePlan();
+        const coach = new Coach();
+        coach.executeGamePlan();
 
-console.log("\n===============================\n");
+        console.log("\n===============================\n");
+    }
+}
+
+module.exports = Demo;

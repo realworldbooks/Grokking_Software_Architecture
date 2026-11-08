@@ -1,12 +1,18 @@
 const Coach = require('./coach');
 const Goalie = require('./goalie');
 
-console.log("=== Chapter 3: LSP (BEFORE) ===");
-console.log("Passing a Goalie as a generic Player breaks the contract!\n");
+class Demo {
+    static run() {
+        console.log("=== Chapter 3: LSP (BEFORE) ===");
+        console.log("Passing a Goalie as a generic Player breaks the contract!\n");
 
-const coach = new Coach();
-const goalie = new Goalie();
+        const coach = new Coach();
+        const goalie = new Goalie();
 
-coach.directFieldPlay(goalie);
+        coach.directFieldPlay(goalie);
 
-console.log("\n===============================\n");
+        console.log("\n===============================\n");
+    }
+}
+
+module.exports = Demo;

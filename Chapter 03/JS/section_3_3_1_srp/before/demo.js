@@ -1,12 +1,18 @@
 const Player = require('./player');
 
-console.log("=== Chapter 3: SRP (BEFORE) ===");
-console.log("The Player class is doing way too much work!\n");
+class Demo {
+    static run() {
+        console.log("=== Chapter 3: SRP (BEFORE) ===");
+        console.log("The Player class is doing way too much work!\n");
 
-const player = new Player("Alex");
+        const player = new Player("Alex");
 
-player.dribbleBall();
-player.determineBestPosition();
-player.saveStatsToDatabase();
+        player.dribbleBall();
+        player.determineBestPosition();
+        player.saveStatsToDatabase();
 
-console.log("\n===============================\n");
+        console.log("\n===============================\n");
+    }
+}
+
+module.exports = Demo;

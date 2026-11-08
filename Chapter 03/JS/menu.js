@@ -63,7 +63,7 @@ console.log("=== Grokking Software Architecture Chapter 03: JS Examples ===\n");
             
             // 3. Call the static run method
             if (Demo && typeof Demo.run === 'function') {
-                Demo.run();
+                await Demo.run();
             } else {
                 console.log("[ERROR] Demo class or static run() method not found.");
             }

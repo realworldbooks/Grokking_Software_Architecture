@@ -37,7 +37,7 @@ const createOrder = (req, res) => {
 
     // 4. Hardcoded Business Rules (Applying Discount)
     if (customer.type === "Gold") {
-        total *= 0.9; // 10% discount #A
+        total *= 0.9; // 10% discount 
     }
 
     // 5. Anemic Model Usage & Persistence

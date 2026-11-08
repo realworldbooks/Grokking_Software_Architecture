@@ -1,0 +1,9 @@
+{
+  "name": "grokking-architecture-chapter05",
+  "version": "1.0.0",
+  "description": "JavaScript examples for Grokking Software Architecture Chapter 05",
+  "main": "menu.js",
+  "scripts": {
+    "start": "node menu.js"
+  }
+}
