@@ -25,7 +25,7 @@ namespace Chapter04.Section_4_4.Before
         /// The email address for the customer. No validation is performed 
         /// on the property itself.
         /// </summary>
-        public string CustomerEmail { get; set; }
+        public required string CustomerEmail { get; set; }
         
     }
 
