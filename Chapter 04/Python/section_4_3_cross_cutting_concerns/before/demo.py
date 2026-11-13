@@ -1,5 +1,5 @@
-from order import Order
-from order_service import OrderService
+from .order import Order
+from .order_service import OrderService
 
 class Demo:
 

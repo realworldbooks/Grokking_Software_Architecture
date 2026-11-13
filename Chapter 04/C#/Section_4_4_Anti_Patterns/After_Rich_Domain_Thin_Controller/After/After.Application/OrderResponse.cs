@@ -10,6 +10,6 @@ namespace After.Application
     {
         public int OrderId { get; set; }
         public decimal TotalPrice { get; set; }
-        public string CustomerEmail { get; set; }
+        public required string CustomerEmail { get; set; }
     }
 }

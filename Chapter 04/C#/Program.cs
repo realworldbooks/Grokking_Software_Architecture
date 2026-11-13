@@ -29,6 +29,12 @@ class Program
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         var examples = JsonSerializer.Deserialize<Dictionary<string, ExampleConfig>>(jsonString, options);
 
+        if (examples is null)
+        {
+            Console.WriteLine($"[ERROR] {configPath} did not contain an examples object.");
+            return;
+        }
+
         while (true)
         {
             Console.Clear();
@@ -47,7 +53,7 @@ class Program
 
             if (choice?.ToLower() == "exit") break;
 
-            if (examples != null && examples.TryGetValue(choice ?? "", out var selectedExample))
+            if (examples.TryGetValue(choice ?? "", out var selectedExample))
             {
                 Console.Clear();
                 await RunExample(selectedExample.Type);

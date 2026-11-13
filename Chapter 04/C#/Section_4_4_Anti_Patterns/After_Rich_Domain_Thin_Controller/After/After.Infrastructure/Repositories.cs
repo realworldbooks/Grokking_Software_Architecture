@@ -11,7 +11,7 @@ namespace After.DataAccess
     // Concrete implementation for a SQL database (simulated)
     public class SqlOrderRepository : IOrderRepository
     {
-        public Order GetById(int orderId) { return null; }
+        public Order? GetById(int orderId) { return null; }
         public void Save(Order order) { /* SQL Logic */ }
     }
 

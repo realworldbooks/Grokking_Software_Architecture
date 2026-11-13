@@ -1,7 +1,7 @@
 {
     "1": {
         "name": "Section 6.1 - Basic REST Implementation (The Over-Fetching Problem)",
-        "path": "section_6_3_1_rest.demo"
+        "path": "section_6_3_1_REST.demo"
         },
     "2": {
         "name": "Section 6.2 - GraphQL Implementation (Precision Data Fetching)",

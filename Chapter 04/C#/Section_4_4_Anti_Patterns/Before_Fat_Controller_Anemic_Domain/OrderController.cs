@@ -120,8 +120,8 @@ namespace Chapter04.Section_4_4.Before
 
     public class Customer { 
         public int Id { get; set; } 
-        public string Type { get; set; } 
-        public string Email { get; set; } 
+        public required string Type { get; set; } 
+        public required string Email { get; set; } 
     }
     public class DbItem { 
         public int Id { get; set; } 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class Main {
 
                 ExampleConfig selected = examples.get(choice);
                 if (selected != null) {
-                    runExample(selected, args);
+                    runExample(selected, args, scanner);
                 } else {
                     System.out.println("Invalid choice. Please try again.");
                 }
@@ -58,21 +59,23 @@ public class Main {
         }
     }
 
-    private static void runExample(ExampleConfig config, String[] args) {
+    private static void runExample(ExampleConfig config, String[] args, Scanner scanner) {
         try {
             Class<?> clazz = Class.forName(config.getType());
             boolean isSpringBoot = config.isSpringBoot();
 
             if (isSpringBoot) {
-                // Spring Boot handles its own logging/startup
-                SpringApplication.run(clazz, args);
+                try (ConfigurableApplicationContext context = SpringApplication.run(clazz, args)) {
+                    System.out.println("\nPress ENTER to stop the service and return to the main menu...");
+                    scanner.nextLine();
+                }
             } else {
                 // Standard Java execution for REST/GraphQL demos
                 Method runMethod = clazz.getMethod("run");
                 runMethod.invoke(null);
 
                 System.out.println("\nPress ENTER to return to the main menu...");
-                new Scanner(System.in).nextLine();
+                scanner.nextLine();
             }
         } catch (Exception e) {
             System.err.println("[LAUNCH ERROR] Could not run " + config.getType() + ": " + e.getMessage());

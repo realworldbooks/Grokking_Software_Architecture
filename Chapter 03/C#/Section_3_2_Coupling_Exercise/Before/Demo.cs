@@ -11,7 +11,7 @@ public static class Demo{
         var generator = new UserReportGenerator();
         var result = generator.GenerateReport(1);
 
-        Console.WriteLine($"\\n  >> REPORT: {result}");
-        Console.WriteLine("--------------------------------------------------\\n");
+        Console.WriteLine($"\n  >> REPORT: {result}");
+        Console.WriteLine("--------------------------------------------------\n");
     }
 }

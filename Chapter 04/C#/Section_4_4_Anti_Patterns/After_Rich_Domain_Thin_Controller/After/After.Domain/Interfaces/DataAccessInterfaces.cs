@@ -10,7 +10,7 @@ namespace After.Domain.Interfaces
     /// </summary>
     public interface IOrderRepository
     {
-        Order GetById(int orderId);
+        Order? GetById(int orderId);
         void Save(Order order);
     }
 
