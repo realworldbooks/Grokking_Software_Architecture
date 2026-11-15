@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export class Demo2 {
     static async runQueryComparison() {
-        console.log("\n=== Section 8.2.1: Declarative Querying (Raw SQL vs ORM) ===");
+        console.log("\n=== Example 7: Section 8.2.1: Declarative Querying (Raw SQL vs ORM) ===");
         console.log("SCENARIO: The database contains 4 users. We need to find all active users over age 21, sorted alphabetically.");
 
         // 1. Setup: Clean the database for the demo
