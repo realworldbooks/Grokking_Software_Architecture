@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Demo2 {
     public static void runQueryComparison() {
-        System.out.println("\n=== Section 8.2.1: Declarative Querying (Raw SQL vs ORM) ===");
+        System.out.println("\n=== Example 7: Section 8.2.1: Declarative Querying (Raw SQL vs ORM) ===");
         System.out.println("SCENARIO: The database contains 4 users. We need to find all active users over age 21, sorted alphabetically.");
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
