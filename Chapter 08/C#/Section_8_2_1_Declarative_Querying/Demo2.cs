@@ -9,7 +9,7 @@ namespace Chapter08.DeclarativeQuerying
     {
         public static void RunQueryComparison()
         {
-            Console.WriteLine("\n=== Section 8.2.1: Declarative Querying (Raw SQL vs ORM) ===");
+            Console.WriteLine("\n=== Example 7: Section 8.2.1: Declarative Querying (Raw SQL vs ORM) ===");
             Console.WriteLine("SCENARIO: The database contains 4 users. We need to find all active users over age 21, sorted alphabetically.");
 
             using var context = new AppDbContext();

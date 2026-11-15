@@ -36,7 +36,7 @@ namespace Chapter08.DatabaseCode
         /// </summary>
         public static void RunScenario0LiteralSearch()
         {
-            Console.WriteLine("\n=== Example 0: The Literal Search (The Naive Baseline) ===");
+            Console.WriteLine("\n=== Example 1: The Literal Search (The Naive Baseline) ===");
             Console.WriteLine("SCENARIO: We save 'Lasagna' into our databases.");
             Console.WriteLine("THE TASK: The user searches the database for 'Pasta'. Let's see what happens.\n");
 
@@ -82,8 +82,8 @@ namespace Chapter08.DatabaseCode
         /// </summary>
         public static void RunScenario1MetadataWorkaround()
         {
-            Console.WriteLine("\n=== Example 1: The Metadata Workaround (Columns & Tags) ===");
-            Console.WriteLine("SCENARIO: Since traditional databases failed the literal search in Example 0,");
+            Console.WriteLine("\n=== Example 2: The Metadata Workaround (Columns & Tags) ===");
+            Console.WriteLine("SCENARIO: Since traditional databases failed the literal search in Example 1,");
             Console.WriteLine("we must now alter our schema to manually 'tag' our data with categories.\n");
 
             Console.WriteLine("--- 1. The SQL Way (Relational) ---");
@@ -124,7 +124,7 @@ namespace Chapter08.DatabaseCode
         /// </summary>
         public static void RunScenario2FatFinger()
         {
-            Console.WriteLine("\n=== Example 2: The 'Fat Finger' Test (Fuzzy Intent) ===");
+            Console.WriteLine("\n=== Example 3: The 'Fat Finger' Test (Fuzzy Intent) ===");
             Console.WriteLine("SCENARIO: All databases contain the perfectly spelled word 'Lasagna'.");
             Console.WriteLine("THE TWIST: The user makes a typo and searches for 'Lasnga'. Let's see who survives.\n");
 
@@ -170,7 +170,7 @@ namespace Chapter08.DatabaseCode
         /// </summary>
         public static void RunScenario3SchemaAgility()
         {
-            Console.WriteLine("\n=== Example 3: The Schema Agility Test (Business Pivot) ===");
+            Console.WriteLine("\n=== Example 4: The Schema Agility Test (Business Pivot) ===");
             Console.WriteLine("SCENARIO: The business has been running smoothly with our Recipe tables.");
             Console.WriteLine("THE TWIST: The PM kicks down the door: 'We must track Dietary Allergens immediately!'\n");
 
@@ -229,7 +229,7 @@ namespace Chapter08.DatabaseCode
         /// </summary>
         public static void RunScenario4Aggregation()
         {
-            Console.WriteLine("\n=== Example 4: The Aggregation Test (Give Me The Math) ===");
+            Console.WriteLine("\n=== Example 5: The Aggregation Test (Give Me The Math) ===");
             Console.WriteLine("SCENARIO: We have 2 Pasta recipes and 1 Soup recipe in the database.");
             Console.WriteLine("THE TASK: The Analytics team asks: 'Generate a report of recipe counts grouped by type.'\n");
 
@@ -286,7 +286,7 @@ namespace Chapter08.DatabaseCode
         /// </summary>
         public static void RunScenario5HybridSearch()
         {
-            Console.WriteLine("\n=== Example 5: The Hybrid Search (The Holy Grail) ===");
+            Console.WriteLine("\n=== Example 6: The Hybrid Search (The Holy Grail) ===");
             Console.WriteLine("SCENARIO: User searches for 'Comfort Food', but applies a hard filter: 'Under 30 mins'.");
             Console.WriteLine("THE ARCHITECTURE: We use Vector for the 'Brain' and NoSQL for the 'Math'.\n");
 
