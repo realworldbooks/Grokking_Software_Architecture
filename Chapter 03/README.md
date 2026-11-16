@@ -27,14 +27,14 @@ This is our primary "Before and After" study.
 ## How to Run the Examples
 
 1. .NET (C#)
-- Prerequisites: .NET 6.0 SDK+.
+- Prerequisites: .NET 10.0 SDK+.
 - Navigate to the Chapter03/C#/ directory.
 - Run the project:
 ```Bash
 dotnet run
 ```
 2. Java
-- Prerequisites: Java 17 and Maven.
+- Prerequisites: Java 21 (or newer) and Maven.
 - Navigate to the Chapter03/Java/ directory.
 - Compile and execute:
 ```Bash

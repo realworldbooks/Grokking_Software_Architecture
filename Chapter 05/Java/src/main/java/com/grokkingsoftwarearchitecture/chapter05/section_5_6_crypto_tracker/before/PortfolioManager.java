@@ -15,15 +15,15 @@ import java.io.UncheckedIOException;
 public class PortfolioManager {
 
     /**
-     * Checks the server temperature and sends an alert if it's too high.
-     * In a real system, this is the "Chaotic Outside World".
+     * Fetches the current Bitcoin price from the outside world and multiplies
+     * it by the amount of BTC held.
      */
     public double calculateTotalValue(double btcAmount) {
-        
+
         // FIX 1: Try-with-resources handles the "Close this HttpClient" warning.
         // VIOLATION: Hardcoded infrastructure dependency inside the logic.
         try (HttpClient client = HttpClient.newHttpClient()) {
-            
+
             double currentPrice = fetchBitcoinPrice(client);
 
             return btcAmount * currentPrice;

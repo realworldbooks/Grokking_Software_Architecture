@@ -60,13 +60,15 @@ Because each chapter introduces different concepts (from simple console apps to 
 ### **General Prerequisites**
 To run the code in this repository, you will need the standard runtime environments for the languages you choose to explore:
 
-- **.NET:** .NET 6.0 SDK or higher
+- **.NET:** .NET 10.0 SDK or higher
 
-- **Java:** Java 17+ and Maven
+- **Java:** Java 21 (LTS) or newer and Maven
 
 - **Node.js:** Node.js v16+ and npm
 
 - **Python:** Python 3.10+ (3.12 recommended)
+
+> **Java version policy:** every Java module pins `<maven.compiler.release>21</maven.compiler.release>`, so the compiler checks the examples against the Java 21 API rather than just emitting Java 21 bytecode. Newer JDKs can still build the code, but the examples must not use APIs added after Java 21 — for example, `java.net.http.HttpClient` implements `AutoCloseable` from Java 21 onward, which is why the Chapter 5 examples can manage their client with try-with-resources.
 
 ## Recommended IDE: Visual Studio Code
 

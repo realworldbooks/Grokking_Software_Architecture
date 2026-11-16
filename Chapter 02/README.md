@@ -12,7 +12,7 @@ Welcome to the companion code for Chapter 2 of Grokking Software Architecture. I
 ## How to Run the Examples
 
 1. .NET (C#) 
-- Prerequisites: .NET 6.0 SDK or later.
+- Prerequisites: .NET 10.0 SDK or later.
 - Navigate to Chapter02/C#/
 - Run: 
 ```bash 
@@ -21,7 +21,7 @@ dotnet run
 The menu uses Reflection to dynamically execute the chosen class.
 
 2. Java
-- Prerequisites: Java 17 and Maven.
+- Prerequisites: Java 21 (or newer) and Maven.
 - Navigate to Chapter02/Java/
 - Run: 
 ```bash

@@ -20,7 +20,7 @@ The cloud isn't magic; it's just someone else's computer. In this chapter, we br
 ## How to Run the Examples
 
 ### 1. .NET (C#)
-- **Prerequisites:** .NET 8.0 SDK or higher.
+- **Prerequisites:** .NET 10.0 SDK or higher.
 - **Tools Used:** - 
   - **System.Reactive (Rx.NET):** Used to simulate asynchronous, event-driven streams (like S3 file uploads) triggering Serverless FaaS functions.
   - **Amazon.Lambda.Events:** Used to enforce real-world cloud contracts, ensuring our local functions match actual AWS S3 and API Gateway event signatures.
@@ -31,7 +31,7 @@ The cloud isn't magic; it's just someone else's computer. In this chapter, we br
   ```
 
 ### 2. Java
-- **Prerequisites:** Java 17 and Maven.
+- **Prerequisites:** Java 21 (or newer) and Maven.
 - **Tools Used:** - 
    - **RxJava3:** Implements the Reactive push-model to simulate cloud event triggers safely in local memory.
    - **AWS Lambda Java Core & Events:** Provides the official AWS interfaces to demonstrate exactly how production Java Serverless functions are structured

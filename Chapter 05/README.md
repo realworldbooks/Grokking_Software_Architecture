@@ -27,7 +27,7 @@ These examples demonstrate how to create a "Plug-and-Play" architecture where bu
 
 ## How to Run the Examples
 1. .NET (C#)
-    - Prerequisites: .NET 6.0 SDK or higher.
+    - Prerequisites: .NET 10.0 SDK or higher.
     - Navigate to the Chapter05/C#/ directory.
     - Run the interactive console menu:
 
@@ -36,7 +36,8 @@ dotnet run
 ```
 
 2. Java
-    - Prerequisites: Java 17 and Maven.
+    - Prerequisites: Java 21 (or newer) and Maven.
+    - Java 21 note: `java.net.http.HttpClient` implements `AutoCloseable` from Java 21 onward, so the `before` example can close its client with try-with-resources. The `after` adapter instead reuses a single client held in a `static final` field, which is the recommended pattern for a long-lived adapter.
     - Navigate to the Chapter05/Java/ directory.
     - Compile and execute the interactive menu:
 

@@ -19,7 +19,7 @@ Chapter 10 focuses on the "Cloud Reality"—a fundamentally hostile, distributed
 ## How to Run the Examples
 
 ### 1. .NET (C#)
-- **Prerequisites:** .NET 8.0 SDK or higher.
+- **Prerequisites:** .NET 10.0 SDK or higher.
 - **Tools Used:** - **Polly:** The absolute gold standard in .NET for resilience and transient-fault-handling (Retry, Circuit Breaker, Timeout).
   - **LiteDB:** A lightweight, serverless NoSQL document store used to simulate a local "Fallback Queue" when the external API goes down.
 - Navigate to the `Chapter10/C#/` directory.
@@ -29,7 +29,7 @@ Chapter 10 focuses on the "Cloud Reality"—a fundamentally hostile, distributed
   ```
 
 ### 2. Java
-- **Prerequisites:** Java 17 and Maven.
+- **Prerequisites:** Java 21 (or newer) and Maven.
 - **Tools Used:**
   - **Resilience4j:** A lightweight, modern fault tolerance library designed for Java functional programming (replaces the older Netflix Hystrix).
   - **H2:** An in-memory database used to temporarily persist requests that fail during an Open Circuit state.

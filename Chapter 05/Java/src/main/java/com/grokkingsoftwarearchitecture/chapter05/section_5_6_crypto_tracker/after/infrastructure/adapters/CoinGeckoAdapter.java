@@ -14,16 +14,23 @@ import java.net.http.HttpResponse;
  */
 public class CoinGeckoAdapter implements PriceProviderPort {
 
+    /**
+     * A single client is built once and reused for every request. It owns a
+     * connection pool and a selector thread, so creating one per call would leak
+     * resources. Because HttpClient is AutoCloseable from Java 21 onward, a
+     * long-running process can close it during shutdown.
+     */
+    private static final HttpClient HTTP_CLIENT = HttpClient.newHttpClient();
+
     @Override
     public double getBitcoinPrice() {
         try {
-            HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"))
                     .header("accept", "application/json")
                     .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = HTTP_CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
             String body = response.body();
 
             // 1. DEFENSIVE CHECK: Prevent the ArrayIndexOutOfBoundsException

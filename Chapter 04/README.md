@@ -23,7 +23,7 @@ These examples demonstrate how to structure a layered application, manage depend
 ## How to Run the Examples
 
 ### 1. .NET (C#)
-- **Prerequisites:** .NET 6.0 SDK or higher.
+- **Prerequisites:** .NET 10.0 SDK or higher.
 - Navigate to the `Chapter04/C#/` directory.
 - Run the interactive console menu:
   ```bash
@@ -31,7 +31,7 @@ These examples demonstrate how to structure a layered application, manage depend
   ```
 
 ### 2. Java
-- **Prerequisites:** Java 17 and Maven.
+- **Prerequisites:** Java 21 (or newer) and Maven.
 - Navigate to the Chapter04/Java/ directory.
 - Compile and execute the interactive menu:
   ```Bash

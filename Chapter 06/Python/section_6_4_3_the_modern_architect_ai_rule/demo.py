@@ -9,7 +9,9 @@ class Demo:
     def run():
         print("\n--- STARTING THE MODERN AI ARCHITECT DEMO (PYTHON) ---")
         print("Goal: Turn our Python codebase into a perfect LLM Prompt.")
-        print("Swagger UI: http://localhost:8000/docs\n")
+        print("Swagger UI: http://localhost:8000/docs")
+        print("\n--> Open the URL above and read the descriptions.")
+        print("--> Press Ctrl+C to stop the server and return to the main menu.\n")
 
         app = FastAPI(
             title="Chapter 06 AI-Ready API",

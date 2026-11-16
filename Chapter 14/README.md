@@ -52,6 +52,7 @@ cd Chapter14.Tests && dotnet test
 ```
 
 ### Java
+- **Prerequisites:** Java 21 (or newer) and Maven.
 ```bash
 cd Java
 mvn compile exec:java

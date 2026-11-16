@@ -51,6 +51,7 @@ dotnet run
 ```
 
 ### Java
+- **Prerequisites:** Java 21 (or newer) and Maven.
 ```bash
 cd Java
 mvn compile exec:java

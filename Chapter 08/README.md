@@ -20,7 +20,7 @@ These examples demonstrate that databases are not just passive buckets for data.
 ## How to Run the Examples
 
 ### 1. .NET (C#)
-- **Prerequisites:** .NET 8.0 SDK or higher.
+- **Prerequisites:** .NET 10.0 SDK or higher.
 - **ORM Used:** Entity Framework Core (SQLite).
 - Navigate to the `Chapter08/C#/` directory.
 - Run the interactive console master menu:
@@ -29,7 +29,7 @@ These examples demonstrate that databases are not just passive buckets for data.
   ```
 
 ### 2. Java
-- **Prerequisites:** Java 17 and Maven.
+- **Prerequisites:** Java 21 (or newer) and Maven.
 - **ORM Used:** Hibernate / JPA (SQLite).
 - Navigate to the `Chapter08/Java/` directory.
 - Compile and execute the interactive master menu:

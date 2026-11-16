@@ -26,7 +26,7 @@ These examples demonstrate the **Network Tax** in action: the Latency Tax, the R
 ## How to Run the Examples
 
 ### 1. .NET (C#)
-- **Prerequisites:** .NET 8.0 SDK or higher.
+- **Prerequisites:** .NET 10.0 SDK or higher.
 - Navigate to the `Chapter12/C#/` directory.
 - Run the interactive console master menu:
   ```bash
@@ -34,7 +34,7 @@ These examples demonstrate the **Network Tax** in action: the Latency Tax, the R
   ```
 
 ### 2. Java
-- **Prerequisites:** Java 17 and Maven.
+- **Prerequisites:** Java 21 (or newer) and Maven.
 - **Tools Used:**
   - **Gson:** A JSON library used for parsing the Examples.json configuration.
 - Navigate to the `Chapter12/Java/` directory.
