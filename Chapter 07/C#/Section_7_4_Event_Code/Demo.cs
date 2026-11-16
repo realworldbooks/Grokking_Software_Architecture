@@ -30,9 +30,6 @@ namespace Chapter07.EventCode
 
             // Wait enough time for the background queue to process the label printing
             await Task.Delay(2000);
-            
-            Console.WriteLine("Press any key to return to menu...");
-            Console.ReadKey();
         }
     }
 }

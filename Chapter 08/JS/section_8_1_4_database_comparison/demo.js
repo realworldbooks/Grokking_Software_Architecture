@@ -21,14 +21,14 @@ import { MockOpenAiService } from './services/mockOpenAiService.js';
 export class Demo {
 
     /**
-     * SCENARIO 0: THE LITERAL SEARCH (The Naive Baseline)
+     * SCENARIO 1: THE LITERAL SEARCH (The Naive Baseline)
      * * TEACHING NOTE:
      * This demonstrates why traditional databases require so much planning. 
      * If you search a SQL database for "Pasta", but the recipe is named "Lasagna", 
      * it fails. Traditional DBs match strings, not concepts.
      */
     static runScenario0LiteralSearch() {
-        console.log("\n=== Example 0: The Literal Search (The Naive Baseline) ===");
+        console.log("\n=== Example 1: The Literal Search (The Naive Baseline) ===");
         console.log("SCENARIO: We save 'Lasagna' into our databases.");
         console.log("THE TASK: The user searches the database for 'Pasta'. Let's see what happens.\n");
 
@@ -67,15 +67,15 @@ export class Demo {
     }
 
     /**
-     * SCENARIO 1: THE METADATA WORKAROUND (Columns & Tags)
+     * SCENARIO 2: THE METADATA WORKAROUND (Columns & Tags)
      * * TEACHING NOTE:
      * This shows how developers historically solved the limitation discovered 
-     * in Scenario 0. Because SQL/NoSQL are literal, we have to manually attach 
+     * in Scenario 1. Because SQL/NoSQL are literal, we have to manually attach 
      * metadata (columns/tags) to our records to group them.
      */
     static runScenario1MetadataWorkaround() {
-        console.log("\n=== Example 1: The Metadata Workaround (Columns & Tags) ===");
-        console.log("SCENARIO: Since traditional databases failed the literal search in Example 0,");
+        console.log("\n=== Example 2: The Metadata Workaround (Columns & Tags) ===");
+        console.log("SCENARIO: Since traditional databases failed the literal search in Example 1,");
         console.log("we must now alter our schema to manually 'tag' our data with categories.\n");
 
         console.log("--- 1. The SQL Way (Relational) ---");
@@ -107,7 +107,7 @@ export class Demo {
     }
 
     /**
-     * SCENARIO 2: THE "FAT FINGER" TEST (Fuzzy Intent)
+     * SCENARIO 3: THE "FAT FINGER" TEST (Fuzzy Intent)
      * * TEACHING NOTE:
      * This demonstrates how AI/Vector databases handle human unpredictability. 
      * SQL and NoSQL are rigid—if the spelling isn't perfect, they fail.
@@ -115,7 +115,7 @@ export class Demo {
      * almost identical to the correct spelling.
      */
     static runScenario2FatFinger() {
-        console.log("\n=== Example 2: The 'Fat Finger' Test (Fuzzy Intent) ===");
+        console.log("\n=== Example 3: The 'Fat Finger' Test (Fuzzy Intent) ===");
         console.log("SCENARIO: All databases contain the perfectly spelled word 'Lasagna'.");
         console.log("THE TWIST: The user makes a typo and searches for 'Lasnga'. Let's see who survives.\n");
 
@@ -155,7 +155,7 @@ export class Demo {
     }
 
     /**
-     * SCENARIO 3: THE "BUSINESS REQUIREMENTS CHANGED" TEST
+     * SCENARIO 4: THE "BUSINESS REQUIREMENTS CHANGED" TEST
      * * TEACHING NOTE:
      * This scenario demonstrates the fundamental difference between Schema-On-Write 
      * (SQL) and Schema-On-Read (NoSQL). When business requirements change rapidly, 
@@ -163,7 +163,7 @@ export class Demo {
      * simply absorb the new data shapes.
      */
     static runScenario3SchemaAgility() {
-        console.log("\n=== Example 3: The Schema Agility Test (Business Pivot) ===");
+        console.log("\n=== Example 4: The Schema Agility Test (Business Pivot) ===");
         console.log("SCENARIO: The business has been running smoothly with our Recipe tables.");
         console.log("THE TWIST: The PM kicks down the door: 'We must track Dietary Allergens immediately!'\n");
 
@@ -212,13 +212,13 @@ export class Demo {
     }
 
     /**
-     * SCENARIO 4: THE "GIVE ME THE MATH" TEST (Aggregations)
+     * SCENARIO 5: THE "GIVE ME THE MATH" TEST (Aggregations)
      * * TEACHING NOTE:
      * This scenario demonstrates why SQL is still the undisputed king of reporting, 
      * analytics, and financial math. 
      */
     static runScenario4Aggregation() {
-        console.log("\n=== Example 4: The Aggregation Test (Give Me The Math) ===");
+        console.log("\n=== Example 5: The Aggregation Test (Give Me The Math) ===");
         console.log("SCENARIO: We have 2 Pasta recipes and 1 Soup recipe in the database.");
         console.log("THE TASK: The Analytics team asks: 'Generate a report of recipe counts grouped by type.'\n");
 
@@ -271,13 +271,13 @@ export class Demo {
     }
 
     /**
-     * SCENARIO 5: THE HYBRID ENTERPRISE SEARCH (The Holy Grail)
+     * SCENARIO 6: THE HYBRID ENTERPRISE SEARCH (The Holy Grail)
      * * TEACHING NOTE:
      * This scenario demonstrates how modern enterprise architecture actually works. 
      * We use the Vector DB for the "Semantic Brain" and NoSQL/SQL for the "Hard Logic".
      */
     static runScenario5HybridSearch() {
-        console.log("\n=== Example 5: The Hybrid Search (The Holy Grail) ===");
+        console.log("\n=== Example 6: The Hybrid Search (The Holy Grail) ===");
         console.log("SCENARIO: User searches for 'Comfort Food', but applies a hard filter: 'Under 30 mins'.");
         console.log("THE ARCHITECTURE: We use Vector for the 'Brain' and NoSQL for the 'Math'.\n");
 

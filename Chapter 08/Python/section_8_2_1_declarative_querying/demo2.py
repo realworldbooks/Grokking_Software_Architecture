@@ -12,7 +12,7 @@ class Demo2:
 
     @staticmethod
     def run_query_comparison() -> None:
-        print("\n=== Section 8.2.1: Declarative Querying (Raw SQL vs ORM) ===")
+        print("\n=== Example 7: Section 8.2.1: Declarative Querying (Raw SQL vs ORM) ===")
         print("SCENARIO: The database contains 4 users. We need to find all active users over age 21, sorted alphabetically.")
 
         # 1. Setup the in-memory database and ORM Session

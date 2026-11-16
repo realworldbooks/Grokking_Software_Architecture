@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Chapter07
 {
@@ -21,7 +22,7 @@ namespace Chapter07
             public string Type { get; set; } = string.Empty;
         }
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             string configPath = "Examples.json";
 
@@ -69,7 +70,7 @@ namespace Chapter07
                     Console.Clear();
                     Console.WriteLine($"--- Running: {selected.Name} ---\n");
 
-                    ExecuteDemo(selected.Type, args);
+                    await ExecuteDemo(selected.Type, args);
 
                     Console.WriteLine("\nPress Enter to return to the main menu...");
                     Console.ReadLine();
@@ -85,7 +86,7 @@ namespace Chapter07
         /// <summary>
         /// Uses Reflection to find the target class and execute its entry method.
         /// </summary>
-        private static void ExecuteDemo(string fullyQualifiedTypeName, string[] args)
+        private static async Task ExecuteDemo(string fullyQualifiedTypeName, string[] args)
         {
             try
             {
@@ -112,13 +113,19 @@ namespace Chapter07
                 {
                     // If the method expects string[] args, pass them. Otherwise, pass null.
                     var parameters = method.GetParameters();
+                    object? result;
                     if (parameters.Length == 1 && parameters[0].ParameterType == typeof(string[]))
                     {
-                        method.Invoke(null, new object[] { args });
+                        result = method.Invoke(null, new object[] { args });
                     }
                     else
                     {
-                        method.Invoke(null, null);
+                        result = method.Invoke(null, null);
+                    }
+
+                    if (result is Task task)
+                    {
+                        await task;
                     }
                 }
                 else

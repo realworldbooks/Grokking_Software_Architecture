@@ -31,4 +31,3 @@ class Demo:
         listener_task.cancel() 
         
         print("=== Simulation Complete & Cleaned Up ===")
-        print("Press Enter to return to menu...")

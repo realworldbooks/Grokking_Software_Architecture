@@ -24,14 +24,14 @@ class Demo:
     @staticmethod
     def run_scenario_0_literal_search() -> None:
         """
-        SCENARIO 0: THE LITERAL SEARCH (The Naive Baseline)
+        SCENARIO 1: THE LITERAL SEARCH (The Naive Baseline)
         
         TEACHING NOTE:
         This demonstrates why traditional databases require so much planning. 
         If you search a SQL database for "Pasta", but the recipe is named "Lasagna", 
         it fails. Traditional DBs match strings, not concepts.
         """
-        print("\n=== Example 0: The Literal Search (The Naive Baseline) ===")
+        print("\n=== Example 1: The Literal Search (The Naive Baseline) ===")
         print("SCENARIO: We save 'Lasagna' into our databases.")
         print("THE TASK: The user searches the database for 'Pasta'. Let's see what happens.\n")
 
@@ -71,15 +71,15 @@ class Demo:
     @staticmethod
     def run_scenario_1_metadata_workaround() -> None:
         """
-        SCENARIO 1: THE METADATA WORKAROUND (Columns & Tags)
+        SCENARIO 2: THE METADATA WORKAROUND (Columns & Tags)
         
         TEACHING NOTE:
         This shows how developers historically solved the limitation discovered 
-        in Scenario 0. Because SQL/NoSQL are literal, we have to manually attach 
+        in Scenario 1. Because SQL/NoSQL are literal, we have to manually attach 
         metadata (columns/tags) to our records to group them.
         """
-        print("\n=== Example 1: The Metadata Workaround (Columns & Tags) ===")
-        print("SCENARIO: Since traditional databases failed the literal search in Example 0,")
+        print("\n=== Example 2: The Metadata Workaround (Columns & Tags) ===")
+        print("SCENARIO: Since traditional databases failed the literal search in Example 1,")
         print("we must now alter our schema to manually 'tag' our data with categories.\n")
 
         print("--- 1. The SQL Way (Relational) ---")
@@ -110,7 +110,7 @@ class Demo:
     @staticmethod
     def run_scenario_2_fat_finger() -> None:
         """
-        SCENARIO 2: THE "FAT FINGER" TEST (Fuzzy Intent)
+        SCENARIO 3: THE "FAT FINGER" TEST (Fuzzy Intent)
         
         TEACHING NOTE:
         This demonstrates how AI/Vector databases handle human unpredictability. 
@@ -118,7 +118,7 @@ class Demo:
         Vector databases understand that the meaning of a typo is mathematically 
         almost identical to the correct spelling.
         """
-        print("\n=== Example 2: The 'Fat Finger' Test (Fuzzy Intent) ===")
+        print("\n=== Example 3: The 'Fat Finger' Test (Fuzzy Intent) ===")
         print("SCENARIO: All databases contain the perfectly spelled word 'Lasagna'.")
         print("THE TWIST: The user makes a typo and searches for 'Lasnga'. Let's see who survives.\n")
 
@@ -159,7 +159,7 @@ class Demo:
     @staticmethod
     def run_scenario_3_schema_agility() -> None:
         """
-        SCENARIO 3: THE "BUSINESS REQUIREMENTS CHANGED" TEST
+        SCENARIO 4: THE "BUSINESS REQUIREMENTS CHANGED" TEST
         
         TEACHING NOTE:
         This scenario demonstrates the fundamental difference between Schema-On-Write 
@@ -167,7 +167,7 @@ class Demo:
         relational databases require structural migrations, while document databases 
         simply absorb the new data shapes.
         """
-        print("\n=== Example 3: The Schema Agility Test (Business Pivot) ===")
+        print("\n=== Example 4: The Schema Agility Test (Business Pivot) ===")
         print("SCENARIO: The business has been running smoothly with our Recipe tables.")
         print("THE TWIST: The PM kicks down the door: 'We must track Dietary Allergens immediately!'\n")
 
@@ -212,13 +212,13 @@ class Demo:
     @staticmethod
     def run_scenario_4_aggregation() -> None:
         """
-        SCENARIO 4: THE "GIVE ME THE MATH" TEST (Aggregations)
+        SCENARIO 5: THE "GIVE ME THE MATH" TEST (Aggregations)
         
         TEACHING NOTE:
         This scenario demonstrates why SQL is still the undisputed king of reporting, 
         analytics, and financial math. 
         """
-        print("\n=== Example 4: The Aggregation Test (Give Me The Math) ===")
+        print("\n=== Example 5: The Aggregation Test (Give Me The Math) ===")
         print("SCENARIO: We have 2 Pasta recipes and 1 Soup recipe in the database.")
         print("THE TASK: The Analytics team asks: 'Generate a report of recipe counts grouped by type.'\n")
 
@@ -269,13 +269,13 @@ class Demo:
     @staticmethod
     def run_scenario_5_hybrid_search() -> None:
         """
-        SCENARIO 5: THE HYBRID ENTERPRISE SEARCH (The Holy Grail)
+        SCENARIO 6: THE HYBRID ENTERPRISE SEARCH (The Holy Grail)
         
         TEACHING NOTE:
         This scenario demonstrates how modern enterprise architecture actually works. 
         We use the Vector DB for the "Semantic Brain" and NoSQL/SQL for the "Hard Logic".
         """
-        print("\n=== Example 5: The Hybrid Search (The Holy Grail) ===")
+        print("\n=== Example 6: The Hybrid Search (The Holy Grail) ===")
         print("SCENARIO: User searches for 'Comfort Food', but applies a hard filter: 'Under 30 mins'.")
         print("THE ARCHITECTURE: We use Vector for the 'Brain' and NoSQL for the 'Math'.\n")
 

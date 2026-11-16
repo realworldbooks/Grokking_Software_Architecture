@@ -1,14 +1,14 @@
 import crypto from 'crypto';
 import { InMemoryBroker } from './infrastructure/inMemoryBroker.js';
 import { OrderController } from './controllers/orderController.js';
-import { timer } from 'rxjs';
+import { firstValueFrom, timer } from 'rxjs';
 
 /**
  * THE COMPOSITION ROOT: Where the application wires all the decoupled reactive pieces 
  * together and executes the simulation.
  */
 export class Demo {
-    static run() {
+    static async run() {
         console.log("=== Section 7.4: Event Definition & Temporal Decoupling ===\n");
 
         // 1. Wire up the Shared Infrastructure (The Broker)
@@ -27,17 +27,13 @@ export class Demo {
         // but explicitly unsubscribing is the safest enterprise habit to build.
         const checkoutSub = orderController.checkout(crypto.randomUUID(), 149.99).subscribe();
 
-        
-        // We capture the timer subscription as well.
-        const timerSub = timer(2000).subscribe(() => { // Wait enough time for the background queue to process the label printing
-            console.log("Press any key to return to menu...");
+        // Wait for the background queue to process the label printing.
+        await firstValueFrom(timer(2000));
 
-            // CLEANUP PHASE: Prevent Memory Leaks
-            broker.stopListening();
-            checkoutSub.unsubscribe();
-            timerSub.unsubscribe();
-            
-            console.log("=== Simulation Complete & Cleaned Up ===");
-        });     
+        // CLEANUP PHASE: Prevent Memory Leaks
+        broker.stopListening();
+        checkoutSub.unsubscribe();
+
+        console.log("=== Simulation Complete & Cleaned Up ===");
     }
 }

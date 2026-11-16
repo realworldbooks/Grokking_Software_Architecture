@@ -27,7 +27,5 @@ public class Demo {
 
         // Wait enough time for the background queue to process the label printing
         Thread.sleep(2000);
-        
-        System.out.println("Press any key to return to menu...");
     }
 }

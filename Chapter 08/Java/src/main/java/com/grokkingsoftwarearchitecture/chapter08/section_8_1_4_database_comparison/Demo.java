@@ -33,7 +33,7 @@ public class Demo {
      * it fails. Traditional DBs match strings, not concepts.
      */
     public static void runScenario0LiteralSearch() {
-        System.out.println("\n=== Example 0: The Literal Search (The Naive Baseline) ===");
+        System.out.println("\n=== Example 1: The Literal Search (The Naive Baseline) ===");
         System.out.println("SCENARIO: We save 'Lasagna' into our databases.");
         System.out.println("THE TASK: The user searches the database for 'Pasta'. Let's see what happens.\n");
 
@@ -79,8 +79,8 @@ public class Demo {
      * metadata (columns/tags) to our records to group them.
      */
     public static void runScenario1MetadataWorkaround() {
-        System.out.println("\n=== Example 1: The Metadata Workaround (Columns & Tags) ===");
-        System.out.println("SCENARIO: Since traditional databases failed the literal search in Example 0,");
+        System.out.println("\n=== Example 2: The Metadata Workaround (Columns & Tags) ===");
+        System.out.println("SCENARIO: Since traditional databases failed the literal search in Example 1,");
         System.out.println("we must now alter our schema to manually 'tag' our data with categories.\n");
 
         System.out.println("--- 1. The SQL Way (Relational) ---");
@@ -117,7 +117,7 @@ public class Demo {
      * almost identical to the correct spelling.
      */
     public static void runScenario2FatFinger() {
-        System.out.println("\n=== Example 2: The 'Fat Finger' Test (Fuzzy Intent) ===");
+        System.out.println("\n=== Example 3: The 'Fat Finger' Test (Fuzzy Intent) ===");
         System.out.println("SCENARIO: All databases contain the perfectly spelled word 'Lasagna'.");
         System.out.println("THE TWIST: The user makes a typo and searches for 'Lasnga'. Let's see who survives.\n");
 
@@ -167,7 +167,7 @@ public class Demo {
      * simply absorb the new data shapes.
      */
     public static void runScenario3SchemaAgility() {
-        System.out.println("\n=== Example 3: The Schema Agility Test (Business Pivot) ===");
+        System.out.println("\n=== Example 4: The Schema Agility Test (Business Pivot) ===");
         System.out.println("SCENARIO: The business has been running smoothly with our Recipe tables.");
         System.out.println("THE TWIST: The PM kicks down the door: 'We must track Dietary Allergens immediately!'\n");
 
@@ -221,7 +221,7 @@ public class Demo {
      * analytics, and financial math. 
      */
     public static void runScenario4Aggregation() {
-        System.out.println("\n=== Example 4: The Aggregation Test (Give Me The Math) ===");
+        System.out.println("\n=== Example 5: The Aggregation Test (Give Me The Math) ===");
         System.out.println("SCENARIO: We have 2 Pasta recipes and 1 Soup recipe in the database.");
         System.out.println("THE TASK: The Analytics team asks: 'Generate a report of recipe counts grouped by type.'\n");
 
@@ -283,7 +283,7 @@ public class Demo {
      * We use the Vector DB for the "Semantic Brain" and NoSQL/SQL for the "Hard Logic".
      */
     public static void runScenario5HybridSearch() {
-        System.out.println("\n=== Example 5: The Hybrid Search (The Holy Grail) ===");
+        System.out.println("\n=== Example 6: The Hybrid Search (The Holy Grail) ===");
         System.out.println("SCENARIO: User searches for 'Comfort Food', but applies a hard filter: 'Under 30 mins'.");
         System.out.println("THE ARCHITECTURE: We use Vector for the 'Brain' and NoSQL for the 'Math'.\n");
 
