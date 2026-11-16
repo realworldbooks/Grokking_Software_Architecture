@@ -33,7 +33,7 @@ public class Demo {
         var mockPayload = new MockWebhookPayload("INSERT", "objects", 
             new MockWebhookPayload.MockWebhookRecord("images", "rx_java_web.png"));
         var mockReq = new MockHttpRequest(mockPayload);
-        var webHandler = new DatabaseWebhookHandler();
+        var webHandler = new DataBaseWebHookHandler();
 
         webHandler.handleStream(mockReq).subscribe(res -> 
             System.out.println("  [Supabase Result] Emitted: " + res + "\n")

@@ -3,7 +3,7 @@ package com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_func
 import com.grokkingsoftwarearchitecture.chapter09.section_9_3_4_serverless_functions.infrastructure.web.MockHttpRequest;
 import io.reactivex.rxjava3.core.Observable;
 
-public class DatabaseWebhookHandler {
+public class DataBaseWebHookHandler {
 
     /**
      * CLOUD 3: DATABASE WEBHOOKS (The Reactive Web Standard)
