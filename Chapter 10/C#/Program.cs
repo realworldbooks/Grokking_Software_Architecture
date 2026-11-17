@@ -112,13 +112,21 @@ namespace Chapter10
                 {
                     // If the method expects string[] args, pass them. Otherwise, pass null.
                     var parameters = method.GetParameters();
+                    object? result;
+                    
                     if (parameters.Length == 1 && parameters[0].ParameterType == typeof(string[]))
                     {
-                        method.Invoke(null, new object[] { args });
+                        result = method.Invoke(null, new object[] { args });
                     }
                     else
                     {
-                        method.Invoke(null, null);
+                        result = method.Invoke(null, null);
+                    }
+
+                    // If the method returns a Task, wait for it to complete
+                    if (result is Task task)
+                    {
+                        task.Wait();
                     }
                 }
                 else
