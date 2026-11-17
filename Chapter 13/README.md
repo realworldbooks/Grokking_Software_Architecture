@@ -53,7 +53,7 @@ These examples demonstrate the **Architecture Governance** concept: instead of r
 - Navigate to the `Chapter13/JS/` directory.
 - Start the menu:
   ```bash
-  node menu.js
+  npm start
   ```
 
 ### 4. Python

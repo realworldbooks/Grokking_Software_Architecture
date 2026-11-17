@@ -51,7 +51,7 @@ mvn clean compile exec:java
     - Run the interactive menu:
 
 ```Bash
-node menu.js
+npm start
 
 Note: This implementation uses Vanilla JSDoc for documentation and standard CommonJS modules.
 ```

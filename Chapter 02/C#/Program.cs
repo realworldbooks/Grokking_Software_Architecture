@@ -1,6 +1,6 @@
 using System.Reflection;
 using System.Text.Json;
-namespace Chapter03;
+namespace Chapter02;
 
 // This class perfectly maps to the JSON structure
 public class ExampleConfig

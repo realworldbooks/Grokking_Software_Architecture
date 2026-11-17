@@ -54,7 +54,7 @@ Chapter 11 focuses on removing the human and the hardcoded string from the equat
 - Install dependencies and start the menu:
   ```bash
   npm install
-  node menu.js
+  npm start
   ```
 
 ### 4. Python

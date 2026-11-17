@@ -45,12 +45,11 @@ mvn clean compile exec:java
 - **Tools Used:**
    - **RxJS:** The JavaScript implementation of Reactive Extensions, used here to model the ephemeral, push-based nature of Serverless event streams without needing an active AWS EventBridge setup.
 - Navigate to the `Chapter09/JS/` directory.
-- Install dependencies, push the schema to the database (generates the Prisma Client), and start the menu:
+- Install the dependencies and start the menu:
 ```bash
 npm install
-node menu.js
+npm start
 ```
-(Note: The db:setup command runs prisma db push behind the scenes to build your local SQLite file).
 
 ### 4. Python
 - **Prerequisites:** Python 3.12. (Note: Python 3.13 introduces typing changes that may break older versions of SQLAlchemy).

@@ -48,7 +48,7 @@ These examples demonstrate the **Network Tax** in action: the Latency Tax, the R
 - Navigate to the `Chapter12/JS/` directory.
 - Start the menu:
   ```bash
-  node menu.js
+  npm start
   ```
 
 ### 4. Python

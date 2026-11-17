@@ -48,7 +48,7 @@ Chapter 10 focuses on the "Cloud Reality"—a fundamentally hostile, distributed
 - Install dependencies and start the menu:
   ```bash
   npm install
-  node menu.js
+  npm start
   ```
 
 ### 4. Python
