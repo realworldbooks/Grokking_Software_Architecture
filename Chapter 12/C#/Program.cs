@@ -21,7 +21,7 @@ namespace Chapter12
             public string Type { get; set; } = string.Empty;
         }
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             // Get the directory where the executable is running
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -77,7 +77,7 @@ namespace Chapter12
                     Console.Clear();
                     Console.WriteLine($"--- Running: {selected.Name} ---\n");
 
-                    ExecuteDemo(selected.Type, args);
+                    await ExecuteDemo(selected.Type, args);
 
                     Console.WriteLine("\nPress Enter to return to the main menu...");
                     Console.ReadLine();
@@ -93,7 +93,7 @@ namespace Chapter12
         /// <summary>
         /// Uses Reflection to find the target class and execute its entry method.
         /// </summary>
-        private static void ExecuteDemo(string fullyQualifiedTypeName, string[] args)
+        private static async Task ExecuteDemo(string fullyQualifiedTypeName, string[] args)
         {
             try
             {
@@ -122,11 +122,11 @@ namespace Chapter12
                     var parameters = method.GetParameters();
                     if (parameters.Length == 1 && parameters[0].ParameterType == typeof(string[]))
                     {
-                        method.Invoke(null, new object[] { args });
+                        await InvokeDemoAsync(method, new object[] { args });
                     }
                     else
                     {
-                        method.Invoke(null, null);
+                        await InvokeDemoAsync(method, null);
                     }
                 }
                 else
@@ -141,6 +141,15 @@ namespace Chapter12
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"[ERROR] Execution failed: {ex.InnerException?.Message ?? ex.Message}");
                 Console.ResetColor();
+            }
+        }
+
+        private static async Task InvokeDemoAsync(MethodInfo method, object?[]? parameters)
+        {
+            object? result = method.Invoke(null, parameters);
+            if (result is Task task)
+            {
+                await task;
             }
         }
     }
