@@ -100,4 +100,5 @@ class Demo:
         thread.join()
         print("Server stopped successfully.")
 
-Demo.run()
+if __name__ == "__main__":
+    Demo.run()

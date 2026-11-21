@@ -43,7 +43,17 @@ namespace Chapter06.AiApiExample
             app.UseSwaggerUI();
             app.MapControllers();
 
-            app.Run();
+            // Start the server without blocking, so the menu stays usable.
+            app.Start();
+
+            Console.WriteLine("\n[SUCCESS] AI-READY API IS RUNNING (C#/ASP.NET Core)");
+            Console.WriteLine("Swagger UI available at: http://localhost:5000/swagger");
+            Console.WriteLine("\nPress ENTER to stop the server and return to the main menu...");
+            Console.ReadLine();
+
+            app.StopAsync().GetAwaiter().GetResult();
+            app.DisposeAsync().AsTask().GetAwaiter().GetResult();
+            Console.WriteLine("Server stopped successfully.");
         }
     }
 }

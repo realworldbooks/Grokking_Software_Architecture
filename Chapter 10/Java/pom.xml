@@ -21,17 +21,30 @@
         <exec.mainClass>com.grokkingsoftwarearchitecture.chapter10.Main</exec.mainClass>
     </properties>
 
+    <!--
+        The Spring Boot parent manages Jackson 2.15.4, but this chapter requires
+        a newer Jackson. Import the matching BOM so jackson-databind,
+        jackson-core and jackson-annotations are always kept on the same
+        version and cannot drift apart (a mixed Jackson family fails at
+        runtime with NoSuchMethodError / NoClassDefFoundError).
+    -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>2.23.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.23.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.23</version>
-        </dependency>        
         <dependency>
             <groupId>io.github.resilience4j</groupId>
             <artifactId>resilience4j-retry</artifactId>

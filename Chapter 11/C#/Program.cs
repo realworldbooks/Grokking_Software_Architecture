@@ -21,7 +21,7 @@ namespace Chapter11
             public string Type { get; set; } = string.Empty;
         }
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             // Get the directory where the executable is running
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -77,7 +77,7 @@ namespace Chapter11
                     Console.Clear();
                     Console.WriteLine($"--- Running: {selected.Name} ---\n");
 
-                    ExecuteDemo(selected.Type, args);
+                    await ExecuteDemo(selected.Type, args);
 
                     Console.WriteLine("\nPress Enter to return to the main menu...");
                     Console.ReadLine();
@@ -93,7 +93,7 @@ namespace Chapter11
         /// <summary>
         /// Uses Reflection to find the target class and execute its entry method.
         /// </summary>
-        private static void ExecuteDemo(string fullyQualifiedTypeName, string[] args)
+        private static async Task ExecuteDemo(string fullyQualifiedTypeName, string[] args)
         {
             try
             {
@@ -120,13 +120,21 @@ namespace Chapter11
                 {
                     // If the method expects string[] args, pass them. Otherwise, pass null.
                     var parameters = method.GetParameters();
+                    object? result;
                     if (parameters.Length == 1 && parameters[0].ParameterType == typeof(string[]))
                     {
-                        method.Invoke(null, new object[] { args });
+                        result = method.Invoke(null, new object[] { args });
                     }
                     else
                     {
-                        method.Invoke(null, null);
+                        result = method.Invoke(null, null);
+                    }
+
+                    // If the method returns a Task, wait for the demo to finish before
+                    // showing the "Press Enter" prompt again.
+                    if (result is Task task)
+                    {
+                        await task;
                     }
                 }
                 else
