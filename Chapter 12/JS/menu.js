@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 import readline from "readline";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -13,7 +13,7 @@ const clearScreen = () => { if (process.stdout.isTTY) process.stdout.write("\x1b
 
 const executeDemo = async (modulePath) => {
   try {
-    const mod = await import(path.join(__dirname, modulePath));
+    const mod = await import(pathToFileURL(path.join(__dirname, modulePath)).href);
     const DemoClass = mod.Demo;
     if (!DemoClass) { console.error("[ERROR] No Demo class found in " + modulePath); return; }
     await DemoClass.run();
