@@ -1,0 +1,17 @@
+package com.grokkingsoftwarearchitecture.chapter04.section_4_5_cross_cutting_concerns.after;
+
+import java.util.Random;
+
+public class Order {
+    private static final Random RANDOM = new Random(); 
+
+    private int id = RANDOM.nextInt(9000) + 1000; // generate a random 4-digit order ID
+
+    public Order() {
+        // Default constructor
+    }
+
+    public int getId() { return id; }
+    
+    public void setId(int id) { this.id = id; }
+}

@@ -18,13 +18,13 @@
     </None>
   </ItemGroup>
 
-<ItemGroup>
-    <ProjectReference Include=".\Section_4_2_Downward_Dependency\Before\Before4_2.csproj" />
-    <ProjectReference Include=".\Section_4_2_Downward_Dependency\After\After4_2.csproj" />
-    <ProjectReference Include=".\Section_4_3_Cross_Cutting_Concerns\Before\Before4_3.csproj" />
-    <ProjectReference Include=".\Section_4_3_Cross_Cutting_Concerns\After\After4_3.csproj" />
-    <ProjectReference Include=".\Section_4_4_Anti_Patterns\Before_Fat_Controller_Anemic_Domain\Before.csproj" />
-    <ProjectReference Include=".\Section_4_4_Anti_Patterns\After_Rich_Domain_Thin_Controller\After\After.Presentation\After.Presentation.csproj" />
-</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include=".\Section_4_3_Downward_Dependency\Before\Before4_3.csproj" />
+    <ProjectReference Include=".\Section_4_3_Downward_Dependency\After\After4_3.csproj" />
+    <ProjectReference Include=".\Section_4_5_Cross_Cutting_Concerns\Before\Before4_5.csproj" />
+    <ProjectReference Include=".\Section_4_5_Cross_Cutting_Concerns\After\After4_5.csproj" />
+    <ProjectReference Include=".\Section_4_7_Anti_Patterns\Before_Fat_Controller_Anemic_Domain\Before.csproj" />
+    <ProjectReference Include=".\Section_4_7_Anti_Patterns\After_Rich_Domain_Thin_Controller\After\After.Presentation\After.Presentation.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -64,9 +64,9 @@ Note: Ensure you have `__init__.py` files in your subdirectories so the dynamic 
 The folders are organized by section number. Each scenario contains a before/ (Anti-Pattern) and after/ (Layered Architecture) implementation.
 
 ```Plaintext
-├── section_4_2_downward_dependency/         # Layering and Dependency Direction
-├── section_4_3_cross_cutting_concerns/      # Dependency Inversion at Scale
-└── section_4_4_anti_patterns/               # The Fat Controller & Rich Domain
+├── section_4_3_downward_dependency/         # Layering and Dependency Direction
+├── section_4_5_cross_cutting_concerns/      # Dependency Inversion at Scale
+└── section_4_7_anti_patterns/               # The Fat Controller & Rich Domain
     ├── before_fat_controller_anemic_domain/
     └── after_rich_domain_thin_controller/
 ```
@@ -75,7 +75,7 @@ The folders are organized by section number. Each scenario contains a before/ (A
 
 | Section | Architectural Goal | The Problem (Before) | The Solution (After) |
 | :--- | :--- | :--- | :--- |
-| **4.2** | **Protect the Domain Layer** | **Upward Dependency:** The core business rules rely on specific database implementations. | **Downward Dependency:** The Presentation and Infrastructure layers depend on the Core. |
-| **4.3** | **Decouple External Services** | **Missing Abstraction:** Business logic is hardcoded to specific third-party tools (e.g., SMTP). | **Dependency Inversion:** Interfaces dictate the contract; external tools are injected. |
-| **4.4** | **Enforce the Single Responsibility Principle** | **Fat Controller:** The Presentation layer handles HTTP routing, DB queries, and business math. | **Thin Controller:** The controller only routes data. Business rules live inside the entities. |
-| **4.4** | **Unify Data and Behavior** | **Anemic Domain:** Models are just simple DTOs holding state without validation. | **Rich Domain:** Models encapsulate their own data and protect their invariants. |
+| **4.3** | **Protect the Domain Layer** | **Upward Dependency:** The core business rules rely on specific database implementations. | **Downward Dependency:** The Presentation and Infrastructure layers depend on the Core. |
+| **4.5** | **Decouple External Services** | **Missing Abstraction:** Business logic is hardcoded to specific third-party tools (e.g., SMTP). | **Dependency Inversion:** Interfaces dictate the contract; external tools are injected. |
+| **4.7** | **Enforce the Single Responsibility Principle** | **Fat Controller:** The Presentation layer handles HTTP routing, DB queries, and business math. | **Thin Controller:** The controller only routes data. Business rules live inside the entities. |
+| **4.7** | **Unify Data and Behavior** | **Anemic Domain:** Models are just simple DTOs holding state without validation. | **Rich Domain:** Models encapsulate their own data and protect their invariants. |

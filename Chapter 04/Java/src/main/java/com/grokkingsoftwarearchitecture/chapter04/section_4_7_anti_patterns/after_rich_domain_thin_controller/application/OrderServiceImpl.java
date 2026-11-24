@@ -1,0 +1,79 @@
+package com.grokkingsoftwarearchitecture.chapter04.section_4_7_anti_patterns.after_rich_domain_thin_controller.application;
+
+import com.grokkingsoftwarearchitecture.chapter04.section_4_7_anti_patterns.after_rich_domain_thin_controller.domain.interfaces.CustomerRepository;
+import com.grokkingsoftwarearchitecture.chapter04.section_4_7_anti_patterns.after_rich_domain_thin_controller.domain.interfaces.EmailService;
+import com.grokkingsoftwarearchitecture.chapter04.section_4_7_anti_patterns.after_rich_domain_thin_controller.domain.interfaces.ItemRepository;
+import com.grokkingsoftwarearchitecture.chapter04.section_4_7_anti_patterns.after_rich_domain_thin_controller.domain.interfaces.OrderRepository;
+import com.grokkingsoftwarearchitecture.chapter04.section_4_7_anti_patterns.after_rich_domain_thin_controller.domain.models.Customer;
+import com.grokkingsoftwarearchitecture.chapter04.section_4_7_anti_patterns.after_rich_domain_thin_controller.domain.models.Item;
+import com.grokkingsoftwarearchitecture.chapter04.section_4_7_anti_patterns.after_rich_domain_thin_controller.domain.models.Order;
+
+import org.springframework.stereotype.Service;
+/**
+ * THE SERVICE LAYER (Orchestrator)
+ * ARCHITECTURE NOTE: This class replaces the massive "God Method" 
+ * from the Fat Controller. It doesn't write to the DB, nor does 
+ * it calculate math. It simply coordinates the flow of data 
+ * between the Data Access layer and the Rich Domain Models.
+ */
+@Service
+public class OrderServiceImpl implements OrderService {
+    private final OrderRepository orderRepo;
+    private final CustomerRepository customerRepo;
+    private final ItemRepository itemRepo; // New dependency for secure lookups
+    private final EmailService emailService;
+
+    public OrderServiceImpl(
+            OrderRepository orderRepo, 
+            CustomerRepository customerRepo,
+            ItemRepository itemRepo,
+            EmailService emailService) {
+        this.orderRepo = orderRepo;
+        this.customerRepo = customerRepo;
+        this.itemRepo = itemRepo;
+        this.emailService = emailService;
+    }
+
+    @Override
+    public OrderResponse createOrder(OrderRequest request) {
+        // 1. Fetch data from lower layer
+        Customer customer = customerRepo.getById(request.getCustomerId());
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer not found.");
+        }
+
+        // 2. Instantiate the Rich Domain
+        Order order = new Order(customer);
+
+        // 3. Delegate business logic to the Rich Model
+        for (OrderRequest.OrderItemRequest itemReq : request.getItems()) {
+            // SECURITY LOOKUP: Fetch the actual Item from the DB to get the valid Price
+            // This ensures the system uses the official price, not the one from the request.
+            Item actualItem = itemRepo.getById(itemReq.getItemId());
+            if (actualItem == null) {
+                throw new IllegalArgumentException("Item " + itemReq.getItemId() + " not found.");
+            }
+            // Set the quantity from the user's request onto the domain object
+            actualItem.setQuantity(itemReq.getQuantity());
+
+            // The service doesn't care about discount rules; 
+            // the Order model handles that internally.
+            order.addItem(actualItem);
+        }
+
+        // 4. Send the updated model back down to Infrastructure
+        orderRepo.save(order);
+        emailService.send(
+            order.getCustomerEmail(), 
+            "Confirmed!", 
+            "Your order has been placed."
+        );
+
+        // 5. Map to Response DTO
+        OrderResponse response = new OrderResponse();
+        response.setOrderId(order.getId());
+        response.setTotalPrice(order.getTotalPrice());
+        response.setCustomerEmail(order.getCustomerEmail());
+        return response;
+    }
+}
