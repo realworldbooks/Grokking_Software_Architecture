@@ -3,11 +3,11 @@ Welcome to the companion code for Chapter 2 of Grokking Software Architecture. I
 
  ## Architectural Concepts Covered
  
- - **Section 2.3.2 Maintainability:** Refactoring a tightly coupled shopping cart into isolated data and logic layers to eliminate "Magic Numbers" and "God Methods."
- - **Section 2.3.3 Testability:** Using Dependency Injection (DI) to decouple business logic from infrastructure, enabling isolated unit testing via Fakes and Mocks.
- - **Section 2.3.4 Performance:** Implementing the Cache-Aside pattern to protect expensive data sources and reduce user latency.
- - **Section 2.4.1 Constraints in Action:** Orchestrating requests through layers while adhering to technical (HTTP/CSV) and business (validation) constraints.
- - **Section 2.7.1 Weighted Decision Model:** A quantitative, matrix-driven approach to choosing technology stacks based on project-specific priorities.
+ - **Section 2.4.2 Maintainability:** Refactoring a tightly coupled shopping cart into isolated data and logic layers to eliminate "Magic Numbers" and "God Methods."
+ - **Section 2.4.3 Testability:** Using Dependency Injection (DI) to decouple business logic from infrastructure, enabling isolated unit testing via Fakes and Mocks.
+ - **Section 2.4.4 Performance:** Implementing the Cache-Aside pattern to protect expensive data sources and reduce user latency.
+ - **Section 2.5.1 Constraints in Action:** Orchestrating requests through layers while adhering to technical (HTTP/CSV) and business (validation) constraints.
+ - **Section 2.8.1 Weighted Decision Model:** A quantitative, matrix-driven approach to choosing technology stacks based on project-specific priorities.
 
 ## How to Run the Examples
 
@@ -27,11 +27,11 @@ The menu uses Reflection to dynamically execute the chosen class.
 ```bash
 mvn clean compile exec:java
 ```
-Note: Uses the Jackson library to parse the examples.json manifest.
+Note: Uses the Jackson library to parse the Examples.json manifest.
 
 3. Node.js (JavaScript)
 - Prerequisites: Node.js (v16+) and npm.
-- Navigate to Chapter02/Node/
+- Navigate to Chapter02/JS/
 - Run:  
 ```bash 
 npm install
@@ -53,19 +53,19 @@ Note: Requires __init__.py files in subdirectories for dynamic module importing.
 Each language follows this standardized folder hierarchy. For sections involving refactoring, you will find both a before/ (unoptimized) and after/ (architecturally sound) implementation.
 
 ```Plaintext
-├── section_2_3_2_maintainability/  # Shopping Cart (Before/After)
-├── section_2_3_3_testability/      # Dependency Injection (Before/After)
-├── section_2_3_4_performance/      # Cache-Aside Pattern (Before/After)
-├── section_2_4_1_constraints/      # Layered Architecture & HTTP
-└── section_2_7_1_decision_model/   # Weighted Decision Matrix
+├── section_2_4_2_maintainability/          # Shopping Cart (Before/After)
+├── section_2_4_3_testability/              # Dependency Injection (Before/After)
+├── section_2_4_4_performance/              # Cache-Aside Pattern (Before/After)
+├── section_2_5_1_constraints_in_action/    # Layered Architecture & HTTP
+└── section_2_8_1_weighted_decision_model/  # Weighted Decision Matrix
 ```
 
 ## Feature Comparison 
 
 | Section | Architectural Goal | Key Pattern | Implementation Detail |
 | :--- | :--- | :--- | :--- |
-| **2.3.2** | **Maintainability** | Separation of Concerns | Constants & Method Decomposition |
-| **2.3.3** | **Testability** | Inversion of Control | Constructor Injection & Test Doubles |
-| **2.3.4** | **Performance** | Cache-Aside | In-Memory Key/Value Store |
-| **2.4.1** | **Constraints** | Layered Orchestration | Controller -> Service -> DB Flow |
-| **2.7.1** | **Decision Making** | Quantitative Analysis | Weighted Scoring Algorithm |
+| **2.4.2** | **Maintainability** | Separation of Concerns | Constants & Method Decomposition |
+| **2.4.3** | **Testability** | Inversion of Control | Constructor Injection & Test Doubles |
+| **2.4.4** | **Performance** | Cache-Aside | In-Memory Key/Value Store |
+| **2.5.1** | **Constraints** | Layered Orchestration | Controller -> Service -> DB Flow |
+| **2.8.1** | **Decision Making** | Quantitative Analysis | Weighted Scoring Algorithm |
