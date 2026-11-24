@@ -1,6 +1,6 @@
-package com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.infrastructure.adapters;
+package com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.infrastructure.adapters;
 
-import com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.core.ports.PriceProviderPort;
+import com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.core.ports.PriceProviderPort;
 /**
  * ADAPTER 1: The "Airplane Mode" / Test Adapter.
  */

@@ -1,4 +1,4 @@
-package com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.core.ports;
+package com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.core.ports;
 
 /**
  * PORT – Defines "What" we need (lives in Core).

@@ -9,10 +9,10 @@
   },
   "3": { 
     "name": "Crypto Tracker: Tight Coupling (Before)", 
-    "type": "com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.before.Demo" 
+    "type": "com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.before.Demo" 
   },
   "4": { 
     "name": "Crypto Tracker: Hexagonal Architecture (After)", 
-    "type": "com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.Demo" 
+    "type": "com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.Demo" 
   }
 }

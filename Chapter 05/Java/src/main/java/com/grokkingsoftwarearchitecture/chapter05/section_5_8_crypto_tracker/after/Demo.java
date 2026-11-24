@@ -1,9 +1,9 @@
-package com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after;
+package com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after;
 
-import com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.core.domain.PortfolioManager;    
-import com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.core.ports.PriceProviderPort;
-import com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.infrastructure.adapters.CoinGeckoAdapter;
-import com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.tests.PortfolioTests;
+import com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.core.domain.PortfolioManager;    
+import com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.core.ports.PriceProviderPort;
+import com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.infrastructure.adapters.CoinGeckoAdapter;
+import com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.tests.PortfolioTests;
 
 /**
  * The Execution Layer.

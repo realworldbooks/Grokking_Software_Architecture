@@ -1,6 +1,6 @@
-package com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.core.domain;
+package com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.core.domain;
 
-import com.grokkingsoftwarearchitecture.chapter05.section_5_6_crypto_tracker.after.core.ports.PriceProviderPort;
+import com.grokkingsoftwarearchitecture.chapter05.section_5_8_crypto_tracker.after.core.ports.PriceProviderPort;
 
 /**
  * CORE – Pure business logic.

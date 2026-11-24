@@ -9,10 +9,10 @@
   },
   "3": { 
     "name": "Crypto Tracker: Tight Coupling (Before)", 
-    "path": "section_5_6_crypto_tracker.before.demo" 
+    "path": "section_5_8_crypto_tracker.before.demo" 
   },
   "4": { 
     "name": "Crypto Tracker: Hexagonal Architecture (After)", 
-    "path": "section_5_6_crypto_tracker.after.demo" 
+    "path": "section_5_8_crypto_tracker.after.demo" 
   }
 }
